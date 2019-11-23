@@ -1,0 +1,8 @@
+platform :ios, '11.4'
+
+target 'ExampleAppp' do
+  use_frameworks!
+  
+  pod 'Aimybox', :path => '../'
+
+end
