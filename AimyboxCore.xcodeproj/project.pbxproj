@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		557D2F30238C2B17007FC257 /* AimyboxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D2F2F238C2B17007FC257 /* AimyboxState.swift */; };
 		97233FDD23898F2C0050E37F /* AimyboxCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 97233FDB23898F2C0050E37F /* AimyboxCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		97233FEA2389906B0050E37F /* AimyboxCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97233FE92389906B0050E37F /* AimyboxCoreTests.swift */; };
 		97233FEC2389906B0050E37F /* AimyboxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97233FD823898F2C0050E37F /* AimyboxCore.framework */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		557D2F2F238C2B17007FC257 /* AimyboxState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxState.swift; sourceTree = "<group>"; };
 		97233FD823898F2C0050E37F /* AimyboxCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AimyboxCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97233FDB23898F2C0050E37F /* AimyboxCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AimyboxCore.h; sourceTree = "<group>"; };
 		97233FDC23898F2C0050E37F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				97233FDB23898F2C0050E37F /* AimyboxCore.h */,
 				97233FDC23898F2C0050E37F /* Info.plist */,
 				973C7C9C2389921200920960 /* Aimybox.swift */,
+				557D2F2F238C2B17007FC257 /* AimyboxState.swift */,
 			);
 			path = AimyboxCore;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				973C7C9D2389921200920960 /* Aimybox.swift in Sources */,
+				557D2F30238C2B17007FC257 /* AimyboxState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +352,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = HKJ88XEM2N;
+				DEVELOPMENT_TEAM = 76AN68YZD6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -376,7 +380,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = HKJ88XEM2N;
+				DEVELOPMENT_TEAM = 76AN68YZD6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
