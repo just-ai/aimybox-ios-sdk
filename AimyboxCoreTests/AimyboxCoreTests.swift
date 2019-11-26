@@ -11,15 +11,30 @@ import XCTest
 
 class AimyboxCoreTests: XCTestCase {
 
+    var aimybox: Aimybox!
+    
     override func setUp() {
+        let speechToText = SFSpeechToText()
+        let config = Aimybox.Config(speechToText: speechToText)
+        aimybox = Aimybox(with: config)
     }
 
     override func tearDown() {
+        aimybox = nil
     }
 
-    func testInit() {
-        let aimbox = Aimybox.shared
-
-        XCTAssert(true, "\(aimbox)")
+    func testInitialState() {
+        
+        let isValid = aimybox.state == .standby
+        XCTAssert(isValid, "Initial state should be standby.")
     }
+    
+    func testStateAfterStartSpeechRecognizing() {
+        
+        aimybox.startRecognition()
+        
+        let isValid = aimybox.state == .listening
+        XCTAssert(isValid, "State after start of speech recognizing should be listening.")
+    }
+    
 }

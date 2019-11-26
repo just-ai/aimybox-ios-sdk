@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/aimybox'
   s.ios.deployment_target = '10.0'
   s.swift_versions = '4.2'
-  s.source_files = 'AimyboxCore/**/*.{swift}'
+  s.source_files = 'AimyboxCore/**/*.{swift}', 'Components/**/*.{swift}'
 end
