@@ -22,6 +22,8 @@ public class SFSpeechToText: SpeechToTextProtocol {
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     
     private var recognitionTask: SFSpeechRecognitionTask?
+    
+    public var notify: (SpeechToTextCallback)?
     /**
      Default init that uses system locale.
     
@@ -31,6 +33,7 @@ public class SFSpeechToText: SpeechToTextProtocol {
         locale = Locale.current
         audioEngine = AVAudioEngine()
         guard let recognizer = SFSpeechRecognizer(locale: locale) else { return nil }
+        recognizer.defaultTaskHint = .search
         speechRecognizer = recognizer
     }
     /**
@@ -42,30 +45,26 @@ public class SFSpeechToText: SpeechToTextProtocol {
         self.locale = locale
         audioEngine = AVAudioEngine()
         guard let recognizer = SFSpeechRecognizer(locale: locale) else { return nil }
+        recognizer.defaultTaskHint = .search
         speechRecognizer = recognizer
     }
     
     // MARK: - Locale management
+    
     public class func supports(locale: Locale) -> Bool {
         return SFSpeechRecognizer.supportedLocales().contains(locale)
     }
     
     // MARK: - SpechToTextProtocol conformance
 
-    public func startRecognition(_ completion: @escaping (Aimybox.SpeechToTextResult) -> ()) {
+    public func startRecognition() {
 
         checkPermissions { [weak self] result in
             switch result {
-            case .complete:
-                self?.prepareRecognition(completion)
-                do {
-                    try self?.audioEngine.start()
-                } catch {
-                    completion(.faillure(.microphoneUnreachable))
-                }
-                
+            case .success:
+                self?.onPermissionGranted()
             default:
-                completion(result)
+                self?.notify?(result)
             }
         }
     }
@@ -79,6 +78,9 @@ public class SFSpeechToText: SpeechToTextProtocol {
     }
     
     public func cancelRecognition() {
+        if recognitionTask?.state != .some(.completed) {
+            notify?(.success(.recognitionCancelled))
+        }
         recognitionRequest?.endAudio()
         recognitionTask?.cancel()
         recognitionTask = nil
@@ -87,9 +89,22 @@ public class SFSpeechToText: SpeechToTextProtocol {
         audioInputNode?.removeTap(onBus: 0)
         audioInputNode = nil
     }
+    
     // MARK: - Internals
     
-    private func prepareRecognition(_ completion: @escaping (Aimybox.SpeechToTextResult) -> ()) {
+    private func onPermissionGranted() {
+        prepareRecognition()
+        do {
+            try audioEngine.start()
+            notify?(.success(.recognitionStarted))
+        } catch {
+            notify?(.faillure(.microphoneUnreachable))
+        }
+    }
+    
+    private func prepareRecognition() {
+        guard let _notify = notify else { return }
+        
         // Setup AudioSession for recording
         do {
             let audioSession = AVAudioSession.sharedInstance()
@@ -97,23 +112,24 @@ public class SFSpeechToText: SpeechToTextProtocol {
             try audioSession.setMode(.measurement)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
-            return completion(.faillure(.microphoneUnreachable))
+            return _notify(.faillure(.microphoneUnreachable))
         }
         // Setup Speech Recognition request
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         guard let recognitionRequest = recognitionRequest, speechRecognizer.isAvailable else {
-            return completion(.faillure(.speechRecognitionUnavailable))
+            return _notify(.faillure(.speechRecognitionUnavailable))
         }
         recognitionRequest.shouldReportPartialResults = true
         // Get the a task, so we can cancel it
-        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
-            var isFinal = false
-            
-            if let result = result {
-                isFinal = result.isFinal
+        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
+            guard error == nil else {
+                return _notify(.faillure(.speechRecognitionUnavailable))
             }
             
-            if error != nil || isFinal {
+            if let _result = result {
+                self?.proccessResults(result: _result)
+            } else {
+                _notify(.success(.emptyRecognitionResult))
             }
         }
         // Link recognition request with audio stream
@@ -124,6 +140,24 @@ public class SFSpeechToText: SpeechToTextProtocol {
         }
         audioInputNode = inputNode
         audioEngine.prepare()
+    }
+    
+    private func proccessResults(result: SFSpeechRecognitionResult) {
+        
+        guard result.isFinal == true else {
+            let partialResult = result.bestTranscription.formattedString
+            notify?(.success(.recognitionPartialResult(partialResult)))
+            return
+        }
+         
+        let finalResult = result.bestTranscription.formattedString
+        
+        guard finalResult.isEmpty == false else {
+            notify?(.success(.emptyRecognitionResult))
+            return
+        }
+        
+        notify?(.success(.recognitionResult(finalResult)))
     }
     
     // MARK: - User Permissions
@@ -154,7 +188,7 @@ public class SFSpeechToText: SpeechToTextProtocol {
         permissionsDispatchGroup.notify(queue: .main) {
             switch (recordAllowed, recognitionAllowed) {
             case (true, true):
-                completion(.complete)
+                completion(.success(.recognitionPermissionsGranted))
             case (false, true):
                 completion(.faillure(.microphonePermissionReject))
             case (_, false):

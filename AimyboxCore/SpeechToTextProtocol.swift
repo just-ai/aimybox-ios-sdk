@@ -15,7 +15,7 @@ public protocol SpeechToTextProtocol: class {
     /**
      Start recognition.
      */
-    func startRecognition(_ completion: @escaping (Aimybox.SpeechToTextResult)->())
+    func startRecognition()
     /**
      Stop audio recording, but await for final result.
      */
@@ -24,4 +24,10 @@ public protocol SpeechToTextProtocol: class {
      Cancel recognition entirely and abandon all results.
      */
     func cancelRecognition()
+    /**
+     Used to notify state *Aimybox* machine about events.
+     */
+    var notify: (SpeechToTextCallback)? { get set }
 }
+
+public typealias SpeechToTextCallback = (Aimybox.SpeechToTextResult)->()

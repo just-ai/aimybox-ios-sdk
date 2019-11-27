@@ -15,15 +15,7 @@ public extension Aimybox {
     enum Result<T, E> where E: Error {
         case success(T)
         case faillure(E)
-        /**
-         Same as success, but don't have any assosiated value.
-         
-         Used in case when assosiated value type is Void.
-         ```
-         Aimybox.Result<Void, Aimybox.STTError>
-         ```
-         */
     }
     
-    typealias SpeechToTextResult = Aimybox.Result<Void, Aimybox.SpeechToTextError>
+    typealias SpeechToTextResult = Result<SpeechToTextEvent, SpeechToTextError>
 }

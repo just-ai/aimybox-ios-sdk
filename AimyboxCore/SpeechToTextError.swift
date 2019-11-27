@@ -27,11 +27,11 @@ public extension Aimybox {
          */
         case speechRecognitionPermissionReject
         /**
-    
+         Microphone is unreachable for recording.
          */
         case microphoneUnreachable
         /**
-         
+         Speech recognition is unavailable.
          */
         case speechRecognitionUnavailable
     }
