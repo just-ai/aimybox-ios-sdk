@@ -45,6 +45,6 @@ public extension Aimybox {
         /**
          Happens when sound volume of microphone input changes.
          */
-        case soundVolumeRmsChanged
+        case soundVolumeRmsChanged(Int)
     }
 }

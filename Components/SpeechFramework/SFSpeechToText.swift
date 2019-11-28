@@ -13,6 +13,8 @@ public class SFSpeechToText: SpeechToTextProtocol {
     
     public let locale: Locale
     
+    public var notify: (SpeechToTextCallback)?
+    
     private let audioEngine: AVAudioEngine
     
     private var audioInputNode: AVAudioNode?
@@ -23,7 +25,11 @@ public class SFSpeechToText: SpeechToTextProtocol {
     
     private var recognitionTask: SFSpeechRecognitionTask?
     
-    public var notify: (SpeechToTextCallback)?
+    private var recognitionDebouncer: DispatchDebouncer
+    /**
+     Delay in seconds.
+     */
+    private let recognitionDebounceDelay: TimeInterval = 3.0
     /**
      Default init that uses system locale.
     
@@ -35,6 +41,7 @@ public class SFSpeechToText: SpeechToTextProtocol {
         guard let recognizer = SFSpeechRecognizer(locale: locale) else { return nil }
         recognizer.defaultTaskHint = .search
         speechRecognizer = recognizer
+        recognitionDebouncer = DispatchDebouncer()
     }
     /**
      Init that uses provided locale.
@@ -47,6 +54,7 @@ public class SFSpeechToText: SpeechToTextProtocol {
         guard let recognizer = SFSpeechRecognizer(locale: locale) else { return nil }
         recognizer.defaultTaskHint = .search
         speechRecognizer = recognizer
+        recognitionDebouncer = DispatchDebouncer()
     }
     
     // MARK: - Locale management
@@ -143,14 +151,18 @@ public class SFSpeechToText: SpeechToTextProtocol {
     }
     
     private func proccessResults(result: SFSpeechRecognitionResult) {
-        
+                
         guard result.isFinal == true else {
             let partialResult = result.bestTranscription.formattedString
             notify?(.success(.recognitionPartialResult(partialResult)))
+            
+            recognitionDebouncer.debounce(delay: recognitionDebounceDelay) { [weak self] in
+                self?.recognitionTask?.finish()
+            }
             return
         }
          
-        let finalResult = result.bestTranscription.formattedString
+        let finalResult = result.bestTranscription.formattedString.trimmingCharacters(in: .whitespacesAndNewlines)
         
         guard finalResult.isEmpty == false else {
             notify?(.success(.emptyRecognitionResult))

@@ -16,7 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     let aimybox: Aimybox = {
-        guard let speechToText = SFSpeechToText() else { fatalError("Locale not supported.") }
+        guard let speechToText = SFSpeechToText(locale: Locale(identifier: "ru_UA")) else { fatalError("Locale not supported.") }
         let config = Aimybox.Config(speechToText: speechToText)
         let aimybox = Aimybox(with: config)
         return aimybox
@@ -30,12 +30,11 @@ class ViewController: UIViewController, UITableViewDelegate {
 }
 
 extension ViewController: AimyboxDelegate {
-    func aimybox(_ aimybox: Aimybox, recognitionPartialResult: Aimybox.SpeechToTextEvent) {
-        switch recognitionPartialResult {
-        case .recognitionPartialResult(let string):
-            print(string)
-        default:
-            break
-        }
+    func aimybox(_ aimybox: Aimybox, recognitionPartial result: String) {
+        print("Partial result: \(result)")
+    }
+    
+    func aimybox(_ aimybox: Aimybox, recognitionFinal result: String) {
+        print("Final result: \(result)")
     }
 }

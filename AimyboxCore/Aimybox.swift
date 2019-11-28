@@ -70,23 +70,23 @@ extension Aimybox {
     private func onSpeechToTextSuccess(_ event: SpeechToTextEvent) {
         switch event {
         case .recognitionPermissionsGranted:
-            delegate?.aimybox(self, recognitionPermissionsGranted: event)
+            delegate?.aimyboxRecognitionPermissionsGranted(self)
         case .recognitionStarted:
-            delegate?.aimybox(self, recognitionStarted: event)
-        case .recognitionPartialResult:
-            delegate?.aimybox(self, recognitionPartialResult: event)
-        case .recognitionResult:
-            delegate?.aimybox(self, recognitionResult: event)
+            delegate?.aimyboxRecognitionStarted(self)
+        case .recognitionPartialResult(let result):
+            delegate?.aimybox(self, recognitionPartial: result)
+        case .recognitionResult(let result):
+            delegate?.aimybox(self, recognitionFinal: result)
         case .emptyRecognitionResult:
-            delegate?.aimybox(self, emptyRecognitionResult: event)
+            delegate?.aimyboxEmptyRecognitionResult(self)
         case .recognitionCancelled:
-            delegate?.aimybox(self, recognitionCancelled: event)
+            delegate?.aimyboxRecognitionCancelled(self)
         case .speechStartDetected:
-            delegate?.aimybox(self, speechStartDetected: event)
+            delegate?.aimyboxSpeechStartDetected(self)
         case .speechEndDetected:
-            delegate?.aimybox(self, speechEndDetected: event)
-        case .soundVolumeRmsChanged:
-            delegate?.aimybox(self, soundVolumeRmsChanged: event)
+            delegate?.aimyboxSpeechEndDetected(self)
+        case .soundVolumeRmsChanged(let value):
+            delegate?.aimybox(self, soundVolumeRmsChanged: value)
         }
     }
     
