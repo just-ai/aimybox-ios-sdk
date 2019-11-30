@@ -11,7 +11,7 @@ import Foundation
 /**
  Class conforming to this protocol is able to recognise a text from the user's speech in real time.
  */
-public protocol SpeechToTextProtocol: class {
+public protocol SpeechToText: class {
     /**
      Start recognition.
      */
@@ -30,4 +30,4 @@ public protocol SpeechToTextProtocol: class {
     var notify: (SpeechToTextCallback)? { get set }
 }
 
-public typealias SpeechToTextCallback = (Aimybox.SpeechToTextResult)->()
+public typealias SpeechToTextCallback = (SpeechToTextResult)->()

@@ -23,7 +23,8 @@
   "swift_versions": "4.2",
   "source_files": [
     "AimyboxCore/**/*.{swift}",
-    "Components/**/*.{swift}"
+    "Components/**/*.{swift}",
+    "Utils/**/*.{swift}"
   ],
   "swift_version": "4.2"
 }

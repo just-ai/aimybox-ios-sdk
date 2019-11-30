@@ -30,11 +30,12 @@ class ViewController: UIViewController, UITableViewDelegate {
 }
 
 extension ViewController: AimyboxDelegate {
-    func aimybox(_ aimybox: Aimybox, recognitionPartial result: String) {
+    
+    func stt(_ stt: SpeechToText, recognitionPartial result: String) {
         print("Partial result: \(result)")
     }
     
-    func aimybox(_ aimybox: Aimybox, recognitionFinal result: String) {
+    func stt(_ stt: SpeechToText, recognitionFinal result: String) {
         print("Final result: \(result)")
     }
 }

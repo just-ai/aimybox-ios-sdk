@@ -16,9 +16,9 @@ public extension Aimybox {
     
     struct Config {
         
-        public var speechToText: SpeechToTextProtocol
+        public var speechToText: SpeechToText
         
-        public init(speechToText: SpeechToTextProtocol) {
+        public init(speechToText: SpeechToText) {
             self.speechToText = speechToText
         }
     }

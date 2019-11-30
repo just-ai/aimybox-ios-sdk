@@ -14,8 +14,8 @@ public extension Aimybox {
      */
     enum Result<T, E> where E: Error {
         case success(T)
-        case faillure(E)
+        case failure(E)
     }
-    
-    typealias SpeechToTextResult = Result<SpeechToTextEvent, SpeechToTextError>
 }
+
+public typealias SpeechToTextResult = Aimybox.Result<SpeechToTextEvent, SpeechToTextError>

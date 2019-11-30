@@ -58,48 +58,12 @@ public class Aimybox {
 }
 
 extension Aimybox {
-    private func onSpeechToText(_ result: Aimybox.SpeechToTextResult) {
+    private func onSpeechToText(_ result: SpeechToTextResult) {
         switch result {
         case .success(let event):
-            onSpeechToTextSuccess(event)
-        case .faillure(let error):
-            onSpeechToTextFaillure(error)
-        }
-    }
-    
-    private func onSpeechToTextSuccess(_ event: SpeechToTextEvent) {
-        switch event {
-        case .recognitionPermissionsGranted:
-            delegate?.aimyboxRecognitionPermissionsGranted(self)
-        case .recognitionStarted:
-            delegate?.aimyboxRecognitionStarted(self)
-        case .recognitionPartialResult(let result):
-            delegate?.aimybox(self, recognitionPartial: result)
-        case .recognitionResult(let result):
-            delegate?.aimybox(self, recognitionFinal: result)
-        case .emptyRecognitionResult:
-            delegate?.aimyboxEmptyRecognitionResult(self)
-        case .recognitionCancelled:
-            delegate?.aimyboxRecognitionCancelled(self)
-        case .speechStartDetected:
-            delegate?.aimyboxSpeechStartDetected(self)
-        case .speechEndDetected:
-            delegate?.aimyboxSpeechEndDetected(self)
-        case .soundVolumeRmsChanged(let value):
-            delegate?.aimybox(self, soundVolumeRmsChanged: value)
-        }
-    }
-    
-    private func onSpeechToTextFaillure(_ error: SpeechToTextError) {
-        switch error {
-        case .microphonePermissionReject:
-            break
-        case .speechRecognitionPermissionReject:
-            break
-        case .microphoneUnreachable:
-            break
-        case .speechRecognitionUnavailable:
-            break
+            event.forward(to: delegate, by: config.speechToText)
+        case .failure(let error):
+            error.forward(to: delegate, by: config.speechToText)
         }
     }
 }

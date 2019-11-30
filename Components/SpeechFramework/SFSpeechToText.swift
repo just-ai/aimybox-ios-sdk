@@ -9,7 +9,7 @@
 import AVFoundation
 import Speech
 
-public class SFSpeechToText: SpeechToTextProtocol {
+public class SFSpeechToText: SpeechToText {
     
     public let locale: Locale
     
@@ -106,7 +106,7 @@ public class SFSpeechToText: SpeechToTextProtocol {
             try audioEngine.start()
             notify?(.success(.recognitionStarted))
         } catch {
-            notify?(.faillure(.microphoneUnreachable))
+            notify?(.failure(.microphoneUnreachable))
         }
     }
     
@@ -120,18 +120,18 @@ public class SFSpeechToText: SpeechToTextProtocol {
             try audioSession.setMode(.measurement)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
-            return _notify(.faillure(.microphoneUnreachable))
+            return _notify(.failure(.microphoneUnreachable))
         }
         // Setup Speech Recognition request
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         guard let recognitionRequest = recognitionRequest, speechRecognizer.isAvailable else {
-            return _notify(.faillure(.speechRecognitionUnavailable))
+            return _notify(.failure(.speechRecognitionUnavailable))
         }
         recognitionRequest.shouldReportPartialResults = true
         // Get the a task, so we can cancel it
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
             guard error == nil else {
-                return _notify(.faillure(.speechRecognitionUnavailable))
+                return _notify(.failure(.speechRecognitionUnavailable))
             }
             
             if let _result = result {
@@ -173,7 +173,7 @@ public class SFSpeechToText: SpeechToTextProtocol {
     }
     
     // MARK: - User Permissions
-    private func checkPermissions(_ completion: @escaping (Aimybox.SpeechToTextResult) -> Void ) {
+    private func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
         
         var recordAllowed: Bool = false
         var recognitionAllowed: Bool = false
@@ -202,9 +202,9 @@ public class SFSpeechToText: SpeechToTextProtocol {
             case (true, true):
                 completion(.success(.recognitionPermissionsGranted))
             case (false, true):
-                completion(.faillure(.microphonePermissionReject))
+                completion(.failure(.microphonePermissionReject))
             case (_, false):
-                completion(.faillure(.speechRecognitionPermissionReject))
+                completion(.failure(.speechRecognitionPermissionReject))
             }
         }
     }
