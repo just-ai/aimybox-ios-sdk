@@ -19,3 +19,5 @@ public extension Aimybox {
 }
 
 public typealias SpeechToTextResult = Aimybox.Result<SpeechToTextEvent, SpeechToTextError>
+
+public typealias TextToSpeechResult = Aimybox.Result<TextToSpeechEvent, TextToSpeechError>

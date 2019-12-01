@@ -7,23 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0481B45BF4FB5FCA209BC070B6380FDA /* SpeechToTextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3F0B9A41FC72E5BC0039DF042B04C /* SpeechToTextDelegate.swift */; };
-		04B93EDAA6D67DAB393DD2356BBC1343 /* AimyboxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84BA0B0BDA68BDE942CDEC584816C46 /* AimyboxState.swift */; };
+		0B16B3E1C4BDDCAA7B64104F2910AD30 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F8AEB4B2CB601E05D8DEECE730FD1C /* TextToSpeech.swift */; };
+		0C3F1E0569BFFA00FF734BF3E9FDF384 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		12B1F1B019C86DF982FA2CCF927340BE /* AVTextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F71E1480B66E99FA78D5520FEADAFC /* AVTextToSpeech.swift */; };
+		1739842BA4B8478B3C551A3CA283C8DF /* SFSpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81DCF303475469303A2DFE7B615A947 /* SFSpeechToText.swift */; };
+		1750CB964BD1ABDB297029402A7DEF69 /* SpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353BD72F09C2FD7894F094D7D1BA97A0 /* SpeechToText.swift */; };
 		22DB7DF100C5F9AA07E7621B0E1CA8AE /* Pods-ExampleAppp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3160A522F51F12DE2AC8E47CB607D0A6 /* Pods-ExampleAppp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		387156145EBDACBC812DEC5A3B82C843 /* SpeechToTextEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403F65C6DA804514B07B2A88C1826B20 /* SpeechToTextEvent.swift */; };
-		4B0E9770F91B24CBC4FDC605903238EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		511FFAF6F25FDED3813F67EEC2A3DBDA /* Aimybox-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 115291BD66421BE1B9EFEFB6A9AF0D97 /* Aimybox-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9B0A7AF0A1A20D8F437719CFE35A90CD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED7ADE483D24ECD11E956377C5A08D0 /* Utils.swift */; };
-		9C309E4B215A0F67B54240D2A44292D7 /* AimyboxResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366A9624C578168AE01A2CE91A67002 /* AimyboxResult.swift */; };
-		9F6AA9E9FC67A276038CF566EF437BA3 /* SFSpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08527B54E3C699C0B4B36BC9801E23EB /* SFSpeechToText.swift */; };
-		A15E7532A9CA44CB973C9DFB0CBDAF8D /* SpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B59B95E2F6FD97A32174D3E0BC871F /* SpeechToText.swift */; };
-		A6D030E431C4F497BFB3D5A11B3715F2 /* AimyboxDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38156250484D5966253FB318D681FD62 /* AimyboxDelegate.swift */; };
-		C8642C39ABB84B67D9D5708BA3EF85C1 /* SpeechToTextError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E96A84A7528B2309DF59246EEAF0AA /* SpeechToTextError.swift */; };
+		28A28A4575365F684D5E53DC63BCE03A /* TextToSpeechEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041855272868043251ABC43E8BA7D735 /* TextToSpeechEvent.swift */; };
+		2B8FF3CA71A9980BB37809C42ADD75E3 /* AimyboxDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363AD41FB1B63746669FBDE3AEE37999 /* AimyboxDelegate.swift */; };
+		2CB45BC2302D903A988055937AF11EF5 /* AimyboxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074E78912AD2B0DC98C148E5EA2F06A /* AimyboxState.swift */; };
+		43F8978113210210CB49AE02C85FEF95 /* TextToSpeechError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADFC0DF95C3C0DBF41438365EBF6CC3 /* TextToSpeechError.swift */; };
+		51BDF0BE57E46E00CC7307A5C20CDC2A /* Aimybox-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D25497F673A21DA1FB302CEE973FCDC3 /* Aimybox-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84A4191B39FA2A9683BD17C567BB397B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB627A60F1D093F6668221EE6EADEF5C /* Utils.swift */; };
+		8BF956854069E37CE6F60398C6E21784 /* AimyboxConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB4D2D518357A5F7DB9518F4E88FE4 /* AimyboxConfig.swift */; };
+		AFDC90C05A409007E1965BCD09074D67 /* AimyboxResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C214CBF5A89DC4CE4EC485BCC8CBAE /* AimyboxResult.swift */; };
+		C300456C5ED200D13735E14673C3585E /* Aimybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2998E5CED307B73CE526B5CF24D3 /* Aimybox.swift */; };
+		C9A9712C42E444F661B45B0F0FEA9978 /* SpeechToTextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E459C6973DC2D9151339E3E5B39CE /* SpeechToTextDelegate.swift */; };
+		D69AC15E82E4AAD33437ED86654B67A7 /* TextToSpeechDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E7AFBBFD5B17EABDD9A26416357ACF /* TextToSpeechDelegate.swift */; };
+		D77AA02549036DA1F2E16110529D49F3 /* SpeechToTextError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704D71F732580FB50D782D23E167B028 /* SpeechToTextError.swift */; };
 		E134DB81A5A5C06C9A8CB4CCFEFC7BF8 /* Pods-ExampleAppp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B160DA286949D86E89085D306318C4DA /* Pods-ExampleAppp-dummy.m */; };
 		E40336E567FEE83969D85ACDF41A1C2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		E87F79AAEFAD817BB81988CD1648BAE7 /* Aimybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811434CCE09B240482AA0FED791197A /* Aimybox.swift */; };
-		EFE95504AF4B9112E11EFE5EA5DD5AD4 /* Aimybox-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F94FF95F88BFC2AA09F0DB412DC90522 /* Aimybox-dummy.m */; };
-		F21329C8B9FEA46DEDD86674F04FCB20 /* AimyboxConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FDDA92D486C27538E8ACB59CA8F47F /* AimyboxConfig.swift */; };
+		F4B783B315C52A852FE5BFFA57782A22 /* AimyboxSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6024E306E8C74933E9DB4353FD35694 /* AimyboxSpeech.swift */; };
+		F5A975A698FC9959BCC5A90A633F1290 /* Aimybox-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F035F9738F9708E458E2960A614C6C4 /* Aimybox-dummy.m */; };
+		FF7EEFAAB40E3ED5115D3FC444ED3178 /* SpeechToTextEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F82915E6F7512BB88FBB9A1A5B9FE6A /* SpeechToTextEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,47 +43,53 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08527B54E3C699C0B4B36BC9801E23EB /* SFSpeechToText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SFSpeechToText.swift; sourceTree = "<group>"; };
-		0A99EDF79FCCC116B56AC9A7E5F757EB /* Aimybox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aimybox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		115291BD66421BE1B9EFEFB6A9AF0D97 /* Aimybox-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Aimybox-umbrella.h"; sourceTree = "<group>"; };
-		1ED7ADE483D24ECD11E956377C5A08D0 /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		041855272868043251ABC43E8BA7D735 /* TextToSpeechEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextToSpeechEvent.swift; sourceTree = "<group>"; };
+		08BB72951253EF89BEF15938B906069B /* Aimybox.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Aimybox.modulemap; sourceTree = "<group>"; };
+		0A99EDF79FCCC116B56AC9A7E5F757EB /* Aimybox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Aimybox.framework; path = Aimybox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		17F8AEB4B2CB601E05D8DEECE730FD1C /* TextToSpeech.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
+		19F71E1480B66E99FA78D5520FEADAFC /* AVTextToSpeech.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AVTextToSpeech.swift; sourceTree = "<group>"; };
+		265E42C6744A07FC74C75B079E1F7E71 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		2CEB4D2D518357A5F7DB9518F4E88FE4 /* AimyboxConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AimyboxConfig.swift; sourceTree = "<group>"; };
+		2EBBB3E0634153CB3C94E98C2370F651 /* Aimybox.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Aimybox.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3074E78912AD2B0DC98C148E5EA2F06A /* AimyboxState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AimyboxState.swift; sourceTree = "<group>"; };
 		3160A522F51F12DE2AC8E47CB607D0A6 /* Pods-ExampleAppp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ExampleAppp-umbrella.h"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3811434CCE09B240482AA0FED791197A /* Aimybox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Aimybox.swift; sourceTree = "<group>"; };
-		38156250484D5966253FB318D681FD62 /* AimyboxDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AimyboxDelegate.swift; sourceTree = "<group>"; };
-		403F65C6DA804514B07B2A88C1826B20 /* SpeechToTextEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeechToTextEvent.swift; sourceTree = "<group>"; };
-		41FDDA92D486C27538E8ACB59CA8F47F /* AimyboxConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AimyboxConfig.swift; sourceTree = "<group>"; };
-		496518A4A0258F3920DFF0030B7BE1AA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		669C979438BEF39E07B66F90E8138FE0 /* Aimybox-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Aimybox-Info.plist"; sourceTree = "<group>"; };
-		745927F3BBDDA41F3BC5279CDF233EB2 /* Aimybox-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Aimybox-prefix.pch"; sourceTree = "<group>"; };
-		80001010866E832E795AF915ED03FBDB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		353BD72F09C2FD7894F094D7D1BA97A0 /* SpeechToText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeechToText.swift; sourceTree = "<group>"; };
+		363AD41FB1B63746669FBDE3AEE37999 /* AimyboxDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AimyboxDelegate.swift; sourceTree = "<group>"; };
+		3F035F9738F9708E458E2960A614C6C4 /* Aimybox-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Aimybox-dummy.m"; sourceTree = "<group>"; };
+		6ADFC0DF95C3C0DBF41438365EBF6CC3 /* TextToSpeechError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextToSpeechError.swift; sourceTree = "<group>"; };
+		6CFBD7A7BDC7E3638ADDEDC620E57CBB /* Aimybox.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Aimybox.xcconfig; sourceTree = "<group>"; };
+		704D71F732580FB50D782D23E167B028 /* SpeechToTextError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeechToTextError.swift; sourceTree = "<group>"; };
+		78A4E2FE9221C5E0A22233928F99C9C6 /* Aimybox-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Aimybox-Info.plist"; sourceTree = "<group>"; };
+		7AC5B69FCCD722F55F8350DDFE8FE53D /* Aimybox-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Aimybox-prefix.pch"; sourceTree = "<group>"; };
 		80EEA54BB9F45B5A686FD9C1274524E1 /* Pods-ExampleAppp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExampleAppp.debug.xcconfig"; sourceTree = "<group>"; };
 		812264B7C3773DB1DB28431C6BB0CC3D /* Pods-ExampleAppp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExampleAppp.release.xcconfig"; sourceTree = "<group>"; };
-		81D0C08092C28F0F7B0BD778A2F327F6 /* Aimybox.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Aimybox.xcconfig; sourceTree = "<group>"; };
-		85777883B605B274E45784B4693AA5C7 /* Pods_ExampleAppp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleAppp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A905C99A83BB2E479FD7EDFB0E16A6A /* Aimybox.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Aimybox.modulemap; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A366A9624C578168AE01A2CE91A67002 /* AimyboxResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AimyboxResult.swift; sourceTree = "<group>"; };
+		85777883B605B274E45784B4693AA5C7 /* Pods_ExampleAppp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ExampleAppp.framework; path = "Pods-ExampleAppp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D951947F44145DD0C836D8A989D4BDF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		8F82915E6F7512BB88FBB9A1A5B9FE6A /* SpeechToTextEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeechToTextEvent.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A81DCF303475469303A2DFE7B615A947 /* SFSpeechToText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SFSpeechToText.swift; sourceTree = "<group>"; };
+		AC9E459C6973DC2D9151339E3E5B39CE /* SpeechToTextDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeechToTextDelegate.swift; sourceTree = "<group>"; };
 		B160DA286949D86E89085D306318C4DA /* Pods-ExampleAppp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ExampleAppp-dummy.m"; sourceTree = "<group>"; };
-		B359234BF2969C7D9C4456B081144C59 /* Aimybox.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Aimybox.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B4E96A84A7528B2309DF59246EEAF0AA /* SpeechToTextError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeechToTextError.swift; sourceTree = "<group>"; };
+		B2C214CBF5A89DC4CE4EC485BCC8CBAE /* AimyboxResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AimyboxResult.swift; sourceTree = "<group>"; };
+		B3BB2998E5CED307B73CE526B5CF24D3 /* Aimybox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Aimybox.swift; sourceTree = "<group>"; };
+		B6024E306E8C74933E9DB4353FD35694 /* AimyboxSpeech.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AimyboxSpeech.swift; sourceTree = "<group>"; };
 		C0D8FF06C19EBE9E85DCEEA7EDD4EF4D /* Pods-ExampleAppp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ExampleAppp-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C175AD7BC6AD5F4DA06E00A717CD737E /* Pods-ExampleAppp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ExampleAppp-frameworks.sh"; sourceTree = "<group>"; };
-		D2A3F0B9A41FC72E5BC0039DF042B04C /* SpeechToTextDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeechToTextDelegate.swift; sourceTree = "<group>"; };
-		D84BA0B0BDA68BDE942CDEC584816C46 /* AimyboxState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AimyboxState.swift; sourceTree = "<group>"; };
+		CB627A60F1D093F6668221EE6EADEF5C /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		D25497F673A21DA1FB302CEE973FCDC3 /* Aimybox-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Aimybox-umbrella.h"; sourceTree = "<group>"; };
 		E03480B167881AB2D9A3190B83E84051 /* Pods-ExampleAppp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ExampleAppp-Info.plist"; sourceTree = "<group>"; };
-		E1B59B95E2F6FD97A32174D3E0BC871F /* SpeechToText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeechToText.swift; sourceTree = "<group>"; };
 		E394BCD450DAD4D241BBB7FC650902FA /* Pods-ExampleAppp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ExampleAppp.modulemap"; sourceTree = "<group>"; };
+		F0E7AFBBFD5B17EABDD9A26416357ACF /* TextToSpeechDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextToSpeechDelegate.swift; sourceTree = "<group>"; };
 		F70F2770AE9C46914091594F54DE9A37 /* Pods-ExampleAppp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ExampleAppp-acknowledgements.plist"; sourceTree = "<group>"; };
-		F94FF95F88BFC2AA09F0DB412DC90522 /* Aimybox-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Aimybox-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		98EB0632E097D4264D2F6D35B68C82E9 /* Frameworks */ = {
+		925654A9181AB257D9BAE2AAE483EA76 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B0E9770F91B24CBC4FDC605903238EF /* Foundation.framework in Frameworks */,
+				0C3F1E0569BFFA00FF734BF3E9FDF384 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,14 +104,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		24F5BF8AA981208171B1ACA858D97066 /* SpeechFramework */ = {
-			isa = PBXGroup;
-			children = (
-				08527B54E3C699C0B4B36BC9801E23EB /* SFSpeechToText.swift */,
-			);
-			path = SpeechFramework;
-			sourceTree = "<group>";
-		};
 		27EA64F77F73CBE41241CF267CB3A0BA /* Pods-ExampleAppp */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,39 +121,45 @@
 			path = "Target Support Files/Pods-ExampleAppp";
 			sourceTree = "<group>";
 		};
-		2AD5E1189C8433E3E42F81411E544617 /* Aimybox */ = {
+		2DAF7AE5FD672421B5A58283358EE832 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				CF7DE514C9B6FA29A97C8D8901A96245 /* AimyboxCore */,
-				87239B71EE7C5923025E9D1CFAB7E2EF /* Components */,
-				BC0BA6ABFC4B7D75099A27EC6907EEC3 /* Utils */,
-				DF29A841F3FE2545C40DE5D93A2BEEC9 /* Pod */,
-				60C0ED6EDA75B3D410C4252047D43DAA /* Support Files */,
+				08BB72951253EF89BEF15938B906069B /* Aimybox.modulemap */,
+				6CFBD7A7BDC7E3638ADDEDC620E57CBB /* Aimybox.xcconfig */,
+				3F035F9738F9708E458E2960A614C6C4 /* Aimybox-dummy.m */,
+				78A4E2FE9221C5E0A22233928F99C9C6 /* Aimybox-Info.plist */,
+				7AC5B69FCCD722F55F8350DDFE8FE53D /* Aimybox-prefix.pch */,
+				D25497F673A21DA1FB302CEE973FCDC3 /* Aimybox-umbrella.h */,
 			);
-			name = Aimybox;
-			path = ../..;
+			name = "Support Files";
+			path = "ExampleAppp/Pods/Target Support Files/Aimybox";
+			sourceTree = "<group>";
+		};
+		4B24809DCD1255A57A033648E4AE9C1C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CB627A60F1D093F6668221EE6EADEF5C /* Utils.swift */,
+			);
+			name = Utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		4B94EFA192BFE42C9F48637D25584C08 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2AD5E1189C8433E3E42F81411E544617 /* Aimybox */,
+				C58C3391102610B40F6E6F157A0D8B9D /* Aimybox */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		60C0ED6EDA75B3D410C4252047D43DAA /* Support Files */ = {
+		5CA97E7D11C60CA8515F40359E009A23 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				9A905C99A83BB2E479FD7EDFB0E16A6A /* Aimybox.modulemap */,
-				81D0C08092C28F0F7B0BD778A2F327F6 /* Aimybox.xcconfig */,
-				F94FF95F88BFC2AA09F0DB412DC90522 /* Aimybox-dummy.m */,
-				669C979438BEF39E07B66F90E8138FE0 /* Aimybox-Info.plist */,
-				745927F3BBDDA41F3BC5279CDF233EB2 /* Aimybox-prefix.pch */,
-				115291BD66421BE1B9EFEFB6A9AF0D97 /* Aimybox-umbrella.h */,
+				2EBBB3E0634153CB3C94E98C2370F651 /* Aimybox.podspec */,
+				8D951947F44145DD0C836D8A989D4BDF /* LICENSE */,
+				265E42C6744A07FC74C75B079E1F7E71 /* README.md */,
 			);
-			name = "Support Files";
-			path = "ExampleAppp/Pods/Target Support Files/Aimybox";
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		6447B3C4F3660880106755C46B9D0603 /* Products */ = {
@@ -161,6 +171,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		65F0074027917EB2D3F392E73E13D03E /* TextToSpeech */ = {
+			isa = PBXGroup;
+			children = (
+				17F8AEB4B2CB601E05D8DEECE730FD1C /* TextToSpeech.swift */,
+				F0E7AFBBFD5B17EABDD9A26416357ACF /* TextToSpeechDelegate.swift */,
+				6ADFC0DF95C3C0DBF41438365EBF6CC3 /* TextToSpeechError.swift */,
+				041855272868043251ABC43E8BA7D735 /* TextToSpeechEvent.swift */,
+			);
+			name = TextToSpeech;
+			path = TextToSpeech;
+			sourceTree = "<group>";
+		};
 		6BB72DD38A7AD7CD2B40AE52EDB1A0F0 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,20 +191,41 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		87239B71EE7C5923025E9D1CFAB7E2EF /* Components */ = {
+		85D0F0055CF26271D20207BB8BE025C6 /* SpeechToText */ = {
 			isa = PBXGroup;
 			children = (
-				24F5BF8AA981208171B1ACA858D97066 /* SpeechFramework */,
+				353BD72F09C2FD7894F094D7D1BA97A0 /* SpeechToText.swift */,
+				AC9E459C6973DC2D9151339E3E5B39CE /* SpeechToTextDelegate.swift */,
+				704D71F732580FB50D782D23E167B028 /* SpeechToTextError.swift */,
+				8F82915E6F7512BB88FBB9A1A5B9FE6A /* SpeechToTextEvent.swift */,
 			);
-			path = Components;
+			name = SpeechToText;
+			path = SpeechToText;
 			sourceTree = "<group>";
 		};
-		BC0BA6ABFC4B7D75099A27EC6907EEC3 /* Utils */ = {
+		8A289B17E43922C0EE591B872BC75C16 /* AimyboxCore */ = {
 			isa = PBXGroup;
 			children = (
-				1ED7ADE483D24ECD11E956377C5A08D0 /* Utils.swift */,
+				B3BB2998E5CED307B73CE526B5CF24D3 /* Aimybox.swift */,
+				2CEB4D2D518357A5F7DB9518F4E88FE4 /* AimyboxConfig.swift */,
+				363AD41FB1B63746669FBDE3AEE37999 /* AimyboxDelegate.swift */,
+				B2C214CBF5A89DC4CE4EC485BCC8CBAE /* AimyboxResult.swift */,
+				B6024E306E8C74933E9DB4353FD35694 /* AimyboxSpeech.swift */,
+				3074E78912AD2B0DC98C148E5EA2F06A /* AimyboxState.swift */,
+				85D0F0055CF26271D20207BB8BE025C6 /* SpeechToText */,
+				65F0074027917EB2D3F392E73E13D03E /* TextToSpeech */,
 			);
-			path = Utils;
+			name = AimyboxCore;
+			path = AimyboxCore;
+			sourceTree = "<group>";
+		};
+		9FAA7D01E62D33E9D83F8407529FB8AF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				EB29D93A0D54DC7BED0B45CEF86CB2A1 /* BaseIOS */,
+			);
+			name = Components;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -193,15 +236,17 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		CA969CABCEFBA9256629322B6BA2A9B4 /* SpeechToText */ = {
+		C58C3391102610B40F6E6F157A0D8B9D /* Aimybox */ = {
 			isa = PBXGroup;
 			children = (
-				E1B59B95E2F6FD97A32174D3E0BC871F /* SpeechToText.swift */,
-				D2A3F0B9A41FC72E5BC0039DF042B04C /* SpeechToTextDelegate.swift */,
-				403F65C6DA804514B07B2A88C1826B20 /* SpeechToTextEvent.swift */,
-				B4E96A84A7528B2309DF59246EEAF0AA /* SpeechToTextError.swift */,
+				8A289B17E43922C0EE591B872BC75C16 /* AimyboxCore */,
+				9FAA7D01E62D33E9D83F8407529FB8AF /* Components */,
+				5CA97E7D11C60CA8515F40359E009A23 /* Pod */,
+				2DAF7AE5FD672421B5A58283358EE832 /* Support Files */,
+				4B24809DCD1255A57A033648E4AE9C1C /* Utils */,
 			);
-			path = SpeechToText;
+			name = Aimybox;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -215,19 +260,6 @@
 			);
 			sourceTree = "<group>";
 		};
-		CF7DE514C9B6FA29A97C8D8901A96245 /* AimyboxCore */ = {
-			isa = PBXGroup;
-			children = (
-				3811434CCE09B240482AA0FED791197A /* Aimybox.swift */,
-				41FDDA92D486C27538E8ACB59CA8F47F /* AimyboxConfig.swift */,
-				38156250484D5966253FB318D681FD62 /* AimyboxDelegate.swift */,
-				A366A9624C578168AE01A2CE91A67002 /* AimyboxResult.swift */,
-				D84BA0B0BDA68BDE942CDEC584816C46 /* AimyboxState.swift */,
-				CA969CABCEFBA9256629322B6BA2A9B4 /* SpeechToText */,
-			);
-			path = AimyboxCore;
-			sourceTree = "<group>";
-		};
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,32 +268,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DF29A841F3FE2545C40DE5D93A2BEEC9 /* Pod */ = {
+		EB29D93A0D54DC7BED0B45CEF86CB2A1 /* BaseIOS */ = {
 			isa = PBXGroup;
 			children = (
-				B359234BF2969C7D9C4456B081144C59 /* Aimybox.podspec */,
-				80001010866E832E795AF915ED03FBDB /* LICENSE */,
-				496518A4A0258F3920DFF0030B7BE1AA /* README.md */,
+				19F71E1480B66E99FA78D5520FEADAFC /* AVTextToSpeech.swift */,
+				A81DCF303475469303A2DFE7B615A947 /* SFSpeechToText.swift */,
 			);
-			name = Pod;
+			name = BaseIOS;
+			path = BaseIOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		3C5831BD66B1C3EF8A131BEA1D4C937E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51BDF0BE57E46E00CC7307A5C20CDC2A /* Aimybox-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		688879CE16045ED094ADB5B0F82B7380 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				22DB7DF100C5F9AA07E7621B0E1CA8AE /* Pods-ExampleAppp-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AE7239EDE6B88B76C767F8939F780BD2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				511FFAF6F25FDED3813F67EEC2A3DBDA /* Aimybox-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,12 +321,12 @@
 		};
 		35466E556C8715F164FC21C7EB7993C2 /* Aimybox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE68B8434A861386A37F645F73D7F211 /* Build configuration list for PBXNativeTarget "Aimybox" */;
+			buildConfigurationList = D01680D798DC503D7A555DC1AA6F9CE2 /* Build configuration list for PBXNativeTarget "Aimybox" */;
 			buildPhases = (
-				AE7239EDE6B88B76C767F8939F780BD2 /* Headers */,
-				4A145B90CF84C896B4836F173B731C5F /* Sources */,
-				98EB0632E097D4264D2F6D35B68C82E9 /* Frameworks */,
-				A377E14CEACEFD73E7D71C7C194EF247 /* Resources */,
+				3C5831BD66B1C3EF8A131BEA1D4C937E /* Headers */,
+				662999B1A70A088700A8A4F096C53BD5 /* Sources */,
+				925654A9181AB257D9BAE2AAE483EA76 /* Frameworks */,
+				D6FA09F61BA09B644EE2CC53C93FE913 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -340,7 +372,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A377E14CEACEFD73E7D71C7C194EF247 /* Resources */ = {
+		D6FA09F61BA09B644EE2CC53C93FE913 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -350,22 +382,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4A145B90CF84C896B4836F173B731C5F /* Sources */ = {
+		662999B1A70A088700A8A4F096C53BD5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFE95504AF4B9112E11EFE5EA5DD5AD4 /* Aimybox-dummy.m in Sources */,
-				E87F79AAEFAD817BB81988CD1648BAE7 /* Aimybox.swift in Sources */,
-				F21329C8B9FEA46DEDD86674F04FCB20 /* AimyboxConfig.swift in Sources */,
-				A6D030E431C4F497BFB3D5A11B3715F2 /* AimyboxDelegate.swift in Sources */,
-				9C309E4B215A0F67B54240D2A44292D7 /* AimyboxResult.swift in Sources */,
-				04B93EDAA6D67DAB393DD2356BBC1343 /* AimyboxState.swift in Sources */,
-				9F6AA9E9FC67A276038CF566EF437BA3 /* SFSpeechToText.swift in Sources */,
-				0481B45BF4FB5FCA209BC070B6380FDA /* SpeechToTextDelegate.swift in Sources */,
-				C8642C39ABB84B67D9D5708BA3EF85C1 /* SpeechToTextError.swift in Sources */,
-				387156145EBDACBC812DEC5A3B82C843 /* SpeechToTextEvent.swift in Sources */,
-				A15E7532A9CA44CB973C9DFB0CBDAF8D /* SpeechToText.swift in Sources */,
-				9B0A7AF0A1A20D8F437719CFE35A90CD /* Utils.swift in Sources */,
+				F5A975A698FC9959BCC5A90A633F1290 /* Aimybox-dummy.m in Sources */,
+				C300456C5ED200D13735E14673C3585E /* Aimybox.swift in Sources */,
+				8BF956854069E37CE6F60398C6E21784 /* AimyboxConfig.swift in Sources */,
+				2B8FF3CA71A9980BB37809C42ADD75E3 /* AimyboxDelegate.swift in Sources */,
+				AFDC90C05A409007E1965BCD09074D67 /* AimyboxResult.swift in Sources */,
+				F4B783B315C52A852FE5BFFA57782A22 /* AimyboxSpeech.swift in Sources */,
+				2CB45BC2302D903A988055937AF11EF5 /* AimyboxState.swift in Sources */,
+				12B1F1B019C86DF982FA2CCF927340BE /* AVTextToSpeech.swift in Sources */,
+				1739842BA4B8478B3C551A3CA283C8DF /* SFSpeechToText.swift in Sources */,
+				1750CB964BD1ABDB297029402A7DEF69 /* SpeechToText.swift in Sources */,
+				C9A9712C42E444F661B45B0F0FEA9978 /* SpeechToTextDelegate.swift in Sources */,
+				D77AA02549036DA1F2E16110529D49F3 /* SpeechToTextError.swift in Sources */,
+				FF7EEFAAB40E3ED5115D3FC444ED3178 /* SpeechToTextEvent.swift in Sources */,
+				0B16B3E1C4BDDCAA7B64104F2910AD30 /* TextToSpeech.swift in Sources */,
+				D69AC15E82E4AAD33437ED86654B67A7 /* TextToSpeechDelegate.swift in Sources */,
+				43F8978113210210CB49AE02C85FEF95 /* TextToSpeechError.swift in Sources */,
+				28A28A4575365F684D5E53DC63BCE03A /* TextToSpeechEvent.swift in Sources */,
+				84A4191B39FA2A9683BD17C567BB397B /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,43 +427,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		14FF50B4CB63999A88928D16E322AD21 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81D0C08092C28F0F7B0BD778A2F327F6 /* Aimybox.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Aimybox/Aimybox-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Aimybox/Aimybox-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Aimybox/Aimybox.modulemap";
-				PRODUCT_MODULE_NAME = Aimybox;
-				PRODUCT_NAME = Aimybox;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		22495866773E9C9CBA9C19514C31E7A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80EEA54BB9F45B5A686FD9C1274524E1 /* Pods-ExampleAppp.debug.xcconfig */;
@@ -524,6 +525,43 @@
 			};
 			name = Release;
 		};
+		569B194E69922654ED363A833D10BB14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CFBD7A7BDC7E3638ADDEDC620E57CBB /* Aimybox.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Aimybox/Aimybox-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Aimybox/Aimybox-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Aimybox/Aimybox.modulemap";
+				PRODUCT_MODULE_NAME = Aimybox;
+				PRODUCT_NAME = Aimybox;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		AB09B621ED251839D4FA17E44F361111 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -588,9 +626,9 @@
 			};
 			name = Debug;
 		};
-		D67C93D08AAA1391B9D44E37E82C192C /* Debug */ = {
+		CD992C4D5BA12AC8F2A3D85BFA194E30 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81D0C08092C28F0F7B0BD778A2F327F6 /* Aimybox.xcconfig */;
+			baseConfigurationReference = 6CFBD7A7BDC7E3638ADDEDC620E57CBB /* Aimybox.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -684,11 +722,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE68B8434A861386A37F645F73D7F211 /* Build configuration list for PBXNativeTarget "Aimybox" */ = {
+		D01680D798DC503D7A555DC1AA6F9CE2 /* Build configuration list for PBXNativeTarget "Aimybox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D67C93D08AAA1391B9D44E37E82C192C /* Debug */,
-				14FF50B4CB63999A88928D16E322AD21 /* Release */,
+				CD992C4D5BA12AC8F2A3D85BFA194E30 /* Debug */,
+				569B194E69922654ED363A833D10BB14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

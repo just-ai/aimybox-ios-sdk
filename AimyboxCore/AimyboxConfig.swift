@@ -15,11 +15,18 @@ import Foundation
 public extension Aimybox {
     
     struct Config {
-        
+        /**
+         Recognises a text from the user's speech in real time.
+         */
         public var speechToText: SpeechToText
+        /**
+         Synthesizes a speech from the text in real time.
+         */
+        public var textToSpeech: TextToSpeech
         
-        public init(speechToText: SpeechToText) {
+        public init(speechToText: SpeechToText, textToSpeech: TextToSpeech) {
             self.speechToText = speechToText
+            self.textToSpeech = textToSpeech
         }
     }
 }

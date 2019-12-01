@@ -20,6 +20,7 @@ public class Aimybox {
         self.state = .standby
         self.config = config
         self.config.speechToText.notify = onSpeechToText
+        self.config.textToSpeech.notify = onTextToSpeech
     }
 
     // MARK: - Text to speech lifecycle
@@ -39,6 +40,13 @@ public class Aimybox {
     
     public func cancelRecognition() {
         standby()
+    }
+    /// TMP
+    public func synthesize(_ array: [AimyboxSpeech]) {
+        state = .speaking
+        
+        config.speechToText.cancelRecognition()
+        config.textToSpeech.synthesize(contentsOf: array)
     }
     
     // MARK: - State independent methods
@@ -64,6 +72,15 @@ extension Aimybox {
             event.forward(to: delegate, by: config.speechToText)
         case .failure(let error):
             error.forward(to: delegate, by: config.speechToText)
+        }
+    }
+    
+    private func onTextToSpeech(_ result: TextToSpeechResult) {
+        switch result {
+        case .success(let event):
+            event.forward(to: delegate, by: config.textToSpeech)
+        case .failure(let error):
+            error.forward(to: delegate, by: config.textToSpeech)
         }
     }
 }

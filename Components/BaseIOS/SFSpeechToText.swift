@@ -10,29 +10,45 @@ import AVFoundation
 import Speech
 
 public class SFSpeechToText: SpeechToText {
-    
+    /**
+     Locale of recognizer.
+     */
     public let locale: Locale
-    
+    /**
+     Used to notify *Aimybox* state machine about events.
+     */
     public var notify: (SpeechToTextCallback)?
-    
+    /**
+     Used for audio signal processing.
+     */
     private let audioEngine: AVAudioEngine
-    
+    /**
+     Node on which audio stream is routed.
+     */
     private var audioInputNode: AVAudioNode?
-    
+    /**
+     Actual iOS speech recognizer.
+     */
     private let speechRecognizer: SFSpeechRecognizer
-    
+    /**
+     Retained for a purpose of controling audio stream routed to recognizer.
+     */
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-    
+    /**
+     Speech recognition task itself.
+     */
     private var recognitionTask: SFSpeechRecognitionTask?
-    
+    /**
+     Debouncer used to controll delay time of aquiring final results of speech recognizing process.
+     */
     private var recognitionDebouncer: DispatchDebouncer
     /**
-     Delay in seconds.
+     Debounce delay in seconds. HIgher values results in higher lag between partial and final results.
      */
     private let recognitionDebounceDelay: TimeInterval = 3.0
     /**
      Default init that uses system locale.
-    
+     
      If locale is not supported, that init will fail.
      */
     public init?() {
@@ -45,7 +61,7 @@ public class SFSpeechToText: SpeechToText {
     }
     /**
      Init that uses provided locale.
-    
+     
      If locale is not supported, that init will fail.
      */
     public init?(locale: Locale) {
@@ -64,9 +80,9 @@ public class SFSpeechToText: SpeechToText {
     }
     
     // MARK: - SpechToTextProtocol conformance
-
+    
     public func startRecognition() {
-
+        
         checkPermissions { [weak self] result in
             switch result {
             case .success:
@@ -151,7 +167,7 @@ public class SFSpeechToText: SpeechToText {
     }
     
     private func proccessResults(result: SFSpeechRecognitionResult) {
-                
+        
         guard result.isFinal == true else {
             let partialResult = result.bestTranscription.formattedString
             notify?(.success(.recognitionPartialResult(partialResult)))
@@ -161,7 +177,7 @@ public class SFSpeechToText: SpeechToText {
             }
             return
         }
-         
+        
         let finalResult = result.bestTranscription.formattedString.trimmingCharacters(in: .whitespacesAndNewlines)
         
         guard finalResult.isEmpty == false else {
@@ -178,7 +194,7 @@ public class SFSpeechToText: SpeechToText {
         var recordAllowed: Bool = false
         var recognitionAllowed: Bool = false
         let permissionsDispatchGroup = DispatchGroup()
-    
+        
         permissionsDispatchGroup.enter()
         DispatchQueue.main.async {
             // Microphone recording permission

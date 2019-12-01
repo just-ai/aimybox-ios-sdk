@@ -25,7 +25,7 @@ public protocol SpeechToText: class {
      */
     func cancelRecognition()
     /**
-     Used to notify state *Aimybox* machine about events.
+     Used to notify *Aimybox* state machine about events.
      */
     var notify: (SpeechToTextCallback)? { get set }
 }

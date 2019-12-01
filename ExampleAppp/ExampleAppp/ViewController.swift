@@ -16,8 +16,11 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     let aimybox: Aimybox = {
-        guard let speechToText = SFSpeechToText(locale: Locale(identifier: "ru_UA")) else { fatalError("Locale not supported.") }
-        let config = Aimybox.Config(speechToText: speechToText)
+        guard let speechToText = SFSpeechToText() else { fatalError("Locale not supported.") }
+        let textToSpeech = AVTextToSpeech()
+        
+        let config = Aimybox.Config(speechToText: speechToText,
+                                    textToSpeech: textToSpeech)
         let aimybox = Aimybox(with: config)
         return aimybox
     }()
@@ -37,5 +40,18 @@ extension ViewController: AimyboxDelegate {
     
     func stt(_ stt: SpeechToText, recognitionFinal result: String) {
         print("Final result: \(result)")
+        aimybox.synthesize([
+            TextSpeech(text: "You said "),
+            TextSpeech(text: result),
+            TextSpeech(text: "Bye!")
+        ])
+    }
+    
+    func tts(_ tts: TextToSpeech, speechStarted speech: AimyboxSpeech) {
+        print(#function, speech)
+    }
+    
+    func tts(_ tts: TextToSpeech, speechEnded speech: AimyboxSpeech) {
+        print(#function, speech)
     }
 }
