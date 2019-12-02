@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "973C7CA62389B12D00920960"
-               BuildableName = "ExampleAppp.app"
+               BuildableName = "AimyboxIOS.app"
                BlueprintName = "ExampleAppp"
                ReferencedContainer = "container:ExampleAppp.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "973C7CA62389B12D00920960"
-            BuildableName = "ExampleAppp.app"
+            BuildableName = "AimyboxIOS.app"
             BlueprintName = "ExampleAppp"
             ReferencedContainer = "container:ExampleAppp.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "973C7CA62389B12D00920960"
-            BuildableName = "ExampleAppp.app"
+            BuildableName = "AimyboxIOS.app"
             BlueprintName = "ExampleAppp"
             ReferencedContainer = "container:ExampleAppp.xcodeproj">
          </BuildableReference>

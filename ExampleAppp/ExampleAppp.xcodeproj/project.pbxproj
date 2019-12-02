@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,7 @@
 /* Begin PBXFileReference section */
 		07F1EC2E2C81B14A7B368092 /* Pods-ExampleAppp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleAppp.release.xcconfig"; path = "Target Support Files/Pods-ExampleAppp/Pods-ExampleAppp.release.xcconfig"; sourceTree = "<group>"; };
 		6F417132C3770784BFAB794E /* Pods_ExampleAppp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleAppp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		973C7CA72389B12D00920960 /* ExampleAppp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleAppp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		973C7CA72389B12D00920960 /* AimyboxIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimyboxIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		973C7CAA2389B12D00920960 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		973C7CAC2389B12D00920960 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		973C7CAE2389B12D00920960 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +56,6 @@
 				FC15F9E6F426DC79009D175A /* Pods-ExampleAppp.debug.xcconfig */,
 				07F1EC2E2C81B14A7B368092 /* Pods-ExampleAppp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -73,7 +72,7 @@
 		973C7CA82389B12D00920960 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				973C7CA72389B12D00920960 /* ExampleAppp.app */,
+				973C7CA72389B12D00920960 /* AimyboxIOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,7 +110,7 @@
 			);
 			name = ExampleAppp;
 			productName = ExampleAppp;
-			productReference = 973C7CA72389B12D00920960 /* ExampleAppp.app */;
+			productReference = 973C7CA72389B12D00920960 /* AimyboxIOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -354,15 +353,18 @@
 			baseConfigurationReference = FC15F9E6F426DC79009D175A /* Pods-ExampleAppp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HKJ88XEM2N;
 				INFOPLIST_FILE = ExampleAppp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.justai.ExampleAppp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.justai.aimybox-ios-sdk";
+				PRODUCT_NAME = AimyboxIOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -373,15 +375,18 @@
 			baseConfigurationReference = 07F1EC2E2C81B14A7B368092 /* Pods-ExampleAppp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HKJ88XEM2N;
 				INFOPLIST_FILE = ExampleAppp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.justai.ExampleAppp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.justai.aimybox-ios-sdk";
+				PRODUCT_NAME = AimyboxIOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

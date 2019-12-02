@@ -12,7 +12,19 @@ import Aimybox
 class ViewController: UIViewController, UITableViewDelegate {
     
     @IBAction func onRecordTap(_ sender: UIButton) {
+        recordButton.isHidden = true
         aimybox.startRecognition()
+    }
+    @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var recognizedTextView: UITextView!
+    internal var recognizedText: String = "" {
+        didSet {
+            if isViewLoaded {
+                DispatchQueue.main.async { [weak self] in
+                    self?.recognizedTextView.text = self?.recognizedText
+                }
+            }
+        }
     }
     
     let aimybox: Aimybox = {
@@ -29,29 +41,27 @@ class ViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         aimybox.delegate = self
+        recognizedTextView.text = "Tap 'RECORD' button and speak."
     }
 }
 
 extension ViewController: AimyboxDelegate {
     
     func stt(_ stt: SpeechToText, recognitionPartial result: String) {
-        print("Partial result: \(result)")
+        recognizedText = result
     }
     
     func stt(_ stt: SpeechToText, recognitionFinal result: String) {
-        print("Final result: \(result)")
+        recognizedText = result
         aimybox.synthesize([
-            TextSpeech(text: "You said "),
-            TextSpeech(text: result),
-            TextSpeech(text: "Bye!")
+            TextSpeech(text: "I'll repeat what you said"),
+            TextSpeech(text: result)
         ])
     }
     
-    func tts(_ tts: TextToSpeech, speechStarted speech: AimyboxSpeech) {
-        print(#function, speech)
-    }
-    
     func tts(_ tts: TextToSpeech, speechEnded speech: AimyboxSpeech) {
-        print(#function, speech)
+        DispatchQueue.main.async { [weak self] in
+            self?.recordButton.isHidden = false
+        }
     }
 }

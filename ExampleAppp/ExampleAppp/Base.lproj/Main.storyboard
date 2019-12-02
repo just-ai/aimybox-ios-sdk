@@ -19,7 +19,6 @@
                                 <rect key="frame" x="167" y="741" width="80" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="08D-lq-2dl"/>
-                                    <constraint firstAttribute="width" constant="80" id="yHA-FX-zOl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="RECORD"/>
@@ -27,18 +26,34 @@
                                     <action selector="onRecordTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h7M-dg-ncj"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uw-eK-qXI">
+                                <rect key="frame" x="20" y="64" width="374" height="622"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="vPu-iJ-SVZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8HF-hB-4JL"/>
+                            <constraint firstItem="4Uw-eK-qXI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="akv-zs-niv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4Uw-eK-qXI" secondAttribute="trailing" constant="20" id="dKW-HD-AJj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vPu-iJ-SVZ" secondAttribute="bottom" constant="61" id="dUE-wt-buG"/>
+                            <constraint firstItem="vPu-iJ-SVZ" firstAttribute="top" secondItem="4Uw-eK-qXI" secondAttribute="bottom" constant="55" id="lHf-Rp-oMZ"/>
+                            <constraint firstItem="4Uw-eK-qXI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="t11-5U-lP6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="recognizedTextView" destination="4Uw-eK-qXI" id="VXZ-n1-1U0"/>
+                        <outlet property="recordButton" destination="vPu-iJ-SVZ" id="gAU-Gn-Cav"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-126" y="-1"/>
+            <point key="canvasLocation" x="-126.08695652173914" y="-1.3392857142857142"/>
         </scene>
     </scenes>
 </document>
