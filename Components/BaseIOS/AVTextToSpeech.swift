@@ -38,8 +38,19 @@ public class AVTextToSpeech: NSObject, TextToSpeech {
      */
     internal var textQueue: [AVSpeechUtterance : AimyboxSpeech]
     
-    public override init() {
+    private override init() {
         rate = AVSpeechUtteranceDefaultSpeechRate
+        volume = 1.0
+        pitchMultiplier = 1.0
+        speechSynthesizer = AVSpeechSynthesizer()
+        textQueue = [:]
+        super.init()
+        speechSynthesizer.delegate = self
+    }
+    
+    public init?(locale: Locale? = nil) {
+        rate = AVSpeechUtteranceDefaultSpeechRate
+        voice = AVSpeechSynthesisVoice(language: locale?.languageCode)
         volume = 1.0
         pitchMultiplier = 1.0
         speechSynthesizer = AVSpeechSynthesizer()

@@ -28,8 +28,14 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     let aimybox: Aimybox = {
-        guard let speechToText = SFSpeechToText() else { fatalError("Locale not supported.") }
-        let textToSpeech = AVTextToSpeech()
+        let locale = Locale(identifier: "ru")
+        
+        guard let speechToText = SFSpeechToText(locale: locale) else {
+            fatalError("Locale is not supported.")
+        }
+        guard let textToSpeech = AVTextToSpeech(locale: locale) else {
+            fatalError("Locale is not supported.")
+        }
         
         let config = Aimybox.Config(speechToText: speechToText,
                                     textToSpeech: textToSpeech)
@@ -41,7 +47,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         aimybox.delegate = self
-        recognizedTextView.text = "Tap 'RECORD' button and speak."
+        recognizedTextView.text = "Нажми кнопку 'RECORD' и говори."
     }
 }
 
@@ -54,7 +60,7 @@ extension ViewController: AimyboxDelegate {
     func stt(_ stt: SpeechToText, recognitionFinal result: String) {
         recognizedText = result
         aimybox.synthesize([
-            TextSpeech(text: "I'll repeat what you said"),
+            TextSpeech(text: "Я повторю то что ты сказал"),
             TextSpeech(text: result)
         ])
     }

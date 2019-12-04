@@ -52,9 +52,9 @@ public class SFSpeechToText: SpeechToText {
      If locale is not supported, that init will fail.
      */
     public init?() {
-        locale = Locale.current
+        self.locale = Locale.current
         audioEngine = AVAudioEngine()
-        guard let recognizer = SFSpeechRecognizer(locale: locale) else { return nil }
+        guard let recognizer = SFSpeechRecognizer() else { return nil }
         recognizer.defaultTaskHint = .search
         speechRecognizer = recognizer
         recognitionDebouncer = DispatchDebouncer()
