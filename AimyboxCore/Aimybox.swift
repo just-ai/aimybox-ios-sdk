@@ -57,6 +57,8 @@ public class Aimybox {
         switch state {
         case .listening:
             config.speechToText.cancelRecognition()
+        case .speaking:
+            config.textToSpeech.stop()
         default:
             break
         }

@@ -14,10 +14,10 @@
 		973C7C9D2389921200920960 /* Aimybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973C7C9C2389921200920960 /* Aimybox.swift */; };
 		976B565D239290B1009BF684 /* SpechToTextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B565C239290B1009BF684 /* SpechToTextProtocol.swift */; };
 		976B565F23929385009BF684 /* AimyboxConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B565E23929385009BF684 /* AimyboxConfig.swift */; };
-		976B566223929803009BF684 /* SFSpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B566123929803009BF684 /* SFSpeechToText.swift */; };
 		976B56652392AE0D009BF684 /* AimyboxDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B56642392AE0D009BF684 /* AimyboxDelegate.swift */; };
 		976B56672392C3FD009BF684 /* AimyboxError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B56662392C3FD009BF684 /* AimyboxError.swift */; };
 		976B56692392C41F009BF684 /* AimyboxResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B56682392C41F009BF684 /* AimyboxResult.swift */; };
+		977585A8239BFF720009DA4B /* BaseIOS in Resources */ = {isa = PBXBuildFile; fileRef = 977585A7239BFF720009DA4B /* BaseIOS */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,10 +41,10 @@
 		973C7C9C2389921200920960 /* Aimybox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aimybox.swift; sourceTree = "<group>"; };
 		976B565C239290B1009BF684 /* SpechToTextProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpechToTextProtocol.swift; sourceTree = "<group>"; };
 		976B565E23929385009BF684 /* AimyboxConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxConfig.swift; sourceTree = "<group>"; };
-		976B566123929803009BF684 /* SFSpeechToText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSpeechToText.swift; sourceTree = "<group>"; };
 		976B56642392AE0D009BF684 /* AimyboxDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxDelegate.swift; sourceTree = "<group>"; };
 		976B56662392C3FD009BF684 /* AimyboxError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxError.swift; sourceTree = "<group>"; };
 		976B56682392C41F009BF684 /* AimyboxResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxResult.swift; sourceTree = "<group>"; };
+		977585A7239BFF720009DA4B /* BaseIOS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BaseIOS; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,17 +113,9 @@
 		976B56602392964A009BF684 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				976B56632392986E009BF684 /* SpeechFramework */,
+				977585A7239BFF720009DA4B /* BaseIOS */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		976B56632392986E009BF684 /* SpeechFramework */ = {
-			isa = PBXGroup;
-			children = (
-				976B566123929803009BF684 /* SFSpeechToText.swift */,
-			);
-			path = SpeechFramework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				977585A8239BFF720009DA4B /* BaseIOS in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +234,6 @@
 				976B565F23929385009BF684 /* AimyboxConfig.swift in Sources */,
 				557D2F30238C2B17007FC257 /* AimyboxState.swift in Sources */,
 				976B565D239290B1009BF684 /* SpechToTextProtocol.swift in Sources */,
-				976B566223929803009BF684 /* SFSpeechToText.swift in Sources */,
 				976B56692392C41F009BF684 /* AimyboxResult.swift in Sources */,
 				976B56652392AE0D009BF684 /* AimyboxDelegate.swift in Sources */,
 			);
