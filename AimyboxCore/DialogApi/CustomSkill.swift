@@ -27,6 +27,10 @@ public protocol CustomSkill {
      */
     func onRequest(_ request: TRequest) -> TRequest
     /**
+     Determines whether the current skill can handle the `response`.
+     */
+    func canHandle(response: TResponse) -> Bool
+    /**
      Called if `canHandle` returned true for the `response`.
      
      - Attention: Default response handler will not be called, so you should manually implement `Aimybox` behavior.
@@ -35,10 +39,6 @@ public protocol CustomSkill {
      If you're going to use speech synthesis, consider to look at `Aimybox.NextAction` behavior modifier.
      */
     func onResponse(_ response: TResponse, _ aimybox: Aimybox, default handler: ResponseDefaultHandler) -> TResponse
-    /**
-     Determines whether the current skill can handle the `response`.
-     */
-    func canHandle(response: TResponse) -> Bool
 }
 
 public typealias ResponseDefaultHandler = (Response)->()
