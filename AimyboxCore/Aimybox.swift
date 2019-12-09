@@ -14,9 +14,9 @@ public class Aimybox {
     
     public private(set) var state: State
     
-    public private(set) var config: Config
+    public private(set) var config: Config<AimyboxDialogAPI>
     
-    public init(with config: Config) {
+    public init(with config: Config<AimyboxDialogAPI>) {
         self.state = .standby
         self.config = config
         self.config.speechToText.notify = onSpeechToText

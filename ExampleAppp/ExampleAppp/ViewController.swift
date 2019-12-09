@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         }
         
         let config = Aimybox.Config(speechToText: speechToText,
-                                    textToSpeech: textToSpeech)
+                                    textToSpeech: textToSpeech, dialogAPI: AimyboxDialogAPI(name: "bla"))
         let aimybox = Aimybox(with: config)
         return aimybox
     }()
