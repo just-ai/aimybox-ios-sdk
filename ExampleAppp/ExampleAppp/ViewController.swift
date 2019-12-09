@@ -37,18 +37,17 @@ class ViewController: UIViewController, UITableViewDelegate {
             fatalError("Locale is not supported.")
         }
         
-        let dialogAPI = AimyboxDialogAPI(name: "unused")
+        let dialogAPI = AimyboxDialogAPI(projectID: "0xDEADBEEF")
         
-        let config = AimyboxConfigBuilder.build(speechToText, textToSpeech, dialogAPI)
-
-        let aimybox = AimyboxBuilder.build(config)
-        return aimybox
+        let config = AimyboxBuilder.config(speechToText, textToSpeech, dialogAPI)
+        
+        return AimyboxBuilder.aimybox(with: config)
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        aimybox.delegate = self
+        aimybox.delegate = self
         recognizedTextView.text = "Нажми кнопку 'RECORD' и говори."
     }
 }
@@ -61,7 +60,7 @@ extension ViewController: AimyboxDelegate {
     
     func stt(_ stt: SpeechToText, recognitionFinal result: String) {
         recognizedText = result
-        /*
+        /* Will be removed later.
         aimybox.synthesize([
             TextSpeech(text: "Я повторю то что ты сказал"),
             TextSpeech(text: result)

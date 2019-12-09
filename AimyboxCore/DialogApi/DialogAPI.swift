@@ -40,45 +40,6 @@ public protocol DialogAPI: class {
     func send(request: TRequest) -> TResponse
 }
 
-public class AnyDialogApi<TRQ, TRS, TCS>: DialogAPI where TCS: CustomSkill, TRQ == TCS.TRequest, TRS == TCS.TResponse {
-    
-    public var customSkills: [TCS] {
-        get { return _getCustomSkills() }
-        set { _setCustomSkills(newValue) }
-    }
-
-    public func createRequest(query: String) -> TRQ {
-        return _createRequest(query)
-    }
-    
-    public func send(request: TRQ) -> TRS {
-        return _send(request)
-    }
-    
-    private let _send: (TRQ) -> TRS
-    private let _createRequest: (String) -> TRQ
-    private let _getCustomSkills: () -> [TCS]
-    private let _setCustomSkills: ([TCS]) -> ()
-    
-    public required init<U: DialogAPI> (_ dialogAPI: U) where U.TRequest == TRQ, U.TResponse == TRS, U.TCustomSkill == TCS
-    {
-        _send = dialogAPI.send
-        _createRequest = dialogAPI.createRequest
-        _getCustomSkills = dialogAPI.getCustomSkills
-        _setCustomSkills = dialogAPI.setCustomSkills
-    }
-}
-
-private extension DialogAPI {
-    func setCustomSkills(customSkills: [TCustomSkill]) {
-        self.customSkills = customSkills
-    }
-
-    func getCustomSkills() -> [TCustomSkill] {
-        return customSkills
-    }
-}
-
 extension DialogAPI {
     
     func send(query: String, sender aimybox: Aimybox) {

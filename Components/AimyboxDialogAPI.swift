@@ -24,6 +24,10 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     public func send(request: AimyboxRequest) -> AimyboxResponse {
         return AimyboxResponse()
     }
+    
+    public init(projectID: String) {
+        print(projectID)
+    }
 }
 
 public class AimyboxRequest: Request {

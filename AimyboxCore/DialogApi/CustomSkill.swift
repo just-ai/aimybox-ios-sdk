@@ -7,14 +7,11 @@
 
 import Foundation
 
-public protocol CustomSkillProto: class {
-}
-
 /**
  Interface for custom client-side skill.
  To enable it in Aimybox, add an instance of the skill to `Aimybox.Config.skills`.
  */
-public protocol CustomSkill: CustomSkillProto {
+public protocol CustomSkill {
     /**
      Adopting object must use request that conforms to `Request` protocol.
      */
