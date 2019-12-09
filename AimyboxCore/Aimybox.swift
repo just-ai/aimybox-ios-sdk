@@ -8,19 +8,39 @@
 
 import Foundation
 
-public class Aimybox {
+public protocol Aimybox {
+    
+    func startRecognition()
+    
+    func stopRecognition()
+    
+    func cancelRecognition()
+    
+    func standby()
+    
+    var delegate: AimyboxDelegate? { get set }
+}
+
+public class AimyboxBuilder {
+    
+    public static func build<T, U: AnyAimyboxConfig<T>>(_ config: U) -> Aimybox {
+        return AimyboxConcrete<T, U>(with: config) as Aimybox
+    }
+}
+
+private class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AnyAimyboxConfig<TDialogAPI> {
     
     public weak var delegate: AimyboxDelegate?
     
-    public private(set) var state: State
+    public private(set) var state: AimyboxState
     
-    public private(set) var config: Config<AimyboxDialogAPI>
+    public private(set) var config: TConfig
     
-    public init(with config: Config<AimyboxDialogAPI>) {
+    public init(with config: TConfig) {
         self.state = .standby
         self.config = config
-        self.config.speechToText.notify = onSpeechToText
-        self.config.textToSpeech.notify = onTextToSpeech
+//        self.config.speechToText.notify = onSpeechToText
+//        self.config.textToSpeech.notify = onTextToSpeech
     }
 
     // MARK: - Text to speech lifecycle
@@ -67,22 +87,22 @@ public class Aimybox {
     }
 }
 
-extension Aimybox {
-    private func onSpeechToText(_ result: SpeechToTextResult) {
-        switch result {
-        case .success(let event):
-            event.forward(to: delegate, by: config.speechToText)
-        case .failure(let error):
-            error.forward(to: delegate, by: config.speechToText)
-        }
-    }
-    
-    private func onTextToSpeech(_ result: TextToSpeechResult) {
-        switch result {
-        case .success(let event):
-            event.forward(to: delegate, by: config.textToSpeech)
-        case .failure(let error):
-            error.forward(to: delegate, by: config.textToSpeech)
-        }
-    }
-}
+//extension Aimybox {
+//    private func onSpeechToText(_ result: SpeechToTextResult) {
+//        switch result {
+//        case .success(let event):
+//            event.forward(to: delegate, by: config.speechToText)
+//        case .failure(let error):
+//            error.forward(to: delegate, by: config.speechToText)
+//        }
+//    }
+//    
+//    private func onTextToSpeech(_ result: TextToSpeechResult) {
+//        switch result {
+//        case .success(let event):
+//            event.forward(to: delegate, by: config.textToSpeech)
+//        case .failure(let error):
+//            error.forward(to: delegate, by: config.textToSpeech)
+//        }
+//    }
+//}

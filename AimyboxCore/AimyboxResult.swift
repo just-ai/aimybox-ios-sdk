@@ -8,16 +8,14 @@
 
 import Foundation
 
-public extension Aimybox {
-    /**
-     Used to support versions of swift < 5.0.
-     */
-    enum Result<T, E> where E: Error {
-        case success(T)
-        case failure(E)
-    }
+/**
+ Used to support versions of swift < 5.0.
+ */
+public enum AimyboxResult<T, E> where E: Error {
+    case success(T)
+    case failure(E)
 }
 
-public typealias SpeechToTextResult = Aimybox.Result<SpeechToTextEvent, SpeechToTextError>
+public typealias SpeechToTextResult = AimyboxResult<SpeechToTextEvent, SpeechToTextError>
 
-public typealias TextToSpeechResult = Aimybox.Result<TextToSpeechEvent, TextToSpeechError>
+public typealias TextToSpeechResult = AimyboxResult<TextToSpeechEvent, TextToSpeechError>

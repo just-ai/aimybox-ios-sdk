@@ -12,12 +12,12 @@ public protocol AimyboxDelegate: SpeechToTextDelegate, TextToSpeechDelegate {
     /**
      Called before new state is set. Optional.
      */
-    func aimybox(_ aimybox: Aimybox, willMoveFrom oldState: Aimybox.State, to newState: Aimybox.State)
+    func aimybox(_ aimybox: Aimybox, willMoveFrom oldState: AimyboxState, to newState: AimyboxState)
 }
 
 /**
  All methods listed here are optional for delegates to implement.
  */
 public extension AimyboxDelegate {
-    func aimybox(_ aimybox: Aimybox, willMoveFrom oldState: Aimybox.State, to newState: Aimybox.State) {}
+    func aimybox(_ aimybox: Aimybox, willMoveFrom oldState: AimyboxState, to newState: AimyboxState) {}
 }
