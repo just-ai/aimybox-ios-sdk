@@ -26,4 +26,14 @@ public class AimyboxComponent {
         queue.maxConcurrentOperationCount = 1
         operationQueue = queue
     }
+    
+    var hasRunningOperations: Bool {
+        operationQueue.operationCount != 0
+    }
+    
+    public func cancelRunningOperation() {
+        if hasRunningOperations {
+            operationQueue.cancelAllOperations()
+        }
+    }
 }

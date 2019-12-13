@@ -73,4 +73,8 @@ extension ViewController: AimyboxDelegate {
             self?.recordButton.isHidden = false
         }
     }
+    
+    func foo<TDialogAPI: DialogAPI>(_ dialogAPI: TDialogAPI) {
+        
+    }
 }

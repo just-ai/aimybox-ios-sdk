@@ -19,3 +19,5 @@ public enum AimyboxResult<T, E> where E: Error {
 public typealias SpeechToTextResult = AimyboxResult<SpeechToTextEvent, SpeechToTextError>
 
 public typealias TextToSpeechResult = AimyboxResult<TextToSpeechEvent, TextToSpeechError>
+
+public typealias DialogAPIResult = AimyboxResult<DialogAPIEvent, DialogAPIError>
