@@ -11,7 +11,7 @@ import Foundation
  Dialog API component enables your voice assistant to recognise the user's speech intention,
  perform some useful actions and return the meaningful response back to the user that can be synthesised by `TTS`.
  */
-public protocol DialogAPI: class, AimyboxComponent {
+public protocol DialogAPI: AimyboxComponent {
     /**
      Adopting object must use request type that conforms to `Request` protocol.
      - Note: `DialogAPI.TRequest` type must be tightly coupled with `CustomSkill.TRequest`.
@@ -68,7 +68,9 @@ extension DialogAPI {
     
     private func handle(response: TResponse, sender aimybox: Aimybox) {
         
-        let hadleOperation = DialogAPIHandleOperation<Self>(response: response, dialogAPI: self, aimybox: Aimybox)
+        let handleOperation = DialogAPIHandleOperation<Self>(response: response, dialogAPI: self, aimybox: aimybox)
+        
+        operationQueue.addOperation(handleOperation)
         
     }
 }

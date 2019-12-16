@@ -14,7 +14,7 @@ public protocol TextToSpeech: class {
     /**
      Synthesizes in FIFO order.
      */
-    func synthesize(contentsOf speeches: [AimyboxSpeech])
+    func synthesize(contentsOf speeches: [AimyboxSpeech], completion: TextToSpeechCallback)
     /**
      Stops speech synthesis.
      */

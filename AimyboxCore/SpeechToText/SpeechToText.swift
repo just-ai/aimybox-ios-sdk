@@ -11,7 +11,7 @@ import Foundation
 /**
  Class conforming to this protocol is able to recognise a text from the user's speech in real time.
  */
-public protocol SpeechToText: class {
+public protocol SpeechToText: AimyboxComponent {
     /**
      Start recognition.
      */

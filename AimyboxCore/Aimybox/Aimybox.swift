@@ -36,6 +36,15 @@ public protocol Aimybox: class {
      */
     func standby()
     /**
+     */
+    func speak(speech: AimyboxSpeech)
+    /**
+     */
+    func speak(speech: AimyboxSpeech, next action: AimyboxNextAction)
+    /**
+     */
+    func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction)
+    /**
      Receives state and domain(tts, stt, ...) specific events.
      
      - Note: `Aimybox` do not retain it's delegate.
@@ -75,8 +84,13 @@ public class AimyboxBuilder {
      - Returns: A concrete object up-casted to `Aimybox` protocol.
      */
     public static func aimybox<TDialogAPI, TConfig>(with config: TConfig) -> Aimybox where TConfig: AimyboxConfig,
-                                                                                            TConfig.TDialogAPI == TDialogAPI {
+                                                                                            TConfig.TDialogAPI == TDialogAPI
+    {
+        #if TESTING
+        return AimyboxConcrete<TDialogAPI, TConfig>(config: config) as Aimybox
+        #else
         return AimyboxConcrete<TDialogAPI, TConfig>(with: config) as Aimybox
+        #endif
     }
     /**
      Used to create type-erased object that conforms to `AimyboxConfig` protocol.

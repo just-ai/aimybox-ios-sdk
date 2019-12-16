@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
     /**
      */

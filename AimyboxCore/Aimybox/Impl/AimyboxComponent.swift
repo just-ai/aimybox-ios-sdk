@@ -10,7 +10,7 @@ import Foundation
 /**
  Base class that provides async behavior.
  */
-public class AimyboxComponent {
+open class AimyboxComponent {
     /**
      Background, serial queue for component operations.
      */
@@ -20,7 +20,7 @@ public class AimyboxComponent {
      
      - Note: If you ovveride `init()` in sub-class, you must call super.init().
      */
-    internal init() {
+    public init() {
         let queue = OperationQueue()
         queue.name = "com.justai.aimybox-\("\(type(of: self))".lowercased())-thread"
         queue.maxConcurrentOperationCount = 1
