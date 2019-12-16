@@ -10,30 +10,26 @@ import Foundation
 
 public enum DialogAPIEvent {
     /**
+     Happens when `Aimybox` sends request.
      */
     case requestSent(Request)
     /**
-     */
-    case requestCancelled(Request)
-    /**
+     Happens when `DialogAPI` received response.
      */
     case responseReceived(Response)
 }
 
 public extension DialogAPIEvent {
-    func forward<TDialogAPI: DialogAPI>(to delegate: DialogAPIDelegate?, by dialogAPI: TDialogAPI?) {
-        guard let delegate = delegate, let _ = dialogAPI else {
+    func forward(to delegate: DialogAPIDelegate?) {
+        guard let delegate = delegate else {
             return
         }
 
         switch self {
         case .requestSent(let request):
             delegate.dialogAPI(sent: request)
-        case .requestCancelled(let request):
-            delegate.dialogAPI(cancelled: request)
         case .responseReceived(let response):
             delegate.dialogAPI(response: response)
         }
     }
 }
-

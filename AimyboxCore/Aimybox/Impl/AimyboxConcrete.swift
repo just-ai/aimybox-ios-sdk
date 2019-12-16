@@ -26,6 +26,7 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
         self.config = config
         self.config.speechToText.notify = onSpeechToText
         self.config.textToSpeech.notify = onTextToSpeech
+        self.config.dialogAPI.notify = onDialogAPI
     }
     
     // MARK: - Text to speech lifecycle
@@ -96,6 +97,8 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
         switch state {
         case .listening:
             config.speechToText.cancelRecognition()
+        case .processing:
+            config.dialogAPI.cancelRequest()
         case .speaking:
             config.textToSpeech.stop()
         default:
@@ -127,6 +130,12 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
                 _injectedBlock($0)
             }
         }
+        if let _injectedBlock = config.dialogAPI.notify {
+            config.dialogAPI.notify = { [weak self] in
+                self?.onDialogAPI($0)
+                _injectedBlock($0)
+            }
+        }
         
         self.config = config
     }
@@ -134,6 +143,7 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
 }
 
 extension AimyboxConcrete {
+    
     private func onSpeechToText(_ result: SpeechToTextResult) {
         switch result {
         case .success(let event):
@@ -173,6 +183,37 @@ extension AimyboxConcrete {
             event.forward(to: delegate, by: config.textToSpeech)
         case .failure(let error):
             error.forward(to: delegate, by: config.textToSpeech)
+        }
+    }
+    
+    
+    private func onDialogAPI(_ result: DialogAPIResult) {
+        switch result {
+        case .success(let event):
+            handle(event)
+            event.forward(to: delegate)
+
+        case .failure(let error):
+            error.forward(to: delegate)
+            handle(error)
+
+        }
+    }
+    
+    
+    private func handle(_ event: DialogAPIEvent) {
+        switch event {
+        default:
+            break
+        }
+    }
+    
+    private func handle(_ error: DialogAPIError) {
+        switch error {
+        case .requestTimeout:
+            standby()
+        default:
+            break
         }
     }
 }

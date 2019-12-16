@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		557D2F30238C2B17007FC257 /* AimyboxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D2F2F238C2B17007FC257 /* AimyboxState.swift */; };
 		55AEDDA023A7E46B002B2356 /* SpeechToTextCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AEDD9F23A7E46B002B2356 /* SpeechToTextCoreTests.swift */; };
+		55AEDDA223A7EE82002B2356 /* DialogAPICoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AEDDA123A7EE82002B2356 /* DialogAPICoreTests.swift */; };
 		97233FDD23898F2C0050E37F /* AimyboxCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 97233FDB23898F2C0050E37F /* AimyboxCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		97233FEA2389906B0050E37F /* AimyboxCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97233FE92389906B0050E37F /* AimyboxCoreTests.swift */; };
+		97233FEA2389906B0050E37F /* AimyboxBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97233FE92389906B0050E37F /* AimyboxBaseTestCase.swift */; };
 		97233FEC2389906B0050E37F /* AimyboxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97233FD823898F2C0050E37F /* AimyboxCore.framework */; };
 		973C7C9D2389921200920960 /* Aimybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973C7C9C2389921200920960 /* Aimybox.swift */; };
 		976B565F23929385009BF684 /* AimyboxConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B565E23929385009BF684 /* AimyboxConfig.swift */; };
@@ -63,11 +64,12 @@
 /* Begin PBXFileReference section */
 		557D2F2F238C2B17007FC257 /* AimyboxState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxState.swift; sourceTree = "<group>"; };
 		55AEDD9F23A7E46B002B2356 /* SpeechToTextCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToTextCoreTests.swift; sourceTree = "<group>"; };
+		55AEDDA123A7EE82002B2356 /* DialogAPICoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogAPICoreTests.swift; sourceTree = "<group>"; };
 		97233FD823898F2C0050E37F /* AimyboxCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AimyboxCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97233FDB23898F2C0050E37F /* AimyboxCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AimyboxCore.h; sourceTree = "<group>"; };
 		97233FDC23898F2C0050E37F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97233FE72389906B0050E37F /* AimyboxCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AimyboxCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		97233FE92389906B0050E37F /* AimyboxCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxCoreTests.swift; sourceTree = "<group>"; };
+		97233FE92389906B0050E37F /* AimyboxBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxBaseTestCase.swift; sourceTree = "<group>"; };
 		97233FEB2389906B0050E37F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		973C7C9C2389921200920960 /* Aimybox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aimybox.swift; sourceTree = "<group>"; };
 		976B565E23929385009BF684 /* AimyboxConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxConfig.swift; sourceTree = "<group>"; };
@@ -162,8 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				9775865023A6551D0009DA4B /* Fakes */,
-				97233FE92389906B0050E37F /* AimyboxCoreTests.swift */,
+				97233FE92389906B0050E37F /* AimyboxBaseTestCase.swift */,
 				55AEDD9F23A7E46B002B2356 /* SpeechToTextCoreTests.swift */,
+				55AEDDA123A7EE82002B2356 /* DialogAPICoreTests.swift */,
 				97233FEB2389906B0050E37F /* Info.plist */,
 			);
 			path = AimyboxCoreTests;
@@ -187,12 +190,12 @@
 		9775861A23A654460009DA4B /* DialogApi */ = {
 			isa = PBXGroup;
 			children = (
+				9775862423A654460009DA4B /* DialogAPI.swift */,
 				9775861B23A654460009DA4B /* DialogAPIDelegate.swift */,
-				9775862023A654460009DA4B /* DialogAPISendOperation.swift */,
 				9775862123A654460009DA4B /* DialogAPIEvent.swift */,
 				9775862223A654460009DA4B /* DialogAPIError.swift */,
+				9775862023A654460009DA4B /* DialogAPISendOperation.swift */,
 				9775862323A654460009DA4B /* DialogAPIHandleOperation.swift */,
-				9775862423A654460009DA4B /* DialogAPI.swift */,
 				9775861C23A654460009DA4B /* Entity */,
 			);
 			path = DialogApi;
@@ -211,10 +214,10 @@
 		9775862E23A6545F0009DA4B /* SpeechToText */ = {
 			isa = PBXGroup;
 			children = (
+				9775863223A6545F0009DA4B /* SpeechToText.swift */,
 				9775862F23A6545F0009DA4B /* SpeechToTextDelegate.swift */,
 				9775863023A6545F0009DA4B /* SpeechToTextEvent.swift */,
 				9775863123A6545F0009DA4B /* SpeechToTextError.swift */,
-				9775863223A6545F0009DA4B /* SpeechToText.swift */,
 			);
 			path = SpeechToText;
 			sourceTree = "<group>";
@@ -416,9 +419,10 @@
 				9775865223A6552E0009DA4B /* SpeechToTextFake.swift in Sources */,
 				9775865423A6553D0009DA4B /* TextToSpeechFake.swift in Sources */,
 				9775865A23A657C80009DA4B /* DialogAPIResponse.swift in Sources */,
-				97233FEA2389906B0050E37F /* AimyboxCoreTests.swift in Sources */,
+				97233FEA2389906B0050E37F /* AimyboxBaseTestCase.swift in Sources */,
 				9775865623A6577A0009DA4B /* DialogAPIFake.swift in Sources */,
 				55AEDDA023A7E46B002B2356 /* SpeechToTextCoreTests.swift in Sources */,
+				55AEDDA223A7EE82002B2356 /* DialogAPICoreTests.swift in Sources */,
 				9775865C23A657D80009DA4B /* DialogAPICustomSkill.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

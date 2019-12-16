@@ -9,99 +9,18 @@
 import XCTest
 @testable import AimyboxCore
 
-class AimyboxSpeechToText: XCTestCase {
-    
-    var partialResultCount: Int = 0
-    let partialResultMaxCount: Int = 3
-    
-    var aimybox: Aimybox!
-    var stt: SpeechToTextFake!
-
-    /// For Events
-    var recognitionStartedSemaphore: DispatchSemaphore!
-    var recognitionPartialResultSemaphore: DispatchSemaphore!
-    var recognitionResultSemaphore: DispatchSemaphore!
-    var recognitionEmptyResultSemaphore: DispatchSemaphore!
-    var recognitionCancelledSemaphore: DispatchSemaphore!
-    /// For Errors
-    var microphonePermissionRejectSemaphore: DispatchSemaphore!
-    var speechRecognitionPermissionRejectSemaphore: DispatchSemaphore!
-    var microphoneUnreachableSemaphore: DispatchSemaphore!
-    var speechRecognitionUnavailableSemaphore: DispatchSemaphore!
-    
-    override func setUp() {
-        stt = SpeechToTextFake()
-        stt.partialResultCount = partialResultMaxCount
-        
-        let config = getConfig(stt)
-        
-        config.speechToText.notify = { [weak self] result in
-            switch result {
-            case .success(let event):
-                switch event {
-                case .recognitionStarted:
-                    self?.recognitionStartedSemaphore.signal()
-                case .recognitionPartialResult:
-                    self?.partialResultCount += 1
-                    if self?.partialResultCount == self?.partialResultMaxCount {
-                        self?.recognitionPartialResultSemaphore.signal()
-                    }
-                case .recognitionResult:
-                    self?.recognitionResultSemaphore.signal()
-                case .recognitionCancelled:
-                    self?.recognitionCancelledSemaphore.signal()
-                case .emptyRecognitionResult:
-                    self?.recognitionEmptyResultSemaphore.signal()
-                default:
-                    XCTAssert(false)
-                }
-                
-            case .failure(let error):
-                switch error {
-                case .microphonePermissionReject:
-                    self?.microphonePermissionRejectSemaphore.signal()
-                case .speechRecognitionPermissionReject:
-                    self?.speechRecognitionPermissionRejectSemaphore.signal()
-                case .microphoneUnreachable:
-                    self?.microphoneUnreachableSemaphore.signal()
-                case .speechRecognitionUnavailable:
-                    self?.speechRecognitionUnavailableSemaphore.signal()
-                }
-            }
-        }
-        partialResultCount = 0
-        aimybox = AimyboxBuilder.aimybox(with: config)
-        recognitionStartedSemaphore = DispatchSemaphore(value: 0)
-        recognitionPartialResultSemaphore = DispatchSemaphore(value: 0)
-        recognitionResultSemaphore = DispatchSemaphore(value: 0)
-        recognitionCancelledSemaphore = DispatchSemaphore(value: 0)
-        recognitionEmptyResultSemaphore = DispatchSemaphore(value: 0)
-        microphonePermissionRejectSemaphore = DispatchSemaphore(value: 0)
-        speechRecognitionPermissionRejectSemaphore = DispatchSemaphore(value: 0)
-        microphoneUnreachableSemaphore = DispatchSemaphore(value: 0)
-        speechRecognitionUnavailableSemaphore = DispatchSemaphore(value: 0)
-    }
-
-    func getConfig(_ stt: SpeechToText = SpeechToTextFake()) -> AimyboxConfigConcrete<DialogAPIFake> {
-        let tts = TextToSpeechFake()
-        let dapi = DialogAPIFake()
-        return AimyboxBuilder.config(stt, tts, dapi)
-    }
-    
-    override func tearDown() {
-        aimybox = nil
-    }
+class SpeechToTextCoreTests: AimyboxBaseTestCase {
     
     override func invokeTest() {
-//        (0..<10).forEach { _ in
+        (0..<1).forEach { _ in
             super.invokeTest()
-//        }
+        }
     }
     
     func testStateAfterStartSpeechRecognizing() {
         
         aimybox.startRecognition()
-        recognitionStartedSemaphore.waitOrFail()
+        recognitionStartedSemaphore?.waitOrFail()
         
         XCTAssert(aimybox.state == .listening)
     }
@@ -111,7 +30,7 @@ class AimyboxSpeechToText: XCTestCase {
         aimybox.startRecognition()
 
         aimybox.standby()
-        recognitionCancelledSemaphore.waitOrFail()
+        recognitionCancelledSemaphore?.waitOrFail()
 
         XCTAssert(aimybox.state == .standby)
     }
@@ -121,7 +40,7 @@ class AimyboxSpeechToText: XCTestCase {
         aimybox.startRecognition()
         
         aimybox.stopRecognition()
-        recognitionResultSemaphore.waitOrFail()
+        recognitionResultSemaphore?.waitOrFail()
         
         XCTAssert(aimybox.state == .processing)
     }
@@ -131,7 +50,7 @@ class AimyboxSpeechToText: XCTestCase {
         aimybox.startRecognition()
         
         aimybox.cancelRecognition()
-        recognitionCancelledSemaphore.waitOrFail()
+        recognitionCancelledSemaphore?.waitOrFail()
         
         XCTAssert(aimybox.state == .standby)
     }
@@ -140,9 +59,9 @@ class AimyboxSpeechToText: XCTestCase {
         
         aimybox.startRecognition()
         
-        recognitionPartialResultSemaphore.waitOrFail()
+        recognitionPartialResultSemaphore?.waitOrFail()
         
-        recognitionResultSemaphore.waitOrFail()
+        recognitionResultSemaphore?.waitOrFail()
         
         XCTAssert(aimybox.state == .processing)
     }
@@ -153,7 +72,7 @@ class AimyboxSpeechToText: XCTestCase {
         
         aimybox.startRecognition()
         
-        recognitionEmptyResultSemaphore.waitOrFail()
+        recognitionEmptyResultSemaphore?.waitOrFail()
         
         XCTAssert(aimybox.state == .standby)
     }
@@ -161,11 +80,11 @@ class AimyboxSpeechToText: XCTestCase {
     func testStartRecognitionTwice() {
         
         aimybox.startRecognition()
-        recognitionStartedSemaphore.waitOrFail()
+        recognitionStartedSemaphore?.waitOrFail()
         
         aimybox.startRecognition()
-        recognitionCancelledSemaphore.waitOrFail()
-        recognitionStartedSemaphore.waitOrFail()
+        recognitionCancelledSemaphore?.waitOrFail()
+        recognitionStartedSemaphore?.waitOrFail()
     }
     
     func testStateAfterMicrophonePermissionReject() {
@@ -174,7 +93,7 @@ class AimyboxSpeechToText: XCTestCase {
         
         aimybox.startRecognition()
         
-        microphonePermissionRejectSemaphore.waitOrFail()
+        microphonePermissionRejectSemaphore?.waitOrFail()
         
         XCTAssert(aimybox.state == .standby)
     }
@@ -185,7 +104,7 @@ class AimyboxSpeechToText: XCTestCase {
         
         aimybox.startRecognition()
         
-        microphoneUnreachableSemaphore.waitOrFail()
+        microphoneUnreachableSemaphore?.waitOrFail()
         
         XCTAssert(aimybox.state == .standby)
     }
@@ -196,7 +115,7 @@ class AimyboxSpeechToText: XCTestCase {
         
         aimybox.startRecognition()
         
-        speechRecognitionPermissionRejectSemaphore.waitOrFail()
+        speechRecognitionPermissionRejectSemaphore?.waitOrFail()
         
         XCTAssert(aimybox.state == .standby)
     }
@@ -207,14 +126,8 @@ class AimyboxSpeechToText: XCTestCase {
         
         aimybox.startRecognition()
         
-        speechRecognitionUnavailableSemaphore.waitOrFail()
+        speechRecognitionUnavailableSemaphore?.waitOrFail()
         
         XCTAssert(aimybox.state == .standby)
-    }
-}
-
-extension DispatchSemaphore {
-    func waitOrFail() {
-        XCTAssertEqual(wait(timeout: .now() + 5.0), .success, "Timeout for event wait.")
     }
 }

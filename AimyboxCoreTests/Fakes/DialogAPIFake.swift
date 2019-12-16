@@ -11,11 +11,20 @@ import AimyboxCore
 
 class DialogAPIFake: AimyboxComponent, DialogAPI {
     
+    var timeoutPollAttempts = 10
+    
+    public var sendTimeout: TimeInterval = 0.5
+    
     public override init() {
         super.init()
     }
     
     func send(request: DialogAPIRequestFake) throws -> DialogAPIResponseFake {
+
+        notify?(.success(.requestSent(request)))
+        
+        Thread.sleep(forTimeInterval: sendTimeout)
+        
         return DialogAPIResponseFake(query: "", action: "", intent: "", question: false, replies: [])
     }
     

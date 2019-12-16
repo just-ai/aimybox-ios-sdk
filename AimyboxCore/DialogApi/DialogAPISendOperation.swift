@@ -10,7 +10,7 @@ import Foundation
 class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
     /**
      */
-    private let defaultMaxPollAttempts = 10
+    private var defaultMaxPollAttempts = 10
     /**
      */
     private let defaultRequestTimeout = 1.0
@@ -27,6 +27,7 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
     init(query: String, dialogAPI: TDialogAPI) {
         self.query = query
         self.dialogAPI = dialogAPI
+        self.defaultMaxPollAttempts = dialogAPI.timeoutPollAttempts
     }
     
     override public func main() {
@@ -39,20 +40,20 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
             
             let _dialogAPI = dialogAPI
             
-            result = try perform(with: .now() + defaultRequestTimeout) {
+            result = try perform {
                 return try _dialogAPI.send(request: request)
             }
             
-        } catch DialogAPIError.requestTimeout {
-            dialogAPI.notify?(.failure(.requestTimeout))
-        } catch DialogAPIError.requestCancellation {
-            dialogAPI.notify?(.failure(.requestCancellation))
+        } catch DialogAPIError.Internal.requestTimeout {
+            dialogAPI.notify?(.failure(.requestTimeout(request)))
+        } catch DialogAPIError.Internal.requestCancellation {
+            dialogAPI.notify?(.failure(.requestCancellation(request)))
         } catch let error {
             dialogAPI.notify?(.failure(.clientSide(error)))
         }
     }
     
-    private func perform<T>(with timeout: DispatchTime, _ block: @escaping () throws -> T) throws -> T {
+    private func perform<T>(_ block: @escaping () throws -> T) throws -> T {
         
         try throwIfCanceled()
         
@@ -76,7 +77,7 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
 
         while pollAttempt < defaultMaxPollAttempts {
             
-            switch timeoutSemaphore.wait(timeout: timeout) {
+            switch timeoutSemaphore.wait(timeout: .now() + defaultRequestTimeout) {
             case .success:
                 try throwIfCanceled()
                 
@@ -89,7 +90,7 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
             pollAttempt += 1
             
             if pollAttempt == defaultMaxPollAttempts {
-                throw DialogAPIError.requestTimeout
+                throw DialogAPIError.Internal.requestTimeout
             }
         }
 
@@ -102,14 +103,25 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
             throw error
             
         case .none:
-            throw DialogAPIError.requestTimeout
+            throw DialogAPIError.Internal.requestTimeout
         }
     }
     
     private func throwIfCanceled() throws {
         if isCancelled {
-            throw DialogAPIError.requestCancellation
+            throw DialogAPIError.Internal.requestCancellation
         }
     }
 }
 
+/**
+ Domain of internal errors.
+ */
+extension DialogAPIError {
+    enum Internal: Error {
+        
+        case requestTimeout
+        case requestCancellation
+        case clientSide
+    }
+}

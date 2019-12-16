@@ -42,6 +42,12 @@ public protocol DialogAPI: AimyboxComponent {
      Used to notify *Aimybox* state machine about events.
      */
     var notify: (DialogAPICallback)? { get set }
+    /**
+     Number of one second polls for request result.
+     
+     - Note: Use ```10``` attempts as default value.
+     */
+    var timeoutPollAttempts: Int { get set }
 }
 
 public typealias DialogAPICallback = (DialogAPIResult)->()
@@ -64,6 +70,12 @@ extension DialogAPI {
         }
         
         operationQueue.addOperation(apiOperation)
+    }
+    /**
+     Cancels request if any is pending.
+     */
+    public func cancelRequest() {
+        cancelRunningOperation()
     }
     
     private func handle(response: TResponse, sender aimybox: Aimybox) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol AimyboxDelegate: SpeechToTextDelegate, TextToSpeechDelegate {
+public protocol AimyboxDelegate: SpeechToTextDelegate, TextToSpeechDelegate, DialogAPIDelegate {
     /**
      Called before new state is set. Optional.
      */
