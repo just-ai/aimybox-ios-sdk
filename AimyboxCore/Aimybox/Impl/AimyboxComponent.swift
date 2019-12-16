@@ -21,10 +21,11 @@ open class AimyboxComponent {
      - Note: If you ovveride `init()` in sub-class, you must call super.init().
      */
     public init() {
-        let queue = OperationQueue()
-        queue.name = "com.justai.aimybox-\("\(type(of: self))".lowercased())-thread"
-        queue.maxConcurrentOperationCount = 1
-        operationQueue = queue
+        let queue = DispatchQueue(label: "com.justai.aimybox-\("\(type(of: self))".lowercased())-thread")
+        let opQueue = OperationQueue()
+        opQueue.maxConcurrentOperationCount = 1
+        opQueue.underlyingQueue = queue
+        operationQueue = opQueue
     }
     
     var hasRunningOperations: Bool {

@@ -35,7 +35,8 @@ class AimyboxCoreTests: XCTestCase {
 
 class AimyboxSpeechToText: XCTestCase {
     
-    let partialResultCount: Int = 3
+    var partialResultCount: Int = 0
+    let partialResultMaxCount: Int = 3
     
     var aimybox: Aimybox!
 
@@ -46,7 +47,7 @@ class AimyboxSpeechToText: XCTestCase {
     
     override func setUp() {
         let stt = SpeechToTextFake()
-        stt.partialResultCount = partialResultCount
+        stt.partialResultCount = partialResultMaxCount
         
         let config = getConfig(stt)
         
@@ -57,7 +58,10 @@ class AimyboxSpeechToText: XCTestCase {
                 case .recognitionStarted:
                     self?.recognitionStartedSemaphore.signal()
                 case .recognitionPartialResult:
-                    self?.recognitionPartialResultSemaphore.signal()
+                    self?.partialResultCount += 1
+                    if self?.partialResultCount == self?.partialResultMaxCount {
+                        self?.recognitionPartialResultSemaphore.signal()
+                    }
                 case .recognitionResult:
                     self?.recognitionResultSemaphore.signal()
                 case .recognitionCancelled:
@@ -70,9 +74,10 @@ class AimyboxSpeechToText: XCTestCase {
                 XCTAssert(false)
             }
         }
+        partialResultCount = 0
         aimybox = AimyboxBuilder.aimybox(with: config)
         recognitionStartedSemaphore = DispatchSemaphore(value: 0)
-        recognitionPartialResultSemaphore = DispatchSemaphore(value: partialResultCount)
+        recognitionPartialResultSemaphore = DispatchSemaphore(value: 0)
         recognitionResultSemaphore = DispatchSemaphore(value: 0)
         recognitionCancelledSemaphore = DispatchSemaphore(value: 0)
     }
@@ -88,9 +93,9 @@ class AimyboxSpeechToText: XCTestCase {
     }
     
     override func invokeTest() {
-        (0..<1).forEach { _ in
+//        (0..<10).forEach { _ in
             super.invokeTest()
-        }
+//        }
     }
     
     func testStateAfterStartSpeechRecognizing() {
