@@ -17,7 +17,17 @@ class SpeechToTextFake: AimyboxComponent, SpeechToText {
     
     public var finalResult: String = "Ping-Pong"
     
+    public var errorState: SpeechToTextError?
+    
     func startRecognition() {
+        guard errorState == nil else {
+            let error = self.errorState!
+            operationQueue.addOperation { [weak self] in
+                self?.notify?(.failure(error))
+            }
+            return
+        }
+        
         let partialResult = self.partialResult
         let finalResult = self.finalResult
         let partialResultCount = self.partialResultCount
@@ -35,7 +45,11 @@ class SpeechToTextFake: AimyboxComponent, SpeechToText {
 
             self?.operationQueue.underlyingQueue?.asyncAfter(deadline: .now() + 0.25*Double(partialResultCount+1)) { [weak self] in
                 self?.operationQueue.addOperation {
-                    self?.notify?(.success(.recognitionResult(finalResult)))
+                    self?.notify?(
+                        .success(
+                            finalResult.isEmpty ? .emptyRecognitionResult : .recognitionResult(finalResult)
+                        )
+                    )
                 }
             }
         }

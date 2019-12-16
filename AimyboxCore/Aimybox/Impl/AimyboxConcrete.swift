@@ -54,7 +54,6 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
     // MARK: - DialogAPI lifecycle
 
     func sendRequest(query: String) {
-        cancelRecognition()
         stopSpeaking()
         
         state = .processing
@@ -140,10 +139,11 @@ extension AimyboxConcrete {
         case .success(let event):
             handle(event)
             event.forward(to: delegate, by: config.speechToText)
-            
+
         case .failure(let error):
+            handle(error)
             error.forward(to: delegate, by: config.speechToText)
-            
+
         }
     }
     
@@ -154,10 +154,17 @@ extension AimyboxConcrete {
 
         case .emptyRecognitionResult:
             standby()
+        
+        case .recognitionCancelled:
+            standby()
             
         default:
             break
         }
+    }
+    
+    private func handle(_ error: SpeechToTextError) {
+        standby()
     }
     
     private func onTextToSpeech(_ result: TextToSpeechResult) {
