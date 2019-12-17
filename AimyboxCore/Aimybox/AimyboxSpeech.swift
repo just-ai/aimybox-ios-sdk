@@ -30,3 +30,20 @@ public class TextSpeech: AimyboxSpeech {
         return !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
+
+public class AudioSpeech: AimyboxSpeech {
+    /**
+     URL to the audio source.
+     */
+    public let audioURL: URL
+    
+    public init(audioURL: URL) {
+        self.audioURL = audioURL
+    }
+    /**
+     If url is valid, it's synthesizers task to check if it could play it.
+     */
+    public func isValid() -> Bool {
+        return true
+    }
+}

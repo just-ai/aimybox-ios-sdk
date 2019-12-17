@@ -18,6 +18,10 @@ public enum DialogAPIError: Error {
      */
     case requestCancellation(Request)
     /**
+     Happens when `Aimybox` forced to `DialogAPI` to cancel while response being processed.
+     */
+    case processingCancellation
+    /**
      Happens when `DialogAPI` catches errors at request creation etc.
     */
     case clientSide(Error)
@@ -36,6 +40,8 @@ public extension DialogAPIError {
             delegate.dialogAPI(cancelled: request)
         case .clientSide(let error):
             delegate.dialogAPI(client: error)
+        case .processingCancellation:
+            delegate.dialogAPIProcessingCancellation()
         }
     }
 }

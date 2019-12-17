@@ -16,3 +16,12 @@ public protocol AudioReply: Reply {
      */
     var url: URL { get }
 }
+
+
+public extension AudioReply {
+    
+    var audioSpeech: AudioSpeech {
+        AudioSpeech(audioURL: url)
+    }
+}
+

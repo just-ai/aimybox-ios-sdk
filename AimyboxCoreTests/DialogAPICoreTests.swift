@@ -62,6 +62,20 @@ class DialogAPICoreTests: AimyboxBaseTestCase {
         XCTAssert(aimybox.state == .standby)
     }
     
+    
+    func testStateAfterSendRequestFailedWithClientError() {
+        
+        dapi.errorState = NSError(domain: "ClientError", code: 1, userInfo: nil)
+        
+        aimybox.startRecognition()
+        
+        recognitionResultSemaphore?.waitOrFail()
+        
+        clientSideErrorSemaphore?.waitOrFail()
+        
+        XCTAssert(aimybox.state == .standby)
+    }
+    
     func testPreviousRequestCancelAfterNewRequestTriggered() {
         
         let timeout = 5.0
@@ -77,6 +91,5 @@ class DialogAPICoreTests: AimyboxBaseTestCase {
         requestSentSemaphore?.waitOrFail()
         
         XCTAssert(aimybox.state == .processing)
-        
     }
 }

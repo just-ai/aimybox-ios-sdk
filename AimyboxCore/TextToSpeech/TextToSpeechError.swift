@@ -16,6 +16,9 @@ public enum TextToSpeechError: Error {
      Sent when speakers are unvailable.
      */
     case speakersUnavailable
+    /**
+     */
+    case speechSequenceCancelled([AimyboxSpeech])
 }
 
 public extension TextToSpeechError {
@@ -29,6 +32,8 @@ public extension TextToSpeechError {
             delegate.tts(tts, speechSkipped: speech)
         case .speakersUnavailable:
             delegate.ttsSpeakersUnavailable(tts)
+        case .speechSequenceCancelled(let sequence):
+            delegate.tts(tts, speechSequenceCancelled: sequence)
         }
     }
 }

@@ -35,10 +35,10 @@ class AimyboxBaseTestCase: XCTestCase {
     // MARK: - DialogAPI
     /// Events
     var requestSentSemaphore: DispatchSemaphore?
-    var requestCancelledSemaphore: DispatchSemaphore?
     var responseReceivedSemaphore: DispatchSemaphore?
     /// Errors
     var requestTimeoutSemaphore: DispatchSemaphore?
+    var requestCancelledSemaphore: DispatchSemaphore?
     var clientSideErrorSemaphore: DispatchSemaphore?
     
     override func setUp() {
@@ -155,7 +155,7 @@ class AimyboxBaseTestCase: XCTestCase {
 
 
 public extension DispatchSemaphore {
-    func waitOrFail(timeout: DispatchTime = .now() + 5.0) {
+    @inline(__always) func waitOrFail(timeout: DispatchTime = .now() + 5.0) {
         XCTAssertEqual(wait(timeout: timeout), .success, "Timeout for event wait.")
     }
 }

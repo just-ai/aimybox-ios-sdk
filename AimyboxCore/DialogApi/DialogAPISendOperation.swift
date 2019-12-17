@@ -41,7 +41,7 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
             let _dialogAPI = dialogAPI
             
             result = try perform {
-                return try _dialogAPI.send(request: request)
+                try _dialogAPI.send(request: request)
             }
             
         } catch DialogAPIError.Internal.requestTimeout {
@@ -75,23 +75,19 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
         // Poll for cancel or timeout or success event
         var pollAttempt = 0
 
-        while pollAttempt < defaultMaxPollAttempts {
+        pollLoop: while pollAttempt < defaultMaxPollAttempts {
             
             switch timeoutSemaphore.wait(timeout: .now() + defaultRequestTimeout) {
             case .success:
                 try throwIfCanceled()
                 
-                break // Stop polling and look for response we got
+                break pollLoop // Stop polling and look for response we got
 
             case .timedOut:
                 try throwIfCanceled()
             }
             
             pollAttempt += 1
-            
-            if pollAttempt == defaultMaxPollAttempts {
-                throw DialogAPIError.Internal.requestTimeout
-            }
         }
 
         // Convert response to one of known event type
@@ -117,7 +113,7 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
 /**
  Domain of internal errors.
  */
-extension DialogAPIError {
+fileprivate extension DialogAPIError {
     enum Internal: Error {
         
         case requestTimeout

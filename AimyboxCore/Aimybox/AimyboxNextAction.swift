@@ -31,7 +31,7 @@ public enum AimyboxNextAction {
      If the speech is a question, it is obviously to start speech recognition after synthesis.
      On the other hand, if the speech does not imply an answer, it is logical to go to `standby` state.
      */
-    func byQuestion(is question: Bool) -> AimyboxNextAction {
+    static func byQuestion(is question: Bool) -> AimyboxNextAction {
         question ? .recognition : .standby
     }
 }

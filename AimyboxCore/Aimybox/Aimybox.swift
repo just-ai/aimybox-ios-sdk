@@ -37,13 +37,13 @@ public protocol Aimybox: class {
     func standby()
     /**
      */
-    func speak(speech: AimyboxSpeech)
+    func speak(speech: AimyboxSpeech) throws
     /**
      */
-    func speak(speech: AimyboxSpeech, next action: AimyboxNextAction)
+    func speak(speech: AimyboxSpeech, next action: AimyboxNextAction) throws
     /**
      */
-    func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction)
+    func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction) throws
     /**
      Receives state and domain(tts, stt, ...) specific events.
      

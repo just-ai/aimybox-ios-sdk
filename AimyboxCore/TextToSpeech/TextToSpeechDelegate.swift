@@ -11,31 +11,35 @@ public protocol TextToSpeechDelegate: class {
     
     // MARK: - Lifecycle
     /**
-     Happens when TextToSpeech actually starts to synthesise a list of speeches.
+     Happens when `TextToSpeech` actually starts to synthesise a list of speeches.
      */
     func tts(_ tts: TextToSpeech, speechSequenceStarted sequence: [AimyboxSpeech])
     /**
-     Happens when TextToSpeech starts to synthesise the next speech from the list of speeches.
+     Happens when `TextToSpeech` starts to synthesise the next speech from the list of speeches.
      */
     func tts(_ tts: TextToSpeech, speechStarted speech: AimyboxSpeech)
     /**
-     Happens when TextToSpeech ends to synthesise the current speech.
+     Happens when `TextToSpeech` ends to synthesise the current speech.
      */
     func tts(_ tts: TextToSpeech, speechEnded speech: AimyboxSpeech)
     /**
-     Happens when TextToSpeech ends to synthesise the whole list of speeches.
+     Happens when `TextToSpeech` ends to synthesise the whole list of speeches.
      */
     func tts(_ tts: TextToSpeech, speechSequenceCompleted sequence: [AimyboxSpeech])
-    /**
-     Happens when TextToSpeech skips any of speeches (if it's empty for example).
-     */
-    func tts(_ tts: TextToSpeech, speechSkipped speech: AimyboxSpeech)
     
     // MARK:- Errors
     /**
-     Happens when TextToSpeech can't capture speakers.
+     Happens when `TextToSpeech` skips any of speeches (if it's empty for example).
+     */
+    func tts(_ tts: TextToSpeech, speechSkipped speech: AimyboxSpeech)
+    /**
+     Happens when `TextToSpeech` can't capture speakers.
      */
     func ttsSpeakersUnavailable(_ tts: TextToSpeech)
+    /**
+    Happens when `TextToSpeech` cancells speech sequence.
+    */
+    func tts(_ tts: TextToSpeech, speechSequenceCancelled sequence: [AimyboxSpeech])
 }
 
 /**
@@ -48,4 +52,5 @@ public extension SpeechToTextDelegate {
     func tts(_ tts: TextToSpeech, speechSequenceCompleted sequence: [AimyboxSpeech]) {}
     func tts(_ tts: TextToSpeech, speechSkipped speech: AimyboxSpeech) {}
     func ttsSpeakersUnavailable(_ tts: TextToSpeech) {}
+    func tts(_ tts: TextToSpeech, speechSequenceCancelled sequence: [AimyboxSpeech]) {}
 }

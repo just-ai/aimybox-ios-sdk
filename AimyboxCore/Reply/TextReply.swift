@@ -25,3 +25,9 @@ public protocol TextReply: Reply {
     var language: String? { get }
 }
 
+public extension TextReply {
+    
+    var textSpeech: TextSpeech {
+        TextSpeech(text: tts != nil ? tts! : text)
+    }
+}

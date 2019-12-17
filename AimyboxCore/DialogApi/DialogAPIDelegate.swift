@@ -32,6 +32,10 @@ public protocol DialogAPIDelegate: class {
      Happens when `DialogAPI` catches errors at request creation etc.
     */
     func dialogAPI(client error: Error)
+    /**
+     Happens when `Aimybox` forced to `DialogAPI` to cancel while response being processed.
+     */
+    func dialogAPIProcessingCancellation()
 }
 
 /**
@@ -43,5 +47,6 @@ public extension DialogAPIDelegate {
     func dialogAPI(response received: Response) {}
     func dialogAPI(timeout request: Request) {}
     func dialogAPI(client error: Error) {}
+    func dialogAPIProcessingCancellation() {}
 }
 

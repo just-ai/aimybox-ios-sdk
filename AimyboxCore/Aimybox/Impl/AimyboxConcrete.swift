@@ -81,13 +81,22 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
     }
     
     public func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction) {
-        guard state != .speaking else {
-            return
-        }
         
         state = .speaking
-        config.textToSpeech.synthesize(contentsOf: speech) { result in
-            //
+        
+        config.textToSpeech.synthesize(contentsOf: speech) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                if case .speechSequenceCancelled = error {
+                    self?.standby()
+                }
+            case .success:
+                switch action {
+                case .nothing: break
+                case .recognition: self?.startRecognition()
+                case .standby: self?.standby()
+                }
+            }
         }
     }
     
@@ -211,6 +220,8 @@ extension AimyboxConcrete {
     private func handle(_ error: DialogAPIError) {
         switch error {
         case .requestTimeout:
+            standby()
+        case .clientSide:
             standby()
         default:
             break

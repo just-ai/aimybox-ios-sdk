@@ -15,11 +15,17 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
     
     public var sendTimeout: TimeInterval = 0.5
     
+    public var errorState: Error?
+    
     public override init() {
         super.init()
     }
     
     func send(request: DialogAPIRequestFake) throws -> DialogAPIResponseFake {
+
+        if let _error = errorState {
+            throw _error
+        }
 
         notify?(.success(.requestSent(request)))
         

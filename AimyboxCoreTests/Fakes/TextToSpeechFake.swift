@@ -11,7 +11,6 @@ import AimyboxCore
 
 class TextToSpeechFake: TextToSpeech {
     func synthesize(contentsOf speeches: [AimyboxSpeech], completion: (TextToSpeechResult) -> ()) {
-        return
     }
     
     func synthesize(contentsOf speeches: [AimyboxSpeech]) {
