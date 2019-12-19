@@ -19,10 +19,13 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
     
     public private(set) var state: AimyboxState
     
+    public private(set) var nextAction: AimyboxNextAction
+    
     public private(set) var config: TConfig
     
     public init(with config: TConfig) {
         self.state = .standby
+        self.nextAction = .nothing
         self.config = config
         self.config.speechToText.notify = onSpeechToText
         self.config.textToSpeech.notify = onTextToSpeech
@@ -81,23 +84,9 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
     }
     
     public func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction) {
-        
         state = .speaking
-        
-        config.textToSpeech.synthesize(contentsOf: speech) { [weak self] result in
-            switch result {
-            case .failure(let error):
-                if case .speechSequenceCancelled = error {
-                    self?.standby()
-                }
-            case .success:
-                switch action {
-                case .nothing: break
-                case .recognition: self?.startRecognition()
-                case .standby: self?.standby()
-                }
-            }
-        }
+        nextAction = action
+        config.textToSpeech.synthesize(contentsOf: speech)
     }
     
     // MARK: - State independent methods
@@ -125,6 +114,7 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
     #if TESTING
     public init(config: TConfig) {
         self.state = .standby
+        self.nextAction = .nothing
         self.config = config
 
         if let _injectedBlock = config.speechToText.notify {
@@ -171,10 +161,7 @@ extension AimyboxConcrete {
         case .recognitionResult(let query):
             sendRequest(query: query)
 
-        case .emptyRecognitionResult:
-            standby()
-        
-        case .recognitionCancelled:
+        case .emptyRecognitionResult, .recognitionCancelled:
             standby()
             
         default:
@@ -189,12 +176,38 @@ extension AimyboxConcrete {
     private func onTextToSpeech(_ result: TextToSpeechResult) {
         switch result {
         case .success(let event):
+            handle(event)
             event.forward(to: delegate, by: config.textToSpeech)
         case .failure(let error):
+            handle(error)
             error.forward(to: delegate, by: config.textToSpeech)
         }
     }
     
+    private func handle(_ event: TextToSpeechEvent) {
+        switch event {
+        case .speechSequenceCompleted:
+            switch nextAction {
+            case .nothing:
+                break
+            case .recognition:
+                startRecognition()
+            case .standby:
+                standby()
+            }
+        default:
+            break
+        }
+    }
+    
+    private func handle(_ error: TextToSpeechError) {
+        switch error {
+        case .emptySpeech:
+            break
+        default:
+            standby()
+        }
+    }
     
     private func onDialogAPI(_ result: DialogAPIResult) {
         switch result {

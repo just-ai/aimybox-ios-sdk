@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import AimyboxCore
 
 public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
+    public var timeoutPollAttempts: Int = 10
+    
 
     public typealias TRequest = AimyboxRequest
 

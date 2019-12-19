@@ -8,8 +8,10 @@
 
 import AVFoundation
 import Speech
+import AimyboxCore
+import Utils
 
-public class SFSpeechToText: SpeechToText {
+public class SFSpeechToText: AimyboxComponent, SpeechToText {
     /**
      Locale of recognizer.
      */
@@ -47,19 +49,6 @@ public class SFSpeechToText: SpeechToText {
      */
     private let recognitionDebounceDelay: TimeInterval = 3.0
     /**
-     Default init that uses system locale.
-     
-     If locale is not supported, that init will fail.
-     */
-    public init?() {
-        self.locale = Locale.current
-        audioEngine = AVAudioEngine()
-        guard let recognizer = SFSpeechRecognizer() else { return nil }
-        recognizer.defaultTaskHint = .search
-        speechRecognizer = recognizer
-        recognitionDebouncer = DispatchDebouncer()
-    }
-    /**
      Init that uses provided locale.
      
      If locale is not supported, that init will fail.
@@ -71,6 +60,7 @@ public class SFSpeechToText: SpeechToText {
         recognizer.defaultTaskHint = .search
         speechRecognizer = recognizer
         recognitionDebouncer = DispatchDebouncer()
+        super.init()
     }
     
     // MARK: - Locale management

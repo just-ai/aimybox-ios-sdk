@@ -10,11 +10,11 @@ import Foundation
 /**
  Class conforming to this protocol is able to synthesize a speech from the text in real time.
  */
-public protocol TextToSpeech: class {
+public protocol TextToSpeech: AimyboxComponent {
     /**
      Synthesizes in FIFO order.
      */
-    func synthesize(contentsOf speeches: [AimyboxSpeech], completion: TextToSpeechCallback)
+    func synthesize(contentsOf speeches: [AimyboxSpeech])
     /**
      Stops speech synthesis.
      */

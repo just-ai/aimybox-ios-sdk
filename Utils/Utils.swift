@@ -10,7 +10,7 @@ import Foundation
 /**
  Handy debouncer.
  */
-class DispatchDebouncer {
+public class DispatchDebouncer {
     private var timer: Timer?
 
     public init() {

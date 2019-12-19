@@ -188,4 +188,49 @@ class DialogAPICoreTests: AimyboxBaseTestCase {
 
         XCTAssert(dapi.sentQuery == sentQuery)
     }
+    
+    func testStateAfterCustomSkillHandle() {
+        
+        dapi.skill_1.canHandle = true
+        let oldHandler = dapi.skill_1.onResponseHandler
+        dapi.skill_1.onResponseHandler = { response, aimybox, defaultHandler in
+            let _response = oldHandler?(response, aimybox, defaultHandler) ?? response
+            aimybox.standby()
+            return _response
+        }
+        
+        aimybox.startRecognition()
+        
+        skill_1_onRequestSemaphore?.waitOrFail()
+
+        XCTAssert(aimybox.state == .processing)
+
+        skill_1_onResponseSemaphore?.waitOrFail()
+        
+        XCTAssert(aimybox.state == .standby)
+    }
+    
+    func testStateAfterCustomSkillHandleThenCallDefaultHandler() {
+        
+        dapi.skill_1.canHandle = true
+
+        let oldHandler = dapi.skill_1.onResponseHandler
+        dapi.skill_1.onResponseHandler = { response, aimybox, defaultHandler in
+            let _response = oldHandler?(response, aimybox, defaultHandler) ?? response
+            defaultHandler(response)
+            return _response
+        }
+        
+        aimybox.startRecognition()
+        
+        skill_1_onRequestSemaphore?.waitOrFail()
+
+        XCTAssert(aimybox.state == .processing)
+
+        skill_1_onResponseSemaphore?.waitOrFail()
+
+        speechSequenceCompletedSemaphore?.waitOrFail()
+
+        XCTAssert(aimybox.state == .standby)
+    }
 }

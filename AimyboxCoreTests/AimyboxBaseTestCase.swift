@@ -47,6 +47,17 @@ class AimyboxBaseTestCase: XCTestCase {
     /// 2
     var skill_2_onResponseSemaphore: DispatchSemaphore?
     var skill_2_onRequestSemaphore: DispatchSemaphore?
+    // MARK: - TextToSpeech
+    /// Events
+    var speechSequenceStartedSemaphore: DispatchSemaphore?
+    var speechStartedSemaphore: DispatchSemaphore?
+    var speechEndedSemaphore: DispatchSemaphore?
+    var speechSequenceCompletedSemaphore: DispatchSemaphore?
+    var speechSkippedSemaphore: DispatchSemaphore?
+    /// Errors
+    var emptySpeechSemaphore: DispatchSemaphore?
+    var speakersUnavailableSemaphore: DispatchSemaphore?
+    var speechSequenceCancelledSemaphore: DispatchSemaphore?
     
     override func setUp() {
         stt = SpeechToTextFake()
@@ -154,6 +165,44 @@ class AimyboxBaseTestCase: XCTestCase {
         }
         skill_2_onResponseSemaphore = DispatchSemaphore(value: 0)
         skill_2_onRequestSemaphore = DispatchSemaphore(value: 0)
+
+        // MARK: - TextToSpeech
+        config.textToSpeech.notify = { [weak self] (result) in
+            switch result {
+            case .success(let event):
+                switch event {
+                case .speechSequenceStarted:
+                    self?.speechStartedSemaphore?.signal()
+                case .speechStarted:
+                    self?.speechStartedSemaphore?.signal()
+                case .speechSkipped:
+                    self?.speechSkippedSemaphore?.signal()
+                case .speechEnded:
+                    self?.speechEndedSemaphore?.signal()
+                case .speechSequenceCompleted:
+                    self?.speechSequenceCompletedSemaphore?.signal()
+                }
+            case .failure(let error):
+                switch error {
+                case .emptySpeech:
+                    self?.emptySpeechSemaphore?.signal()
+                case .speakersUnavailable:
+                    self?.speakersUnavailableSemaphore?.signal()
+                case .speechSequenceCancelled:
+                    self?.speechSequenceCancelledSemaphore?.signal()
+                }
+            }
+        }
+        /// Events
+        speechSequenceStartedSemaphore = DispatchSemaphore(value: 0)
+        speechStartedSemaphore = DispatchSemaphore(value: 0)
+        speechEndedSemaphore = DispatchSemaphore(value: 0)
+        speechSequenceCompletedSemaphore = DispatchSemaphore(value: 0)
+        speechSkippedSemaphore = DispatchSemaphore(value: 0)
+        /// Errors
+        emptySpeechSemaphore = DispatchSemaphore(value: 0)
+        speakersUnavailableSemaphore = DispatchSemaphore(value: 0)
+        speechSequenceCancelledSemaphore = DispatchSemaphore(value: 0)
         
         aimybox = AimyboxBuilder.aimybox(with: config)
     }
@@ -191,6 +240,17 @@ class AimyboxBaseTestCase: XCTestCase {
         /// 2
         skill_2_onResponseSemaphore = nil
         skill_2_onRequestSemaphore = nil
+        // MARK: - TextToSpeech
+        /// Events
+        speechSequenceStartedSemaphore = nil
+        speechStartedSemaphore = nil
+        speechEndedSemaphore = nil
+        speechSequenceCompletedSemaphore = nil
+        speechSkippedSemaphore = nil
+        /// Errors
+        emptySpeechSemaphore = nil
+        speakersUnavailableSemaphore = nil
+        speechSequenceCancelledSemaphore = nil
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AimyboxCore
 
 public class AimyboxResponse: Response {
     public var query: String = ""

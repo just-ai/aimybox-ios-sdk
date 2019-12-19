@@ -7,8 +7,9 @@
 
 import Foundation
 import AVFoundation
+import AimyboxCore
 
-public class AVTextToSpeech: NSObject, TextToSpeech {
+public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
      The rate at which the utterance will be spoken. The default rate is *AVSpeechUtteranceDefaultSpeechRate*
      */
@@ -45,7 +46,7 @@ public class AVTextToSpeech: NSObject, TextToSpeech {
         speechSynthesizer = AVSpeechSynthesizer()
         textQueue = [:]
         super.init()
-        speechSynthesizer.delegate = self
+//        speechSynthesizer.delegate = self
     }
     
     public init?(locale: Locale? = nil) {
@@ -56,7 +57,7 @@ public class AVTextToSpeech: NSObject, TextToSpeech {
         speechSynthesizer = AVSpeechSynthesizer()
         textQueue = [:]
         super.init()
-        speechSynthesizer.delegate = self
+//        speechSynthesizer.delegate = self
     }
     
     // MARK: - TextToSpeech
@@ -125,7 +126,7 @@ public class AVTextToSpeech: NSObject, TextToSpeech {
         }
     }
 }
-
+/*
 extension AVTextToSpeech: AVSpeechSynthesizerDelegate {
     
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
@@ -142,3 +143,4 @@ extension AVTextToSpeech: AVSpeechSynthesizerDelegate {
         textQueue.removeValue(forKey: utterance)
     }
 }
+*/
