@@ -10,19 +10,22 @@ import Foundation
 import AimyboxCore
 
 class DialogAPICustomSkillFake: CustomSkill {
-    
-    typealias TRequest = DialogAPIRequestFake
-    typealias TResponse = DialogAPIResponseFake
-    
+
+    public var onResponseHandler: ((DialogAPIResponseFake, Aimybox, (Response) -> ()) -> DialogAPIResponseFake)?
+
+    public var onRequestHandler: ((DialogAPIRequestFake) -> DialogAPIRequestFake)?
+
+    public var canHandle: Bool = false
+
     func onRequest(_ request: DialogAPIRequestFake) -> DialogAPIRequestFake {
-        return request
+        return onRequestHandler?(request) ?? request
     }
-    
+
     func canHandle(response: DialogAPIResponseFake) -> Bool {
-        return false
+        return canHandle
     }
-    
+
     func onResponse(_ response: DialogAPIResponseFake, _ aimybox: Aimybox, default handler: (Response) -> ()) -> DialogAPIResponseFake {
-        return response
+        return onResponseHandler?(response, aimybox, handler) ?? response
     }
 }

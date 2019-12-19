@@ -92,4 +92,100 @@ class DialogAPICoreTests: AimyboxBaseTestCase {
         
         XCTAssert(aimybox.state == .processing)
     }
+    
+    func testCustomSkillCanHandle() {
+        
+        dapi.skill_1.canHandle = true
+        
+        aimybox.startRecognition()
+        requestSentSemaphore?.waitOrFail()
+
+        skill_1_onResponseSemaphore?.waitOrFail()
+    }
+    
+    func tesCustomSkilltOnlyOneCanHandle() {
+        
+        dapi.skill_1.canHandle = true
+        dapi.skill_2.canHandle = true
+        
+        aimybox.startRecognition()
+        requestSentSemaphore?.waitOrFail()
+
+        skill_1_onResponseSemaphore?.waitOrFail()
+        skill_2_onResponseSemaphore?.waitOrPass()
+    }
+    
+    func testCustomSkillOnRequestSend() {
+        
+        aimybox.startRecognition()
+        
+        skill_1_onRequestSemaphore?.waitOrFail()
+        skill_2_onRequestSemaphore?.waitOrFail()
+        
+        requestSentSemaphore?.waitOrFail()
+    }
+    
+    func testCustomSkillOnRequestModifyRequest() {
+        
+        let oldHandler = dapi.skill_1.onRequestHandler
+        let sentQuery = "ping"
+        
+        dapi.skill_1.onRequestHandler = { request in
+            request.query = sentQuery
+            return oldHandler?(request) ?? request
+        }
+
+        aimybox.startRecognition()
+
+        skill_1_onRequestSemaphore?.waitOrFail()
+        
+        requestSentSemaphore?.waitOrFail()
+
+        XCTAssert(dapi.sentQuery == sentQuery)
+    }
+    
+    func testCustomSkillsOnRequestModifyRequest() {
+        
+        let oldHandler_1 = dapi.skill_1.onRequestHandler
+        let oldHandler_2 = dapi.skill_2.onRequestHandler
+        let sentQuery_1 = "ping"
+        let sentQuery_2 = "-pong"
+        
+        dapi.skill_1.onRequestHandler = { request in
+            request.query = sentQuery_1
+            return oldHandler_1?(request) ?? request
+        }
+        dapi.skill_2.onRequestHandler = { request in
+            request.query += sentQuery_2
+            return oldHandler_2?(request) ?? request
+        }
+
+        aimybox.startRecognition()
+
+        skill_1_onRequestSemaphore?.waitOrFail()
+        skill_2_onRequestSemaphore?.waitOrFail()
+        
+        requestSentSemaphore?.waitOrFail()
+
+        XCTAssert(dapi.sentQuery == sentQuery_1+sentQuery_2)
+    }
+    
+    func testCustomSkillOnRequestOvverideRequest() {
+
+        let oldHandler = dapi.skill_2.onRequestHandler
+        let sentQuery = "pong"
+
+        dapi.skill_2.onRequestHandler = { request in
+            request.query = sentQuery
+            return oldHandler?(request) ?? request
+        }
+
+        aimybox.startRecognition()
+
+        skill_2_onRequestSemaphore?.waitOrFail()
+
+        requestSentSemaphore?.waitOrFail()
+
+        XCTAssert(dapi.sentQuery == sentQuery)
+    }
 }

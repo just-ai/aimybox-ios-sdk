@@ -40,6 +40,13 @@ class AimyboxBaseTestCase: XCTestCase {
     var requestTimeoutSemaphore: DispatchSemaphore?
     var requestCancelledSemaphore: DispatchSemaphore?
     var clientSideErrorSemaphore: DispatchSemaphore?
+    /// CustomSkills
+    /// 1
+    var skill_1_onResponseSemaphore: DispatchSemaphore?
+    var skill_1_onRequestSemaphore: DispatchSemaphore?
+    /// 2
+    var skill_2_onResponseSemaphore: DispatchSemaphore?
+    var skill_2_onRequestSemaphore: DispatchSemaphore?
     
     override func setUp() {
         stt = SpeechToTextFake()
@@ -111,6 +118,8 @@ class AimyboxBaseTestCase: XCTestCase {
                     self?.requestCancelledSemaphore?.signal()
                 case .clientSide:
                     self?.clientSideErrorSemaphore?.signal()
+                case .processingCancellation:
+                    break
                 }
             }
         }
@@ -120,6 +129,31 @@ class AimyboxBaseTestCase: XCTestCase {
         requestTimeoutSemaphore = DispatchSemaphore(value: 0)
         requestCancelledSemaphore = DispatchSemaphore(value: 0)
         clientSideErrorSemaphore = DispatchSemaphore(value: 0)
+        /// CustomSkills
+        /// 1
+        dapi.skill_1.canHandle = false
+        dapi.skill_1.onRequestHandler = { [weak self] request in
+            self?.skill_1_onRequestSemaphore?.signal()
+            return request
+        }
+        dapi.skill_1.onResponseHandler = { [weak self] response, _, _ in
+            self?.skill_1_onResponseSemaphore?.signal()
+            return response
+        }
+        skill_1_onResponseSemaphore = DispatchSemaphore(value: 0)
+        skill_1_onRequestSemaphore = DispatchSemaphore(value: 0)
+        /// 2
+        dapi.skill_2.canHandle = false
+        dapi.skill_2.onRequestHandler = { [weak self] request in
+            self?.skill_2_onRequestSemaphore?.signal()
+            return request
+        }
+        dapi.skill_2.onResponseHandler = { [weak self] response, _, _ in
+            self?.skill_2_onResponseSemaphore?.signal()
+            return response
+        }
+        skill_2_onResponseSemaphore = DispatchSemaphore(value: 0)
+        skill_2_onRequestSemaphore = DispatchSemaphore(value: 0)
         
         aimybox = AimyboxBuilder.aimybox(with: config)
     }
@@ -150,6 +184,13 @@ class AimyboxBaseTestCase: XCTestCase {
         /// Errors
         requestTimeoutSemaphore = nil
         clientSideErrorSemaphore = nil
+        /// CustomSkills
+        /// 1
+        skill_1_onResponseSemaphore = nil
+        skill_1_onRequestSemaphore = nil
+        /// 2
+        skill_2_onResponseSemaphore = nil
+        skill_2_onRequestSemaphore = nil
     }
 }
 
@@ -157,6 +198,10 @@ class AimyboxBaseTestCase: XCTestCase {
 public extension DispatchSemaphore {
     @inline(__always) func waitOrFail(timeout: DispatchTime = .now() + 5.0) {
         XCTAssertEqual(wait(timeout: timeout), .success, "Timeout for event wait.")
+    }
+    
+    @inline(__always) func waitOrPass(timeout: DispatchTime = .now() + 5.0) {
+        XCTAssertEqual(wait(timeout: timeout), .timedOut, "Timeout for event pass.")
     }
 }
 

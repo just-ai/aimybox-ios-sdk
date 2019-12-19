@@ -17,6 +17,32 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
     
     public var errorState: Error?
     
+    public var sentQuery: String = ""
+    
+    public var replyQuery: String = ""
+
+    public var action: String = ""
+
+    public var intent: String = ""
+
+    public var isQuestion: Bool = false
+
+    public lazy var reply_1: Reply = FakeTextReply(text: replyQuery)
+
+    public lazy var reply_2: Reply = FakeTextReply(text: replyQuery)
+
+    public lazy var response = DialogAPIResponseFake(query: replyQuery,
+                                                     action: action,
+                                                     intent: intent,
+                                                     question: isQuestion,
+                                                     replies: [reply_1, reply_2])
+    
+    public var skill_1 = DialogAPICustomSkillFake()
+    
+    public var skill_2 = DialogAPICustomSkillFake()
+    
+    public lazy var customSkills: [DialogAPICustomSkillFake] = [skill_1, skill_2]
+    
     public override init() {
         super.init()
     }
@@ -27,14 +53,14 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
             throw _error
         }
 
+        sentQuery = request.query
+        
         notify?(.success(.requestSent(request)))
         
         Thread.sleep(forTimeInterval: sendTimeout)
         
-        return DialogAPIResponseFake(query: "", action: "", intent: "", question: false, replies: [])
+        return response
     }
-    
-    var customSkills: [DialogAPICustomSkillFake] = []
     
     func createRequest(query: String) -> DialogAPIRequestFake {
         return DialogAPIRequestFake(query: query)
