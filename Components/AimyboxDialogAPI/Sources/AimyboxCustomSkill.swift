@@ -15,7 +15,7 @@ public class AimyboxCustomSkill: CustomSkill {
     public typealias TResponse = AimyboxResponse
     
     public func onRequest(_ request: AimyboxRequest) -> AimyboxRequest {
-        return AimyboxRequest()
+        return request
     }
     
     public func canHandle(response: AimyboxResponse) -> Bool {

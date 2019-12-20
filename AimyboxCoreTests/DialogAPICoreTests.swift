@@ -9,9 +9,9 @@
 import XCTest
 @testable import AimyboxCore
 
-class DialogAPICoreTests: AimyboxBaseTestCase {
+open class DialogAPICoreTests: AimyboxBaseTestCase {
 
-    override func invokeTest() {
+    override open func invokeTest() {
         (0..<1).forEach { _ in
             super.invokeTest()
         }

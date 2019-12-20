@@ -9,7 +9,7 @@
 import XCTest
 @testable import AimyboxCore
 
-class AimyboxBaseTestCase: XCTestCase {
+open class AimyboxBaseTestCase: XCTestCase {
 
     var aimybox: Aimybox!
     
@@ -59,10 +59,14 @@ class AimyboxBaseTestCase: XCTestCase {
     var speakersUnavailableSemaphore: DispatchSemaphore?
     var speechSequenceCancelledSemaphore: DispatchSemaphore?
     
-    override func setUp() {
+    open func setupComponents() {
         stt = SpeechToTextFake()
         tts = TextToSpeechFake()
         dapi = DialogAPIFake()
+    }
+    
+    override open func setUp() {
+        setupComponents()
         let config = AimyboxBuilder.config(stt, tts, dapi)
         
         // MARK: - SpeechToText
@@ -207,7 +211,7 @@ class AimyboxBaseTestCase: XCTestCase {
         aimybox = AimyboxBuilder.aimybox(with: config)
     }
     
-    override func tearDown() {
+    override open func tearDown() {
         aimybox = nil
         stt = nil
         dapi = nil
@@ -253,7 +257,6 @@ class AimyboxBaseTestCase: XCTestCase {
         speechSequenceCancelledSemaphore = nil
     }
 }
-
 
 public extension DispatchSemaphore {
     @inline(__always) func waitOrFail(timeout: DispatchTime = .now() + 5.0) {
