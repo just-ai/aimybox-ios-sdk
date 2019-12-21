@@ -90,6 +90,7 @@
 		97AF75D623AE6FF3009FAC1A /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97AF75DA23AE70FA009FAC1A /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
 		97AF75DB23AE70FA009FAC1A /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97AF75DF23AEA997009FAC1A /* SSMLDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF75DE23AEA997009FAC1A /* SSMLDecoder.swift */; };
 		97C75B5523ABF9D5006C209C /* AVTextToSpeechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5423ABF9D5006C209C /* AVTextToSpeechTests.swift */; };
 		97C75B7B23AC0154006C209C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5B23AC00E2006C209C /* Utils.swift */; };
 		97C75B7C23AC015C006C209C /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 97C75B6423AC00F9006C209C /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -347,6 +348,7 @@
 		97A0BD4223AE578C00629A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AimyboxDialogAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AF240A23ABF23300CB839E /* AimyboxDialogAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AimyboxDialogAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97AF75DE23AEA997009FAC1A /* SSMLDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSMLDecoder.swift; sourceTree = "<group>"; };
 		97C75B5423ABF9D5006C209C /* AVTextToSpeechTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTextToSpeechTests.swift; sourceTree = "<group>"; };
 		97C75B5B23AC00E2006C209C /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		97C75B6223AC00F9006C209C /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -662,6 +664,7 @@
 				9775863B23A654600009DA4B /* TextToSpeechDelegate.swift */,
 				9775863C23A654600009DA4B /* TextToSpeechEvent.swift */,
 				9775863D23A654600009DA4B /* TextToSpeechError.swift */,
+				97AF75DE23AEA997009FAC1A /* SSMLDecoder.swift */,
 			);
 			path = TextToSpeech;
 			sourceTree = "<group>";
@@ -1116,6 +1119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9775864123A654600009DA4B /* SpeechToTextDelegate.swift in Sources */,
+				97AF75DF23AEA997009FAC1A /* SSMLDecoder.swift in Sources */,
 				9775862B23A654470009DA4B /* DialogAPIError.swift in Sources */,
 				9775864823A654600009DA4B /* ImageReply.swift in Sources */,
 				973C7C9D2389921200920960 /* Aimybox.swift in Sources */,

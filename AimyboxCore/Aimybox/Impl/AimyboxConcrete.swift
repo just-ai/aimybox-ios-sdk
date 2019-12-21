@@ -34,6 +34,7 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
     
     // MARK: - Text to speech lifecycle
     public func startRecognition() {
+        stopSpeaking()
         cancelRecognition()
 
         state = .listening

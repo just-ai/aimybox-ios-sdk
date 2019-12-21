@@ -40,9 +40,16 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     internal var textQueue: [AVSpeechUtterance : AimyboxSpeech]
     /**
      */
-    public var speechGroup: DispatchGroup
-    
-    internal var delegate: AVTextToSpeechDelegate
+    public var blockGroup: DispatchGroup
+    /**
+     */
+    internal var speechDelegate: AVTextToSpeechDelegate
+    /**
+    */
+    internal var audioPlayer: AVAudioPlayer?
+    /**
+     */
+    internal var notificationQueue: OperationQueue
     
     
     private override init() {
@@ -51,11 +58,12 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         pitchMultiplier = 1.0
         speechSynthesizer = AVSpeechSynthesizer()
         textQueue = [:]
-        speechGroup = DispatchGroup()
-        delegate = AVTextToSpeechDelegate()
+        blockGroup = DispatchGroup()
+        speechDelegate = AVTextToSpeechDelegate()
+        notificationQueue = OperationQueue()
         super.init()
-        delegate.tts = self
-        speechSynthesizer.delegate = delegate
+        speechDelegate.tts = self
+        speechSynthesizer.delegate = speechDelegate
     }
     
     public init?(locale: Locale? = nil) {
@@ -65,11 +73,12 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         pitchMultiplier = 1.0
         speechSynthesizer = AVSpeechSynthesizer()
         textQueue = [:]
-        speechGroup = DispatchGroup()
-        delegate = AVTextToSpeechDelegate()
+        blockGroup = DispatchGroup()
+        speechDelegate = AVTextToSpeechDelegate()
+        notificationQueue = OperationQueue()
         super.init()
-        delegate.tts = self
-        speechSynthesizer.delegate = delegate
+        speechDelegate.tts = self
+        speechSynthesizer.delegate = speechDelegate
     }
     
     // MARK: - TextToSpeech
@@ -100,7 +109,7 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         
         _notify(.success(.speechSequenceStarted(speeches)))
 
-        speeches.forEach { speech in
+        speeches.unwrapSSML.forEach { speech in
             
             guard speech.isValid() else {
                 return _notify(.failure(.emptySpeech(speech)))
@@ -115,6 +124,8 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     private func synthesize(_ speech: AimyboxSpeech) {
         if let textSpeech = speech as? TextSpeech {
             synthesize(textSpeech)
+        } else if let audioSpeech = speech as? AudioSpeech {
+            synthesize(audioSpeech)
         }
     }
     
@@ -125,11 +136,48 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         utterance.volume = volume
         utterance.pitchMultiplier = pitchMultiplier
 
-        speechGroup.enter()
+        blockGroup.enter()
         speechSynthesizer.speak(utterance)
         
         textQueue[utterance] = textSpeech
-        speechGroup.wait()
+        blockGroup.wait()
+    }
+    
+    private func synthesize(_ audioSpeech: AudioSpeech) {
+        blockGroup.enter()
+        
+        let player = AVPlayer(url: audioSpeech.audioURL)
+        
+        let statusObservation = player.currentItem?.observe(\.status) { [weak self] (item, _) in
+            switch item.status {
+            case .failed:
+                self?.blockGroup.leave()
+                self?.notify?(.failure(.emptySpeech(audioSpeech)))
+                break
+            default:
+                break
+            }
+        }
+
+        let didPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                                                      object: player.currentItem,
+                                                                      queue: notificationQueue) { [weak self] _ in
+            self?.notify?(.success(.speechEnded(audioSpeech)))
+            self?.blockGroup.leave()
+        }
+        let failedToPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemFailedToPlayToEndTime,
+                                                                                  object: player.currentItem,
+                                                                                  queue: notificationQueue) { [weak self] _ in
+            self?.notify?(.failure(.emptySpeech(audioSpeech)))
+            self?.blockGroup.leave()
+        }
+        
+        player.play()
+        blockGroup.wait()
+        
+        statusObservation?.invalidate()
+        NotificationCenter.default.removeObserver(didPlayToEndObservation)
+        NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
     }
     
     private func prepareAudioEngine(_ completion: (Bool)->()) {
@@ -162,14 +210,14 @@ class AVTextToSpeechDelegate: NSObject, AVSpeechSynthesizerDelegate {
         
         tts?.textQueue.removeValue(forKey: utterance)
         
-        tts?.speechGroup.leave()
+        tts?.blockGroup.leave()
     }
     
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        tts?.speechGroup.leave()
+        tts?.blockGroup.leave()
     }
     
-    public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStop utterance: AVSpeechUtterance) {
-        tts?.speechGroup.leave()
+    public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
+        tts?.blockGroup.leave()
     }
 }
