@@ -66,7 +66,7 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
                 
                 let nextAction: AimyboxNextAction = {
                     if let _lastReply = lastReply, _lastReply === reply {
-                        return .byQuestion(is: response.question)
+                        return /*.byQuestion(is: response.question)*/.standby
                     } else {
                         return .standby
                     }

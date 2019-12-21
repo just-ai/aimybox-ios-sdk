@@ -17,6 +17,10 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
      */
     public let locale: Locale
     /**
+     Debounce delay in seconds. HIgher values results in higher lag between partial and final results.
+     */
+    public let recognitionDebounceDelay: TimeInterval = 2.0
+    /**
      Used to notify *Aimybox* state machine about events.
      */
     public var notify: (SpeechToTextCallback)?
@@ -45,10 +49,6 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
      */
     private var recognitionDebouncer: DispatchDebouncer
     /**
-     Debounce delay in seconds. HIgher values results in higher lag between partial and final results.
-     */
-    private let recognitionDebounceDelay: TimeInterval = 3.0
-    /**
      Init that uses provided locale.
      
      If locale is not supported, that init will fail.
@@ -61,6 +61,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         speechRecognizer = recognizer
         recognitionDebouncer = DispatchDebouncer()
         super.init()
+        speechRecognizer.queue = operationQueue
     }
     
     // MARK: - Locale management
@@ -163,7 +164,9 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
             notify?(.success(.recognitionPartialResult(partialResult)))
             
             recognitionDebouncer.debounce(delay: recognitionDebounceDelay) { [weak self] in
-                self?.recognitionTask?.finish()
+                self?.operationQueue.addOperation {
+                    self?.stopRecognition()
+                }
             }
             return
         }

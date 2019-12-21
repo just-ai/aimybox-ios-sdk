@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="sdk_sample_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3Tp-a7-m8u">
+                                <rect key="frame" x="0.0" y="44" width="414" height="656"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLA-Po-jtg">
+                                <rect key="frame" x="192" y="795" width="30" height="30"/>
+                                <state key="normal" title="ping"/>
+                                <connections>
+                                    <action selector="startRecognition:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ikl-xM-Yd1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3Tp-a7-m8u" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="44a-Wg-WaR"/>
+                            <constraint firstItem="xLA-Po-jtg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="BxP-OB-nIh"/>
+                            <constraint firstItem="3Tp-a7-m8u" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="L8R-iP-kl3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xLA-Po-jtg" secondAttribute="bottom" constant="37" id="Ple-Eb-Vr1"/>
+                            <constraint firstItem="xLA-Po-jtg" firstAttribute="top" secondItem="3Tp-a7-m8u" secondAttribute="bottom" constant="95" id="Veq-j3-eH2"/>
+                            <constraint firstItem="3Tp-a7-m8u" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="icl-0e-9qJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="3Tp-a7-m8u" id="x4c-9P-12j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>

@@ -29,7 +29,7 @@ public extension DialogAPIEvent {
         case .requestSent(let request):
             delegate.dialogAPI(sent: request)
         case .responseReceived(let response):
-            delegate.dialogAPI(response: response)
+            delegate.dialogAPI(received: response)
         }
     }
 }

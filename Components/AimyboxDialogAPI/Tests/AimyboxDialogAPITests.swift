@@ -43,4 +43,12 @@ class AimyboxDialogAPITests: XCTestCase {
         
         XCTAssertNoThrow(try dapi.send(request: request))
     }
+    
+    func testEmptyRequest() {
+        let query = ""
+        
+        let request = dapi.createRequest(query: query)
+        
+        XCTAssertNoThrow(try dapi.send(request: request))
+    }
 }

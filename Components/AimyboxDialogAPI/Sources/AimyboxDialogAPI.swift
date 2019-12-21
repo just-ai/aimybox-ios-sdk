@@ -59,36 +59,31 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         
         let group = DispatchGroup()
         
-        var error: Error?
+        var result: AimyboxResult<AimyboxResponse, Error>?
         
         group.enter()
         URLSession.shared.dataTask(with: request) { (data, response, _error) in
             guard _error == nil else {
-                error = _error!
+                result = .failure(_error!)
                 return
             }
             
             guard let code = (response as? HTTPURLResponse)?.statusCode, 200..<300 ~= code else {
-                error = NSError(domain: "HTTPURLResponse", code: 404, userInfo: [:])
+                result = .failure(NSError(domain: "HTTPURLResponse", code: 404, userInfo: [:]))
                 return
             }
             
             guard let _data = data else {
-                error = NSError(domain: "Missing response data", code: 204, userInfo: ["statusCode":code])
+                result = .failure(NSError(domain: "Missing response data", code: 204, userInfo: ["statusCode":code]))
                 return
             }
             
             do {
-                let wrapper = try JSONDecoder().decode(AimyboxResponse.self, from: _data)
-                
-//                guard let instanceType = AimyboxConstants.api_default_reply_types[wrapper.type] else {
-//                    error = NSError(domain: "Not supported reply type", code: 1, userInfo: ["type":wrapper.type])
-//                    return
-//                }
-                print(wrapper)
-                
-            } catch (let __error) {
-                error = __error
+                let response = try JSONDecoder().decode(AimyboxResponse.self, from: _data)
+                result = .success(response)
+
+            } catch let __error {
+                result = .failure(__error)
             }
             
             group.leave()
@@ -96,11 +91,15 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         
         group.wait()
         
-        guard error == nil else {
-            throw error!
+        guard let _result = result else {
+            throw NSError(domain: "No response from dapi request.", code: 204, userInfo: [:])
         }
-
-        fatalError()
         
+        switch _result {
+        case .success(let response):
+            return response
+        case .failure(let error):
+            throw error
+        }
     }
 }

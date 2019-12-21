@@ -12,14 +12,18 @@ import Foundation
  */
 public class DispatchDebouncer {
     private var timer: Timer?
+    
+    private var fired: Bool = false
 
     public init() {
     }
     
     public func debounce(delay seconds: TimeInterval, _ block: @escaping () -> Void ) {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { _ in
-            block()
+        DispatchQueue.main.async { [weak self] in
+            self?.timer?.invalidate()
+            self?.timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { _ in
+                block()
+            }
         }
     }
 }

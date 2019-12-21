@@ -17,7 +17,7 @@ public protocol DialogAPIDelegate: class {
     /**
      Happens when `DialogAPI` received response.
      */
-    func dialogAPI(response received: Response)
+    func dialogAPI(received response: Response)
     
     // MARK:- Errors
     /**
@@ -44,7 +44,7 @@ public protocol DialogAPIDelegate: class {
 public extension DialogAPIDelegate {
     func dialogAPI(sent request: Request) {}
     func dialogAPI(cancelled request: Request) {}
-    func dialogAPI(response received: Response) {}
+    func dialogAPI(received response: Response) {}
     func dialogAPI(timeout request: Request) {}
     func dialogAPI(client error: Error) {}
     func dialogAPIProcessingCancellation() {}
