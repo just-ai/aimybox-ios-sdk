@@ -94,6 +94,15 @@
 		97C75B5523ABF9D5006C209C /* AVTextToSpeechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5423ABF9D5006C209C /* AVTextToSpeechTests.swift */; };
 		97C75B7B23AC0154006C209C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5B23AC00E2006C209C /* Utils.swift */; };
 		97C75B7C23AC015C006C209C /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 97C75B6423AC00F9006C209C /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		97F95B9523AF73CF00F75C71 /* AimyboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9423AF73CF00F75C71 /* AimyboxViewController.swift */; };
+		97F95B9923AF74C400F75C71 /* AimyboxTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9723AF74C400F75C71 /* AimyboxTextCell.swift */; };
+		97F95B9A23AF74C400F75C71 /* AimyboxTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95B9823AF74C400F75C71 /* AimyboxTextCell.xib */; };
+		97F95B9D23AF757200F75C71 /* AimyboxButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9B23AF757200F75C71 /* AimyboxButtonsCell.swift */; };
+		97F95B9E23AF757200F75C71 /* AimyboxButtonsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95B9C23AF757200F75C71 /* AimyboxButtonsCell.xib */; };
+		97F95BA123AFAB3F00F75C71 /* AimyboxImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9F23AFAB3F00F75C71 /* AimyboxImageCell.swift */; };
+		97F95BA223AFAB3F00F75C71 /* AimyboxImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95BA023AFAB3F00F75C71 /* AimyboxImageCell.xib */; };
+		97F95BA523AFCA7000F75C71 /* AimyboxQueryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95BA323AFCA7000F75C71 /* AimyboxQueryCell.swift */; };
+		97F95BA623AFCA7000F75C71 /* AimyboxQueryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95BA423AFCA7000F75C71 /* AimyboxQueryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -354,6 +363,15 @@
 		97C75B6223AC00F9006C209C /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C75B6423AC00F9006C209C /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		97C75B6523AC00F9006C209C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97F95B9423AF73CF00F75C71 /* AimyboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxViewController.swift; sourceTree = "<group>"; };
+		97F95B9723AF74C400F75C71 /* AimyboxTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxTextCell.swift; sourceTree = "<group>"; };
+		97F95B9823AF74C400F75C71 /* AimyboxTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxTextCell.xib; sourceTree = "<group>"; };
+		97F95B9B23AF757200F75C71 /* AimyboxButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxButtonsCell.swift; sourceTree = "<group>"; };
+		97F95B9C23AF757200F75C71 /* AimyboxButtonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxButtonsCell.xib; sourceTree = "<group>"; };
+		97F95B9F23AFAB3F00F75C71 /* AimyboxImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxImageCell.swift; sourceTree = "<group>"; };
+		97F95BA023AFAB3F00F75C71 /* AimyboxImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxImageCell.xib; sourceTree = "<group>"; };
+		97F95BA323AFCA7000F75C71 /* AimyboxQueryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxQueryCell.swift; sourceTree = "<group>"; };
+		97F95BA423AFCA7000F75C71 /* AimyboxQueryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxQueryCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -695,6 +713,8 @@
 		97A0BD3323AE578800629A81 /* sdk-sample-app */ = {
 			isa = PBXGroup;
 			children = (
+				97F95B9623AF748600F75C71 /* ReplyViews */,
+				97F95B9423AF73CF00F75C71 /* AimyboxViewController.swift */,
 				97A0BD3423AE578800629A81 /* AppDelegate.swift */,
 				97A0BD3623AE578800629A81 /* SceneDelegate.swift */,
 				97A0BD3823AE578800629A81 /* ViewController.swift */,
@@ -721,6 +741,21 @@
 				97C75B6523AC00F9006C209C /* Info.plist */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		97F95B9623AF748600F75C71 /* ReplyViews */ = {
+			isa = PBXGroup;
+			children = (
+				97F95B9723AF74C400F75C71 /* AimyboxTextCell.swift */,
+				97F95B9823AF74C400F75C71 /* AimyboxTextCell.xib */,
+				97F95B9B23AF757200F75C71 /* AimyboxButtonsCell.swift */,
+				97F95B9C23AF757200F75C71 /* AimyboxButtonsCell.xib */,
+				97F95B9F23AFAB3F00F75C71 /* AimyboxImageCell.swift */,
+				97F95BA023AFAB3F00F75C71 /* AimyboxImageCell.xib */,
+				97F95BA323AFCA7000F75C71 /* AimyboxQueryCell.swift */,
+				97F95BA423AFCA7000F75C71 /* AimyboxQueryCell.xib */,
+			);
+			path = ReplyViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1085,7 +1120,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				97A0BD4123AE578C00629A81 /* LaunchScreen.storyboard in Resources */,
+				97F95BA623AFCA7000F75C71 /* AimyboxQueryCell.xib in Resources */,
 				97A0BD3E23AE578C00629A81 /* Assets.xcassets in Resources */,
+				97F95B9A23AF74C400F75C71 /* AimyboxTextCell.xib in Resources */,
+				97F95BA223AFAB3F00F75C71 /* AimyboxImageCell.xib in Resources */,
+				97F95B9E23AF757200F75C71 /* AimyboxButtonsCell.xib in Resources */,
 				97A0BD3C23AE578900629A81 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1207,8 +1246,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97F95BA523AFCA7000F75C71 /* AimyboxQueryCell.swift in Sources */,
 				97A0BD3923AE578800629A81 /* ViewController.swift in Sources */,
+				97F95B9923AF74C400F75C71 /* AimyboxTextCell.swift in Sources */,
 				97A0BD3523AE578800629A81 /* AppDelegate.swift in Sources */,
+				97F95B9D23AF757200F75C71 /* AimyboxButtonsCell.swift in Sources */,
+				97F95B9523AF73CF00F75C71 /* AimyboxViewController.swift in Sources */,
+				97F95BA123AFAB3F00F75C71 /* AimyboxImageCell.swift in Sources */,
 				97A0BD3723AE578800629A81 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
