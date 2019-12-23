@@ -15,7 +15,27 @@ Pod::Spec.new do |s|
   s.author           = { 'vpopovyc' => 'vpopovyc@student.unit.ua' }
   s.source           = { :git => 'https://github.com/just-ai/aimybox-ios-sdk.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/aimybox'
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.4'
   s.swift_versions = '4.2'
-  s.source_files = 'AimyboxCore/**/*.{swift}', 'AimyboxCore/**/**/*.{swift}', 'Components/**/*.{swift}', 'Utils/**/*.{swift}', 'Components/*.{swift}'
+  s.source_files = 'AimyboxCore/**/*.{swift}', 'AimyboxCore/**/**/*.{swift}', 'AimyboxCore/**/**/**/*.{swift}'
+
+  s.subspec 'AimyboxDialogAPI' do |sp|
+    sp.source_files  = 'Components/AimyboxDialogAPI/Sources/*.{swift}'
+    sp.dependency 'Aimybox/Utils'
+  end
+
+  s.subspec 'AVTextToSpeech' do |sp|
+    sp.source_files  = 'Components/AVTextToSpeech/Sources/*.{swift}'
+    sp.dependency 'Aimybox/Utils'
+  end
+
+  s.subspec 'SFSpeechToText' do |sp|
+    sp.source_files  = 'Components/SFSpeechToText/Sources/*.{swift}'
+    sp.dependency 'Aimybox/Utils'
+  end
+
+  s.subspec 'Utils' do |sp|
+    sp.source_files  = 'Utils/**/*.{swift}'
+  end
+
 end
