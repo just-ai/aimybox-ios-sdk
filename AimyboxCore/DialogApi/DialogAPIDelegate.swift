@@ -49,4 +49,3 @@ public extension DialogAPIDelegate {
     func dialogAPI(client error: Error) {}
     func dialogAPIProcessingCancellation() {}
 }
-

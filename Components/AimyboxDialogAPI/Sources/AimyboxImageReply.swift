@@ -6,7 +6,10 @@
 //  Copyright © 2019 Just Ai. All rights reserved.
 //
 
+#if COCOAPODS
+#else
 import AimyboxCore
+#endif
 
 final public class AimyboxImageReply: ImageReply, Decodable {
     

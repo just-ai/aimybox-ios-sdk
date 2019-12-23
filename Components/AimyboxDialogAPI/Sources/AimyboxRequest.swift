@@ -5,8 +5,10 @@
 //  Created by Vladislav Popovich on 13.12.2019.
 //
 
-import Foundation
+#if COCOAPODS
+#else
 import AimyboxCore
+#endif
 
 public class AimyboxRequest: Request {
     public init(query: String, apiKey: String, unitKey: String, data: [String : Data]) {

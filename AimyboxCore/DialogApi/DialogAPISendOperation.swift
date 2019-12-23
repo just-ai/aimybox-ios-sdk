@@ -40,6 +40,8 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
             
             let _dialogAPI = dialogAPI
             
+            _dialogAPI.notify?(.success(.requestSent(request)))
+            
             result = try perform {
                 try _dialogAPI.send(request: request)
             }

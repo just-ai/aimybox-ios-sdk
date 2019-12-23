@@ -82,6 +82,8 @@ extension DialogAPI {
         
         let handleOperation = DialogAPIHandleOperation<Self>(response: response, dialogAPI: self, aimybox: aimybox)
         
+        notify?(.success(.responseReceived(response)))
+        
         operationQueue.addOperation(handleOperation)
         
     }

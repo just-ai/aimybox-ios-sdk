@@ -7,7 +7,10 @@
 
 import Foundation
 import AVFoundation
+#if COCOAPODS
+#else
 import AimyboxCore
+#endif
 
 public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     /**

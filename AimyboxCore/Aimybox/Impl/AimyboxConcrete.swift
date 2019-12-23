@@ -17,7 +17,11 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
     
     public weak var delegate: AimyboxDelegate?
     
-    public private(set) var state: AimyboxState
+    public private(set) var state: AimyboxState {
+        willSet {
+            delegate?.aimybox(self, willMoveFrom: state, to: newValue)
+        }
+    }
     
     public private(set) var nextAction: AimyboxNextAction
     

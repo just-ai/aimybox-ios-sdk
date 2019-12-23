@@ -8,8 +8,11 @@
 
 import AVFoundation
 import Speech
+#if COCOAPODS
+#else
 import AimyboxCore
 import Utils
+#endif
 
 public class SFSpeechToText: AimyboxComponent, SpeechToText {
     /**
@@ -19,7 +22,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
     /**
      Debounce delay in seconds. HIgher values results in higher lag between partial and final results.
      */
-    public let recognitionDebounceDelay: TimeInterval = 2.0
+    public var recognitionDebounceDelay: TimeInterval = 2.0
     /**
      Used to notify *Aimybox* state machine about events.
      */
@@ -93,9 +96,6 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
     }
     
     public func cancelRecognition() {
-        if recognitionTask?.state != .some(.completed) {
-            notify?(.success(.recognitionCancelled))
-        }
         recognitionRequest?.endAudio()
         recognitionTask?.cancel()
         recognitionTask = nil
@@ -103,6 +103,11 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         audioEngine.stop()
         audioInputNode?.removeTap(onBus: 0)
         audioInputNode = nil
+        operationQueue.addOperation { [weak self] in
+            if self?.recognitionTask?.state != .some(.completed) {
+                self?.notify?(.success(.recognitionCancelled))
+            }
+        }
     }
     
     // MARK: - Internals

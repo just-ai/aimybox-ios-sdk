@@ -5,26 +5,17 @@
 //  Created by Vladyslav Popovych on 08.12.2019.
 //
 
-import Foundation
+#if COCOAPODS
+#else
 import AimyboxCore
+#endif
 
 fileprivate struct AimyboxConstants {
-    /// Sensitive dat
-//    public static let api_base_route = URL(string: "https://api.aimybox.com")!
-    public static let api_request_route = URL(string: "https://bot.aimylogic.com/chatapi/webhook/zenbox/cVcGlsvz:800911b5cd537cba8c734e772f8c4a1ebd68fb1a")!
+
+    private static let api_base_route = URL(string: "https://api.aimybox.com")!
     
-    
-//    public static let api_request_route = api_base_route.appendingPathComponent("/request")
-    
-    public static let api_default_reply_types: [String:Reply.Type] = [
-        "text" : AimyboxTextReply.self,
-        "audio" : AimyboxAudioReply.self,
-        "image" : AimyboxImageReply.self,
-        "buttons" : AimyboxButtonsReply.self
-    ]
+    public static let api_request_route = api_base_route.appendingPathComponent("/request")
 }
-
-
 
 public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     
@@ -38,9 +29,12 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     
     internal var unit_key: String
     
-    public init(api_key: String, unit_key: String) {
+    internal var route: URL
+    
+    public init(api_key: String, unit_key: String, route: URL? = nil) {
         self.api_key = api_key
         self.unit_key = unit_key
+        self.route = route == nil ? AimyboxConstants.api_request_route : route!
     }
 
 
@@ -52,7 +46,7 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         
         let data = try JSONEncoder().encode(request)
         
-        var request = URLRequest(url: AimyboxConstants.api_request_route)
+        var request = URLRequest(url: route)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = data

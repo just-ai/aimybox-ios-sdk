@@ -5,8 +5,11 @@
 //  Created by Vladislav Popovich on 13.12.2019.
 //
 
+#if COCOAPODS
+#else
 import AimyboxCore
 import Utils
+#endif
 
 fileprivate struct AimyboxReplyType: Decodable {
     var type: String
