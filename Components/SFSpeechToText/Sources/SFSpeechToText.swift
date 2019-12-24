@@ -22,7 +22,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
     /**
      Debounce delay in seconds. HIgher values results in higher lag between partial and final results.
      */
-    public var recognitionDebounceDelay: TimeInterval = 2.0
+    public var recognitionDebounceDelay: TimeInterval = 1.0
     /**
      Used to notify *Aimybox* state machine about events.
      */
@@ -60,7 +60,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         self.locale = locale
         audioEngine = AVAudioEngine()
         guard let recognizer = SFSpeechRecognizer(locale: locale) else { return nil }
-        recognizer.defaultTaskHint = .search
+        recognizer.defaultTaskHint = .dictation
         speechRecognizer = recognizer
         recognitionDebouncer = DispatchDebouncer()
         super.init()
@@ -155,6 +155,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         // Link recognition request with audio stream
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.removeTap(onBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] buffer, _ in
             self?.recognitionRequest?.append(buffer)
         }

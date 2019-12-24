@@ -19,10 +19,6 @@ Pod::Spec.new do |s|
   s.swift_versions = '4.2'
   s.source_files = 'AimyboxCore/**/*.{swift}', 'AimyboxCore/**/**/*.{swift}', 'AimyboxCore/**/**/**/*.{swift}'
 
-  #ifndef TARGET_POD
-    #define TARGET_POD 1
-  #endif
-
   s.subspec 'AimyboxDialogAPI' do |sp|
     sp.source_files  = 'Components/AimyboxDialogAPI/Sources/*.{swift}'
     sp.dependency 'AimyboxCore/Utils'

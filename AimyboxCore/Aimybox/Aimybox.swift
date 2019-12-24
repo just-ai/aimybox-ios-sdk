@@ -32,6 +32,9 @@ public protocol Aimybox: class {
     */
     func cancelRecognition()
     /**
+     */
+    func sendRequest(query: String)
+    /**
      Force transition to standby mode.
      */
     func standby()

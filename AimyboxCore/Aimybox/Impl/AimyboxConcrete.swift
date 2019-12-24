@@ -62,12 +62,14 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
     
     // MARK: - DialogAPI lifecycle
 
-    func sendRequest(query: String) {
+    public func sendRequest(query: String) {
+        cancelRecognition()
         stopSpeaking()
         
         state = .processing
         
         cancelPendingRequest()
+        
         config.dialogAPI.send(query: query, sender: self)
     }
     
@@ -167,6 +169,10 @@ extension AimyboxConcrete {
             sendRequest(query: query)
 
         case .emptyRecognitionResult, .recognitionCancelled:
+            if state == .processing {
+                return 
+            }
+            
             standby()
             
         default:

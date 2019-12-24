@@ -62,7 +62,7 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
                         // Never ever this code could be executed, bcz array is filtered
                         throw DialogAPIError.Internal.processingInstanceInconsistency
                     }
-                    }()
+                }()
                 
                 let nextAction: AimyboxNextAction = {
                     if let _lastReply = lastReply, _lastReply === reply {
