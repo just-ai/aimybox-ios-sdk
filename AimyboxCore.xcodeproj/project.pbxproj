@@ -69,40 +69,15 @@
 		9775865A23A657C80009DA4B /* DialogAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865923A657C80009DA4B /* DialogAPIResponse.swift */; };
 		9775865C23A657D80009DA4B /* DialogAPICustomSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865B23A657D80009DA4B /* DialogAPICustomSkill.swift */; };
 		9775865E23A663B40009DA4B /* AimyboxNextAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865D23A663B40009DA4B /* AimyboxNextAction.swift */; };
-		97A0BD3523AE578800629A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0BD3423AE578800629A81 /* AppDelegate.swift */; };
-		97A0BD3723AE578800629A81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0BD3623AE578800629A81 /* SceneDelegate.swift */; };
-		97A0BD3923AE578800629A81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0BD3823AE578800629A81 /* ViewController.swift */; };
-		97A0BD3C23AE578900629A81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97A0BD3A23AE578900629A81 /* Main.storyboard */; };
-		97A0BD3E23AE578C00629A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97A0BD3D23AE578C00629A81 /* Assets.xcassets */; };
-		97A0BD4123AE578C00629A81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97A0BD3F23AE578C00629A81 /* LaunchScreen.storyboard */; };
 		97AF240B23ABF23400CB839E /* AimyboxDialogAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */; };
-		97AF75C723AE6F84009FAC1A /* AimyboxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97233FD823898F2C0050E37F /* AimyboxCore.framework */; };
-		97AF75C823AE6F84009FAC1A /* AimyboxCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97233FD823898F2C0050E37F /* AimyboxCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		97AF75CA23AE6F86009FAC1A /* AimyboxDialogAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */; };
-		97AF75CB23AE6F86009FAC1A /* AimyboxDialogAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		97AF75CC23AE6F87009FAC1A /* AVTextToSpeech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9759AE8B23ABF4D0009D04E2 /* AVTextToSpeech.framework */; };
-		97AF75CD23AE6F87009FAC1A /* AVTextToSpeech.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9759AE8B23ABF4D0009D04E2 /* AVTextToSpeech.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		97AF75CE23AE6F88009FAC1A /* SFSpeechToText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9759AEA923ABF4DF009D04E2 /* SFSpeechToText.framework */; };
-		97AF75CF23AE6F88009FAC1A /* SFSpeechToText.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9759AEA923ABF4DF009D04E2 /* SFSpeechToText.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97AF75D023AE6FB1009FAC1A /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
 		97AF75D123AE6FB1009FAC1A /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97AF75D523AE6FF3009FAC1A /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
 		97AF75D623AE6FF3009FAC1A /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		97AF75DA23AE70FA009FAC1A /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
-		97AF75DB23AE70FA009FAC1A /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97AF75DF23AEA997009FAC1A /* SSMLDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF75DE23AEA997009FAC1A /* SSMLDecoder.swift */; };
 		97C75B5523ABF9D5006C209C /* AVTextToSpeechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5423ABF9D5006C209C /* AVTextToSpeechTests.swift */; };
 		97C75B7B23AC0154006C209C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5B23AC00E2006C209C /* Utils.swift */; };
 		97C75B7C23AC015C006C209C /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 97C75B6423AC00F9006C209C /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		97F95B9523AF73CF00F75C71 /* AimyboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9423AF73CF00F75C71 /* AimyboxViewController.swift */; };
-		97F95B9923AF74C400F75C71 /* AimyboxTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9723AF74C400F75C71 /* AimyboxTextCell.swift */; };
-		97F95B9A23AF74C400F75C71 /* AimyboxTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95B9823AF74C400F75C71 /* AimyboxTextCell.xib */; };
-		97F95B9D23AF757200F75C71 /* AimyboxButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9B23AF757200F75C71 /* AimyboxButtonsCell.swift */; };
-		97F95B9E23AF757200F75C71 /* AimyboxButtonsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95B9C23AF757200F75C71 /* AimyboxButtonsCell.xib */; };
-		97F95BA123AFAB3F00F75C71 /* AimyboxImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9F23AFAB3F00F75C71 /* AimyboxImageCell.swift */; };
-		97F95BA223AFAB3F00F75C71 /* AimyboxImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95BA023AFAB3F00F75C71 /* AimyboxImageCell.xib */; };
-		97F95BA523AFCA7000F75C71 /* AimyboxQueryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95BA323AFCA7000F75C71 /* AimyboxQueryCell.swift */; };
-		97F95BA623AFCA7000F75C71 /* AimyboxQueryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95BA423AFCA7000F75C71 /* AimyboxQueryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,34 +151,6 @@
 			remoteGlobalIDString = 97233FD723898F2C0050E37F;
 			remoteInfo = AimyboxCore;
 		};
-		97A0BD4723AE581F00629A81 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 97233FD723898F2C0050E37F;
-			remoteInfo = AimyboxCore;
-		};
-		97A0BD4923AE582500629A81 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9759AE8A23ABF4D0009D04E2;
-			remoteInfo = AVTextToSpeech;
-		};
-		97A0BD4B23AE582A00629A81 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 97AF240123ABF23300CB839E;
-			remoteInfo = AimyboxDialogAPI;
-		};
-		97A0BD4D23AE582E00629A81 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9759AEA823ABF4DF009D04E2;
-			remoteInfo = SFSpeechToText;
-		};
 		97AF75D223AE6FB1009FAC1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
@@ -212,13 +159,6 @@
 			remoteInfo = Utils;
 		};
 		97AF75D723AE6FF3009FAC1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
-			remoteInfo = Utils;
-		};
-		97AF75DC23AE70FA009FAC1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
 			proxyType = 1;
@@ -235,21 +175,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		97AF75C923AE6F84009FAC1A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				97AF75C823AE6F84009FAC1A /* AimyboxCore.framework in Embed Frameworks */,
-				97AF75DB23AE70FA009FAC1A /* Utils.framework in Embed Frameworks */,
-				97AF75CF23AE6F88009FAC1A /* SFSpeechToText.framework in Embed Frameworks */,
-				97AF75CB23AE6F86009FAC1A /* AimyboxDialogAPI.framework in Embed Frameworks */,
-				97AF75CD23AE6F87009FAC1A /* AVTextToSpeech.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		97AF75D423AE6FB1009FAC1A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -347,14 +272,6 @@
 		9775865923A657C80009DA4B /* DialogAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogAPIResponse.swift; sourceTree = "<group>"; };
 		9775865B23A657D80009DA4B /* DialogAPICustomSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogAPICustomSkill.swift; sourceTree = "<group>"; };
 		9775865D23A663B40009DA4B /* AimyboxNextAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxNextAction.swift; sourceTree = "<group>"; };
-		97A0BD3223AE578800629A81 /* sdk-sample-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sdk-sample-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		97A0BD3423AE578800629A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		97A0BD3623AE578800629A81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		97A0BD3823AE578800629A81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		97A0BD3B23AE578900629A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		97A0BD3D23AE578C00629A81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		97A0BD4023AE578C00629A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		97A0BD4223AE578C00629A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AimyboxDialogAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AF240A23ABF23300CB839E /* AimyboxDialogAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AimyboxDialogAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AF75DE23AEA997009FAC1A /* SSMLDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSMLDecoder.swift; sourceTree = "<group>"; };
@@ -363,15 +280,6 @@
 		97C75B6223AC00F9006C209C /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C75B6423AC00F9006C209C /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		97C75B6523AC00F9006C209C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		97F95B9423AF73CF00F75C71 /* AimyboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxViewController.swift; sourceTree = "<group>"; };
-		97F95B9723AF74C400F75C71 /* AimyboxTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxTextCell.swift; sourceTree = "<group>"; };
-		97F95B9823AF74C400F75C71 /* AimyboxTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxTextCell.xib; sourceTree = "<group>"; };
-		97F95B9B23AF757200F75C71 /* AimyboxButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxButtonsCell.swift; sourceTree = "<group>"; };
-		97F95B9C23AF757200F75C71 /* AimyboxButtonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxButtonsCell.xib; sourceTree = "<group>"; };
-		97F95B9F23AFAB3F00F75C71 /* AimyboxImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxImageCell.swift; sourceTree = "<group>"; };
-		97F95BA023AFAB3F00F75C71 /* AimyboxImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxImageCell.xib; sourceTree = "<group>"; };
-		97F95BA323AFCA7000F75C71 /* AimyboxQueryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxQueryCell.swift; sourceTree = "<group>"; };
-		97F95BA423AFCA7000F75C71 /* AimyboxQueryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxQueryCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,18 +329,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		97A0BD2F23AE578800629A81 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				97AF75CA23AE6F86009FAC1A /* AimyboxDialogAPI.framework in Frameworks */,
-				97AF75DA23AE70FA009FAC1A /* Utils.framework in Frameworks */,
-				97AF75CE23AE6F88009FAC1A /* SFSpeechToText.framework in Frameworks */,
-				97AF75C723AE6F84009FAC1A /* AimyboxCore.framework in Frameworks */,
-				97AF75CC23AE6F87009FAC1A /* AVTextToSpeech.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		97AF23FF23ABF23300CB839E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -469,7 +365,6 @@
 				9759AE6C23ABF49A009D04E2 /* AVTextToSpeech */,
 				9759AE7923ABF4A0009D04E2 /* SFSpeechToText */,
 				97C75B5A23AC00E2006C209C /* Utils */,
-				97A0BD3323AE578800629A81 /* sdk-sample-app */,
 				97233FD923898F2C0050E37F /* Products */,
 				97B7490523ABF6C6001B46CF /* Frameworks */,
 			);
@@ -487,7 +382,6 @@
 				9759AEA923ABF4DF009D04E2 /* SFSpeechToText.framework */,
 				9759AEB123ABF4E0009D04E2 /* SFSpeechToTextTests.xctest */,
 				97C75B6223AC00F9006C209C /* Utils.framework */,
-				97A0BD3223AE578800629A81 /* sdk-sample-app.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -710,22 +604,6 @@
 			path = Fakes;
 			sourceTree = "<group>";
 		};
-		97A0BD3323AE578800629A81 /* sdk-sample-app */ = {
-			isa = PBXGroup;
-			children = (
-				97F95B9623AF748600F75C71 /* ReplyViews */,
-				97F95B9423AF73CF00F75C71 /* AimyboxViewController.swift */,
-				97A0BD3423AE578800629A81 /* AppDelegate.swift */,
-				97A0BD3623AE578800629A81 /* SceneDelegate.swift */,
-				97A0BD3823AE578800629A81 /* ViewController.swift */,
-				97A0BD3A23AE578900629A81 /* Main.storyboard */,
-				97A0BD3D23AE578C00629A81 /* Assets.xcassets */,
-				97A0BD3F23AE578C00629A81 /* LaunchScreen.storyboard */,
-				97A0BD4223AE578C00629A81 /* Info.plist */,
-			);
-			path = "sdk-sample-app";
-			sourceTree = "<group>";
-		};
 		97B7490523ABF6C6001B46CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -741,21 +619,6 @@
 				97C75B6523AC00F9006C209C /* Info.plist */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		97F95B9623AF748600F75C71 /* ReplyViews */ = {
-			isa = PBXGroup;
-			children = (
-				97F95B9723AF74C400F75C71 /* AimyboxTextCell.swift */,
-				97F95B9823AF74C400F75C71 /* AimyboxTextCell.xib */,
-				97F95B9B23AF757200F75C71 /* AimyboxButtonsCell.swift */,
-				97F95B9C23AF757200F75C71 /* AimyboxButtonsCell.xib */,
-				97F95B9F23AFAB3F00F75C71 /* AimyboxImageCell.swift */,
-				97F95BA023AFAB3F00F75C71 /* AimyboxImageCell.xib */,
-				97F95BA323AFCA7000F75C71 /* AimyboxQueryCell.swift */,
-				97F95BA423AFCA7000F75C71 /* AimyboxQueryCell.xib */,
-			);
-			path = ReplyViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -918,29 +781,6 @@
 			productReference = 9759AEB123ABF4E0009D04E2 /* SFSpeechToTextTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		97A0BD3123AE578800629A81 /* sdk-sample-app */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 97A0BD4623AE578C00629A81 /* Build configuration list for PBXNativeTarget "sdk-sample-app" */;
-			buildPhases = (
-				97A0BD2E23AE578800629A81 /* Sources */,
-				97A0BD2F23AE578800629A81 /* Frameworks */,
-				97A0BD3023AE578800629A81 /* Resources */,
-				97AF75C923AE6F84009FAC1A /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				97A0BD4E23AE582E00629A81 /* PBXTargetDependency */,
-				97A0BD4C23AE582A00629A81 /* PBXTargetDependency */,
-				97A0BD4A23AE582500629A81 /* PBXTargetDependency */,
-				97A0BD4823AE581F00629A81 /* PBXTargetDependency */,
-				97AF75DD23AE70FA009FAC1A /* PBXTargetDependency */,
-			);
-			name = "sdk-sample-app";
-			productName = "sdk-sample-app";
-			productReference = 97A0BD3223AE578800629A81 /* sdk-sample-app.app */;
-			productType = "com.apple.product-type.application";
-		};
 		97AF240123ABF23300CB839E /* AimyboxDialogAPI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97AF241923ABF23400CB839E /* Build configuration list for PBXNativeTarget "AimyboxDialogAPI" */;
@@ -1030,9 +870,6 @@
 					9759AEB023ABF4E0009D04E2 = {
 						CreatedOnToolsVersion = 11.1;
 					};
-					97A0BD3123AE578800629A81 = {
-						CreatedOnToolsVersion = 11.1;
-					};
 					97AF240123ABF23300CB839E = {
 						CreatedOnToolsVersion = 11.1;
 						LastSwiftMigration = 1110;
@@ -1067,7 +904,6 @@
 				9759AEA823ABF4DF009D04E2 /* SFSpeechToText */,
 				9759AEB023ABF4E0009D04E2 /* SFSpeechToTextTests */,
 				97C75B6123AC00F9006C209C /* Utils */,
-				97A0BD3123AE578800629A81 /* sdk-sample-app */,
 			);
 		};
 /* End PBXProject section */
@@ -1112,20 +948,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		97A0BD3023AE578800629A81 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				97A0BD4123AE578C00629A81 /* LaunchScreen.storyboard in Resources */,
-				97F95BA623AFCA7000F75C71 /* AimyboxQueryCell.xib in Resources */,
-				97A0BD3E23AE578C00629A81 /* Assets.xcassets in Resources */,
-				97F95B9A23AF74C400F75C71 /* AimyboxTextCell.xib in Resources */,
-				97F95BA223AFAB3F00F75C71 /* AimyboxImageCell.xib in Resources */,
-				97F95B9E23AF757200F75C71 /* AimyboxButtonsCell.xib in Resources */,
-				97A0BD3C23AE578900629A81 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1242,21 +1064,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		97A0BD2E23AE578800629A81 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				97F95BA523AFCA7000F75C71 /* AimyboxQueryCell.swift in Sources */,
-				97A0BD3923AE578800629A81 /* ViewController.swift in Sources */,
-				97F95B9923AF74C400F75C71 /* AimyboxTextCell.swift in Sources */,
-				97A0BD3523AE578800629A81 /* AppDelegate.swift in Sources */,
-				97F95B9D23AF757200F75C71 /* AimyboxButtonsCell.swift in Sources */,
-				97F95B9523AF73CF00F75C71 /* AimyboxViewController.swift in Sources */,
-				97F95BA123AFAB3F00F75C71 /* AimyboxImageCell.swift in Sources */,
-				97A0BD3723AE578800629A81 /* SceneDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		97AF23FE23ABF23300CB839E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1341,26 +1148,6 @@
 			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
 			targetProxy = 9759AECA23ABF508009D04E2 /* PBXContainerItemProxy */;
 		};
-		97A0BD4823AE581F00629A81 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
-			targetProxy = 97A0BD4723AE581F00629A81 /* PBXContainerItemProxy */;
-		};
-		97A0BD4A23AE582500629A81 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9759AE8A23ABF4D0009D04E2 /* AVTextToSpeech */;
-			targetProxy = 97A0BD4923AE582500629A81 /* PBXContainerItemProxy */;
-		};
-		97A0BD4C23AE582A00629A81 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 97AF240123ABF23300CB839E /* AimyboxDialogAPI */;
-			targetProxy = 97A0BD4B23AE582A00629A81 /* PBXContainerItemProxy */;
-		};
-		97A0BD4E23AE582E00629A81 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9759AEA823ABF4DF009D04E2 /* SFSpeechToText */;
-			targetProxy = 97A0BD4D23AE582E00629A81 /* PBXContainerItemProxy */;
-		};
 		97AF75D323AE6FB1009FAC1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 97C75B6123AC00F9006C209C /* Utils */;
@@ -1371,36 +1158,12 @@
 			target = 97C75B6123AC00F9006C209C /* Utils */;
 			targetProxy = 97AF75D723AE6FF3009FAC1A /* PBXContainerItemProxy */;
 		};
-		97AF75DD23AE70FA009FAC1A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 97C75B6123AC00F9006C209C /* Utils */;
-			targetProxy = 97AF75DC23AE70FA009FAC1A /* PBXContainerItemProxy */;
-		};
 		97C75B7E23AC01EC006C209C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 97C75B6123AC00F9006C209C /* Utils */;
 			targetProxy = 97C75B7D23AC01EC006C209C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		97A0BD3A23AE578900629A81 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				97A0BD3B23AE578900629A81 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		97A0BD3F23AE578C00629A81 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				97A0BD4023AE578C00629A81 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		97233FDE23898F2C0050E37F /* Debug */ = {
@@ -2013,63 +1776,6 @@
 			};
 			name = Testing;
 		};
-		97A0BD4323AE578C00629A81 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GSGWB68KPF;
-				INFOPLIST_FILE = "sdk-sample-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.justai.ios-sdk-sample-app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		97A0BD4423AE578C00629A81 /* Testing */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GSGWB68KPF;
-				INFOPLIST_FILE = "sdk-sample-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.justai.ios-sdk-sample-app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Testing;
-		};
-		97A0BD4523AE578C00629A81 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GSGWB68KPF;
-				INFOPLIST_FILE = "sdk-sample-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.justai.ios-sdk-sample-app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 		97AF241323ABF23400CB839E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2360,16 +2066,6 @@
 				9759AEBF23ABF4E0009D04E2 /* Debug */,
 				9759AEC023ABF4E0009D04E2 /* Testing */,
 				9759AEC123ABF4E0009D04E2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		97A0BD4623AE578C00629A81 /* Build configuration list for PBXNativeTarget "sdk-sample-app" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				97A0BD4323AE578C00629A81 /* Debug */,
-				97A0BD4423AE578C00629A81 /* Testing */,
-				97A0BD4523AE578C00629A81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
