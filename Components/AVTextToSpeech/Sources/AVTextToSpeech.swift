@@ -7,10 +7,9 @@
 
 import Foundation
 import AVFoundation
-#if COCOAPODS
-#else
-import AimyboxCore
-#endif
+
+#if canImport(Aimybox)
+import Aimybox
 
 public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
@@ -224,3 +223,5 @@ class AVTextToSpeechDelegate: NSObject, AVSpeechSynthesizerDelegate {
         tts?.blockGroup.leave()
     }
 }
+
+#endif

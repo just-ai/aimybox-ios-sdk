@@ -5,10 +5,8 @@
 //  Created by Vladislav Popovich on 13.12.2019.
 //
 
-#if COCOAPODS
-#else
-import AimyboxCore
-#endif
+#if canImport(Aimybox)
+import Aimybox
 
 public class AimyboxRequest: Request {
     public init(query: String, apiKey: String, unitKey: String, data: [String : Data]) {
@@ -36,3 +34,5 @@ extension AimyboxRequest: Encodable {
         case data
     }
 }
+
+#endif

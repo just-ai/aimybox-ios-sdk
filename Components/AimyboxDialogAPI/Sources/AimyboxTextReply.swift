@@ -6,10 +6,8 @@
 //  Copyright © 2019 Just Ai. All rights reserved.
 //
 
-#if COCOAPODS
-#else
-import AimyboxCore
-#endif
+#if canImport(Aimybox)
+import Aimybox
 
 final public class AimyboxTextReply: TextReply, Decodable {
     
@@ -33,3 +31,5 @@ final public class AimyboxTextReply: TextReply, Decodable {
     
     static let jsonKey: String = "text"
 }
+
+#endif

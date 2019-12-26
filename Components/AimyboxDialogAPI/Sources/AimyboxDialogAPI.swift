@@ -5,10 +5,8 @@
 //  Created by Vladyslav Popovych on 08.12.2019.
 //
 
-#if COCOAPODS
-#else
-import AimyboxCore
-#endif
+#if canImport(Aimybox)
+import Aimybox
 
 fileprivate struct AimyboxConstants {
 
@@ -97,3 +95,5 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         }
     }
 }
+
+#endif

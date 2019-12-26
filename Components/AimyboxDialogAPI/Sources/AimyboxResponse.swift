@@ -5,11 +5,8 @@
 //  Created by Vladislav Popovich on 13.12.2019.
 //
 
-#if COCOAPODS
-#else
-import AimyboxCore
-import Utils
-#endif
+#if canImport(Aimybox)
+import Aimybox
 
 fileprivate struct AimyboxReplyType: Decodable {
     var type: String
@@ -76,3 +73,5 @@ final public class AimyboxResponse: Response, Decodable {
         }
     }
 }
+
+#endif
