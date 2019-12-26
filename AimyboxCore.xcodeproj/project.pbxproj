@@ -1,0 +1,2410 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		557D2F30238C2B17007FC257 /* AimyboxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D2F2F238C2B17007FC257 /* AimyboxState.swift */; };
+		558FC15223AD254300ECB126 /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
+		55AEDDA023A7E46B002B2356 /* SpeechToTextCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AEDD9F23A7E46B002B2356 /* SpeechToTextCoreTests.swift */; };
+		55AEDDA223A7EE82002B2356 /* DialogAPICoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AEDDA123A7EE82002B2356 /* DialogAPICoreTests.swift */; };
+		55DAC62123ACEB980009BF1A /* AimyboxDialogAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9759AE5723ABF2EF009D04E2 /* AimyboxDialogAPITests.swift */; };
+		55ED5EFD23AD0EF1007F4D01 /* AimyboxTextReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5EFC23AD0EF1007F4D01 /* AimyboxTextReply.swift */; };
+		55ED5EFF23AD0FF4007F4D01 /* AimyboxAudioReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5EFE23AD0FF4007F4D01 /* AimyboxAudioReply.swift */; };
+		55ED5F0123AD1002007F4D01 /* AimyboxImageReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F0023AD1002007F4D01 /* AimyboxImageReply.swift */; };
+		55ED5F0323AD1011007F4D01 /* AimyboxButtonsReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F0223AD1010007F4D01 /* AimyboxButtonsReply.swift */; };
+		9709BCDF23AB8761005C47C2 /* FakeTextReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709BCDE23AB8761005C47C2 /* FakeTextReply.swift */; };
+		9709BCE123ABA5E2005C47C2 /* TextToSpeechCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709BCE023ABA5E2005C47C2 /* TextToSpeechCoreTests.swift */; };
+		97233FDD23898F2C0050E37F /* AimyboxCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 97233FDB23898F2C0050E37F /* AimyboxCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		97233FEA2389906B0050E37F /* AimyboxBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97233FE92389906B0050E37F /* AimyboxBaseTestCase.swift */; };
+		97233FEC2389906B0050E37F /* AimyboxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97233FD823898F2C0050E37F /* AimyboxCore.framework */; };
+		973C7C9D2389921200920960 /* Aimybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973C7C9C2389921200920960 /* Aimybox.swift */; };
+		9759AE6223ABF2EF009D04E2 /* AimyboxResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9759AE5A23ABF2EF009D04E2 /* AimyboxResponse.swift */; };
+		9759AE6323ABF2EF009D04E2 /* AimyboxCustomSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9759AE5B23ABF2EF009D04E2 /* AimyboxCustomSkill.swift */; };
+		9759AE6423ABF2EF009D04E2 /* AimyboxRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9759AE5C23ABF2EF009D04E2 /* AimyboxRequest.swift */; };
+		9759AE6523ABF2EF009D04E2 /* AimyboxDialogAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9759AE5D23ABF2EF009D04E2 /* AimyboxDialogAPI.swift */; };
+		9759AE6723ABF2EF009D04E2 /* AimyboxDialogAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 9759AE5F23ABF2EF009D04E2 /* AimyboxDialogAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9759AE9423ABF4D0009D04E2 /* AVTextToSpeech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9759AE8B23ABF4D0009D04E2 /* AVTextToSpeech.framework */; };
+		9759AEB223ABF4E0009D04E2 /* SFSpeechToText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9759AEA923ABF4DF009D04E2 /* SFSpeechToText.framework */; };
+		9759AECE23ABF555009D04E2 /* AVTextToSpeech.h in Headers */ = {isa = PBXBuildFile; fileRef = 9759AE7123ABF49A009D04E2 /* AVTextToSpeech.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9759AED023ABF55C009D04E2 /* AVTextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9759AE7323ABF49A009D04E2 /* AVTextToSpeech.swift */; };
+		9759AED123ABF5A4009D04E2 /* SFSpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9759AE7E23ABF4A0009D04E2 /* SFSpeechToText.swift */; };
+		9759AED223ABF5A7009D04E2 /* SFSpeechToText.h in Headers */ = {isa = PBXBuildFile; fileRef = 9759AE7F23ABF4A0009D04E2 /* SFSpeechToText.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9759AED423ABF5B2009D04E2 /* SFSpeechToTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9759AE7B23ABF4A0009D04E2 /* SFSpeechToTextTests.swift */; };
+		976B565F23929385009BF684 /* AimyboxConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B565E23929385009BF684 /* AimyboxConfig.swift */; };
+		976B56652392AE0D009BF684 /* AimyboxDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B56642392AE0D009BF684 /* AimyboxDelegate.swift */; };
+		976B56692392C41F009BF684 /* AimyboxResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B56682392C41F009BF684 /* AimyboxResult.swift */; };
+		9775861823A653DA0009DA4B /* AimyboxSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775861723A653DA0009DA4B /* AimyboxSpeech.swift */; };
+		9775862523A654470009DA4B /* DialogAPIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775861B23A654460009DA4B /* DialogAPIDelegate.swift */; };
+		9775862623A654470009DA4B /* CustomSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775861D23A654460009DA4B /* CustomSkill.swift */; };
+		9775862723A654470009DA4B /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775861E23A654460009DA4B /* Response.swift */; };
+		9775862823A654470009DA4B /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775861F23A654460009DA4B /* Request.swift */; };
+		9775862923A654470009DA4B /* DialogAPISendOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775862023A654460009DA4B /* DialogAPISendOperation.swift */; };
+		9775862A23A654470009DA4B /* DialogAPIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775862123A654460009DA4B /* DialogAPIEvent.swift */; };
+		9775862B23A654470009DA4B /* DialogAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775862223A654460009DA4B /* DialogAPIError.swift */; };
+		9775862C23A654470009DA4B /* DialogAPIHandleOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775862323A654460009DA4B /* DialogAPIHandleOperation.swift */; };
+		9775862D23A654470009DA4B /* DialogAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775862423A654460009DA4B /* DialogAPI.swift */; };
+		9775864123A654600009DA4B /* SpeechToTextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775862F23A6545F0009DA4B /* SpeechToTextDelegate.swift */; };
+		9775864223A654600009DA4B /* SpeechToTextEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863023A6545F0009DA4B /* SpeechToTextEvent.swift */; };
+		9775864323A654600009DA4B /* SpeechToTextError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863123A6545F0009DA4B /* SpeechToTextError.swift */; };
+		9775864423A654600009DA4B /* SpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863223A6545F0009DA4B /* SpeechToText.swift */; };
+		9775864523A654600009DA4B /* ButtonsReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863423A6545F0009DA4B /* ButtonsReply.swift */; };
+		9775864623A654600009DA4B /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863523A6545F0009DA4B /* Reply.swift */; };
+		9775864723A654600009DA4B /* TextReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863623A6545F0009DA4B /* TextReply.swift */; };
+		9775864823A654600009DA4B /* ImageReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863723A6545F0009DA4B /* ImageReply.swift */; };
+		9775864923A654600009DA4B /* AudioReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863823A6545F0009DA4B /* AudioReply.swift */; };
+		9775864A23A654600009DA4B /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863A23A654600009DA4B /* TextToSpeech.swift */; };
+		9775864B23A654600009DA4B /* TextToSpeechDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863B23A654600009DA4B /* TextToSpeechDelegate.swift */; };
+		9775864C23A654600009DA4B /* TextToSpeechEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863C23A654600009DA4B /* TextToSpeechEvent.swift */; };
+		9775864D23A654600009DA4B /* TextToSpeechError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863D23A654600009DA4B /* TextToSpeechError.swift */; };
+		9775864E23A654600009DA4B /* AimyboxConcrete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775863F23A654600009DA4B /* AimyboxConcrete.swift */; };
+		9775864F23A654600009DA4B /* AimyboxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775864023A654600009DA4B /* AimyboxComponent.swift */; };
+		9775865223A6552E0009DA4B /* SpeechToTextFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865123A6552E0009DA4B /* SpeechToTextFake.swift */; };
+		9775865423A6553D0009DA4B /* TextToSpeechFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865323A6553D0009DA4B /* TextToSpeechFake.swift */; };
+		9775865623A6577A0009DA4B /* DialogAPIFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865523A6577A0009DA4B /* DialogAPIFake.swift */; };
+		9775865823A657BD0009DA4B /* DialogAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865723A657BD0009DA4B /* DialogAPIRequest.swift */; };
+		9775865A23A657C80009DA4B /* DialogAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865923A657C80009DA4B /* DialogAPIResponse.swift */; };
+		9775865C23A657D80009DA4B /* DialogAPICustomSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865B23A657D80009DA4B /* DialogAPICustomSkill.swift */; };
+		9775865E23A663B40009DA4B /* AimyboxNextAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865D23A663B40009DA4B /* AimyboxNextAction.swift */; };
+		97A0BD3523AE578800629A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0BD3423AE578800629A81 /* AppDelegate.swift */; };
+		97A0BD3723AE578800629A81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0BD3623AE578800629A81 /* SceneDelegate.swift */; };
+		97A0BD3923AE578800629A81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0BD3823AE578800629A81 /* ViewController.swift */; };
+		97A0BD3C23AE578900629A81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97A0BD3A23AE578900629A81 /* Main.storyboard */; };
+		97A0BD3E23AE578C00629A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97A0BD3D23AE578C00629A81 /* Assets.xcassets */; };
+		97A0BD4123AE578C00629A81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97A0BD3F23AE578C00629A81 /* LaunchScreen.storyboard */; };
+		97AF240B23ABF23400CB839E /* AimyboxDialogAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */; };
+		97AF75C723AE6F84009FAC1A /* AimyboxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97233FD823898F2C0050E37F /* AimyboxCore.framework */; };
+		97AF75C823AE6F84009FAC1A /* AimyboxCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97233FD823898F2C0050E37F /* AimyboxCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97AF75CA23AE6F86009FAC1A /* AimyboxDialogAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */; };
+		97AF75CB23AE6F86009FAC1A /* AimyboxDialogAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97AF75CC23AE6F87009FAC1A /* AVTextToSpeech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9759AE8B23ABF4D0009D04E2 /* AVTextToSpeech.framework */; };
+		97AF75CD23AE6F87009FAC1A /* AVTextToSpeech.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9759AE8B23ABF4D0009D04E2 /* AVTextToSpeech.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97AF75CE23AE6F88009FAC1A /* SFSpeechToText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9759AEA923ABF4DF009D04E2 /* SFSpeechToText.framework */; };
+		97AF75CF23AE6F88009FAC1A /* SFSpeechToText.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9759AEA923ABF4DF009D04E2 /* SFSpeechToText.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97AF75D023AE6FB1009FAC1A /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
+		97AF75D123AE6FB1009FAC1A /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97AF75D523AE6FF3009FAC1A /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
+		97AF75D623AE6FF3009FAC1A /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97AF75DA23AE70FA009FAC1A /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
+		97AF75DB23AE70FA009FAC1A /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97AF75DF23AEA997009FAC1A /* SSMLDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF75DE23AEA997009FAC1A /* SSMLDecoder.swift */; };
+		97C75B5523ABF9D5006C209C /* AVTextToSpeechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5423ABF9D5006C209C /* AVTextToSpeechTests.swift */; };
+		97C75B7B23AC0154006C209C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5B23AC00E2006C209C /* Utils.swift */; };
+		97C75B7C23AC015C006C209C /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 97C75B6423AC00F9006C209C /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		97F95B9523AF73CF00F75C71 /* AimyboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9423AF73CF00F75C71 /* AimyboxViewController.swift */; };
+		97F95B9923AF74C400F75C71 /* AimyboxTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9723AF74C400F75C71 /* AimyboxTextCell.swift */; };
+		97F95B9A23AF74C400F75C71 /* AimyboxTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95B9823AF74C400F75C71 /* AimyboxTextCell.xib */; };
+		97F95B9D23AF757200F75C71 /* AimyboxButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9B23AF757200F75C71 /* AimyboxButtonsCell.swift */; };
+		97F95B9E23AF757200F75C71 /* AimyboxButtonsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95B9C23AF757200F75C71 /* AimyboxButtonsCell.xib */; };
+		97F95BA123AFAB3F00F75C71 /* AimyboxImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95B9F23AFAB3F00F75C71 /* AimyboxImageCell.swift */; };
+		97F95BA223AFAB3F00F75C71 /* AimyboxImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95BA023AFAB3F00F75C71 /* AimyboxImageCell.xib */; };
+		97F95BA523AFCA7000F75C71 /* AimyboxQueryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F95BA323AFCA7000F75C71 /* AimyboxQueryCell.swift */; };
+		97F95BA623AFCA7000F75C71 /* AimyboxQueryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F95BA423AFCA7000F75C71 /* AimyboxQueryCell.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		558FC14E23AD244800ECB126 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
+			remoteInfo = Utils;
+		};
+		558FC15023AD253E00ECB126 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
+			remoteInfo = Utils;
+		};
+		55DAC62223ACEC290009BF1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97AF240123ABF23300CB839E;
+			remoteInfo = AimyboxDialogAPI;
+		};
+		97233FED2389906B0050E37F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97233FD723898F2C0050E37F;
+			remoteInfo = AimyboxCore;
+		};
+		9759AE9523ABF4D0009D04E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9759AE8A23ABF4D0009D04E2;
+			remoteInfo = AVTextToSpeech;
+		};
+		9759AEB323ABF4E0009D04E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9759AEA823ABF4DF009D04E2;
+			remoteInfo = SFSpeechToText;
+		};
+		9759AEC223ABF4EF009D04E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97233FD723898F2C0050E37F;
+			remoteInfo = AimyboxCore;
+		};
+		9759AEC423ABF4F6009D04E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97233FE62389906B0050E37F;
+			remoteInfo = AimyboxCoreTests;
+		};
+		9759AEC823ABF500009D04E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97233FD723898F2C0050E37F;
+			remoteInfo = AimyboxCore;
+		};
+		9759AECA23ABF508009D04E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97233FD723898F2C0050E37F;
+			remoteInfo = AimyboxCore;
+		};
+		97A0BD4723AE581F00629A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97233FD723898F2C0050E37F;
+			remoteInfo = AimyboxCore;
+		};
+		97A0BD4923AE582500629A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9759AE8A23ABF4D0009D04E2;
+			remoteInfo = AVTextToSpeech;
+		};
+		97A0BD4B23AE582A00629A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97AF240123ABF23300CB839E;
+			remoteInfo = AimyboxDialogAPI;
+		};
+		97A0BD4D23AE582E00629A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9759AEA823ABF4DF009D04E2;
+			remoteInfo = SFSpeechToText;
+		};
+		97AF75D223AE6FB1009FAC1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
+			remoteInfo = Utils;
+		};
+		97AF75D723AE6FF3009FAC1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
+			remoteInfo = Utils;
+		};
+		97AF75DC23AE70FA009FAC1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
+			remoteInfo = Utils;
+		};
+		97C75B7D23AC01EC006C209C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
+			remoteInfo = Utils;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		97AF75C923AE6F84009FAC1A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				97AF75C823AE6F84009FAC1A /* AimyboxCore.framework in Embed Frameworks */,
+				97AF75DB23AE70FA009FAC1A /* Utils.framework in Embed Frameworks */,
+				97AF75CF23AE6F88009FAC1A /* SFSpeechToText.framework in Embed Frameworks */,
+				97AF75CB23AE6F86009FAC1A /* AimyboxDialogAPI.framework in Embed Frameworks */,
+				97AF75CD23AE6F87009FAC1A /* AVTextToSpeech.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AF75D423AE6FB1009FAC1A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				97AF75D123AE6FB1009FAC1A /* Utils.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AF75D923AE6FF3009FAC1A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				97AF75D623AE6FF3009FAC1A /* Utils.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		557D2F2F238C2B17007FC257 /* AimyboxState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxState.swift; sourceTree = "<group>"; };
+		55AEDD9F23A7E46B002B2356 /* SpeechToTextCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToTextCoreTests.swift; sourceTree = "<group>"; };
+		55AEDDA123A7EE82002B2356 /* DialogAPICoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogAPICoreTests.swift; sourceTree = "<group>"; };
+		55ED5EFC23AD0EF1007F4D01 /* AimyboxTextReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxTextReply.swift; sourceTree = "<group>"; };
+		55ED5EFE23AD0FF4007F4D01 /* AimyboxAudioReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxAudioReply.swift; sourceTree = "<group>"; };
+		55ED5F0023AD1002007F4D01 /* AimyboxImageReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxImageReply.swift; sourceTree = "<group>"; };
+		55ED5F0223AD1010007F4D01 /* AimyboxButtonsReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxButtonsReply.swift; sourceTree = "<group>"; };
+		9709BCDE23AB8761005C47C2 /* FakeTextReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTextReply.swift; sourceTree = "<group>"; };
+		9709BCE023ABA5E2005C47C2 /* TextToSpeechCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeechCoreTests.swift; sourceTree = "<group>"; };
+		97233FD823898F2C0050E37F /* AimyboxCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AimyboxCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97233FDB23898F2C0050E37F /* AimyboxCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AimyboxCore.h; sourceTree = "<group>"; };
+		97233FDC23898F2C0050E37F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97233FE72389906B0050E37F /* AimyboxCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AimyboxCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97233FE92389906B0050E37F /* AimyboxBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxBaseTestCase.swift; sourceTree = "<group>"; };
+		97233FEB2389906B0050E37F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		973C7C9C2389921200920960 /* Aimybox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aimybox.swift; sourceTree = "<group>"; };
+		9759AE5723ABF2EF009D04E2 /* AimyboxDialogAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AimyboxDialogAPITests.swift; sourceTree = "<group>"; };
+		9759AE5823ABF2EF009D04E2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9759AE5A23ABF2EF009D04E2 /* AimyboxResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AimyboxResponse.swift; sourceTree = "<group>"; };
+		9759AE5B23ABF2EF009D04E2 /* AimyboxCustomSkill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AimyboxCustomSkill.swift; sourceTree = "<group>"; };
+		9759AE5C23ABF2EF009D04E2 /* AimyboxRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AimyboxRequest.swift; sourceTree = "<group>"; };
+		9759AE5D23ABF2EF009D04E2 /* AimyboxDialogAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AimyboxDialogAPI.swift; sourceTree = "<group>"; };
+		9759AE5E23ABF2EF009D04E2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9759AE5F23ABF2EF009D04E2 /* AimyboxDialogAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AimyboxDialogAPI.h; sourceTree = "<group>"; };
+		9759AE6E23ABF49A009D04E2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Components/AVTextToSpeech/Tests/Info.plist; sourceTree = SOURCE_ROOT; };
+		9759AE7123ABF49A009D04E2 /* AVTextToSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVTextToSpeech.h; sourceTree = "<group>"; };
+		9759AE7223ABF49A009D04E2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9759AE7323ABF49A009D04E2 /* AVTextToSpeech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTextToSpeech.swift; sourceTree = "<group>"; };
+		9759AE7B23ABF4A0009D04E2 /* SFSpeechToTextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SFSpeechToTextTests.swift; path = Components/SFSpeechToText/Tests/SFSpeechToTextTests.swift; sourceTree = SOURCE_ROOT; };
+		9759AE7C23ABF4A0009D04E2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Components/SFSpeechToText/Tests/Info.plist; sourceTree = SOURCE_ROOT; };
+		9759AE7E23ABF4A0009D04E2 /* SFSpeechToText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSpeechToText.swift; sourceTree = "<group>"; };
+		9759AE7F23ABF4A0009D04E2 /* SFSpeechToText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSpeechToText.h; sourceTree = "<group>"; };
+		9759AE8023ABF4A0009D04E2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9759AE8B23ABF4D0009D04E2 /* AVTextToSpeech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AVTextToSpeech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9759AE9323ABF4D0009D04E2 /* AVTextToSpeechTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVTextToSpeechTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9759AEA923ABF4DF009D04E2 /* SFSpeechToText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SFSpeechToText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9759AEB123ABF4E0009D04E2 /* SFSpeechToTextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SFSpeechToTextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		976B565E23929385009BF684 /* AimyboxConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxConfig.swift; sourceTree = "<group>"; };
+		976B56642392AE0D009BF684 /* AimyboxDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxDelegate.swift; sourceTree = "<group>"; };
+		976B56682392C41F009BF684 /* AimyboxResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxResult.swift; sourceTree = "<group>"; };
+		9775861723A653DA0009DA4B /* AimyboxSpeech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AimyboxSpeech.swift; sourceTree = "<group>"; };
+		9775861B23A654460009DA4B /* DialogAPIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogAPIDelegate.swift; sourceTree = "<group>"; };
+		9775861D23A654460009DA4B /* CustomSkill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSkill.swift; sourceTree = "<group>"; };
+		9775861E23A654460009DA4B /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		9775861F23A654460009DA4B /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		9775862023A654460009DA4B /* DialogAPISendOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogAPISendOperation.swift; sourceTree = "<group>"; };
+		9775862123A654460009DA4B /* DialogAPIEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogAPIEvent.swift; sourceTree = "<group>"; };
+		9775862223A654460009DA4B /* DialogAPIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogAPIError.swift; sourceTree = "<group>"; };
+		9775862323A654460009DA4B /* DialogAPIHandleOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogAPIHandleOperation.swift; sourceTree = "<group>"; };
+		9775862423A654460009DA4B /* DialogAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogAPI.swift; sourceTree = "<group>"; };
+		9775862F23A6545F0009DA4B /* SpeechToTextDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechToTextDelegate.swift; sourceTree = "<group>"; };
+		9775863023A6545F0009DA4B /* SpeechToTextEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechToTextEvent.swift; sourceTree = "<group>"; };
+		9775863123A6545F0009DA4B /* SpeechToTextError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechToTextError.swift; sourceTree = "<group>"; };
+		9775863223A6545F0009DA4B /* SpeechToText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechToText.swift; sourceTree = "<group>"; };
+		9775863423A6545F0009DA4B /* ButtonsReply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsReply.swift; sourceTree = "<group>"; };
+		9775863523A6545F0009DA4B /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
+		9775863623A6545F0009DA4B /* TextReply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextReply.swift; sourceTree = "<group>"; };
+		9775863723A6545F0009DA4B /* ImageReply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageReply.swift; sourceTree = "<group>"; };
+		9775863823A6545F0009DA4B /* AudioReply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioReply.swift; sourceTree = "<group>"; };
+		9775863A23A654600009DA4B /* TextToSpeech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
+		9775863B23A654600009DA4B /* TextToSpeechDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextToSpeechDelegate.swift; sourceTree = "<group>"; };
+		9775863C23A654600009DA4B /* TextToSpeechEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextToSpeechEvent.swift; sourceTree = "<group>"; };
+		9775863D23A654600009DA4B /* TextToSpeechError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextToSpeechError.swift; sourceTree = "<group>"; };
+		9775863F23A654600009DA4B /* AimyboxConcrete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AimyboxConcrete.swift; sourceTree = "<group>"; };
+		9775864023A654600009DA4B /* AimyboxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AimyboxComponent.swift; sourceTree = "<group>"; };
+		9775865123A6552E0009DA4B /* SpeechToTextFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToTextFake.swift; sourceTree = "<group>"; };
+		9775865323A6553D0009DA4B /* TextToSpeechFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeechFake.swift; sourceTree = "<group>"; };
+		9775865523A6577A0009DA4B /* DialogAPIFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogAPIFake.swift; sourceTree = "<group>"; };
+		9775865723A657BD0009DA4B /* DialogAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogAPIRequest.swift; sourceTree = "<group>"; };
+		9775865923A657C80009DA4B /* DialogAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogAPIResponse.swift; sourceTree = "<group>"; };
+		9775865B23A657D80009DA4B /* DialogAPICustomSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogAPICustomSkill.swift; sourceTree = "<group>"; };
+		9775865D23A663B40009DA4B /* AimyboxNextAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxNextAction.swift; sourceTree = "<group>"; };
+		97A0BD3223AE578800629A81 /* sdk-sample-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sdk-sample-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		97A0BD3423AE578800629A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		97A0BD3623AE578800629A81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		97A0BD3823AE578800629A81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		97A0BD3B23AE578900629A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		97A0BD3D23AE578C00629A81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		97A0BD4023AE578C00629A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		97A0BD4223AE578C00629A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AimyboxDialogAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97AF240A23ABF23300CB839E /* AimyboxDialogAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AimyboxDialogAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97AF75DE23AEA997009FAC1A /* SSMLDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSMLDecoder.swift; sourceTree = "<group>"; };
+		97C75B5423ABF9D5006C209C /* AVTextToSpeechTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTextToSpeechTests.swift; sourceTree = "<group>"; };
+		97C75B5B23AC00E2006C209C /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		97C75B6223AC00F9006C209C /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97C75B6423AC00F9006C209C /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		97C75B6523AC00F9006C209C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97F95B9423AF73CF00F75C71 /* AimyboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxViewController.swift; sourceTree = "<group>"; };
+		97F95B9723AF74C400F75C71 /* AimyboxTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxTextCell.swift; sourceTree = "<group>"; };
+		97F95B9823AF74C400F75C71 /* AimyboxTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxTextCell.xib; sourceTree = "<group>"; };
+		97F95B9B23AF757200F75C71 /* AimyboxButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxButtonsCell.swift; sourceTree = "<group>"; };
+		97F95B9C23AF757200F75C71 /* AimyboxButtonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxButtonsCell.xib; sourceTree = "<group>"; };
+		97F95B9F23AFAB3F00F75C71 /* AimyboxImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxImageCell.swift; sourceTree = "<group>"; };
+		97F95BA023AFAB3F00F75C71 /* AimyboxImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxImageCell.xib; sourceTree = "<group>"; };
+		97F95BA323AFCA7000F75C71 /* AimyboxQueryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxQueryCell.swift; sourceTree = "<group>"; };
+		97F95BA423AFCA7000F75C71 /* AimyboxQueryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AimyboxQueryCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		97233FD523898F2C0050E37F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97AF75D523AE6FF3009FAC1A /* Utils.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97233FE42389906B0050E37F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97233FEC2389906B0050E37F /* AimyboxCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AE8823ABF4D0009D04E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AE9023ABF4D0009D04E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9759AE9423ABF4D0009D04E2 /* AVTextToSpeech.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AEA623ABF4DF009D04E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AEAE23ABF4E0009D04E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9759AEB223ABF4E0009D04E2 /* SFSpeechToText.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97A0BD2F23AE578800629A81 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97AF75CA23AE6F86009FAC1A /* AimyboxDialogAPI.framework in Frameworks */,
+				97AF75DA23AE70FA009FAC1A /* Utils.framework in Frameworks */,
+				97AF75CE23AE6F88009FAC1A /* SFSpeechToText.framework in Frameworks */,
+				97AF75C723AE6F84009FAC1A /* AimyboxCore.framework in Frameworks */,
+				97AF75CC23AE6F87009FAC1A /* AVTextToSpeech.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AF23FF23ABF23300CB839E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97AF75D023AE6FB1009FAC1A /* Utils.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AF240723ABF23300CB839E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				558FC15223AD254300ECB126 /* Utils.framework in Frameworks */,
+				97AF240B23ABF23400CB839E /* AimyboxDialogAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97C75B5F23AC00F9006C209C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		97233FCE23898F2C0050E37F = {
+			isa = PBXGroup;
+			children = (
+				97233FDA23898F2C0050E37F /* AimyboxCore */,
+				97233FE82389906B0050E37F /* AimyboxCoreTests */,
+				9759AE5523ABF2EF009D04E2 /* AimyboxDialogAPI */,
+				9759AE6C23ABF49A009D04E2 /* AVTextToSpeech */,
+				9759AE7923ABF4A0009D04E2 /* SFSpeechToText */,
+				97C75B5A23AC00E2006C209C /* Utils */,
+				97A0BD3323AE578800629A81 /* sdk-sample-app */,
+				97233FD923898F2C0050E37F /* Products */,
+				97B7490523ABF6C6001B46CF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		97233FD923898F2C0050E37F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				97233FD823898F2C0050E37F /* AimyboxCore.framework */,
+				97233FE72389906B0050E37F /* AimyboxCoreTests.xctest */,
+				97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */,
+				97AF240A23ABF23300CB839E /* AimyboxDialogAPITests.xctest */,
+				9759AE8B23ABF4D0009D04E2 /* AVTextToSpeech.framework */,
+				9759AE9323ABF4D0009D04E2 /* AVTextToSpeechTests.xctest */,
+				9759AEA923ABF4DF009D04E2 /* SFSpeechToText.framework */,
+				9759AEB123ABF4E0009D04E2 /* SFSpeechToTextTests.xctest */,
+				97C75B6223AC00F9006C209C /* Utils.framework */,
+				97A0BD3223AE578800629A81 /* sdk-sample-app.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		97233FDA23898F2C0050E37F /* AimyboxCore */ = {
+			isa = PBXGroup;
+			children = (
+				9775861923A654190009DA4B /* Aimybox */,
+				9775862E23A6545F0009DA4B /* SpeechToText */,
+				9775863923A654600009DA4B /* TextToSpeech */,
+				9775861A23A654460009DA4B /* DialogApi */,
+				9775863323A6545F0009DA4B /* Reply */,
+				97233FDB23898F2C0050E37F /* AimyboxCore.h */,
+				97233FDC23898F2C0050E37F /* Info.plist */,
+			);
+			path = AimyboxCore;
+			sourceTree = "<group>";
+		};
+		97233FE82389906B0050E37F /* AimyboxCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				9775865023A6551D0009DA4B /* Fakes */,
+				97233FE92389906B0050E37F /* AimyboxBaseTestCase.swift */,
+				55AEDD9F23A7E46B002B2356 /* SpeechToTextCoreTests.swift */,
+				55AEDDA123A7EE82002B2356 /* DialogAPICoreTests.swift */,
+				9709BCE023ABA5E2005C47C2 /* TextToSpeechCoreTests.swift */,
+				97233FEB2389906B0050E37F /* Info.plist */,
+			);
+			path = AimyboxCoreTests;
+			sourceTree = "<group>";
+		};
+		9759AE5523ABF2EF009D04E2 /* AimyboxDialogAPI */ = {
+			isa = PBXGroup;
+			children = (
+				9759AE5623ABF2EF009D04E2 /* Tests */,
+				9759AE5923ABF2EF009D04E2 /* Sources */,
+			);
+			name = AimyboxDialogAPI;
+			path = Components/AimyboxDialogAPI;
+			sourceTree = "<group>";
+		};
+		9759AE5623ABF2EF009D04E2 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9759AE5723ABF2EF009D04E2 /* AimyboxDialogAPITests.swift */,
+				9759AE5823ABF2EF009D04E2 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		9759AE5923ABF2EF009D04E2 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9759AE5D23ABF2EF009D04E2 /* AimyboxDialogAPI.swift */,
+				9759AE5C23ABF2EF009D04E2 /* AimyboxRequest.swift */,
+				9759AE5A23ABF2EF009D04E2 /* AimyboxResponse.swift */,
+				55ED5EFC23AD0EF1007F4D01 /* AimyboxTextReply.swift */,
+				55ED5EFE23AD0FF4007F4D01 /* AimyboxAudioReply.swift */,
+				55ED5F0023AD1002007F4D01 /* AimyboxImageReply.swift */,
+				55ED5F0223AD1010007F4D01 /* AimyboxButtonsReply.swift */,
+				9759AE5B23ABF2EF009D04E2 /* AimyboxCustomSkill.swift */,
+				9759AE5E23ABF2EF009D04E2 /* Info.plist */,
+				9759AE5F23ABF2EF009D04E2 /* AimyboxDialogAPI.h */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		9759AE6C23ABF49A009D04E2 /* AVTextToSpeech */ = {
+			isa = PBXGroup;
+			children = (
+				9759AE6D23ABF49A009D04E2 /* Tests */,
+				9759AE7023ABF49A009D04E2 /* Sources */,
+			);
+			name = AVTextToSpeech;
+			path = Components/AVTextToSpeech;
+			sourceTree = "<group>";
+		};
+		9759AE6D23ABF49A009D04E2 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				97C75B5423ABF9D5006C209C /* AVTextToSpeechTests.swift */,
+				9759AE6E23ABF49A009D04E2 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		9759AE7023ABF49A009D04E2 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9759AE7323ABF49A009D04E2 /* AVTextToSpeech.swift */,
+				9759AE7223ABF49A009D04E2 /* Info.plist */,
+				9759AE7123ABF49A009D04E2 /* AVTextToSpeech.h */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		9759AE7923ABF4A0009D04E2 /* SFSpeechToText */ = {
+			isa = PBXGroup;
+			children = (
+				9759AE7A23ABF4A0009D04E2 /* Tests */,
+				9759AE7D23ABF4A0009D04E2 /* Sources */,
+			);
+			name = SFSpeechToText;
+			path = Components/SFSpeechToText;
+			sourceTree = "<group>";
+		};
+		9759AE7A23ABF4A0009D04E2 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9759AE7B23ABF4A0009D04E2 /* SFSpeechToTextTests.swift */,
+				9759AE7C23ABF4A0009D04E2 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		9759AE7D23ABF4A0009D04E2 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9759AE7E23ABF4A0009D04E2 /* SFSpeechToText.swift */,
+				9759AE7F23ABF4A0009D04E2 /* SFSpeechToText.h */,
+				9759AE8023ABF4A0009D04E2 /* Info.plist */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		9775861923A654190009DA4B /* Aimybox */ = {
+			isa = PBXGroup;
+			children = (
+				973C7C9C2389921200920960 /* Aimybox.swift */,
+				976B565E23929385009BF684 /* AimyboxConfig.swift */,
+				557D2F2F238C2B17007FC257 /* AimyboxState.swift */,
+				9775865D23A663B40009DA4B /* AimyboxNextAction.swift */,
+				9775861723A653DA0009DA4B /* AimyboxSpeech.swift */,
+				976B56642392AE0D009BF684 /* AimyboxDelegate.swift */,
+				976B56682392C41F009BF684 /* AimyboxResult.swift */,
+				9775863E23A654600009DA4B /* Impl */,
+			);
+			path = Aimybox;
+			sourceTree = "<group>";
+		};
+		9775861A23A654460009DA4B /* DialogApi */ = {
+			isa = PBXGroup;
+			children = (
+				9775862423A654460009DA4B /* DialogAPI.swift */,
+				9775861B23A654460009DA4B /* DialogAPIDelegate.swift */,
+				9775862123A654460009DA4B /* DialogAPIEvent.swift */,
+				9775862223A654460009DA4B /* DialogAPIError.swift */,
+				9775862023A654460009DA4B /* DialogAPISendOperation.swift */,
+				9775862323A654460009DA4B /* DialogAPIHandleOperation.swift */,
+				9775861C23A654460009DA4B /* Entity */,
+			);
+			path = DialogApi;
+			sourceTree = "<group>";
+		};
+		9775861C23A654460009DA4B /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				9775861D23A654460009DA4B /* CustomSkill.swift */,
+				9775861E23A654460009DA4B /* Response.swift */,
+				9775861F23A654460009DA4B /* Request.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		9775862E23A6545F0009DA4B /* SpeechToText */ = {
+			isa = PBXGroup;
+			children = (
+				9775863223A6545F0009DA4B /* SpeechToText.swift */,
+				9775862F23A6545F0009DA4B /* SpeechToTextDelegate.swift */,
+				9775863023A6545F0009DA4B /* SpeechToTextEvent.swift */,
+				9775863123A6545F0009DA4B /* SpeechToTextError.swift */,
+			);
+			path = SpeechToText;
+			sourceTree = "<group>";
+		};
+		9775863323A6545F0009DA4B /* Reply */ = {
+			isa = PBXGroup;
+			children = (
+				9775863523A6545F0009DA4B /* Reply.swift */,
+				9775863623A6545F0009DA4B /* TextReply.swift */,
+				9775863823A6545F0009DA4B /* AudioReply.swift */,
+				9775863723A6545F0009DA4B /* ImageReply.swift */,
+				9775863423A6545F0009DA4B /* ButtonsReply.swift */,
+			);
+			path = Reply;
+			sourceTree = "<group>";
+		};
+		9775863923A654600009DA4B /* TextToSpeech */ = {
+			isa = PBXGroup;
+			children = (
+				9775863A23A654600009DA4B /* TextToSpeech.swift */,
+				9775863B23A654600009DA4B /* TextToSpeechDelegate.swift */,
+				9775863C23A654600009DA4B /* TextToSpeechEvent.swift */,
+				9775863D23A654600009DA4B /* TextToSpeechError.swift */,
+				97AF75DE23AEA997009FAC1A /* SSMLDecoder.swift */,
+			);
+			path = TextToSpeech;
+			sourceTree = "<group>";
+		};
+		9775863E23A654600009DA4B /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				9775863F23A654600009DA4B /* AimyboxConcrete.swift */,
+				9775864023A654600009DA4B /* AimyboxComponent.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		9775865023A6551D0009DA4B /* Fakes */ = {
+			isa = PBXGroup;
+			children = (
+				9775865123A6552E0009DA4B /* SpeechToTextFake.swift */,
+				9775865323A6553D0009DA4B /* TextToSpeechFake.swift */,
+				9775865523A6577A0009DA4B /* DialogAPIFake.swift */,
+				9775865723A657BD0009DA4B /* DialogAPIRequest.swift */,
+				9775865923A657C80009DA4B /* DialogAPIResponse.swift */,
+				9775865B23A657D80009DA4B /* DialogAPICustomSkill.swift */,
+				9709BCDE23AB8761005C47C2 /* FakeTextReply.swift */,
+			);
+			path = Fakes;
+			sourceTree = "<group>";
+		};
+		97A0BD3323AE578800629A81 /* sdk-sample-app */ = {
+			isa = PBXGroup;
+			children = (
+				97F95B9623AF748600F75C71 /* ReplyViews */,
+				97F95B9423AF73CF00F75C71 /* AimyboxViewController.swift */,
+				97A0BD3423AE578800629A81 /* AppDelegate.swift */,
+				97A0BD3623AE578800629A81 /* SceneDelegate.swift */,
+				97A0BD3823AE578800629A81 /* ViewController.swift */,
+				97A0BD3A23AE578900629A81 /* Main.storyboard */,
+				97A0BD3D23AE578C00629A81 /* Assets.xcassets */,
+				97A0BD3F23AE578C00629A81 /* LaunchScreen.storyboard */,
+				97A0BD4223AE578C00629A81 /* Info.plist */,
+			);
+			path = "sdk-sample-app";
+			sourceTree = "<group>";
+		};
+		97B7490523ABF6C6001B46CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		97C75B5A23AC00E2006C209C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				97C75B5B23AC00E2006C209C /* Utils.swift */,
+				97C75B6423AC00F9006C209C /* Utils.h */,
+				97C75B6523AC00F9006C209C /* Info.plist */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		97F95B9623AF748600F75C71 /* ReplyViews */ = {
+			isa = PBXGroup;
+			children = (
+				97F95B9723AF74C400F75C71 /* AimyboxTextCell.swift */,
+				97F95B9823AF74C400F75C71 /* AimyboxTextCell.xib */,
+				97F95B9B23AF757200F75C71 /* AimyboxButtonsCell.swift */,
+				97F95B9C23AF757200F75C71 /* AimyboxButtonsCell.xib */,
+				97F95B9F23AFAB3F00F75C71 /* AimyboxImageCell.swift */,
+				97F95BA023AFAB3F00F75C71 /* AimyboxImageCell.xib */,
+				97F95BA323AFCA7000F75C71 /* AimyboxQueryCell.swift */,
+				97F95BA423AFCA7000F75C71 /* AimyboxQueryCell.xib */,
+			);
+			path = ReplyViews;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		97233FD323898F2C0050E37F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97233FDD23898F2C0050E37F /* AimyboxCore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AE8623ABF4D0009D04E2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9759AECE23ABF555009D04E2 /* AVTextToSpeech.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AEA423ABF4DF009D04E2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9759AED223ABF5A7009D04E2 /* SFSpeechToText.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AF23FD23ABF23300CB839E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9759AE6723ABF2EF009D04E2 /* AimyboxDialogAPI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97C75B5D23AC00F9006C209C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97C75B7C23AC015C006C209C /* Utils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		97233FD723898F2C0050E37F /* AimyboxCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97233FE023898F2C0050E37F /* Build configuration list for PBXNativeTarget "AimyboxCore" */;
+			buildPhases = (
+				97233FD323898F2C0050E37F /* Headers */,
+				97233FD423898F2C0050E37F /* Sources */,
+				97233FD523898F2C0050E37F /* Frameworks */,
+				97233FD623898F2C0050E37F /* Resources */,
+				97AF75D923AE6FF3009FAC1A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97AF75D823AE6FF3009FAC1A /* PBXTargetDependency */,
+			);
+			name = AimyboxCore;
+			productName = AimyboxCore;
+			productReference = 97233FD823898F2C0050E37F /* AimyboxCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		97233FE62389906B0050E37F /* AimyboxCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97233FF12389906B0050E37F /* Build configuration list for PBXNativeTarget "AimyboxCoreTests" */;
+			buildPhases = (
+				97233FE32389906B0050E37F /* Sources */,
+				97233FE42389906B0050E37F /* Frameworks */,
+				97233FE52389906B0050E37F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97233FEE2389906B0050E37F /* PBXTargetDependency */,
+			);
+			name = AimyboxCoreTests;
+			productName = AimyboxCoreTests;
+			productReference = 97233FE72389906B0050E37F /* AimyboxCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9759AE8A23ABF4D0009D04E2 /* AVTextToSpeech */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9759AE9C23ABF4D0009D04E2 /* Build configuration list for PBXNativeTarget "AVTextToSpeech" */;
+			buildPhases = (
+				9759AE8623ABF4D0009D04E2 /* Headers */,
+				9759AE8723ABF4D0009D04E2 /* Sources */,
+				9759AE8823ABF4D0009D04E2 /* Frameworks */,
+				9759AE8923ABF4D0009D04E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9759AEC923ABF500009D04E2 /* PBXTargetDependency */,
+			);
+			name = AVTextToSpeech;
+			productName = AVTextToSpeech;
+			productReference = 9759AE8B23ABF4D0009D04E2 /* AVTextToSpeech.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9759AE9223ABF4D0009D04E2 /* AVTextToSpeechTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9759AEA023ABF4D0009D04E2 /* Build configuration list for PBXNativeTarget "AVTextToSpeechTests" */;
+			buildPhases = (
+				9759AE8F23ABF4D0009D04E2 /* Sources */,
+				9759AE9023ABF4D0009D04E2 /* Frameworks */,
+				9759AE9123ABF4D0009D04E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9759AE9623ABF4D0009D04E2 /* PBXTargetDependency */,
+			);
+			name = AVTextToSpeechTests;
+			productName = AVTextToSpeechTests;
+			productReference = 9759AE9323ABF4D0009D04E2 /* AVTextToSpeechTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9759AEA823ABF4DF009D04E2 /* SFSpeechToText */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9759AEBA23ABF4E0009D04E2 /* Build configuration list for PBXNativeTarget "SFSpeechToText" */;
+			buildPhases = (
+				9759AEA423ABF4DF009D04E2 /* Headers */,
+				9759AEA523ABF4DF009D04E2 /* Sources */,
+				9759AEA623ABF4DF009D04E2 /* Frameworks */,
+				9759AEA723ABF4DF009D04E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97C75B7E23AC01EC006C209C /* PBXTargetDependency */,
+				9759AEC323ABF4EF009D04E2 /* PBXTargetDependency */,
+			);
+			name = SFSpeechToText;
+			productName = SFSpeechToText;
+			productReference = 9759AEA923ABF4DF009D04E2 /* SFSpeechToText.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9759AEB023ABF4E0009D04E2 /* SFSpeechToTextTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9759AEBE23ABF4E0009D04E2 /* Build configuration list for PBXNativeTarget "SFSpeechToTextTests" */;
+			buildPhases = (
+				9759AEAD23ABF4E0009D04E2 /* Sources */,
+				9759AEAE23ABF4E0009D04E2 /* Frameworks */,
+				9759AEAF23ABF4E0009D04E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9759AEC523ABF4F6009D04E2 /* PBXTargetDependency */,
+				9759AEB423ABF4E0009D04E2 /* PBXTargetDependency */,
+			);
+			name = SFSpeechToTextTests;
+			productName = SFSpeechToTextTests;
+			productReference = 9759AEB123ABF4E0009D04E2 /* SFSpeechToTextTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		97A0BD3123AE578800629A81 /* sdk-sample-app */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97A0BD4623AE578C00629A81 /* Build configuration list for PBXNativeTarget "sdk-sample-app" */;
+			buildPhases = (
+				97A0BD2E23AE578800629A81 /* Sources */,
+				97A0BD2F23AE578800629A81 /* Frameworks */,
+				97A0BD3023AE578800629A81 /* Resources */,
+				97AF75C923AE6F84009FAC1A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97A0BD4E23AE582E00629A81 /* PBXTargetDependency */,
+				97A0BD4C23AE582A00629A81 /* PBXTargetDependency */,
+				97A0BD4A23AE582500629A81 /* PBXTargetDependency */,
+				97A0BD4823AE581F00629A81 /* PBXTargetDependency */,
+				97AF75DD23AE70FA009FAC1A /* PBXTargetDependency */,
+			);
+			name = "sdk-sample-app";
+			productName = "sdk-sample-app";
+			productReference = 97A0BD3223AE578800629A81 /* sdk-sample-app.app */;
+			productType = "com.apple.product-type.application";
+		};
+		97AF240123ABF23300CB839E /* AimyboxDialogAPI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97AF241923ABF23400CB839E /* Build configuration list for PBXNativeTarget "AimyboxDialogAPI" */;
+			buildPhases = (
+				97AF23FD23ABF23300CB839E /* Headers */,
+				97AF23FE23ABF23300CB839E /* Sources */,
+				97AF23FF23ABF23300CB839E /* Frameworks */,
+				97AF240023ABF23300CB839E /* Resources */,
+				97AF75D423AE6FB1009FAC1A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9759AECB23ABF508009D04E2 /* PBXTargetDependency */,
+				558FC14F23AD244800ECB126 /* PBXTargetDependency */,
+				97AF75D323AE6FB1009FAC1A /* PBXTargetDependency */,
+			);
+			name = AimyboxDialogAPI;
+			productName = AimyboxDialogAPI;
+			productReference = 97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		97AF240923ABF23300CB839E /* AimyboxDialogAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97AF241A23ABF23400CB839E /* Build configuration list for PBXNativeTarget "AimyboxDialogAPITests" */;
+			buildPhases = (
+				97AF240623ABF23300CB839E /* Sources */,
+				97AF240723ABF23300CB839E /* Frameworks */,
+				97AF240823ABF23300CB839E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				558FC15123AD253E00ECB126 /* PBXTargetDependency */,
+				55DAC62323ACEC290009BF1A /* PBXTargetDependency */,
+			);
+			name = AimyboxDialogAPITests;
+			productName = AimyboxDialogAPITests;
+			productReference = 97AF240A23ABF23300CB839E /* AimyboxDialogAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		97C75B6123AC00F9006C209C /* Utils */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97C75B7323AC00F9006C209C /* Build configuration list for PBXNativeTarget "Utils" */;
+			buildPhases = (
+				97C75B5D23AC00F9006C209C /* Headers */,
+				97C75B5E23AC00F9006C209C /* Sources */,
+				97C75B5F23AC00F9006C209C /* Frameworks */,
+				97C75B6023AC00F9006C209C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Utils;
+			productName = Utils;
+			productReference = 97C75B6223AC00F9006C209C /* Utils.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		97233FCF23898F2C0050E37F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1110;
+				LastUpgradeCheck = 1110;
+				ORGANIZATIONNAME = "Just Ai";
+				TargetAttributes = {
+					97233FD723898F2C0050E37F = {
+						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1110;
+					};
+					97233FE62389906B0050E37F = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					9759AE8A23ABF4D0009D04E2 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					9759AE9223ABF4D0009D04E2 = {
+						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1110;
+					};
+					9759AEA823ABF4DF009D04E2 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					9759AEB023ABF4E0009D04E2 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					97A0BD3123AE578800629A81 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					97AF240123ABF23300CB839E = {
+						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1110;
+					};
+					97AF240923ABF23300CB839E = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					97C75B6123AC00F9006C209C = {
+						CreatedOnToolsVersion = 11.1;
+					};
+				};
+			};
+			buildConfigurationList = 97233FD223898F2C0050E37F /* Build configuration list for PBXProject "AimyboxCore" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 97233FCE23898F2C0050E37F;
+			productRefGroup = 97233FD923898F2C0050E37F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				97233FD723898F2C0050E37F /* AimyboxCore */,
+				97233FE62389906B0050E37F /* AimyboxCoreTests */,
+				97AF240123ABF23300CB839E /* AimyboxDialogAPI */,
+				97AF240923ABF23300CB839E /* AimyboxDialogAPITests */,
+				9759AE8A23ABF4D0009D04E2 /* AVTextToSpeech */,
+				9759AE9223ABF4D0009D04E2 /* AVTextToSpeechTests */,
+				9759AEA823ABF4DF009D04E2 /* SFSpeechToText */,
+				9759AEB023ABF4E0009D04E2 /* SFSpeechToTextTests */,
+				97C75B6123AC00F9006C209C /* Utils */,
+				97A0BD3123AE578800629A81 /* sdk-sample-app */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		97233FD623898F2C0050E37F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97233FE52389906B0050E37F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AE8923ABF4D0009D04E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AE9123ABF4D0009D04E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AEA723ABF4DF009D04E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AEAF23ABF4E0009D04E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97A0BD3023AE578800629A81 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97A0BD4123AE578C00629A81 /* LaunchScreen.storyboard in Resources */,
+				97F95BA623AFCA7000F75C71 /* AimyboxQueryCell.xib in Resources */,
+				97A0BD3E23AE578C00629A81 /* Assets.xcassets in Resources */,
+				97F95B9A23AF74C400F75C71 /* AimyboxTextCell.xib in Resources */,
+				97F95BA223AFAB3F00F75C71 /* AimyboxImageCell.xib in Resources */,
+				97F95B9E23AF757200F75C71 /* AimyboxButtonsCell.xib in Resources */,
+				97A0BD3C23AE578900629A81 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AF240023ABF23300CB839E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AF240823ABF23300CB839E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97C75B6023AC00F9006C209C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		97233FD423898F2C0050E37F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9775864123A654600009DA4B /* SpeechToTextDelegate.swift in Sources */,
+				97AF75DF23AEA997009FAC1A /* SSMLDecoder.swift in Sources */,
+				9775862B23A654470009DA4B /* DialogAPIError.swift in Sources */,
+				9775864823A654600009DA4B /* ImageReply.swift in Sources */,
+				973C7C9D2389921200920960 /* Aimybox.swift in Sources */,
+				9775864223A654600009DA4B /* SpeechToTextEvent.swift in Sources */,
+				976B565F23929385009BF684 /* AimyboxConfig.swift in Sources */,
+				9775864A23A654600009DA4B /* TextToSpeech.swift in Sources */,
+				557D2F30238C2B17007FC257 /* AimyboxState.swift in Sources */,
+				9775864623A654600009DA4B /* Reply.swift in Sources */,
+				9775861823A653DA0009DA4B /* AimyboxSpeech.swift in Sources */,
+				9775862D23A654470009DA4B /* DialogAPI.swift in Sources */,
+				9775864423A654600009DA4B /* SpeechToText.swift in Sources */,
+				9775862723A654470009DA4B /* Response.swift in Sources */,
+				9775864F23A654600009DA4B /* AimyboxComponent.swift in Sources */,
+				9775862523A654470009DA4B /* DialogAPIDelegate.swift in Sources */,
+				9775862923A654470009DA4B /* DialogAPISendOperation.swift in Sources */,
+				9775864E23A654600009DA4B /* AimyboxConcrete.swift in Sources */,
+				976B56692392C41F009BF684 /* AimyboxResult.swift in Sources */,
+				9775864B23A654600009DA4B /* TextToSpeechDelegate.swift in Sources */,
+				9775864323A654600009DA4B /* SpeechToTextError.swift in Sources */,
+				9775862823A654470009DA4B /* Request.swift in Sources */,
+				9775865E23A663B40009DA4B /* AimyboxNextAction.swift in Sources */,
+				9775864923A654600009DA4B /* AudioReply.swift in Sources */,
+				9775864D23A654600009DA4B /* TextToSpeechError.swift in Sources */,
+				9775862623A654470009DA4B /* CustomSkill.swift in Sources */,
+				9775864523A654600009DA4B /* ButtonsReply.swift in Sources */,
+				976B56652392AE0D009BF684 /* AimyboxDelegate.swift in Sources */,
+				9775864C23A654600009DA4B /* TextToSpeechEvent.swift in Sources */,
+				9775864723A654600009DA4B /* TextReply.swift in Sources */,
+				9775862C23A654470009DA4B /* DialogAPIHandleOperation.swift in Sources */,
+				9775862A23A654470009DA4B /* DialogAPIEvent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97233FE32389906B0050E37F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9709BCDF23AB8761005C47C2 /* FakeTextReply.swift in Sources */,
+				9775865823A657BD0009DA4B /* DialogAPIRequest.swift in Sources */,
+				9775865223A6552E0009DA4B /* SpeechToTextFake.swift in Sources */,
+				9775865423A6553D0009DA4B /* TextToSpeechFake.swift in Sources */,
+				9775865A23A657C80009DA4B /* DialogAPIResponse.swift in Sources */,
+				97233FEA2389906B0050E37F /* AimyboxBaseTestCase.swift in Sources */,
+				9775865623A6577A0009DA4B /* DialogAPIFake.swift in Sources */,
+				55AEDDA023A7E46B002B2356 /* SpeechToTextCoreTests.swift in Sources */,
+				9709BCE123ABA5E2005C47C2 /* TextToSpeechCoreTests.swift in Sources */,
+				55AEDDA223A7EE82002B2356 /* DialogAPICoreTests.swift in Sources */,
+				9775865C23A657D80009DA4B /* DialogAPICustomSkill.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AE8723ABF4D0009D04E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9759AED023ABF55C009D04E2 /* AVTextToSpeech.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AE8F23ABF4D0009D04E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97C75B5523ABF9D5006C209C /* AVTextToSpeechTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AEA523ABF4DF009D04E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9759AED123ABF5A4009D04E2 /* SFSpeechToText.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9759AEAD23ABF4E0009D04E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9759AED423ABF5B2009D04E2 /* SFSpeechToTextTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97A0BD2E23AE578800629A81 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97F95BA523AFCA7000F75C71 /* AimyboxQueryCell.swift in Sources */,
+				97A0BD3923AE578800629A81 /* ViewController.swift in Sources */,
+				97F95B9923AF74C400F75C71 /* AimyboxTextCell.swift in Sources */,
+				97A0BD3523AE578800629A81 /* AppDelegate.swift in Sources */,
+				97F95B9D23AF757200F75C71 /* AimyboxButtonsCell.swift in Sources */,
+				97F95B9523AF73CF00F75C71 /* AimyboxViewController.swift in Sources */,
+				97F95BA123AFAB3F00F75C71 /* AimyboxImageCell.swift in Sources */,
+				97A0BD3723AE578800629A81 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AF23FE23ABF23300CB839E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55ED5F0323AD1011007F4D01 /* AimyboxButtonsReply.swift in Sources */,
+				55ED5EFD23AD0EF1007F4D01 /* AimyboxTextReply.swift in Sources */,
+				55ED5EFF23AD0FF4007F4D01 /* AimyboxAudioReply.swift in Sources */,
+				9759AE6223ABF2EF009D04E2 /* AimyboxResponse.swift in Sources */,
+				55ED5F0123AD1002007F4D01 /* AimyboxImageReply.swift in Sources */,
+				9759AE6523ABF2EF009D04E2 /* AimyboxDialogAPI.swift in Sources */,
+				9759AE6423ABF2EF009D04E2 /* AimyboxRequest.swift in Sources */,
+				9759AE6323ABF2EF009D04E2 /* AimyboxCustomSkill.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97AF240623ABF23300CB839E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55DAC62123ACEB980009BF1A /* AimyboxDialogAPITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97C75B5E23AC00F9006C209C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97C75B7B23AC0154006C209C /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		558FC14F23AD244800ECB126 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97C75B6123AC00F9006C209C /* Utils */;
+			targetProxy = 558FC14E23AD244800ECB126 /* PBXContainerItemProxy */;
+		};
+		558FC15123AD253E00ECB126 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97C75B6123AC00F9006C209C /* Utils */;
+			targetProxy = 558FC15023AD253E00ECB126 /* PBXContainerItemProxy */;
+		};
+		55DAC62323ACEC290009BF1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97AF240123ABF23300CB839E /* AimyboxDialogAPI */;
+			targetProxy = 55DAC62223ACEC290009BF1A /* PBXContainerItemProxy */;
+		};
+		97233FEE2389906B0050E37F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
+			targetProxy = 97233FED2389906B0050E37F /* PBXContainerItemProxy */;
+		};
+		9759AE9623ABF4D0009D04E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9759AE8A23ABF4D0009D04E2 /* AVTextToSpeech */;
+			targetProxy = 9759AE9523ABF4D0009D04E2 /* PBXContainerItemProxy */;
+		};
+		9759AEB423ABF4E0009D04E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9759AEA823ABF4DF009D04E2 /* SFSpeechToText */;
+			targetProxy = 9759AEB323ABF4E0009D04E2 /* PBXContainerItemProxy */;
+		};
+		9759AEC323ABF4EF009D04E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
+			targetProxy = 9759AEC223ABF4EF009D04E2 /* PBXContainerItemProxy */;
+		};
+		9759AEC523ABF4F6009D04E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97233FE62389906B0050E37F /* AimyboxCoreTests */;
+			targetProxy = 9759AEC423ABF4F6009D04E2 /* PBXContainerItemProxy */;
+		};
+		9759AEC923ABF500009D04E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
+			targetProxy = 9759AEC823ABF500009D04E2 /* PBXContainerItemProxy */;
+		};
+		9759AECB23ABF508009D04E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
+			targetProxy = 9759AECA23ABF508009D04E2 /* PBXContainerItemProxy */;
+		};
+		97A0BD4823AE581F00629A81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
+			targetProxy = 97A0BD4723AE581F00629A81 /* PBXContainerItemProxy */;
+		};
+		97A0BD4A23AE582500629A81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9759AE8A23ABF4D0009D04E2 /* AVTextToSpeech */;
+			targetProxy = 97A0BD4923AE582500629A81 /* PBXContainerItemProxy */;
+		};
+		97A0BD4C23AE582A00629A81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97AF240123ABF23300CB839E /* AimyboxDialogAPI */;
+			targetProxy = 97A0BD4B23AE582A00629A81 /* PBXContainerItemProxy */;
+		};
+		97A0BD4E23AE582E00629A81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9759AEA823ABF4DF009D04E2 /* SFSpeechToText */;
+			targetProxy = 97A0BD4D23AE582E00629A81 /* PBXContainerItemProxy */;
+		};
+		97AF75D323AE6FB1009FAC1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97C75B6123AC00F9006C209C /* Utils */;
+			targetProxy = 97AF75D223AE6FB1009FAC1A /* PBXContainerItemProxy */;
+		};
+		97AF75D823AE6FF3009FAC1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97C75B6123AC00F9006C209C /* Utils */;
+			targetProxy = 97AF75D723AE6FF3009FAC1A /* PBXContainerItemProxy */;
+		};
+		97AF75DD23AE70FA009FAC1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97C75B6123AC00F9006C209C /* Utils */;
+			targetProxy = 97AF75DC23AE70FA009FAC1A /* PBXContainerItemProxy */;
+		};
+		97C75B7E23AC01EC006C209C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97C75B6123AC00F9006C209C /* Utils */;
+			targetProxy = 97C75B7D23AC01EC006C209C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		97A0BD3A23AE578900629A81 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97A0BD3B23AE578900629A81 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		97A0BD3F23AE578C00629A81 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97A0BD4023AE578C00629A81 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		97233FDE23898F2C0050E37F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		97233FDF23898F2C0050E37F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		97233FE123898F2C0050E37F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AimyboxCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		97233FE223898F2C0050E37F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AimyboxCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		97233FEF2389906B0050E37F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = AimyboxCoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		97233FF02389906B0050E37F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = AimyboxCoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9759AE9D23ABF4D0009D04E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Components/AVTextToSpeech/Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AVTextToSpeech;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		9759AE9E23ABF4D0009D04E2 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Components/AVTextToSpeech/Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AVTextToSpeech;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Testing;
+		};
+		9759AE9F23ABF4D0009D04E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Components/AVTextToSpeech/Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AVTextToSpeech;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		9759AEA123ABF4D0009D04E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HKJ88XEM2N;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/AVTextToSpeech/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AVTextToSpeechTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Components/AVTextToSpeech/Tests/AVTextToSpeechTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9759AEA223ABF4D0009D04E2 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HKJ88XEM2N;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/AVTextToSpeech/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AVTextToSpeechTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Components/AVTextToSpeech/Tests/AVTextToSpeechTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Testing;
+		};
+		9759AEA323ABF4D0009D04E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HKJ88XEM2N;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/AVTextToSpeech/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AVTextToSpeechTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Components/AVTextToSpeech/Tests/AVTextToSpeechTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9759AEBB23ABF4E0009D04E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Components/SFSpeechToText/Sources/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.SFSpeechToText;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		9759AEBC23ABF4E0009D04E2 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Components/SFSpeechToText/Sources/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.SFSpeechToText;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Testing;
+		};
+		9759AEBD23ABF4E0009D04E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Components/SFSpeechToText/Sources/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.SFSpeechToText;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		9759AEBF23ABF4E0009D04E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HKJ88XEM2N;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/SFSpeechToText/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.SFSpeechToTextTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9759AEC023ABF4E0009D04E2 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HKJ88XEM2N;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/SFSpeechToText/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.SFSpeechToTextTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Testing;
+		};
+		9759AEC123ABF4E0009D04E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HKJ88XEM2N;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/SFSpeechToText/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.SFSpeechToTextTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9775865F23A67E5E0009DA4B /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"TESTING=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TESTING;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Testing;
+		};
+		9775866023A67E5E0009DA4B /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AimyboxCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Testing;
+		};
+		9775866123A67E5E0009DA4B /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = AimyboxCoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Testing;
+		};
+		97A0BD4323AE578C00629A81 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = "sdk-sample-app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.justai.ios-sdk-sample-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		97A0BD4423AE578C00629A81 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = "sdk-sample-app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.justai.ios-sdk-sample-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Testing;
+		};
+		97A0BD4523AE578C00629A81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = "sdk-sample-app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.justai.ios-sdk-sample-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		97AF241323ABF23400CB839E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/AimyboxCore/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxDialogAPI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		97AF241423ABF23400CB839E /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/AimyboxCore/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxDialogAPI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Testing;
+		};
+		97AF241523ABF23400CB839E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/AimyboxCore/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxDialogAPI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		97AF241623ABF23400CB839E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/AimyboxDialogAPI/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxDialogAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		97AF241723ABF23400CB839E /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/AimyboxDialogAPI/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxDialogAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Testing;
+		};
+		97AF241823ABF23400CB839E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/AimyboxDialogAPI/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxDialogAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		97C75B7423AC00F9006C209C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Utils/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.Utils;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		97C75B7523AC00F9006C209C /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Utils/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.Utils;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Testing;
+		};
+		97C75B7623AC00F9006C209C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Utils/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.Utils;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		97233FD223898F2C0050E37F /* Build configuration list for PBXProject "AimyboxCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97233FDE23898F2C0050E37F /* Debug */,
+				9775865F23A67E5E0009DA4B /* Testing */,
+				97233FDF23898F2C0050E37F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97233FE023898F2C0050E37F /* Build configuration list for PBXNativeTarget "AimyboxCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97233FE123898F2C0050E37F /* Debug */,
+				9775866023A67E5E0009DA4B /* Testing */,
+				97233FE223898F2C0050E37F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97233FF12389906B0050E37F /* Build configuration list for PBXNativeTarget "AimyboxCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97233FEF2389906B0050E37F /* Debug */,
+				9775866123A67E5E0009DA4B /* Testing */,
+				97233FF02389906B0050E37F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9759AE9C23ABF4D0009D04E2 /* Build configuration list for PBXNativeTarget "AVTextToSpeech" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9759AE9D23ABF4D0009D04E2 /* Debug */,
+				9759AE9E23ABF4D0009D04E2 /* Testing */,
+				9759AE9F23ABF4D0009D04E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9759AEA023ABF4D0009D04E2 /* Build configuration list for PBXNativeTarget "AVTextToSpeechTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9759AEA123ABF4D0009D04E2 /* Debug */,
+				9759AEA223ABF4D0009D04E2 /* Testing */,
+				9759AEA323ABF4D0009D04E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9759AEBA23ABF4E0009D04E2 /* Build configuration list for PBXNativeTarget "SFSpeechToText" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9759AEBB23ABF4E0009D04E2 /* Debug */,
+				9759AEBC23ABF4E0009D04E2 /* Testing */,
+				9759AEBD23ABF4E0009D04E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9759AEBE23ABF4E0009D04E2 /* Build configuration list for PBXNativeTarget "SFSpeechToTextTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9759AEBF23ABF4E0009D04E2 /* Debug */,
+				9759AEC023ABF4E0009D04E2 /* Testing */,
+				9759AEC123ABF4E0009D04E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97A0BD4623AE578C00629A81 /* Build configuration list for PBXNativeTarget "sdk-sample-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97A0BD4323AE578C00629A81 /* Debug */,
+				97A0BD4423AE578C00629A81 /* Testing */,
+				97A0BD4523AE578C00629A81 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97AF241923ABF23400CB839E /* Build configuration list for PBXNativeTarget "AimyboxDialogAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97AF241323ABF23400CB839E /* Debug */,
+				97AF241423ABF23400CB839E /* Testing */,
+				97AF241523ABF23400CB839E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97AF241A23ABF23400CB839E /* Build configuration list for PBXNativeTarget "AimyboxDialogAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97AF241623ABF23400CB839E /* Debug */,
+				97AF241723ABF23400CB839E /* Testing */,
+				97AF241823ABF23400CB839E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97C75B7323AC00F9006C209C /* Build configuration list for PBXNativeTarget "Utils" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97C75B7423AC00F9006C209C /* Debug */,
+				97C75B7523AC00F9006C209C /* Testing */,
+				97C75B7623AC00F9006C209C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 97233FCF23898F2C0050E37F /* Project object */;
+}
