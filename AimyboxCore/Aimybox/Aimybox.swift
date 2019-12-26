@@ -48,6 +48,9 @@ public protocol Aimybox: class {
      */
     func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction) throws
     /**
+     */
+    func cancelSynthesis()
+    /**
      Receives state and domain(tts, stt, ...) specific events.
      
      - Note: `Aimybox` do not retain it's delegate.

@@ -31,9 +31,15 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
         self.state = .standby
         self.nextAction = .nothing
         self.config = config
-        self.config.speechToText.notify = onSpeechToText
-        self.config.textToSpeech.notify = onTextToSpeech
-        self.config.dialogAPI.notify = onDialogAPI
+        self.config.speechToText.notify = { [weak self] event in
+            self?.onSpeechToText(event)
+        }
+        self.config.textToSpeech.notify = { [weak self] event in
+            self?.onTextToSpeech(event)
+        }
+        self.config.dialogAPI.notify = { [weak self] event in
+            self?.onDialogAPI(event)
+        }
     }
     
     // MARK: - Text to speech lifecycle
@@ -94,6 +100,10 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
         state = .speaking
         nextAction = action
         config.textToSpeech.synthesize(contentsOf: speech)
+    }
+    
+    public func cancelSynthesis() {
+        config.textToSpeech.cancelSynthesis()
     }
     
     // MARK: - State independent methods

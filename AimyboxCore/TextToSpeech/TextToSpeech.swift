@@ -20,6 +20,10 @@ public protocol TextToSpeech: AimyboxComponent {
      */
     func stop()
     /**
+     Used when `Aimybox` deinits.
+     */
+    func cancelSynthesis()
+    /**
      Used to notify *Aimybox* state machine about events.
      */
     var notify: (TextToSpeechCallback)? { get set }

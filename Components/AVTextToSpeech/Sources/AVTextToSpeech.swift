@@ -52,6 +52,9 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
      */
     internal var notificationQueue: OperationQueue
+    /**
+     */
+    internal var isCancelled: Bool = false
     
     
     private override init() {
@@ -104,6 +107,10 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         }
     }
     
+    public func cancelSynthesis() {
+        isCancelled = true
+    }
+    
     // MARK: - Internals
     
     private func synthesize(_ speeches: [AimyboxSpeech]) {
@@ -113,7 +120,7 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
 
         speeches.unwrapSSML.forEach { speech in
             
-            guard speech.isValid() else {
+            guard speech.isValid() && !isCancelled else {
                 return _notify(.failure(.emptySpeech(speech)))
             }
             

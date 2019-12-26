@@ -35,7 +35,10 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         self.route = route == nil ? AimyboxConstants.api_request_route : route!
     }
 
-
+    deinit {
+        cancelRequest()
+    }
+    
     public func createRequest(query: String) -> AimyboxRequest {
         return AimyboxRequest(query: query, apiKey: api_key, unitKey: unit_key, data: [:])
     }
