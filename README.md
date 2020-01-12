@@ -4,8 +4,6 @@
 ![iOS 11.4+](https://img.shields.io/badge/iOS-11.4%2B-blue.svg)
 ![Swift 4.2+](https://img.shields.io/badge/Swift-4.2%2B-orange.svg)
 
-## Requirements
-
 ## Installation
 
 Aimybox is available through [CocoaPods](https://cocoapods.org). To install
