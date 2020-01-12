@@ -21,7 +21,7 @@ it, simply add the following line to your Podfile:
 
 List of available components listed below.
 
-Then you need add following in your `Info.plist` file to describe why your app need mircophone and speech recognition permissions.
+Then you need add following in your `Info.plist` file to describe why your app need microphone and speech recognition permissions.
 
 ```
 	<key>NSMicrophoneUsageDescription</key>
