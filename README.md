@@ -1,13 +1,39 @@
-# Aimybox
+<h1 align="center">
+    <br>
+    <a href="https://aimybox.com"><img src="https://app.aimybox.com/assets/images/aimybox.png"
+                                                                    height="200"></a>
+    <br><br>
+    Aimybox iOS SDK
+</h1>
 
-[![License](https://img.shields.io/cocoapods/l/Aimybox.svg?style=flat)](https://github.com/just-ai/aimybox-ios-sdk/blob/master/LICENSE)
-![iOS 11.4+](https://img.shields.io/badge/iOS-11.4%2B-blue.svg)
-![Swift 4.2+](https://img.shields.io/badge/Swift-4.2%2B-orange.svg)
+<h4 align="center">Open source voice assistant SDK written in Swift</h4>
 
-## Installation
+<p align="center">
+    <a href="https://gitter.im/aimybox/community"><img src="https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg"></a>
+    <a href="https://twitter.com/intent/follow?screen_name=aimybox"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/aimybox.svg?label=Follow%20on%20Twitter&style=popout"></a>
+    <a href="https://travis-ci.org/just-ai/aimybox-android-sdk/"><img alt="Travis CI Build" src="https://travis-ci.org/just-ai/aimybox-android-sdk.svg?branch=master"></a>
+    <a href="https://bintray.com/aimybox/aimybox-android-sdk/"><img alt="Bintray artifact" src="https://api.bintray.com/packages/aimybox/aimybox-android-sdk/core/images/download.svg"></a>
+</p>
 
-Aimybox is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+Embed your own intelligent voice assistant into your existing iOS application.
+
+### Android version is available [here](https://github.com/just-ai/aimybox-android-sdk)
+
+# Key Features
+
+* Provides ready to use [UI components](https://github.com/just-ai/aimybox-ios-assistant) for fast building of your voice assistant app
+* Modular and independent from speech-to-text and text-to-speech vendors
+* Provides ready to use speech-to-text and text-to-speech implementations
+* Works with any NLU providers like [Aimylogic](https://help.aimybox.com/en/article/aimylogic-webhook-5quhb1/)
+* Fully customizable and extendable, you can connect any other speech-to-text, text-to-speech and NLU services
+* Open source under Apache 2.0, written in pure Swift
+* Embeddable into any iOS application
+* Voice skills logic and complexity is not limited by any restrictions
+* Can interact with any local device services and local networks
+
+## How to start using
+
+Aimybox SDK is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
   pod 'Aimybox/Core'
@@ -87,9 +113,13 @@ Pods installation:
 
 `pod 'Aimybox/AimyboxDialogAPI'`
 
-## Author
+# More details
 
-vpopovyc, mailuatc@gmail.com
+Please refer to the [demo voice assistant](https://github.com/just-ai/aimybox-ios-assistant/) to see how to use Aimybox library in your project.
+
+# Documentation
+
+There is a full Aimybox documentation available [here](https://help.aimybox.com)
 
 ## License
 
