@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5527AA9C23E06E7100153999 /* YandexSpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527AA9B23E06E7100153999 /* YandexSpeechToText.swift */; };
+		554D7AE223D9B8D400E90C7E /* YandexSpeechKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 554D7ADF23D9B8D400E90C7E /* YandexSpeechKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		554D7AE623D9B91400E90C7E /* YandexSpeechKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554D7AE523D9B91400E90C7E /* YandexSpeechKitTests.swift */; };
+		554D7AE723D9B9A800E90C7E /* IAMTokenGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554D7AE123D9B8D400E90C7E /* IAMTokenGenerator.swift */; };
+		554D7AEA23D9B9E400E90C7E /* YandexSpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D7AB923D9B61400E90C7E /* YandexSpeechKit.framework */; };
 		557D2F30238C2B17007FC257 /* AimyboxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D2F2F238C2B17007FC257 /* AimyboxState.swift */; };
 		558FC15223AD254300ECB126 /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
+		55976F6A23DF283800EC6812 /* YandexRecognitionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55976F6823DF283200EC6812 /* YandexRecognitionAPI.swift */; };
+		55976F6D23DF298900EC6812 /* stt_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55976F6B23DF298900EC6812 /* stt_service.grpc.swift */; };
+		55976F6E23DF298900EC6812 /* stt_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55976F6C23DF298900EC6812 /* stt_service.pb.swift */; };
+		55976F7123DF3E6400EC6812 /* operation.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55976F6F23DF3E6400EC6812 /* operation.pb.swift */; };
+		55976F7323DF413F00EC6812 /* status.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55976F7223DF413F00EC6812 /* status.pb.swift */; };
 		55AEDDA023A7E46B002B2356 /* SpeechToTextCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AEDD9F23A7E46B002B2356 /* SpeechToTextCoreTests.swift */; };
 		55AEDDA223A7EE82002B2356 /* DialogAPICoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AEDDA123A7EE82002B2356 /* DialogAPICoreTests.swift */; };
 		55DAC62123ACEB980009BF1A /* AimyboxDialogAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9759AE5723ABF2EF009D04E2 /* AimyboxDialogAPITests.swift */; };
@@ -78,9 +88,31 @@
 		97C75B5523ABF9D5006C209C /* AVTextToSpeechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5423ABF9D5006C209C /* AVTextToSpeechTests.swift */; };
 		97C75B7B23AC0154006C209C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5B23AC00E2006C209C /* Utils.swift */; };
 		97C75B7C23AC015C006C209C /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 97C75B6423AC00F9006C209C /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E015A7AD3A5D541E4964EC2E /* Pods_exampleasdf_YandexSpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBB02CC69F1B0073A580A77 /* Pods_exampleasdf_YandexSpeechKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5527AAA123E07DE300153999 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
+			remoteInfo = Utils;
+		};
+		554D7AE823D9B9DC00E90C7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 554D7AB823D9B61400E90C7E;
+			remoteInfo = YandexSpeechKit;
+		};
+		554D7AED23D9BDFD00E90C7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97233FD723898F2C0050E37F;
+			remoteInfo = AimyboxCore;
+		};
 		558FC14E23AD244800ECB126 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
@@ -200,13 +232,33 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4D46AEAA3C7D73B90D3BD6CE /* Pods-YandexSpeechKitTests-YandexSpeechKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexSpeechKitTests-YandexSpeechKit.release.xcconfig"; path = "Target Support Files/Pods-YandexSpeechKitTests-YandexSpeechKit/Pods-YandexSpeechKitTests-YandexSpeechKit.release.xcconfig"; sourceTree = "<group>"; };
+		503D96691A23AF12EF04CF2B /* Pods-YandexSpeechKit.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexSpeechKit.testing.xcconfig"; path = "Target Support Files/Pods-YandexSpeechKit/Pods-YandexSpeechKit.testing.xcconfig"; sourceTree = "<group>"; };
+		5527AA1423DF58FD00153999 /* libBoringSSL-GRPC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libBoringSSL-GRPC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5527AA9B23E06E7100153999 /* YandexSpeechToText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexSpeechToText.swift; sourceTree = "<group>"; };
+		554D7AB923D9B61400E90C7E /* YandexSpeechKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YandexSpeechKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		554D7AC123D9B61400E90C7E /* YandexSpeechKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YandexSpeechKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		554D7ADF23D9B8D400E90C7E /* YandexSpeechKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexSpeechKit.h; sourceTree = "<group>"; };
+		554D7AE023D9B8D400E90C7E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		554D7AE123D9B8D400E90C7E /* IAMTokenGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMTokenGenerator.swift; sourceTree = "<group>"; };
+		554D7AE523D9B91400E90C7E /* YandexSpeechKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexSpeechKitTests.swift; sourceTree = "<group>"; };
+		554D7AEC23D9BB7500E90C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		557D2F2F238C2B17007FC257 /* AimyboxState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxState.swift; sourceTree = "<group>"; };
+		55976F6823DF283200EC6812 /* YandexRecognitionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexRecognitionAPI.swift; sourceTree = "<group>"; };
+		55976F6B23DF298900EC6812 /* stt_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stt_service.grpc.swift; sourceTree = "<group>"; };
+		55976F6C23DF298900EC6812 /* stt_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stt_service.pb.swift; sourceTree = "<group>"; };
+		55976F6F23DF3E6400EC6812 /* operation.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = operation.pb.swift; sourceTree = "<group>"; };
+		55976F7223DF413F00EC6812 /* status.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = status.pb.swift; sourceTree = "<group>"; };
 		55AEDD9F23A7E46B002B2356 /* SpeechToTextCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToTextCoreTests.swift; sourceTree = "<group>"; };
 		55AEDDA123A7EE82002B2356 /* DialogAPICoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogAPICoreTests.swift; sourceTree = "<group>"; };
 		55ED5EFC23AD0EF1007F4D01 /* AimyboxTextReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxTextReply.swift; sourceTree = "<group>"; };
 		55ED5EFE23AD0FF4007F4D01 /* AimyboxAudioReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxAudioReply.swift; sourceTree = "<group>"; };
 		55ED5F0023AD1002007F4D01 /* AimyboxImageReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxImageReply.swift; sourceTree = "<group>"; };
 		55ED5F0223AD1010007F4D01 /* AimyboxButtonsReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxButtonsReply.swift; sourceTree = "<group>"; };
+		55ED677D71DA252015044486 /* Pods-YandexSpeechKitTests-YandexSpeechKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexSpeechKitTests-YandexSpeechKit.debug.xcconfig"; path = "Target Support Files/Pods-YandexSpeechKitTests-YandexSpeechKit/Pods-YandexSpeechKitTests-YandexSpeechKit.debug.xcconfig"; sourceTree = "<group>"; };
+		6A8AA06F95AB334B901796B9 /* Pods-YandexSpeechKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexSpeechKit.release.xcconfig"; path = "Target Support Files/Pods-YandexSpeechKit/Pods-YandexSpeechKit.release.xcconfig"; sourceTree = "<group>"; };
+		7FBB02CC69F1B0073A580A77 /* Pods_exampleasdf_YandexSpeechKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exampleasdf_YandexSpeechKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8457EDEBF7D6F79EACC5059C /* Pods-exampleasdf.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exampleasdf.testing.xcconfig"; path = "Target Support Files/Pods-exampleasdf/Pods-exampleasdf.testing.xcconfig"; sourceTree = "<group>"; };
 		9709BCDE23AB8761005C47C2 /* FakeTextReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTextReply.swift; sourceTree = "<group>"; };
 		9709BCE023ABA5E2005C47C2 /* TextToSpeechCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeechCoreTests.swift; sourceTree = "<group>"; };
 		97233FD823898F2C0050E37F /* AimyboxCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AimyboxCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,9 +332,33 @@
 		97C75B6223AC00F9006C209C /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C75B6423AC00F9006C209C /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		97C75B6523AC00F9006C209C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F9F7619F1D64608A7BA800B /* Pods-exampleasdf-YandexSpeechKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exampleasdf-YandexSpeechKit.release.xcconfig"; path = "Target Support Files/Pods-exampleasdf-YandexSpeechKit/Pods-exampleasdf-YandexSpeechKit.release.xcconfig"; sourceTree = "<group>"; };
+		B4BEC627264E5936B6F893BB /* Pods-exampleasdf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exampleasdf.debug.xcconfig"; path = "Target Support Files/Pods-exampleasdf/Pods-exampleasdf.debug.xcconfig"; sourceTree = "<group>"; };
+		BE98690CB9D48518048DD4E9 /* Pods-exampleasdf-YandexSpeechKit.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exampleasdf-YandexSpeechKit.testing.xcconfig"; path = "Target Support Files/Pods-exampleasdf-YandexSpeechKit/Pods-exampleasdf-YandexSpeechKit.testing.xcconfig"; sourceTree = "<group>"; };
+		D35621084486B4E8985FC604 /* Pods-YandexSpeechKitTests-YandexSpeechKit.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexSpeechKitTests-YandexSpeechKit.testing.xcconfig"; path = "Target Support Files/Pods-YandexSpeechKitTests-YandexSpeechKit/Pods-YandexSpeechKitTests-YandexSpeechKit.testing.xcconfig"; sourceTree = "<group>"; };
+		E313160AE9BC9CD1494506E1 /* Pods-exampleasdf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exampleasdf.release.xcconfig"; path = "Target Support Files/Pods-exampleasdf/Pods-exampleasdf.release.xcconfig"; sourceTree = "<group>"; };
+		E50B0495B0460A63C3432067 /* Pods-YandexSpeechKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexSpeechKit.debug.xcconfig"; path = "Target Support Files/Pods-YandexSpeechKit/Pods-YandexSpeechKit.debug.xcconfig"; sourceTree = "<group>"; };
+		F1D6F9D2424A35ADB4D5B8D5 /* Pods-exampleasdf-YandexSpeechKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exampleasdf-YandexSpeechKit.debug.xcconfig"; path = "Target Support Files/Pods-exampleasdf-YandexSpeechKit/Pods-exampleasdf-YandexSpeechKit.debug.xcconfig"; sourceTree = "<group>"; };
+		FAE7E6221C8EAB323C7D5D53 /* Pods_exampleasdf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exampleasdf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		554D7AB623D9B61400E90C7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E015A7AD3A5D541E4964EC2E /* Pods_exampleasdf_YandexSpeechKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		554D7ABE23D9B61400E90C7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D7AEA23D9B9E400E90C7E /* YandexSpeechKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97233FD523898F2C0050E37F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -356,6 +432,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		554D7AD623D9B87600E90C7E /* YandexSpeechKit */ = {
+			isa = PBXGroup;
+			children = (
+				554D7ADE23D9B89D00E90C7E /* Tests */,
+				554D7ADD23D9B89700E90C7E /* Sources */,
+			);
+			name = YandexSpeechKit;
+			path = Components/YandexSpeechKit;
+			sourceTree = "<group>";
+		};
+		554D7ADD23D9B89700E90C7E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				55976F6723DF281000EC6812 /* YandexRecognitionAPI */,
+				554D7AE123D9B8D400E90C7E /* IAMTokenGenerator.swift */,
+				554D7ADF23D9B8D400E90C7E /* YandexSpeechKit.h */,
+				554D7AE023D9B8D400E90C7E /* Info.plist */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		554D7ADE23D9B89D00E90C7E /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				554D7AE523D9B91400E90C7E /* YandexSpeechKitTests.swift */,
+				554D7AEC23D9BB7500E90C7E /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		55976F6723DF281000EC6812 /* YandexRecognitionAPI */ = {
+			isa = PBXGroup;
+			children = (
+				55976F7423DF417C00EC6812 /* google_rpc */,
+				55976F7623DF41A000EC6812 /* yandex_stt */,
+				55976F7523DF419000EC6812 /* yandex_operation */,
+				55976F6823DF283200EC6812 /* YandexRecognitionAPI.swift */,
+				5527AA9B23E06E7100153999 /* YandexSpeechToText.swift */,
+			);
+			path = YandexRecognitionAPI;
+			sourceTree = "<group>";
+		};
+		55976F7423DF417C00EC6812 /* google_rpc */ = {
+			isa = PBXGroup;
+			children = (
+				55976F7223DF413F00EC6812 /* status.pb.swift */,
+			);
+			path = google_rpc;
+			sourceTree = "<group>";
+		};
+		55976F7523DF419000EC6812 /* yandex_operation */ = {
+			isa = PBXGroup;
+			children = (
+				55976F6F23DF3E6400EC6812 /* operation.pb.swift */,
+			);
+			path = yandex_operation;
+			sourceTree = "<group>";
+		};
+		55976F7623DF41A000EC6812 /* yandex_stt */ = {
+			isa = PBXGroup;
+			children = (
+				55976F6B23DF298900EC6812 /* stt_service.grpc.swift */,
+				55976F6C23DF298900EC6812 /* stt_service.pb.swift */,
+			);
+			path = yandex_stt;
+			sourceTree = "<group>";
+		};
 		97233FCE23898F2C0050E37F = {
 			isa = PBXGroup;
 			children = (
@@ -364,9 +507,11 @@
 				9759AE5523ABF2EF009D04E2 /* AimyboxDialogAPI */,
 				9759AE6C23ABF49A009D04E2 /* AVTextToSpeech */,
 				9759AE7923ABF4A0009D04E2 /* SFSpeechToText */,
+				554D7AD623D9B87600E90C7E /* YandexSpeechKit */,
 				97C75B5A23AC00E2006C209C /* Utils */,
 				97233FD923898F2C0050E37F /* Products */,
 				97B7490523ABF6C6001B46CF /* Frameworks */,
+				D30EA6802D3F15B8B507495B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -382,6 +527,8 @@
 				9759AEA923ABF4DF009D04E2 /* SFSpeechToText.framework */,
 				9759AEB123ABF4E0009D04E2 /* SFSpeechToTextTests.xctest */,
 				97C75B6223AC00F9006C209C /* Utils.framework */,
+				554D7AB923D9B61400E90C7E /* YandexSpeechKit.framework */,
+				554D7AC123D9B61400E90C7E /* YandexSpeechKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -607,6 +754,9 @@
 		97B7490523ABF6C6001B46CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5527AA1423DF58FD00153999 /* libBoringSSL-GRPC.a */,
+				FAE7E6221C8EAB323C7D5D53 /* Pods_exampleasdf.framework */,
+				7FBB02CC69F1B0073A580A77 /* Pods_exampleasdf_YandexSpeechKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -621,9 +771,36 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		D30EA6802D3F15B8B507495B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E50B0495B0460A63C3432067 /* Pods-YandexSpeechKit.debug.xcconfig */,
+				503D96691A23AF12EF04CF2B /* Pods-YandexSpeechKit.testing.xcconfig */,
+				6A8AA06F95AB334B901796B9 /* Pods-YandexSpeechKit.release.xcconfig */,
+				55ED677D71DA252015044486 /* Pods-YandexSpeechKitTests-YandexSpeechKit.debug.xcconfig */,
+				D35621084486B4E8985FC604 /* Pods-YandexSpeechKitTests-YandexSpeechKit.testing.xcconfig */,
+				4D46AEAA3C7D73B90D3BD6CE /* Pods-YandexSpeechKitTests-YandexSpeechKit.release.xcconfig */,
+				B4BEC627264E5936B6F893BB /* Pods-exampleasdf.debug.xcconfig */,
+				8457EDEBF7D6F79EACC5059C /* Pods-exampleasdf.testing.xcconfig */,
+				E313160AE9BC9CD1494506E1 /* Pods-exampleasdf.release.xcconfig */,
+				F1D6F9D2424A35ADB4D5B8D5 /* Pods-exampleasdf-YandexSpeechKit.debug.xcconfig */,
+				BE98690CB9D48518048DD4E9 /* Pods-exampleasdf-YandexSpeechKit.testing.xcconfig */,
+				9F9F7619F1D64608A7BA800B /* Pods-exampleasdf-YandexSpeechKit.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		554D7AB423D9B61400E90C7E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D7AE223D9B8D400E90C7E /* YandexSpeechKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97233FD323898F2C0050E37F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -667,6 +844,45 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		554D7AB823D9B61400E90C7E /* YandexSpeechKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 554D7ACA23D9B61400E90C7E /* Build configuration list for PBXNativeTarget "YandexSpeechKit" */;
+			buildPhases = (
+				4A4F8F2FD5203CAA9AEFC333 /* [CP] Check Pods Manifest.lock */,
+				554D7AB423D9B61400E90C7E /* Headers */,
+				554D7AB523D9B61400E90C7E /* Sources */,
+				554D7AB623D9B61400E90C7E /* Frameworks */,
+				554D7AB723D9B61400E90C7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5527AAA223E07DE300153999 /* PBXTargetDependency */,
+				554D7AEE23D9BDFD00E90C7E /* PBXTargetDependency */,
+			);
+			name = YandexSpeechKit;
+			productName = YandexSpeechKit;
+			productReference = 554D7AB923D9B61400E90C7E /* YandexSpeechKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		554D7AC023D9B61400E90C7E /* YandexSpeechKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 554D7ACE23D9B61400E90C7E /* Build configuration list for PBXNativeTarget "YandexSpeechKitTests" */;
+			buildPhases = (
+				554D7ABD23D9B61400E90C7E /* Sources */,
+				554D7ABE23D9B61400E90C7E /* Frameworks */,
+				554D7ABF23D9B61400E90C7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				554D7AE923D9B9DC00E90C7E /* PBXTargetDependency */,
+			);
+			name = YandexSpeechKitTests;
+			productName = YandexSpeechKitTests;
+			productReference = 554D7AC123D9B61400E90C7E /* YandexSpeechKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		97233FD723898F2C0050E37F /* AimyboxCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97233FE023898F2C0050E37F /* Build configuration list for PBXNativeTarget "AimyboxCore" */;
@@ -846,10 +1062,19 @@
 		97233FCF23898F2C0050E37F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1110;
+				DefaultBuildSystemTypeForWorkspace = Original;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Just Ai";
 				TargetAttributes = {
+					554D7AB823D9B61400E90C7E = {
+						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
+					};
+					554D7AC023D9B61400E90C7E = {
+						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
+					};
 					97233FD723898F2C0050E37F = {
 						CreatedOnToolsVersion = 11.1;
 						LastSwiftMigration = 1110;
@@ -903,12 +1128,28 @@
 				9759AE9223ABF4D0009D04E2 /* AVTextToSpeechTests */,
 				9759AEA823ABF4DF009D04E2 /* SFSpeechToText */,
 				9759AEB023ABF4E0009D04E2 /* SFSpeechToTextTests */,
+				554D7AB823D9B61400E90C7E /* YandexSpeechKit */,
+				554D7AC023D9B61400E90C7E /* YandexSpeechKitTests */,
 				97C75B6123AC00F9006C209C /* Utils */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		554D7AB723D9B61400E90C7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		554D7ABF23D9B61400E90C7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97233FD623898F2C0050E37F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -974,7 +1215,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4A4F8F2FD5203CAA9AEFC333 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-exampleasdf-YandexSpeechKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		554D7AB523D9B61400E90C7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D7AE723D9B9A800E90C7E /* IAMTokenGenerator.swift in Sources */,
+				55976F7123DF3E6400EC6812 /* operation.pb.swift in Sources */,
+				55976F6D23DF298900EC6812 /* stt_service.grpc.swift in Sources */,
+				55976F6E23DF298900EC6812 /* stt_service.pb.swift in Sources */,
+				55976F7323DF413F00EC6812 /* status.pb.swift in Sources */,
+				5527AA9C23E06E7100153999 /* YandexSpeechToText.swift in Sources */,
+				55976F6A23DF283800EC6812 /* YandexRecognitionAPI.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		554D7ABD23D9B61400E90C7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				554D7AE623D9B91400E90C7E /* YandexSpeechKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97233FD423898F2C0050E37F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1098,6 +1386,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5527AAA223E07DE300153999 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97C75B6123AC00F9006C209C /* Utils */;
+			targetProxy = 5527AAA123E07DE300153999 /* PBXContainerItemProxy */;
+		};
+		554D7AE923D9B9DC00E90C7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 554D7AB823D9B61400E90C7E /* YandexSpeechKit */;
+			targetProxy = 554D7AE823D9B9DC00E90C7E /* PBXContainerItemProxy */;
+		};
+		554D7AEE23D9BDFD00E90C7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
+			targetProxy = 554D7AED23D9BDFD00E90C7E /* PBXContainerItemProxy */;
+		};
 		558FC14F23AD244800ECB126 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 97C75B6123AC00F9006C209C /* Utils */;
@@ -1166,6 +1469,157 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		554D7ACB23D9B61400E90C7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1D6F9D2424A35ADB4D5B8D5 /* Pods-exampleasdf-YandexSpeechKit.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Components/YandexSpeechKit/Sources/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.YandexSpeechKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		554D7ACC23D9B61400E90C7E /* Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE98690CB9D48518048DD4E9 /* Pods-exampleasdf-YandexSpeechKit.testing.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Components/YandexSpeechKit/Sources/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.YandexSpeechKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Testing;
+		};
+		554D7ACD23D9B61400E90C7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F9F7619F1D64608A7BA800B /* Pods-exampleasdf-YandexSpeechKit.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Components/YandexSpeechKit/Sources/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.YandexSpeechKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		554D7ACF23D9B61400E90C7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/YandexSpeechKit/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.YandexSpeechKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		554D7AD023D9B61400E90C7E /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/YandexSpeechKit/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.YandexSpeechKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Testing;
+		};
+		554D7AD123D9B61400E90C7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
+				INFOPLIST_FILE = "$(SRCROOT)/Components/YandexSpeechKit/Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.justai.YandexSpeechKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		97233FDE23898F2C0050E37F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2000,6 +2454,26 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		554D7ACA23D9B61400E90C7E /* Build configuration list for PBXNativeTarget "YandexSpeechKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				554D7ACB23D9B61400E90C7E /* Debug */,
+				554D7ACC23D9B61400E90C7E /* Testing */,
+				554D7ACD23D9B61400E90C7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		554D7ACE23D9B61400E90C7E /* Build configuration list for PBXNativeTarget "YandexSpeechKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				554D7ACF23D9B61400E90C7E /* Debug */,
+				554D7AD023D9B61400E90C7E /* Testing */,
+				554D7AD123D9B61400E90C7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		97233FD223898F2C0050E37F /* Build configuration list for PBXProject "AimyboxCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
