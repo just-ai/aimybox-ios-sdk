@@ -7,10 +7,9 @@
 
 import Foundation
 import AVFoundation
-#if COCOAPODS
-#else
-import AimyboxCore
-#endif
+
+#if canImport(Aimybox)
+import Aimybox
 
 public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
@@ -53,6 +52,9 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
      */
     internal var notificationQueue: OperationQueue
+    /**
+     */
+    internal var isCancelled: Bool = false
     
     
     private override init() {
@@ -105,6 +107,10 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         }
     }
     
+    public func cancelSynthesis() {
+        isCancelled = true
+    }
+    
     // MARK: - Internals
     
     private func synthesize(_ speeches: [AimyboxSpeech]) {
@@ -114,7 +120,7 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
 
         speeches.unwrapSSML.forEach { speech in
             
-            guard speech.isValid() else {
+            guard speech.isValid() && !isCancelled else {
                 return _notify(.failure(.emptySpeech(speech)))
             }
             
@@ -224,3 +230,5 @@ class AVTextToSpeechDelegate: NSObject, AVSpeechSynthesizerDelegate {
         tts?.blockGroup.leave()
     }
 }
+
+#endif

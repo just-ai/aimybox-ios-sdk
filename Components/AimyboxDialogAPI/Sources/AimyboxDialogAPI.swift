@@ -5,10 +5,8 @@
 //  Created by Vladyslav Popovych on 08.12.2019.
 //
 
-#if COCOAPODS
-#else
-import AimyboxCore
-#endif
+#if canImport(Aimybox)
+import Aimybox
 
 fileprivate struct AimyboxConstants {
 
@@ -37,7 +35,10 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         self.route = route == nil ? AimyboxConstants.api_request_route : route!
     }
 
-
+    deinit {
+        cancelRequest()
+    }
+    
     public func createRequest(query: String) -> AimyboxRequest {
         return AimyboxRequest(query: query, apiKey: api_key, unitKey: unit_key, data: [:])
     }
@@ -97,3 +98,5 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         }
     }
 }
+
+#endif

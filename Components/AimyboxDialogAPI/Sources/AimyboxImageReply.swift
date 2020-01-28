@@ -6,10 +6,8 @@
 //  Copyright © 2019 Just Ai. All rights reserved.
 //
 
-#if COCOAPODS
-#else
-import AimyboxCore
-#endif
+#if canImport(Aimybox)
+import Aimybox
 
 final public class AimyboxImageReply: ImageReply, Decodable {
     
@@ -25,3 +23,6 @@ final public class AimyboxImageReply: ImageReply, Decodable {
     
     static let jsonKey: String = "image"
 }
+
+#endif
+

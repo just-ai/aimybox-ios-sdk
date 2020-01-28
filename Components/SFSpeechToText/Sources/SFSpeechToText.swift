@@ -8,11 +8,8 @@
 
 import AVFoundation
 import Speech
-#if COCOAPODS
-#else
-import AimyboxCore
-import Utils
-#endif
+#if canImport(Aimybox)
+import Aimybox
 
 public class SFSpeechToText: AimyboxComponent, SpeechToText {
     /**
@@ -224,3 +221,5 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         }
     }
 }
+
+#endif

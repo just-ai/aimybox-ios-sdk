@@ -31,9 +31,15 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
         self.state = .standby
         self.nextAction = .nothing
         self.config = config
-        self.config.speechToText.notify = onSpeechToText
-        self.config.textToSpeech.notify = onTextToSpeech
-        self.config.dialogAPI.notify = onDialogAPI
+        self.config.speechToText.notify = { [weak self] event in
+            self?.onSpeechToText(event)
+        }
+        self.config.textToSpeech.notify = { [weak self] event in
+            self?.onTextToSpeech(event)
+        }
+        self.config.dialogAPI.notify = { [weak self] event in
+            self?.onDialogAPI(event)
+        }
     }
     
     // MARK: - Text to speech lifecycle
@@ -96,10 +102,17 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
         config.textToSpeech.synthesize(contentsOf: speech)
     }
     
+    public func cancelSynthesis() {
+        config.textToSpeech.cancelSynthesis()
+    }
+    
     // MARK: - State independent methods
 
     public func standby() {
-        switch state {
+        let oldState = state
+        state = .standby
+        
+        switch oldState {
         case .listening:
             config.speechToText.cancelRecognition()
         case .processing:
@@ -109,11 +122,13 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
         default:
             break
         }
-        
-        state = .standby
     }
     
     func stopSpeaking() {
+        guard case .speaking = state else {
+            return
+        }
+        
         config.textToSpeech.stop()
     }
     
@@ -170,7 +185,7 @@ extension AimyboxConcrete {
 
         case .emptyRecognitionResult, .recognitionCancelled:
             if state == .processing {
-                return 
+                return
             }
             
             standby()
@@ -181,6 +196,10 @@ extension AimyboxConcrete {
     }
     
     private func handle(_ error: SpeechToTextError) {
+        guard case .listening = state else {
+            return
+        }
+        
         standby()
     }
     
@@ -204,7 +223,9 @@ extension AimyboxConcrete {
             case .recognition:
                 startRecognition()
             case .standby:
-                standby()
+                if state != .processing {
+                    standby()
+                }
             }
         default:
             break

@@ -5,10 +5,8 @@
 //  Created by Vladislav Popovich on 13.12.2019.
 //
 
-#if COCOAPODS
-#else
-import AimyboxCore
-#endif
+#if canImport(Aimybox)
+import Aimybox
 
 public class AimyboxCustomSkill: CustomSkill {
 
@@ -28,3 +26,5 @@ public class AimyboxCustomSkill: CustomSkill {
         return response
     }
 }
+
+#endif

@@ -3,8 +3,8 @@
 # valid spec before submitting.
 
 Pod::Spec.new do |s|
-  s.name             = 'AimyboxCore'
-  s.version          = '0.0.1'
+  s.name             = 'Aimybox'
+  s.version          = '0.0.3'
   s.summary          = 'The only solution if you need to embed your own intelligent voice assistant into your existing application or device.'
 
   s.description      = 'Aimybox is a world-first open source independent voice assistant SDK and voice skills marketplace platform that enables you to create your own voice assistant or embed it into any application or device like robots or Raspberry Pi.'
@@ -17,25 +17,42 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/aimybox'
   s.ios.deployment_target = '11.4'
   s.swift_versions = '4.2'
-  s.source_files = 'AimyboxCore/**/*.{swift}', 'AimyboxCore/**/**/*.{swift}', 'AimyboxCore/**/**/**/*.{swift}'
-  s.exclude_files =  'AimyboxCore/**/*.{plist}', 'AimyboxCore/**/**/*.{plist}', 'AimyboxCore/**/**/**/*.{plist}'
+  s.default_subspecs = 'Core'
+
+  s.subspec 'Core' do |sp|
+    sp.source_files = 'AimyboxCore/**/*.{swift}', 'AimyboxCore/**/**/*.{swift}', 'AimyboxCore/**/**/**/*.{swift}'
+  end
+
+  s.subspec 'SFSpeechToText' do |sp|
+    sp.source_files  = 'Components/SFSpeechToText/Sources/*.{swift}'
+    sp.dependency 'Aimybox/Core'
+    sp.dependency 'Aimybox/Utils'
+  end
 
   s.subspec 'AimyboxDialogAPI' do |sp|
     sp.source_files  = 'Components/AimyboxDialogAPI/Sources/*.{swift}'
-    sp.exclude_files = 'Components/AimyboxDialogAPI/Sources/*.{plist}' 
-    sp.dependency 'AimyboxCore/Utils'
+    sp.dependency 'Aimybox/Core'
+    sp.dependency 'Aimybox/Utils'
   end
 
   s.subspec 'AVTextToSpeech' do |sp|
     sp.source_files  = 'Components/AVTextToSpeech/Sources/*.{swift}'
-    sp.exclude_files = 'Components/AVTextToSpeech/Sources/*.{plist}'
+    sp.dependency 'Aimybox/Core'
     sp.dependency 'AimyboxCore/Utils'
   end
 
   s.subspec 'SFSpeechToText' do |sp|
     sp.source_files  = 'Components/SFSpeechToText/Sources/*.{swift}'
-    sp.exclude_files = 'Components/SFSpeechToText/Sources/*.{plist}'
-    sp.dependency 'AimyboxCore/Utils'
+    sp.dependency 'Aimybox/Core'
+    sp.dependency 'Aimybox/Utils'
+  end
+
+  s.subspec 'YandexSpeechKit' do |sp|
+    sp.source_files  = 'Components/YandexSpeechKit/Sources/*.{swift}', 'Components/YandexSpeechKit/Sources/**/*.{swift}', 'Components/YandexSpeechKit/Sources/**/**/*.{swift}'
+    sp.dependency 'Aimybox/Core'
+    sp.dependency 'Aimybox/Utils'
+    sp.dependency 'SwiftGRPC'
+    sp.dependency 'SwiftProtobuf'
   end
 
   s.subspec 'Utils' do |sp|
