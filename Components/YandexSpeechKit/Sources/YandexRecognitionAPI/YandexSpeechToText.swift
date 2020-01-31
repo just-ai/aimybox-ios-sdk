@@ -13,10 +13,9 @@ import Aimybox
 
 public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     /**
-     Customize `config` parameter if you change recognition audioFormat.
+     Customize `config` parameter if you change recognition audioFormat in recognition config.
      */
     public var audioFormat: AVAudioFormat = .defaultFormat
-    
     /**
      Used to notify *Aimybox* state machine about events.
      */
@@ -36,15 +35,13 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
      Init that uses provided params.
      */
     public init?(
-        passport oAuhtToken: String,
+        tokenProvider: IAMTokenProvider,
         folderID: String,
         language code: String = "ru-RU",
-        iAmTokenAPIURL: URL = URL(string: "https://iam.api.cloud.yandex.net/iam/v1/tokens")!,
         sttAPIAdress: String = "stt.api.cloud.yandex.net:443",
         config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig? = nil
     ) {
-        let token = IAMTokenGenerator.token(api: iAmTokenAPIURL,
-                                            passport: oAuhtToken)
+        let token = tokenProvider.token()
         
         guard let iamToken = token?.iamToken else {
             return nil
