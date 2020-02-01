@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Aimybox'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'The only solution if you need to embed your own intelligent voice assistant into your existing application or device.'
 
   s.description      = 'Aimybox is a world-first open source independent voice assistant SDK and voice skills marketplace platform that enables you to create your own voice assistant or embed it into any application or device like robots or Raspberry Pi.'
@@ -41,9 +41,23 @@ Pod::Spec.new do |s|
     sp.dependency 'Aimybox/Utils'
   end
 
+  s.subspec 'SFSpeechToText' do |sp|
+    sp.source_files  = 'Components/SFSpeechToText/Sources/*.{swift}'
+    sp.dependency 'Aimybox/Core'
+    sp.dependency 'Aimybox/Utils'
+  end
+
+  s.subspec 'YandexSpeechKit' do |sp|
+    sp.source_files  = 'Components/YandexSpeechKit/Sources/*.{swift}', 'Components/YandexSpeechKit/Sources/**/*.{swift}', 'Components/YandexSpeechKit/Sources/**/**/*.{swift}'
+    sp.dependency 'Aimybox/Core'
+    sp.dependency 'Aimybox/Utils'
+    sp.dependency 'SwiftGRPC'
+    sp.dependency 'SwiftProtobuf'
+  end
 
   s.subspec 'Utils' do |sp|
     sp.source_files  = 'Utils/**/*.{swift}'
+    sp.exclude_files = 'Utils/**/*.{plist}'
   end
 
 end

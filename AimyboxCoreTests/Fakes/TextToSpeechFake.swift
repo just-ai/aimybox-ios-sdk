@@ -9,7 +9,7 @@
 import Foundation
 import AimyboxCore
 
-class TextToSpeechFake: AimyboxComponent, TextToSpeech {    
+class TextToSpeechFake: AimyboxComponent, TextToSpeech {
     
     var currentSpeech: [AimyboxSpeech]?
     
