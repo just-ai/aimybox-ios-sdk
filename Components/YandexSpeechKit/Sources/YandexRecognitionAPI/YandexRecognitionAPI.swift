@@ -17,7 +17,9 @@ class YandexRecognitionAPI {
     
     private var recognitionConfig: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig
     
-    private var client: Yandex_Cloud_Ai_Stt_V2_SttServiceServiceClient!
+    private var client: Yandex_Cloud_Ai_Stt_V2_SttServiceServiceClient?
+    
+    private var stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
     
     private var operationQueue: OperationQueue
     
@@ -40,7 +42,7 @@ class YandexRecognitionAPI {
     }
     
     public func openStream(
-        onOpen: @escaping (Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall)->(),
+        onOpen: @escaping (Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?)->(),
         onResponse: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse)->(),
         error handler: @escaping (Error)->(),
         completion: @escaping ()->()
@@ -55,15 +57,15 @@ class YandexRecognitionAPI {
         
         do {
             
-            try client.metadata.add(key: "authorization", value: "Bearer \(iAMToken)")
+            try client?.metadata.add(key: "authorization", value: "Bearer \(iAMToken)")
             
-            let stream = try client.streamingRecognize { [weak self] (result) in
+            stream = try client?.streamingRecognize { [weak self] (result) in
                 self?.operationQueue.addOperation {
                     result.success ? completion() : handler(NSError(domain: result.description, code: result.statusCode.rawValue, userInfo: nil))
                 }
             }
             
-            try stream.send(
+            try stream?.send(
                 Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with {
                     $0.config = recognitionConfig
                 }
@@ -72,34 +74,40 @@ class YandexRecognitionAPI {
             onOpen(stream)
             
             operationQueue.addOperation { [weak self] in
-                try? self?.receiveMessages(on: onResponse, error: handler, stream: stream)
+                try? self?.receiveMessages(on: onResponse, error: handler, stream: self?.stream)
             }
             
         } catch let grpc_error {
             handler(grpc_error)
         }
     }
-    
+
+    public func closeStream() {
+        stream = nil
+        client = nil
+    }
+
     private func receiveMessages(
         on response: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse)->(),
         error handler: @escaping (Error)->(),
-        stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall
+        stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
     ) throws {
-        try stream.receive { [weak self] result in
-        
-            switch result {
-            case .result(let object) where object != nil:
-                response(object!)
+        try stream?.receive { [weak self] result in
+            self?.operationQueue.addOperation {
+                switch result {
+                case .result(let object) where object != nil:
+                    response(object!)
+                    
+                case .error(let error):
+                    handler(error)
+                    
+                default:
+                    break
+                }
                 
-            case .error(let error):
-                handler(error)
-                
-            default:
-                break
-            }
-            
-            self?.operationQueue.addOperation { [weak self] in
-                try? self?.receiveMessages(on: response, error: handler, stream: stream)
+                self?.operationQueue.addOperation { [weak self] in
+                    try? self?.receiveMessages(on: response, error: handler, stream: stream)
+                }
             }
         }
     }

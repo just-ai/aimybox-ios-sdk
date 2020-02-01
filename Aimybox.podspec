@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Aimybox'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'The only solution if you need to embed your own intelligent voice assistant into your existing application or device.'
 
   s.description      = 'Aimybox is a world-first open source independent voice assistant SDK and voice skills marketplace platform that enables you to create your own voice assistant or embed it into any application or device like robots or Raspberry Pi.'

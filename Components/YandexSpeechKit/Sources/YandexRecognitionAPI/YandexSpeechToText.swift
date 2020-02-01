@@ -74,8 +74,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         audioEngine.stop()
         audioInputNode?.removeTap(onBus: 0)
         audioInputNode = nil
-        stream?.cancel()
-        try? stream?.closeSend { }
+        recognitionAPI.closeStream()
     }
     
     public func cancelRecognition() {
@@ -83,17 +82,12 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         audioInputNode?.removeTap(onBus: 0)
         audioInputNode = nil
         operationQueue.addOperation { [weak self] in
-            try? self?.stream?.closeSend { }
-            if self?.stream != nil {
-                self?.notify?(.success(.recognitionCancelled))
-            }
-            self?.stream = nil
+            self?.recognitionAPI.closeStream()
+            self?.notify?(.success(.recognitionCancelled))
         }
     }
      
     // MARK: - Internals
-    
-    private weak var stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
     
     private func onPermissionGranted() {
         prepareRecognition()
@@ -124,34 +118,28 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             let recordingFormat = audioFormat
             inputNode.removeTap(onBus: 0)
             inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [stream] buffer, time in
-                try? stream.send(
+                try? stream?.send(
                     Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with({ request in
                         guard let _bytes = buffer.int16ChannelData else { return }
                         
                         let channels = UnsafeBufferPointer(start: _bytes, count: Int(audioFormat.channelCount))
                         
                         request.audioContent = Data(bytesNoCopy: channels[0],
-                                               count: Int(buffer.frameCapacity*audioFormat.streamDescription.pointee.mBytesPerFrame),
-                                               deallocator: .none)
+                                                    count: Int(buffer.frameCapacity*audioFormat.streamDescription.pointee.mBytesPerFrame),
+                                                    deallocator: .none)
                     })
                 )
-                self?.stream = stream
             }
             
             self?.audioInputNode = inputNode
             audioEngine.prepare()
-            
-        }, onResponse: { [weak self] response in
-            
-            self?.proccessResults(response)
-            
-        }, error: { (error) in
-            
-            _notify(.failure(.speechRecognitionUnavailable))
-            
-        }, completion: { [weak self] in
-            
-            self?.stopRecognition()
+
+            }, onResponse: { [weak self] response in
+                self?.proccessResults(response)
+            }, error: { (error) in
+                _notify(.failure(.speechRecognitionUnavailable))
+            }, completion: { [weak self] in
+                self?.stopRecognition()
         })
     }
     
@@ -173,6 +161,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             return
         }
         
+        notify?(.success(.recognitionPartialResult(finalResult)))
         notify?(.success(.recognitionResult(finalResult)))
     }
 

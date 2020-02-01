@@ -80,16 +80,17 @@ class YandexSynthesisAPI {
                 return onResponse(nil)
             }
             
-            guard let _temp_url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?.appendingPathComponent("\(UUID().uuidString).wav") else {
+            guard let _local_url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+                .first?
+                .appendingPathComponent("\(UUID().uuidString).wav") else {
                 return onResponse(nil)
             }
             
+            try? WAVFileGenerator().createWAVFile(using: _local_data).write(to: _local_url)
             
-            try? WAVFileGenerator().createWAVFile(using: _local_data).write(to: _temp_url)
+            onResponse(_local_url)
             
-            onResponse(_temp_url)
-            
-            try? FileManager.default.removeItem(at: _temp_url)
+            try? FileManager.default.removeItem(at: _local_url)
         })
          
         DispatchQueue.global(qos: .userInitiated).async {
@@ -112,7 +113,7 @@ public extension YandexSynthesisConfig {
      */
     static let defaultConfig: YandexSynthesisConfig = {
         YandexSynthesisConfig(
-            voice: "oksana",
+            voice: "alena",
             emotion: "neutral",
             speed: 1.0,
             format: "lpcm",

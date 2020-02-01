@@ -30,9 +30,6 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     internal var notificationQueue: OperationQueue
     /**
      */
-    internal var blockGroup: DispatchGroup
-    /**
-     */
     internal var isCancelled: Bool = false
     /**
      */
@@ -47,7 +44,6 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     ) {
         synthesisConfig = config
         languageCode = code
-        blockGroup = DispatchGroup()
         notificationQueue = OperationQueue()
         super.init()
         guard let token = tokenProvider.token()?.iamToken else {
@@ -80,7 +76,9 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     }
     
     public func cancelSynthesis() {
-        isCancelled = true
+        operationQueue.addOperation { [weak self] in
+            self?.isCancelled = true
+        }
     }
     // MARK: - Internals
     
@@ -110,68 +108,35 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     }
     
     private func synthesize(_ textSpeech: TextSpeech) {
-        blockGroup.enter()
+        let synthesisGroup = DispatchGroup()
         
-        synthesisAPI.request(text: textSpeech.text, language: languageCode, config: synthesisConfig) { [weak self] url in
-            
-            guard let _local_url = url else {
-                self?.notify?(.failure(.emptySpeech(textSpeech)))
-                return
+        synthesisGroup.enter()
+        synthesisAPI.request(text: textSpeech.text, language: languageCode, config: synthesisConfig) { [unowned self] url in
+            if let _wav_url = url {
+                self.synthesize(textSpeech, using: _wav_url)
             }
-            
-            let myGroup = DispatchGroup()
-            
-            let player = AVPlayer(url: _local_url)
-            
-            let statusObservation = player.currentItem?.observe(\.status) { [weak self] (item, _) in
-                switch item.status {
-                case .failed:
-                    myGroup.leave()
-                    self?.notify?(.failure(.emptySpeech(textSpeech)))
-                    break
-                default:
-                    break
-                }
-            }
-
-            let didPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-                                                                          object: player.currentItem,
-                                                                          queue: self!.notificationQueue) { [weak self] _ in
-                self?.notify?(.success(.speechEnded(textSpeech)))
-                myGroup.leave()
-            }
-            let failedToPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemFailedToPlayToEndTime,
-                                                                                      object: player.currentItem,
-                                                                                      queue: self!.notificationQueue) { [weak self] _ in
-                self?.notify?(.failure(.emptySpeech(textSpeech)))
-                myGroup.leave()
-            }
-            DispatchQueue.main.async {
-                player.play()
-            }
-            
-            myGroup.wait()
-            
-            statusObservation?.invalidate()
-            NotificationCenter.default.removeObserver(didPlayToEndObservation)
-            NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
-    
+            synthesisGroup.leave()
         }
-        
-        blockGroup.wait()
+        synthesisGroup.wait()
     }
     
     private func synthesize(_ audioSpeech: AudioSpeech) {
-        blockGroup.enter()
+        synthesize(audioSpeech, using: audioSpeech.audioURL)
+    }
+    
+    private func synthesize(_ speech: AimyboxSpeech, using url: URL) {
+        guard let _notify = notify else { return }
         
-        let player = AVPlayer(url: audioSpeech.audioURL)
+        let synthesisGroup = DispatchGroup()
         
-        let statusObservation = player.currentItem?.observe(\.status) { [weak self] (item, _) in
+        let player = AVPlayer(url: url)
+        
+        let statusObservation = player.currentItem?.observe(\.status) { (item, _) in
             switch item.status {
             case .failed:
-                self?.blockGroup.leave()
-                self?.notify?(.failure(.emptySpeech(audioSpeech)))
-                break
+                _notify(.failure(.emptySpeech(speech)))
+                synthesisGroup.leave()
+                
             default:
                 break
             }
@@ -179,19 +144,20 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
 
         let didPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
                                                                       object: player.currentItem,
-                                                                      queue: notificationQueue) { [weak self] _ in
-            self?.notify?(.success(.speechEnded(audioSpeech)))
-            self?.blockGroup.leave()
+                                                                      queue: notificationQueue) { _ in
+            _notify(.success(.speechEnded(speech)))
+            synthesisGroup.leave()
         }
         let failedToPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemFailedToPlayToEndTime,
                                                                                   object: player.currentItem,
-                                                                                  queue: notificationQueue) { [weak self] _ in
-            self?.notify?(.failure(.emptySpeech(audioSpeech)))
-            self?.blockGroup.leave()
+                                                                                  queue: notificationQueue) { _ in
+            _notify(.failure(.emptySpeech(speech)))
+            synthesisGroup.leave()
         }
         
+        synthesisGroup.enter()
         player.play()
-        blockGroup.wait()
+        synthesisGroup.wait()
         
         statusObservation?.invalidate()
         NotificationCenter.default.removeObserver(didPlayToEndObservation)

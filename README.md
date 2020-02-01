@@ -89,6 +89,14 @@ Pods installation:
 
 `pod 'Aimybox/SFSpeechToText'`
 
+- **YandexSpeechToText**
+
+Speech recognition component that uses Yandex speech recognition of [Yandex.Cloud SpeechKit](https://cloud.yandex.ru/docs/speechkit/stt/).
+
+Pods installation: 
+
+`pod 'Aimybox/YandexSpeechToText'`
+
 ### TextToSpeech
 
 - **AVTextToSpeech**
@@ -100,6 +108,14 @@ Uses `AVSpeechUtterance` and `AVSpeechSynthesizer` for core functionality.
 Pods installation: 
 
 `pod 'Aimybox/AVTextToSpeech'`
+
+- **YandexTextToSpeech**
+
+Speech synthesizer component that uses Yandex speech synthesis of [Yandex.Cloud SpeechKit](https://cloud.yandex.ru/docs/speechkit/tts/).
+
+Pods installation: 
+
+`pod 'Aimybox/YandexTextToSpeech'`
 
 ### DialogAPI
 
