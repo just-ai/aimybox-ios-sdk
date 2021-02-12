@@ -97,7 +97,6 @@ internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: Aimy
     }
     
     public func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction) {
-        state = .speaking
         nextAction = action
         config.textToSpeech.synthesize(contentsOf: speech)
     }
@@ -227,6 +226,8 @@ extension AimyboxConcrete {
                     standby()
                 }
             }
+        case .speechSequenceStarted:
+            state = .speaking
         default:
             break
         }

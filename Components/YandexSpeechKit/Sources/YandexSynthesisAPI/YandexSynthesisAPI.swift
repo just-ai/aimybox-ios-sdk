@@ -100,12 +100,25 @@ class YandexSynthesisAPI {
 }
 
 public struct YandexSynthesisConfig {
-    
     var voice: String
     var emotion: String
     var speed: Float
     var format: String
     var sampleRateHertz: Int
+
+    public init(
+        voice: String,
+        emotion: String,
+        speed: Float,
+        format: String,
+        sampleRateHertz: Int
+    ) {
+        self.voice = voice
+        self.emotion = emotion
+        self.speed = speed
+        self.format = format
+        self.sampleRateHertz = sampleRateHertz
+    }
 }
 
 public extension YandexSynthesisConfig {
