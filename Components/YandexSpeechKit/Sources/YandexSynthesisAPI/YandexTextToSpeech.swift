@@ -24,7 +24,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     private var synthesisAPI: YandexSynthesisAPI!
     /**
     */
-    internal var player: AVPlayer?
+    internal var audioPlayer: AVAudioPlayer?
     /**
      */
     internal var notificationQueue: OperationQueue
@@ -57,7 +57,6 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     }
     
     public func synthesize(contentsOf speeches: [AimyboxSpeech]) {
-        isCancelled = false
         operationQueue.addOperation { [weak self] in
             self?.prepareAudioEngine { engineIsReady in
                 if engineIsReady {
@@ -71,8 +70,9 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     }
     
     public func stop() {
-        isCancelled = true
-        player?.pause()
+        operationQueue.addOperation { [weak self] in
+            self?.audioPlayer?.stop()
+        }
     }
     
     public func cancelSynthesis() {
@@ -96,11 +96,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             synthesize(speech)
         }
 
-        _notify(
-            isCancelled
-                ? .failure(.speechSequenceCancelled(speeches))
-                : .success(.speechSequenceCompleted(speeches))
-        )
+        _notify(.success(.speechSequenceCompleted(speeches)))
     }
     
     private func synthesize(_ speech: AimyboxSpeech) {
@@ -115,9 +111,9 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         let synthesisGroup = DispatchGroup()
         
         synthesisGroup.enter()
-        synthesisAPI.request(text: textSpeech.text, language: languageCode, config: synthesisConfig) { [weak self] url in
-            if let _wav_url = url, self?.isCancelled == false {
-                self?.synthesize(textSpeech, using: _wav_url)
+        synthesisAPI.request(text: textSpeech.text, language: languageCode, config: synthesisConfig) { [unowned self] url in
+            if let _wav_url = url {
+                self.synthesize(textSpeech, using: _wav_url)
             }
             synthesisGroup.leave()
         }
@@ -145,27 +141,26 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
                 break
             }
         }
-        let stopObservation = player.observe(\.rate) { (player, _) in
-            guard player.rate == 0 else { return }
+
+        let didPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                                                      object: player.currentItem,
+                                                                      queue: notificationQueue) { _ in
             _notify(.success(.speechEnded(speech)))
             synthesisGroup.leave()
         }
-
         let failedToPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemFailedToPlayToEndTime,
                                                                                   object: player.currentItem,
                                                                                   queue: notificationQueue) { _ in
             _notify(.failure(.emptySpeech(speech)))
             synthesisGroup.leave()
         }
-
+        
         synthesisGroup.enter()
-        self.player = player
-        isCancelled ? synthesisGroup.leave() : player.play()
+        player.play()
         synthesisGroup.wait()
-
-        self.player = nil
-        stopObservation.invalidate()
+        
         statusObservation?.invalidate()
+        NotificationCenter.default.removeObserver(didPlayToEndObservation)
         NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
     }
     
