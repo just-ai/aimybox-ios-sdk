@@ -107,12 +107,18 @@ public struct YandexSynthesisConfig {
     let format: String
     let sampleRateHertz: Int
 
-    public init(voice: String, emotion: String, speed: Float, format: String, sampleRateHertz: Int) {
-        self.voice = voice
-        self.emotion = emotion
-        self.speed = speed
-        self.format = format
-        self.sampleRateHertz = sampleRateHertz
+    public init(
+        voice: String? = nil,
+        emotion: String? = nil,
+        speed: Float? = nil,
+        format: String? = nil,
+        sampleRateHertz: Int? = nil
+    ) {
+        self.voice = voice ?? "alena"
+        self.emotion = emotion ?? "neutral"
+        self.speed = speed ?? 1.0
+        self.format = format ?? "lpcm"
+        self.sampleRateHertz = sampleRateHertz ?? 48000
     }
 
 }
@@ -120,14 +126,14 @@ public struct YandexSynthesisConfig {
 public extension YandexSynthesisConfig {
     /**
      */
-    static let defaultConfig: YandexSynthesisConfig = {
-        YandexSynthesisConfig(
-            voice: "alena",
-            emotion: "neutral",
-            speed: 1.0,
-            format: "lpcm",
-            sampleRateHertz: 48000)
-    }()
+//    static let defaultConfig: YandexSynthesisConfig = {
+//        YandexSynthesisConfig(
+//            voice: "alena",
+//            emotion: "neutral",
+//            speed: 1.0,
+//            format: "lpcm",
+//            sampleRateHertz: 48000)
+//    }()
     
     /** Used to build query items.
      */

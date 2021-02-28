@@ -39,7 +39,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         tokenProvider: IAMTokenProvider,
         folderID: String,
         language code: String = "ru-RU",
-        config: YandexSynthesisConfig = .defaultConfig,
+        config: YandexSynthesisConfig = YandexSynthesisConfig(),
         api address: URL = URL(string: "https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize")!
     ) {
         synthesisConfig = config
