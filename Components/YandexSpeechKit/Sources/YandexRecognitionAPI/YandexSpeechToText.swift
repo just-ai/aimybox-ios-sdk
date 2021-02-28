@@ -193,7 +193,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
 extension AVAudioFormat {
     static var defaultFormat: AVAudioFormat {
         AVAudioFormat(commonFormat: .pcmFormatInt16,
-                      sampleRate: 44100,
+                      sampleRate: 48000,
                       channels: 1,
                       interleaved: false)!
     }
