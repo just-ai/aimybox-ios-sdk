@@ -95,7 +95,7 @@ public final class SSMLDecoder: NSObject, XMLParserDelegate {
             guard let _p_tag_text = p_tag_text else { return }
 
             speeches.append(
-                TextSpeech(text: _p_tag_text)
+                TextSpeech(text: _p_tag_text.trimmingCharacters(in: .whitespaces))
             )
             p_tag_text = nil
         } else if elementName == audio_tag {
@@ -109,6 +109,11 @@ public final class SSMLDecoder: NSObject, XMLParserDelegate {
     }
     
     public func parser(_ parser: XMLParser, foundCharacters string: String) {
-        p_tag_text = string.trimmingCharacters(in: .whitespaces)
+        if p_tag_text == nil {
+            p_tag_text = string
+        } else {
+            p_tag_text?.append(string)
+        }
+
     }
 }
