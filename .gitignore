@@ -89,3 +89,6 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+Podfile.lock
+AimyboxCore.xcworkspace/contents.xcworkspacedata
+AimyboxCore.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
