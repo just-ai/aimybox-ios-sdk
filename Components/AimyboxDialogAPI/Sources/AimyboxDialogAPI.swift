@@ -30,7 +30,7 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     internal var route: URL
     
     public init<T: Reply>(
-        api_key: String,
+        api_key: String = "",
         unit_key: String,
         route: URL? = nil,
         replyTypes: [String: T.Type]
@@ -45,7 +45,7 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         registerReplyTypes(replyTypes)
     }
 
-    public init(api_key: String, unit_key: String, route: URL? = nil) {
+    public init(api_key: String = "", unit_key: String, route: URL? = nil) {
         self.api_key = api_key
         self.unit_key = unit_key
         self.route = route == nil ? AimyboxConstants.api_request_route : route!
