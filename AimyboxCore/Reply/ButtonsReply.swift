@@ -13,13 +13,13 @@ Represents a reply with which needs user interaction.
 public protocol ButtonsReply: Reply {
     /**
      */
-    var buttons: [Button] { get }
+    var buttons: [ButtonReply] { get }
 }
 
 /**
  Clickable button with which the user can quickly respond without using STT.
  */
-public protocol Button {
+public protocol ButtonReply: Reply {
     /**
      Text to be displayed in buttons interface.
      */

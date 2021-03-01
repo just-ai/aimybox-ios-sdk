@@ -9,7 +9,7 @@
 #if canImport(Aimybox)
 import Aimybox
 
-final public class AimyboxButton: Button, Decodable {
+final public class AimyboxButtonReply: ButtonReply, Decodable {
     
     public var text: String
     
@@ -23,14 +23,14 @@ final public class AimyboxButton: Button, Decodable {
 
 final public class AimyboxButtonsReply: ButtonsReply, Decodable {
 
-    public var buttons: [Button] {
-        get { typedButtons.compactMap { $0 as Button } }
-        set { typedButtons = newValue.compactMap { $0 as? AimyboxButton } }
+    public var buttons: [ButtonReply] {
+        get { typedButtons.compactMap { $0 as ButtonReply } }
+        set { typedButtons = newValue.compactMap { $0 as? AimyboxButtonReply } }
     }
     
-    public var typedButtons: [AimyboxButton]
+    public var typedButtons: [AimyboxButtonReply]
     
-    public init(buttons: [AimyboxButton]) {
+    public init(buttons: [AimyboxButtonReply]) {
         self.typedButtons = buttons
     }
     
