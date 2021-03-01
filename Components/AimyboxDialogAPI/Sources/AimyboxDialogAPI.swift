@@ -29,10 +29,30 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     
     internal var route: URL
     
+    public init<T: Reply>(
+        api_key: String,
+        unit_key: String,
+        route: URL? = nil,
+        replyTypes: [String: T.Type]
+    ) where T: Decodable {
+        self.api_key = api_key
+        self.unit_key = unit_key
+        self.route = route == nil ? AimyboxConstants.api_request_route : route!
+
+        super.init()
+
+        registerDefaultReplyTypes()
+        registerReplyTypes(replyTypes)
+    }
+
     public init(api_key: String, unit_key: String, route: URL? = nil) {
         self.api_key = api_key
         self.unit_key = unit_key
         self.route = route == nil ? AimyboxConstants.api_request_route : route!
+
+        super.init()
+
+        registerDefaultReplyTypes()
     }
 
     deinit {
@@ -72,7 +92,7 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
                 result = .failure(NSError(domain: "Missing response data", code: 204, userInfo: ["statusCode":code]))
                 return
             }
-            
+
             do {
                 let response = try JSONDecoder().decode(AimyboxResponse.self, from: _data)
                 result = .success(response)
@@ -96,6 +116,17 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         case .failure(let error):
             throw error
         }
+    }
+
+    private func registerDefaultReplyTypes() {
+        AimyboxResponse.registerReplyType(of: AimyboxTextReply.self, key: AimyboxTextReply.jsonKey)
+        AimyboxResponse.registerReplyType(of: AimyboxAudioReply.self, key: AimyboxAudioReply.jsonKey)
+        AimyboxResponse.registerReplyType(of: AimyboxImageReply.self, key: AimyboxImageReply.jsonKey)
+        AimyboxResponse.registerReplyType(of: AimyboxButtonsReply.self, key: AimyboxButtonsReply.jsonKey)
+    }
+
+    private func registerReplyTypes<T: Reply>(_ items: [String: T.Type]) where T: Decodable{
+        items.forEach { AimyboxResponse.registerReplyType(of: $0.value, key: $0.key) }
     }
 }
 
