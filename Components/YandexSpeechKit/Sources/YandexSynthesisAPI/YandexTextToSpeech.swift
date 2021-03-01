@@ -24,16 +24,16 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     private var synthesisAPI: YandexSynthesisAPI!
     /**
     */
-    internal var audioPlayer: AVAudioPlayer?
+    var audioPlayer: AVAudioPlayer?
     /**
      */
-    internal var notificationQueue: OperationQueue
+    var notificationQueue: OperationQueue
     /**
      */
-    internal var isCancelled: Bool = false
+    var isCancelled: Bool = false
     /**
      */
-    internal var synthesisConfig: YandexSynthesisConfig
+    var synthesisConfig: YandexSynthesisConfig
     
     public init?(
         tokenProvider: IAMTokenProvider,

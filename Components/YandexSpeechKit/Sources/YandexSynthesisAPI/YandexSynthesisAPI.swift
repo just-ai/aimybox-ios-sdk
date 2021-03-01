@@ -137,7 +137,7 @@ public extension YandexSynthesisConfig {
     
     /** Used to build query items.
      */
-    internal var asParams: [String : String] {
+    var asParams: [String : String] {
         var params = [String : String]()
         
         params["voice"] = voice

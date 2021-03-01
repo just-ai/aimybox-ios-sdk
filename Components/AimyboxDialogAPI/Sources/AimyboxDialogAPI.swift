@@ -23,11 +23,11 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     
     public var notify: (DialogAPICallback)?
     
-    internal var apiKey: String
+    var apiKey: String
     
-    internal var unitKey: String
+    var unitKey: String
     
-    internal var route: URL
+    var route: URL
     
     public init<T: Reply>(
         apiKey: String = "",

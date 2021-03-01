@@ -13,7 +13,7 @@ import Foundation
  
  For detailed info about methods available, refer to `Aimybox` protocol.
  */
-internal class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig {
+class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig {
     
     public weak var delegate: AimyboxDelegate?
     
