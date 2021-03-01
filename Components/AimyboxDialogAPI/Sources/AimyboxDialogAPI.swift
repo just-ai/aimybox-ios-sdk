@@ -23,20 +23,20 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     
     public var notify: (DialogAPICallback)?
     
-    internal var api_key: String
+    internal var apiKey: String
     
-    internal var unit_key: String
+    internal var unitKey: String
     
     internal var route: URL
     
     public init<T: Reply>(
-        api_key: String = "",
-        unit_key: String,
+        apiKey: String = "",
+        unitKey: String,
         route: URL? = nil,
         replyTypes: [String: T.Type]
     ) where T: Decodable {
-        self.api_key = api_key
-        self.unit_key = unit_key
+        self.apiKey = apiKey
+        self.unitKey = unitKey
         self.route = route == nil ? AimyboxConstants.api_request_route : route!
 
         super.init()
@@ -45,9 +45,9 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         registerReplyTypes(replyTypes)
     }
 
-    public init(api_key: String = "", unit_key: String, route: URL? = nil) {
-        self.api_key = api_key
-        self.unit_key = unit_key
+    public init(apiKey: String = "", unitKey: String, route: URL? = nil) {
+        self.apiKey = apiKey
+        self.unitKey = unitKey
         self.route = route == nil ? AimyboxConstants.api_request_route : route!
 
         super.init()
@@ -60,7 +60,7 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     }
     
     public func createRequest(query: String) -> AimyboxRequest {
-        return AimyboxRequest(query: query, apiKey: api_key, unitKey: unit_key, data: [:])
+        return AimyboxRequest(query: query, apiKey: apiKey, unitKey: unitKey, data: [:])
     }
 
     public func send(request: AimyboxRequest) throws -> AimyboxResponse {
