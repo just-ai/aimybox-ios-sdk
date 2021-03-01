@@ -9,11 +9,11 @@
 #if canImport(Aimybox)
 import Aimybox
 
-final public class AimyboxAudioReply: AudioReply, Decodable {
+final class AimyboxAudioReply: AudioReply, Decodable {
     
-    public var url: URL
+    var url: URL
     
-    public init(url: URL) {
+    init(url: URL) {
         self.url = url
     }
     

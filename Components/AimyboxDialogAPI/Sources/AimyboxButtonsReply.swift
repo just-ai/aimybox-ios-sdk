@@ -9,32 +9,32 @@
 #if canImport(Aimybox)
 import Aimybox
 
-final public class AimyboxButtonReply: ButtonReply, Decodable {
+final class AimyboxButtonReply: ButtonReply, Decodable {
     
-    public var text: String
+    var text: String
     
-    public var url: URL?
+    var url: URL?
     
-    public init(text: String, url: URL?) {
+    init(text: String, url: URL?) {
         self.text = text
         self.url = url
     }
 }
 
-final public class AimyboxButtonsReply: ButtonsReply, Decodable {
+final class AimyboxButtonsReply: ButtonsReply, Decodable {
 
-    public var buttons: [ButtonReply] {
+    var buttons: [ButtonReply] {
         get { typedButtons.compactMap { $0 as ButtonReply } }
         set { typedButtons = newValue.compactMap { $0 as? AimyboxButtonReply } }
     }
     
-    public var typedButtons: [AimyboxButtonReply]
+    var typedButtons: [AimyboxButtonReply]
     
-    public init(buttons: [AimyboxButtonReply]) {
+    init(buttons: [AimyboxButtonReply]) {
         self.typedButtons = buttons
     }
     
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case typedButtons = "buttons"
     }
     

@@ -29,22 +29,6 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     
     var route: URL
     
-    public init<T: Reply>(
-        apiKey: String = "",
-        unitKey: String,
-        route: URL? = nil,
-        replyTypes: [String: T.Type]
-    ) where T: Decodable {
-        self.apiKey = apiKey
-        self.unitKey = unitKey
-        self.route = route == nil ? AimyboxConstants.api_request_route : route!
-
-        super.init()
-
-        registerDefaultReplyTypes()
-        registerReplyTypes(replyTypes)
-    }
-
     public init(apiKey: String = "", unitKey: String, route: URL? = nil) {
         self.apiKey = apiKey
         self.unitKey = unitKey
@@ -125,9 +109,6 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         AimyboxResponse.registerReplyType(of: AimyboxButtonsReply.self, key: AimyboxButtonsReply.jsonKey)
     }
 
-    private func registerReplyTypes<T: Reply>(_ items: [String: T.Type]) where T: Decodable{
-        items.forEach { AimyboxResponse.registerReplyType(of: $0.value, key: $0.key) }
-    }
 }
 
 #endif

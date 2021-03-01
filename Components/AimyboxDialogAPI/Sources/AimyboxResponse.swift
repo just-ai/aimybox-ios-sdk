@@ -12,7 +12,7 @@ final public class AimyboxResponse: Response, Decodable {
 
     static var tableOfRepleis: [String: ReplayFactory] = [:]
 
-    static func registerReplyType<T: Reply>(of type: T.Type, key: String) where T: Decodable {
+    public static func registerReplyType<T: Reply>(of type: T.Type, key: String) where T: Decodable {
         Self.tableOfRepleis[key] = ReplayFactory { try $0.decode(type.self) }
     }
 
