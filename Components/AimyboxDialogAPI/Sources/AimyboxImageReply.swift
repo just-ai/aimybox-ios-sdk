@@ -9,7 +9,7 @@
 #if canImport(Aimybox)
 import Aimybox
 
-final public class AimyboxImageReply: ImageReply, Decodable {
+final class AimyboxImageReply: ImageReply, Decodable {
     
     public var url: URL
     

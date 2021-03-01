@@ -9,7 +9,7 @@
 #if canImport(Aimybox)
 import Aimybox
 
-final public class AimyboxTextReply: TextReply, Decodable {
+final class AimyboxTextReply: TextReply, Decodable {
     
     public var text: String
     
