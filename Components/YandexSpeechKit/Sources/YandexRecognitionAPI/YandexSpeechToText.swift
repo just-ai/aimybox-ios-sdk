@@ -32,6 +32,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
      */
     private var recognitionAPI: YandexRecognitionAPI!
     /**
+     */
+    private var wasSpeechStopped: Bool = true
+    /**
      Init that uses provided params.
      */
     public init?(
@@ -60,6 +63,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
     
     public func startRecognition() {
+        guard wasSpeechStopped else { return }
+        wasSpeechStopped = false
+
         checkPermissions { [weak self] result in
             switch result {
             case .success:
@@ -71,6 +77,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
     
     public func stopRecognition() {
+        wasSpeechStopped = true
         audioEngine.stop()
         audioInputNode?.removeTap(onBus: 0)
         audioInputNode = nil
@@ -78,6 +85,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
     
     public func cancelRecognition() {
+        wasSpeechStopped = true
         audioEngine.stop()
         audioInputNode?.removeTap(onBus: 0)
         audioInputNode = nil
@@ -91,6 +99,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     
     private func onPermissionGranted() {
         prepareRecognition()
+        guard !wasSpeechStopped else { return }
+
         do {
             try audioEngine.start()
             notify?(.success(.recognitionStarted))
@@ -103,8 +113,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         guard let _notify = notify else { return }
         
         // Setup AudioSession for recording
+        let audioSession = AVAudioSession.sharedInstance()
         do {
-            let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(.record)
             try audioSession.setMode(.measurement)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
@@ -113,14 +123,50 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         }
         
         recognitionAPI.openStream(onOpen: { [audioEngine, weak self, audioFormat] (stream) in
-            
             let inputNode = audioEngine.inputNode
+            let inputFormat = inputNode.outputFormat(forBus: 0)
             let recordingFormat = audioFormat
+
+            try? audioSession.setPreferredSampleRate(inputFormat.sampleRate)
+
+            let converter = AVAudioConverter(from: inputFormat, to: recordingFormat)
+            let ratio = Float(inputFormat.sampleRate) / Float(
+                recordingFormat.sampleRate > 0 ? recordingFormat.sampleRate : AVAudioFormat.defaultFormat.sampleRate
+            )
+
             inputNode.removeTap(onBus: 0)
-            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [stream] buffer, time in
+            inputNode.installTap(onBus: 0, bufferSize: 1024, format: inputFormat) { [weak stream] buffer, time in
                 try? stream?.send(
                     Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with({ request in
-                        guard let _bytes = buffer.int16ChannelData else { return }
+                        let capacity = UInt32(Float(buffer.frameCapacity) / Float(ratio > 0 ? ratio : 1))
+                        guard let outputBuffer = AVAudioPCMBuffer(
+                            pcmFormat: recordingFormat,
+                            frameCapacity: capacity
+                        ) else {
+                            return
+                        }
+
+                        outputBuffer.frameLength = outputBuffer.frameCapacity
+
+                        let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
+                            outStatus.pointee = AVAudioConverterInputStatus.haveData
+                            return buffer
+                        }
+
+                        let status = converter?.convert(
+                            to: outputBuffer,
+                            error: nil,
+                            withInputFrom: inputBlock
+                        )
+
+                        switch status {
+                        case .error:
+                            return
+                        default:
+                            break
+                        }
+
+                        guard let _bytes = outputBuffer.int16ChannelData else { return }
                         
                         let channels = UnsafeBufferPointer(start: _bytes, count: Int(audioFormat.channelCount))
                         
@@ -130,7 +176,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
                     })
                 )
             }
-            
+
             self?.audioInputNode = inputNode
             audioEngine.prepare()
 
@@ -144,8 +190,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
     
     private func proccessResults(_ response: Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) {
-        
-        guard let phrase = response.chunks.first, let bestAlternative = phrase.alternatives.first else {
+        guard !wasSpeechStopped, let phrase = response.chunks.first, let bestAlternative = phrase.alternatives.first else {
             return
         }
 

@@ -83,7 +83,9 @@ class YandexRecognitionAPI {
     }
 
     public func closeStream() {
-        stream = nil
+        try? stream?.closeSend { [weak self] in
+            self?.stream = nil
+        }
         client = nil
     }
 
@@ -92,7 +94,7 @@ class YandexRecognitionAPI {
         error handler: @escaping (Error)->(),
         stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
     ) throws {
-        try stream?.receive { [weak self] result in
+        try stream?.receive { [weak self, weak stream] result in
             self?.operationQueue.addOperation {
                 switch result {
                 case .result(let object) where object != nil:
