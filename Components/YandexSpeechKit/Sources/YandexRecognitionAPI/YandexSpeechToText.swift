@@ -117,7 +117,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             let inputNode = audioEngine.inputNode
             let recordingFormat = audioFormat
             inputNode.removeTap(onBus: 0)
-            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [stream] buffer, time in
+            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak stream] buffer, time in
                 try? stream?.send(
                     Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with({ request in
                         guard let _bytes = buffer.int16ChannelData else { return }
