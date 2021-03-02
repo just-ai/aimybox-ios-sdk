@@ -238,7 +238,12 @@ extension AimyboxConcrete {
         case .emptySpeech:
             break
         default:
-            standby()
+            switch error {
+            case .speechSequenceCancelled:
+                break
+            default:
+                standby()
+            }
         }
     }
     
