@@ -32,6 +32,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
      */
     private var recognitionAPI: YandexRecognitionAPI!
     /**
+     */
+    private var wasSpeechStopped: Bool = true
+    /**
      Init that uses provided params.
      */
     public init?(
@@ -60,6 +63,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
     
     public func startRecognition() {
+        guard wasSpeechStopped else { return }
+        wasSpeechStopped = false
+
         checkPermissions { [weak self] result in
             switch result {
             case .success:
@@ -71,6 +77,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
     
     public func stopRecognition() {
+        wasSpeechStopped = true
         audioEngine.stop()
         audioInputNode?.removeTap(onBus: 0)
         audioInputNode = nil
@@ -78,6 +85,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
     
     public func cancelRecognition() {
+        wasSpeechStopped = true
         audioEngine.stop()
         audioInputNode?.removeTap(onBus: 0)
         audioInputNode = nil
@@ -91,6 +99,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     
     private func onPermissionGranted() {
         prepareRecognition()
+        guard !wasSpeechStopped else { return }
+
         do {
             try audioEngine.start()
             notify?(.success(.recognitionStarted))
@@ -144,8 +154,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
     
     private func proccessResults(_ response: Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) {
-        
-        guard let phrase = response.chunks.first, let bestAlternative = phrase.alternatives.first else {
+        guard !wasSpeechStopped, let phrase = response.chunks.first, let bestAlternative = phrase.alternatives.first else {
             return
         }
 
