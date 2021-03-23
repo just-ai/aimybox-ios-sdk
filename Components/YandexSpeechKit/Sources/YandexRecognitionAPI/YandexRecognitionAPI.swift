@@ -31,7 +31,7 @@ class YandexRecognitionAPI {
         config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig? = nil,
         operation queue: OperationQueue
     ) {
-        recognitionConfig = config == nil ? .defaultConfig : config!
+        recognitionConfig = config ?? .defaultConfig
         
         recognitionConfig.specification.languageCode = code
         recognitionConfig.folderID = folderID
