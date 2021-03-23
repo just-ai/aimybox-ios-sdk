@@ -8,24 +8,24 @@
 
 import Foundation
 
-class WAVFileGenerator {
+final class WAVFileGenerator {
     
     func createWAVFile(using rawData: Data) -> Data {
-        return createWaveHeader(data: rawData) + rawData
+        createWaveHeader(data: rawData) + rawData
     }
     
     /** http://soundfile.sapp.org/doc/WaveFormat/
      */
     private func createWaveHeader(data: Data) -> Data {
         
-        let sampleRate:Int32 = 48000
-        let dataSize:Int32 = Int32(data.count)
-        let chunkSize:Int32 = 36 + dataSize
-        let subChunkSize:Int32 = 16
-        let format:Int16 = 1
-        let channels:Int16 = 1
-        let bitsPerSample:Int16 = 16
-        let byteRate:Int32 = sampleRate * Int32(channels * bitsPerSample / 8)
+        let sampleRate: Int32 = 48000
+        let dataSize: Int32 = Int32(data.count)
+        let chunkSize: Int32 = 36 + dataSize
+        let subChunkSize: Int32 = 16
+        let format: Int16 = 1
+        let channels: Int16 = 1
+        let bitsPerSample: Int16 = 16
+        let byteRate: Int32 = sampleRate * Int32(channels * bitsPerSample / 8)
         let blockAlign: Int16 = channels * bitsPerSample / 8
         
         var header = Data()
@@ -46,8 +46,10 @@ class WAVFileGenerator {
 
         return header
     }
-    
+
+    private
     func byteArray<T>(_ value: T) -> [UInt8] where T: FixedWidthInteger {
-        return withUnsafeBytes(of: value.littleEndian) { Array($0) }
+        withUnsafeBytes(of: value.littleEndian) { Array($0) }
     }
+
 }
