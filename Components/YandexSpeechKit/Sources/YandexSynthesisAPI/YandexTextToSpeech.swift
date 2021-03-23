@@ -21,7 +21,12 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     private var languageCode: String
     /** Yandex Cloud Synthesis
      */
-    private var synthesisAPI: YandexSynthesisAPI!
+    private lazy var synthesisAPI = YandexSynthesisAPI(
+        iAMToken: token,
+        folderId: folderID,
+        api: address,
+        operation: operationQueue
+    )
     /**
     */
     var player: AVPlayer?
@@ -34,7 +39,13 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
      */
     var synthesisConfig: YandexSynthesisConfig
-    
+
+    private let token: String
+
+    private let folderID: String
+
+    private let address: URL
+
     public init?(
         tokenProvider: IAMTokenProvider,
         folderID: String,
@@ -42,18 +53,16 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         config: YandexSynthesisConfig = YandexSynthesisConfig(),
         api address: URL = URL(string: "https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize")!
     ) {
-        synthesisConfig = config
-        languageCode = code
-        notificationQueue = OperationQueue()
-        super.init()
+        self.synthesisConfig = config
+        self.languageCode = code
+        self.notificationQueue = OperationQueue()
         guard let token = tokenProvider.token()?.iamToken else {
             return nil
         }
-        
-        synthesisAPI = YandexSynthesisAPI(iAMToken: token,
-                                          folderId: folderID,
-                                          api: address,
-                                          operation: operationQueue)
+        self.token = token
+        self.folderID = folderID
+        self.address = address
+        super.init()
     }
     
     public func synthesize(contentsOf speeches: [AimyboxSpeech]) {
