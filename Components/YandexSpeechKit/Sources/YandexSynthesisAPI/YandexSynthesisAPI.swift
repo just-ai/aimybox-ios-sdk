@@ -65,7 +65,7 @@ final class YandexSynthesisAPI {
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         if dataLoggingEnabled {
-            request.addValue(xDataLoggingEnabledKey, forHTTPHeaderField: "true")
+            request.addValue("true", forHTTPHeaderField: xDataLoggingEnabledKey)
         }
         perform(request, onResponse: completion)
     }
