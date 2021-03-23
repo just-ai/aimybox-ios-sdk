@@ -30,10 +30,29 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     private var audioInputNode: AVAudioNode?
     /**
      */
-    private var recognitionAPI: YandexRecognitionAPI!
+    private lazy var recognitionAPI = YandexRecognitionAPI(
+        iAM: iamToken,
+        folderID: folderID,
+        language: languageCode,
+        api: sttAPIAdress,
+        config: config,
+        operation: operationQueue
+    )
     /**
      */
     private var wasSpeechStopped: Bool = true
+
+    private let iamToken: String
+
+    private let folderID: String
+
+    private let languageCode: String
+
+    private let sttAPIAdress: String
+
+    private let config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig?
+
+
     /**
      Init that uses provided params.
      */
@@ -49,17 +68,15 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         guard let iamToken = token?.iamToken else {
             return nil
         }
-        
-        audioEngine = AVAudioEngine()
+
+        self.iamToken = iamToken
+        self.folderID = folderID
+        self.languageCode = code
+        self.sttAPIAdress = sttAPIAdress
+        self.config = config
+        self.audioEngine = AVAudioEngine()
         
         super.init()
-        
-        recognitionAPI = YandexRecognitionAPI(iAM: iamToken,
-                                              folderID: folderID,
-                                              language: code,
-                                              api: sttAPIAdress,
-                                              config: config,
-                                              operation: operationQueue)
     }
     
     public func startRecognition() {
