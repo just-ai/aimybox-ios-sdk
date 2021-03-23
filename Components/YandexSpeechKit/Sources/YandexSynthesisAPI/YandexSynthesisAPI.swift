@@ -20,17 +20,21 @@ class YandexSynthesisAPI {
     private var address: URL
     
     private var operationQueue: OperationQueue
-    
+
+    private let dataLoggingEnabled: Bool
+
     init(
         iAMToken: String,
         folderId: String,
         api address: URL,
-        operation queue: OperationQueue
+        operation queue: OperationQueue,
+        dataLoggingEnabled: Bool
     ) {
         self.token = iAMToken
         self.folderId = folderId
         self.operationQueue = queue
         self.address = address
+        self.dataLoggingEnabled = dataLoggingEnabled
     }
     
     func request(
@@ -59,7 +63,9 @@ class YandexSynthesisAPI {
         request.httpMethod = "POST"
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
-        
+        if dataLoggingEnabled {
+            request.addValue(xDataLoggingEnabledKey, forHTTPHeaderField: "true")
+        }
         perform(request, onResponse: completion)
     }
     

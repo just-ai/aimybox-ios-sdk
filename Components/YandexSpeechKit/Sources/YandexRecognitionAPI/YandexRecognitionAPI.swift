@@ -22,6 +22,8 @@ class YandexRecognitionAPI {
     private var stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
     
     private var operationQueue: OperationQueue
+
+    private let dataLoggingEnabled: Bool
     
     init(
         iAM token: String,
@@ -29,6 +31,7 @@ class YandexRecognitionAPI {
         language code: String = "ru-RU",
         api adress: String = "stt.api.cloud.yandex.net:443",
         config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig? = nil,
+        dataLoggingEnabled: Bool,
         operation queue: OperationQueue
     ) {
         recognitionConfig = config ?? .defaultConfig
@@ -39,6 +42,7 @@ class YandexRecognitionAPI {
         operationQueue = queue
         apiAdress = adress
         iAMToken = token
+        self.dataLoggingEnabled = dataLoggingEnabled
     }
     
     public func openStream(
@@ -58,7 +62,10 @@ class YandexRecognitionAPI {
         do {
             
             try client?.metadata.add(key: "authorization", value: "Bearer \(iAMToken)")
-            
+            if dataLoggingEnabled {
+                try client?.metadata.add(key: xDataLoggingEnabledKey, value: "true")
+            }
+
             stream = try client?.streamingRecognize { [weak self] (result) in
                 self?.operationQueue.addOperation {
                     result.success ? completion() : handler(NSError(domain: result.description, code: result.statusCode.rawValue, userInfo: nil))
@@ -131,3 +138,5 @@ extension Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
         }
     }
 }
+
+let xDataLoggingEnabledKey = "x-data-logging-enabled"

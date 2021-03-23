@@ -36,6 +36,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         language: languageCode,
         api: sttAPIAdress,
         config: config,
+        dataLoggingEnabled: dataLoggingEnabled,
         operation: operationQueue
     )
     /**
@@ -52,6 +53,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
     private let config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig?
 
+    private let dataLoggingEnabled: Bool
 
     /**
      Init that uses provided params.
@@ -61,7 +63,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         folderID: String,
         language code: String = "ru-RU",
         sttAPIAdress: String = "stt.api.cloud.yandex.net:443",
-        config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig? = nil
+        config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig? = nil,
+        dataLoggingEnabled: Bool = false
     ) {
         let token = tokenProvider.token()
         
@@ -75,7 +78,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         self.sttAPIAdress = sttAPIAdress
         self.config = config
         self.audioEngine = AVAudioEngine()
-        
+        self.dataLoggingEnabled = dataLoggingEnabled
         super.init()
     }
     
