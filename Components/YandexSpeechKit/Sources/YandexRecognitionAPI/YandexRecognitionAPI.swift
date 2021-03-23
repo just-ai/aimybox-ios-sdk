@@ -9,22 +9,22 @@
 import Foundation
 import SwiftGRPC
 
-class YandexRecognitionAPI {
-    
-    private var iAMToken: String
-    
-    private var apiAdress: String
-    
-    private var recognitionConfig: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig
-    
-    private var client: Yandex_Cloud_Ai_Stt_V2_SttServiceServiceClient?
-    
-    private var stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
-    
-    private var operationQueue: OperationQueue
+final class YandexRecognitionAPI {
+
+    private let apiAdress: String
 
     private let dataLoggingEnabled: Bool
-    
+
+    private let iAMToken: String
+
+    private let operationQueue: OperationQueue
+
+    private let recognitionConfig: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig
+
+    private var client: Yandex_Cloud_Ai_Stt_V2_SttServiceServiceClient?
+
+    private var stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
+
     init(
         iAM token: String,
         folderID: String,
@@ -34,15 +34,11 @@ class YandexRecognitionAPI {
         dataLoggingEnabled: Bool,
         operation queue: OperationQueue
     ) {
-        recognitionConfig = config ?? .defaultConfig
-        
-        recognitionConfig.specification.languageCode = code
-        recognitionConfig.folderID = folderID
-        
-        operationQueue = queue
-        apiAdress = adress
-        iAMToken = token
+        self.apiAdress = adress
         self.dataLoggingEnabled = dataLoggingEnabled
+        self.iAMToken = token
+        self.operationQueue = queue
+        self.recognitionConfig = config ?? .defaultConfig(folderID: folderID, language: code)
     }
     
     public func openStream(
@@ -120,12 +116,14 @@ class YandexRecognitionAPI {
             }
         }
     }
+
 }
 
 extension Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
     
-    static var defaultConfig: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
+    static func defaultConfig(folderID: String, language code: String) -> Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
         Yandex_Cloud_Ai_Stt_V2_RecognitionConfig.with {
+            $0.folderID = folderID
             $0.specification = Yandex_Cloud_Ai_Stt_V2_RecognitionSpec.with {
                 $0.model = "general"
                 $0.profanityFilter = true
@@ -134,6 +132,7 @@ extension Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
                 $0.sampleRateHertz = 48000
                 $0.audioChannelCount = 1
                 $0.singleUtterance = true
+                $0.languageCode = code
             }
         }
     }
