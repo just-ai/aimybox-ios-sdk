@@ -22,7 +22,7 @@ public class IAMTokenGenerator: IAMTokenProvider {
     
     public init(
         passport: String,
-        api tokenURL: URL = URL(string: "https://iam.api.cloud.yandex.net/iam/v1/tokens")!
+        api tokenURL: URL = URL(static: "https://iam.api.cloud.yandex.net/iam/v1/tokens")
     ) {
         self.tokenURL = tokenURL
         self.passport = passport

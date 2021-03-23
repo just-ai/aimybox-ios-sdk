@@ -10,7 +10,7 @@ import Aimybox
 
 fileprivate struct AimyboxConstants {
 
-    private static let api_base_route = URL(string: "https://api.aimybox.com")!
+    private static let api_base_route = URL(static: "https://api.aimybox.com")
     
     public static let api_request_route = api_base_route.appendingPathComponent("/request")
 }

@@ -28,6 +28,18 @@ public class DispatchDebouncer {
     }
 }
 
+public extension URL {
+
+    init(static string: StaticString) {
+        guard let result = URL(string: String(describing: string)) else {
+            preconditionFailure("Can not represent a URL")
+        }
+        self = result
+    }
+
+}
+
+
 /**
  Decoding extensions.
  */
@@ -54,4 +66,3 @@ extension Optional {
     }
     
 }
-
