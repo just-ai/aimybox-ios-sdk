@@ -124,16 +124,6 @@ public struct YandexSynthesisConfig {
 }
 
 public extension YandexSynthesisConfig {
-    /**
-     */
-//    static let defaultConfig: YandexSynthesisConfig = {
-//        YandexSynthesisConfig(
-//            voice: "alena",
-//            emotion: "neutral",
-//            speed: 1.0,
-//            format: "lpcm",
-//            sampleRateHertz: 48000)
-//    }()
     
     /** Used to build query items.
      */
