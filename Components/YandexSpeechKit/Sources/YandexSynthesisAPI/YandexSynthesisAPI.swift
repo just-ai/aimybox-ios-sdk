@@ -53,7 +53,10 @@ final class YandexSynthesisAPI {
         
         components.queryItems = queries
 
-        guard let url = components.url else {
+        guard
+            let str = components.url?.absoluteString.replacingOccurrences(of: "+", with: "%2B"),
+            let url = URL(string: str)
+        else {
             return
         }
 
