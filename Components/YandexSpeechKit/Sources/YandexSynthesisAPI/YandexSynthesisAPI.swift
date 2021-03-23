@@ -9,19 +9,17 @@
 import Foundation
 import AVFoundation
 
-class YandexSynthesisAPI {
- 
-    /** IAMToken, used for auth.
-     */
-    private var token: String
-    
-    private var folderId: String
-    
-    private var address: URL
-    
-    private var operationQueue: OperationQueue
+final class YandexSynthesisAPI {
+
+    private let address: URL
 
     private let dataLoggingEnabled: Bool
+
+    private let folderId: String
+
+    private let operationQueue: OperationQueue
+
+    private let token: String
 
     init(
         iAMToken: String,
@@ -30,18 +28,18 @@ class YandexSynthesisAPI {
         operation queue: OperationQueue,
         dataLoggingEnabled: Bool
     ) {
-        self.token = iAMToken
-        self.folderId = folderId
-        self.operationQueue = queue
         self.address = address
         self.dataLoggingEnabled = dataLoggingEnabled
+        self.folderId = folderId
+        self.operationQueue = queue
+        self.token = iAMToken
     }
     
     func request(
         text: String,
         language code: String,
         config: YandexSynthesisConfig,
-        onResponse completion: @escaping (URL?)->()
+        onResponse completion: @escaping (URL?) -> Void
     ) {
         var components = URLComponents(url: address, resolvingAgainstBaseURL: true)!
         
@@ -69,11 +67,8 @@ class YandexSynthesisAPI {
         perform(request, onResponse: completion)
     }
     
-    private func perform(
-        _ request: URLRequest,
-        onResponse: @escaping (URL?)->()
-    ) {
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+    private func perform(_ request: URLRequest, onResponse: @escaping (URL?) -> Void) {
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 return onResponse(nil)
             }
@@ -97,21 +92,26 @@ class YandexSynthesisAPI {
             onResponse(_local_url)
             
             try? FileManager.default.removeItem(at: _local_url)
-        })
+        }
          
         DispatchQueue.global(qos: .userInitiated).async {
             task.resume()
         }
     }
+
 }
 
 public struct YandexSynthesisConfig {
     
-    let voice: String
     let emotion: String
-    let speed: Float
+
     let format: String
+
     let sampleRateHertz: Int
+
+    let speed: Float
+
+    let voice: String
 
     public init(
         voice: String? = nil,
@@ -130,18 +130,16 @@ public struct YandexSynthesisConfig {
 }
 
 public extension YandexSynthesisConfig {
-    
-    /** Used to build query items.
-     */
+
     var asParams: [String : String] {
         var params = [String : String]()
         
-        params["voice"] = voice
         params["emotion"] = emotion
-        params["speed"] = String(speed)
         params["format"] = format
         params["sampleRateHertz"] = String(sampleRateHertz)
-        
+        params["speed"] = String(speed)
+        params["voice"] = voice
+
         return params
     }
 }
