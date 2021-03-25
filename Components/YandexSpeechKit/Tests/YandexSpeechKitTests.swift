@@ -1,4 +1,4 @@
-    //
+//
 //  YandexSpeechKitTests.swift
 //  YandexSpeechKitTests
 //
