@@ -59,8 +59,10 @@ extension Optional {
 
     public func or(_ defaultUnwrapped: Wrapped) -> Wrapped {
         switch self {
-        case .none:              return defaultUnwrapped
-        case .some(let wrapped): return wrapped
+        case .none:
+            return defaultUnwrapped
+        case .some(let wrapped):
+            return wrapped
         }
     }
 

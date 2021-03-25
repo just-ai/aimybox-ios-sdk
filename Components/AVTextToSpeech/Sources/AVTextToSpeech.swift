@@ -162,7 +162,6 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
             case .failed:
                 self?.blockGroup.leave()
                 self?.notify?(.failure(.emptySpeech(audioSpeech)))
-                break
             default:
                 break
             }
