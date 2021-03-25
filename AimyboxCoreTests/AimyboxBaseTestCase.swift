@@ -259,11 +259,13 @@ open class AimyboxBaseTestCase: XCTestCase {
 }
 
 public extension DispatchSemaphore {
-    @inline(__always) func waitOrFail(timeout: DispatchTime = .now() + 5.0) {
+    @inline(__always)
+    func waitOrFail(timeout: DispatchTime = .now() + 5.0) {
         XCTAssertEqual(wait(timeout: timeout), .success, "Timeout for event wait.")
     }
 
-    @inline(__always) func waitOrPass(timeout: DispatchTime = .now() + 5.0) {
+    @inline(__always)
+    func waitOrPass(timeout: DispatchTime = .now() + 5.0) {
         XCTAssertEqual(wait(timeout: timeout), .timedOut, "Timeout for event pass.")
     }
 }
