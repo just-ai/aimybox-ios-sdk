@@ -8,12 +8,12 @@
 import Foundation
 
 /**
- Represents a reply with audio content, which should be played.
- */
+Represents a reply with audio content, which should be played.
+*/
 public protocol AudioReply: Reply {
     /**
-     URL to the audio source.
-     */
+    URL to the audio source.
+    */
     var url: URL { get }
 }
 

@@ -13,48 +13,48 @@ import Aimybox
 
 public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
-     The rate at which the utterance will be spoken. The default rate is *AVSpeechUtteranceDefaultSpeechRate*
-     */
+    The rate at which the utterance will be spoken. The default rate is *AVSpeechUtteranceDefaultSpeechRate*
+    */
     public var rate: Float
     /**
-     The voice used to speak the utterance.
-     */
+    The voice used to speak the utterance.
+    */
     public var voice: AVSpeechSynthesisVoice?
     /**
-     The volume used when speaking the utterance. Allowed values are in t
-     he range from 0.0 (silent) to 1.0 (loudest). The default volume is 1.0.
-     */
+    The volume used when speaking the utterance. Allowed values are in t
+    he range from 0.0 (silent) to 1.0 (loudest). The default volume is 1.0.
+    */
     public var volume: Float
     /**
-     The default pitch is 1.0. Allowed values are in the range from 0.5 (for lower pitch) to 2.0 (for higher pitch).
-     */
+    The default pitch is 1.0. Allowed values are in the range from 0.5 (for lower pitch) to 2.0 (for higher pitch).
+    */
     public var pitchMultiplier: Float
     /**
-     Used to notify *Aimybox* state machine about events.
-     */
+    Used to notify *Aimybox* state machine about events.
+    */
     public var notify: (TextToSpeechCallback)?
     /**
-     Speech synthesizer. You can customize it using public props above.
-     */
+    Speech synthesizer. You can customize it using public props above.
+    */
     private var speechSynthesizer: AVSpeechSynthesizer
     /**
-     To notify about start/end of synthesizing.
-     */
+    To notify about start/end of synthesizing.
+    */
     internal var textQueue: [AVSpeechUtterance: AimyboxSpeech]
     /**
-     */
+    */
     public var blockGroup: DispatchGroup
     /**
-     */
+    */
     internal var speechDelegate: AVTextToSpeechDelegate
     /**
     */
     internal var audioPlayer: AVAudioPlayer?
     /**
-     */
+    */
     internal var notificationQueue: OperationQueue
     /**
-     */
+    */
     internal var isCancelled: Bool = false
 
     private override init() {

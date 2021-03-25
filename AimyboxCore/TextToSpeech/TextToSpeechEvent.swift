@@ -9,24 +9,24 @@ import Foundation
 
 public enum TextToSpeechEvent {
     /**
-     Happens when TextToSpeech actually starts to synthesise a list of speeches.
-     */
+    Happens when TextToSpeech actually starts to synthesise a list of speeches.
+    */
     case speechSequenceStarted([AimyboxSpeech])
     /**
-     Happens when TextToSpeech starts to synthesise the next speech from the list of speeches.
-     */
+    Happens when TextToSpeech starts to synthesise the next speech from the list of speeches.
+    */
     case speechStarted(AimyboxSpeech)
     /**
-     Happens when TextToSpeech ends to synthesise the current speech.
-     */
+    Happens when TextToSpeech ends to synthesise the current speech.
+    */
     case speechEnded(AimyboxSpeech)
     /**
-     Happens when TextToSpeech ends to synthesise the whole list of speeches.
-     */
+    Happens when TextToSpeech ends to synthesise the whole list of speeches.
+    */
     case speechSequenceCompleted([AimyboxSpeech])
     /**
-     Happens when TextToSpeech skips any of speeches (if it's empty for example).
-     */
+    Happens when TextToSpeech skips any of speeches (if it's empty for example).
+    */
     case speechSkipped(AimyboxSpeech)
 }
 

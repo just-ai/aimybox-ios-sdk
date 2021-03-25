@@ -8,45 +8,45 @@
 import Foundation
 
 /**
- Dialog API component enables your voice assistant to recognise the user's speech intention,
- perform some useful actions and return the meaningful response back to the user that can be synthesised by `TTS`.
- */
+Dialog API component enables your voice assistant to recognise the user's speech intention,
+perform some useful actions and return the meaningful response back to the user that can be synthesised by `TTS`.
+*/
 public protocol DialogAPI: AimyboxComponent {
     /**
-     Adopting object must use request type that conforms to `Request` protocol.
-     - Note: `DialogAPI.TRequest` type must be tightly coupled with `CustomSkill.TRequest`.
-     */
+    Adopting object must use request type that conforms to `Request` protocol.
+    - Note: `DialogAPI.TRequest` type must be tightly coupled with `CustomSkill.TRequest`.
+    */
     associatedtype TRequest where Self.TRequest == Self.TCustomSkill.TRequest
     /**
-     Adopting object must use response type that conforms to `Response` protocol.
-     - Note: `DialogAPI.TResponse` type must be tightly coupled with `CustomSkill.TResponse`.
-     */
+    Adopting object must use response type that conforms to `Response` protocol.
+    - Note: `DialogAPI.TResponse` type must be tightly coupled with `CustomSkill.TResponse`.
+    */
     associatedtype TResponse where Self.TResponse == Self.TCustomSkill.TResponse
     /**
-     Adopting object must use custom skill type that conforms to `CustomSkill` protocol.
-     */
+    Adopting object must use custom skill type that conforms to `CustomSkill` protocol.
+    */
     associatedtype TCustomSkill: CustomSkill
     /**
-     Holds all custom skills.
-     */
+    Holds all custom skills.
+    */
     var customSkills: [TCustomSkill] { get set }
     /**
-     Creates the dialog api request of type `TRequest`.
-     */
+    Creates the dialog api request of type `TRequest`.
+    */
     func createRequest(query: String) -> TRequest
     /**
-     Sends the dialog api request of type `TRequest` to NLU engine, parses the response in `TResponse` and returns it.
-     */
+    Sends the dialog api request of type `TRequest` to NLU engine, parses the response in `TResponse` and returns it.
+    */
     func send(request: TRequest) throws -> TResponse
     /**
-     Used to notify *Aimybox* state machine about events.
-     */
+    Used to notify *Aimybox* state machine about events.
+    */
     var notify: (DialogAPICallback)? { get set }
     /**
-     Number of one second polls for request result.
+    Number of one second polls for request result.
      
-     - Note: Use ```10``` attempts as default value.
-     */
+    - Note: Use ```10``` attempts as default value.
+    */
     var timeoutPollAttempts: Int { get set }
 }
 
@@ -72,8 +72,8 @@ extension DialogAPI {
         operationQueue.addOperation(apiOperation)
     }
     /**
-     Cancels request if any is pending.
-     */
+    Cancels request if any is pending.
+    */
     public func cancelRequest() {
         cancelRunningOperation()
     }

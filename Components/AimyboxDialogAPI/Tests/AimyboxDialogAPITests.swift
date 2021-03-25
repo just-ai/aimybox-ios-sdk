@@ -15,8 +15,10 @@ class AimyboxDialogAPITests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        dapi = AimyboxDialogAPI(api_key: "sgEfvEonbLOTw6wTEaINZb6zehab8RQF",
-                                unit_key: UUID().uuidString)
+        dapi = AimyboxDialogAPI(
+            api_key: "sgEfvEonbLOTw6wTEaINZb6zehab8RQF",
+            unit_key: UUID().uuidString
+        )
     }
 
     override func tearDown() {

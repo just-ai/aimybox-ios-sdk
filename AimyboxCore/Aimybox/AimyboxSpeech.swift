@@ -8,16 +8,16 @@
 import Foundation
 
 /**
- Base protocol for any speeches.
- */
+Base protocol for any speeches.
+*/
 public protocol AimyboxSpeech: class {
 
     func isValid() -> Bool
 }
 
 /**
- Text to be spoken.
- */
+Text to be spoken.
+*/
 public class TextSpeech: AimyboxSpeech {
 
     public let text: String
@@ -33,16 +33,16 @@ public class TextSpeech: AimyboxSpeech {
 
 public class AudioSpeech: AimyboxSpeech {
     /**
-     URL to the audio source.
-     */
+    URL to the audio source.
+    */
     public let audioURL: URL
 
     public init(audioURL: URL) {
         self.audioURL = audioURL
     }
     /**
-     If url is valid, it's synthesizers task to check if it could play it.
-     */
+    If url is valid, it's synthesizers task to check if it could play it.
+    */
     public func isValid() -> Bool {
         true
     }

@@ -8,14 +8,14 @@
 import Foundation
 
 /**
- Speech to text delegate is notified to all events that relate to speech recognition process.
- */
+Speech to text delegate is notified to all events that relate to speech recognition process.
+*/
 public protocol SpeechToTextDelegate: class {
 
     // MARK: - Lifecycle
     /**
-     Called when user grants permission to use microphone and recognition API's. Optional.
-     */
+    Called when user grants permission to use microphone and recognition API's. Optional.
+    */
     func sttRecognitionPermissionsGranted(_ stt: SpeechToText)
     /**
     Called when recognition starts. Optional.
@@ -52,25 +52,25 @@ public protocol SpeechToTextDelegate: class {
 
     // MARK: - Errors
     /**
-     User didn't grant a permission to use a device microphone.
-     */
+    User didn't grant a permission to use a device microphone.
+    */
     func sttMicrophonePermissionReject(_ stt: SpeechToText)
     /**
-     User didn't grant a permission to use, a native, Speech Frameworks recognition.
-     */
+    User didn't grant a permission to use, a native, Speech Frameworks recognition.
+    */
     func sttSpeechRecognitionPermissionReject(_ stt: SpeechToText)
     /**
-     Microphone is unreachable for recording.
-     */
+    Microphone is unreachable for recording.
+    */
     func sttMicrophoneUnreachable(_ stt: SpeechToText)
     /**
-     Speech recognition is unavailable.
-     */
+    Speech recognition is unavailable.
+    */
     func sttSpeechRecognitionUnavailable(_ stt: SpeechToText)
 }
 
 /**
- All methods listed here are optional for delegates to implement.
+All methods listed here are optional for delegates to implement.
 */
 public extension SpeechToTextDelegate {
     func sttRecognitionPermissionsGranted(_ stt: SpeechToText) {}

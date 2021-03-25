@@ -13,23 +13,23 @@ import Aimybox
 
 public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     /**
-     Customize `config` parameter if you change recognition audioFormat in recognition config.
-     */
+    Customize `config` parameter if you change recognition audioFormat in recognition config.
+    */
     public var audioFormat: AVAudioFormat = .defaultFormat
     /**
-     Used to notify *Aimybox* state machine about events.
-     */
+    Used to notify *Aimybox* state machine about events.
+    */
     public var notify: (SpeechToTextCallback)?
     /**
-     Used for audio signal processing.
-     */
+    Used for audio signal processing.
+    */
     private let audioEngine: AVAudioEngine
     /**
-     Node on which audio stream is routed.
-     */
+    Node on which audio stream is routed.
+    */
     private var audioInputNode: AVAudioNode?
     /**
-     */
+    */
     private lazy var recognitionAPI = YandexRecognitionAPI(
         iAM: iamToken,
         folderID: folderID,
@@ -40,7 +40,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         operation: operationQueue
     )
     /**
-     */
+    */
     private var wasSpeechStopped: Bool = true
 
     private let iamToken: String
@@ -56,8 +56,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     private let dataLoggingEnabled: Bool
 
     /**
-     Init that uses provided params.
-     */
+    Init that uses provided params.
+    */
     public init?(
         tokenProvider: IAMTokenProvider,
         folderID: String,
@@ -272,10 +272,10 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
 extension AVAudioFormat {
     static var defaultFormat: AVAudioFormat {
         guard let audioFormat = AVAudioFormat(
-                commonFormat: .pcmFormatInt16,
-                sampleRate: 48_000,
-                channels: 1,
-                interleaved: false
+            commonFormat: .pcmFormatInt16,
+            sampleRate: 48_000,
+            channels: 1,
+            interleaved: false
         ) else {
             fatalError()
         }

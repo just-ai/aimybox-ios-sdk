@@ -9,42 +9,42 @@
 import Foundation
 
 /**
- Lifecycle states, used by *Aimybox* state machine.
- */
+Lifecycle states, used by *Aimybox* state machine.
+*/
 public enum AimyboxState {
     /**
-     Voice assistant is ready to work.
+    Voice assistant is ready to work.
      
-     *SpeechToText* and *TextToSpeech* components are inactive.
+    *SpeechToText* and *TextToSpeech* components are inactive.
      
-     *DialogApi* component doesn't process any request.
+    *DialogApi* component doesn't process any request.
      
-     If *VoiceTrigger* component was configured, it's active and detects a hot word holding the microphone.
-     */
+    If *VoiceTrigger* component was configured, it's active and detects a hot word holding the microphone.
+    */
     case standby
     /**
-     Voice assistant listens for the user's speech.
+    Voice assistant listens for the user's speech.
      
-     *SpeechToText* component is active and uses a microphone.
+    *SpeechToText* component is active and uses a microphone.
      
-     *VoiceTrigger* and *TextToSpeech* are inactive.
+    *VoiceTrigger* and *TextToSpeech* are inactive.
      
-     *DialogApi* component doesn't process any request.
-     */
+    *DialogApi* component doesn't process any request.
+    */
     case listening
     /**
-     Voice assistant recognises the intent from user's speech.
+    Voice assistant recognises the intent from user's speech.
      
-     *DialogApi* makes request to the NLU engine sending the recognised user's query.
-     Then looks for any *CustomSkill* that can handle this intent.
+    *DialogApi* makes request to the NLU engine sending the recognised user's query.
+    Then looks for any *CustomSkill* that can handle this intent.
      
-     *SpeechToText*, *TextToSpeech* and *VoiceTrigger* are inactive.
-     */
+    *SpeechToText*, *TextToSpeech* and *VoiceTrigger* are inactive.
+    */
     case processing
     /**
-     Voice assistant synthesises the output speech to the user.
+    Voice assistant synthesises the output speech to the user.
      
-     All components excepting *TextToSpeech* are inactive.
-     */
+    All components excepting *TextToSpeech* are inactive.
+    */
     case speaking
 }

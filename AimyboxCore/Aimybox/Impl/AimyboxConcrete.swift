@@ -8,10 +8,10 @@
 import Foundation
 
 /**
- Concrete object that conforms to a `Aimybox` protocol.
+Concrete object that conforms to a `Aimybox` protocol.
  
- For detailed info about methods available, refer to `Aimybox` protocol.
- */
+For detailed info about methods available, refer to `Aimybox` protocol.
+*/
 class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig {
 
     public weak var delegate: AimyboxDelegate?
@@ -226,7 +226,7 @@ extension AimyboxConcrete {
                 }
             }
         case .speechSequenceStarted:
-             state = .speaking
+            state = .speaking
         default:
             break
         }

@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- Reply is a unit of a composite response. One response contains from 0 to infinite replies.
- */
+Reply is a unit of a composite response. One response contains from 0 to infinite replies.
+*/
 public protocol Reply: class {
 }

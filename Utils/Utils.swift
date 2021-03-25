@@ -8,8 +8,8 @@
 import Foundation
 
 /**
- Handy debouncer.
- */
+Handy debouncer.
+*/
 public class DispatchDebouncer {
     private var timer: Timer?
 
@@ -40,8 +40,8 @@ public extension URL {
 }
 
 /**
- Decoding extensions.
- */
+Decoding extensions.
+*/
 extension KeyedDecodingContainer {
     public func decode<T: Decodable>(_ key: Key, as type: T.Type = T.self) throws -> T {
         try self.decode(T.self, forKey: key)
@@ -53,8 +53,8 @@ extension KeyedDecodingContainer {
 }
 
 /**
- Functional style optional chaining.
- */
+Functional style optional chaining.
+*/
 extension Optional {
 
     public func or(_ defaultUnwrapped: Wrapped) -> Wrapped {

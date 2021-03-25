@@ -8,24 +8,24 @@
 import Foundation
 
 /**
- Class conforming to this protocol is able to synthesize a speech from the text in real time.
- */
+Class conforming to this protocol is able to synthesize a speech from the text in real time.
+*/
 public protocol TextToSpeech: AimyboxComponent {
     /**
-     Synthesizes in FIFO order.
-     */
+    Synthesizes in FIFO order.
+    */
     func synthesize(contentsOf speeches: [AimyboxSpeech])
     /**
-     Stops speech synthesis.
-     */
+    Stops speech synthesis.
+    */
     func stop()
     /**
-     Used when `Aimybox` deinits.
-     */
+    Used when `Aimybox` deinits.
+    */
     func cancelSynthesis()
     /**
-     Used to notify *Aimybox* state machine about events.
-     */
+    Used to notify *Aimybox* state machine about events.
+    */
     var notify: (TextToSpeechCallback)? { get set }
 }
 

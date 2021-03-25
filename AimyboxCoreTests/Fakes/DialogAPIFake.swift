@@ -31,11 +31,13 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
 
     public lazy var reply2: Reply = FakeTextReply(text: replyQuery)
 
-    public lazy var response = DialogAPIResponseFake(query: replyQuery,
-                                                     action: action,
-                                                     intent: intent,
-                                                     question: isQuestion,
-                                                     replies: [reply_1, reply_2])
+    public lazy var response = DialogAPIResponseFake(
+        query: replyQuery,
+        action: action,
+        intent: intent,
+        question: isQuestion,
+        replies: [reply_1, reply_2]
+    )
 
     public var skill1 = DialogAPICustomSkillFake()
 

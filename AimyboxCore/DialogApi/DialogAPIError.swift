@@ -9,19 +9,19 @@ import Foundation
 
 public enum DialogAPIError: Error {
     /**
-     Happens when request timeouts.
-     */
+    Happens when request timeouts.
+    */
     case requestTimeout(Request)
     /**
-     Happens when request cancelled.
-     */
+    Happens when request cancelled.
+    */
     case requestCancellation(Request)
     /**
-     Happens when `Aimybox` forced to `DialogAPI` to cancel while response being processed.
-     */
+    Happens when `Aimybox` forced to `DialogAPI` to cancel while response being processed.
+    */
     case processingCancellation
     /**
-     Happens when `DialogAPI` catches errors at request creation etc.
+    Happens when `DialogAPI` catches errors at request creation etc.
     */
     case clientSide(Error)
 }

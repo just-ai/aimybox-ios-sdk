@@ -9,15 +9,15 @@ import Foundation
 
 public enum TextToSpeechError: Error {
     /**
-     Speech is empty and will be skipped.
-     */
+    Speech is empty and will be skipped.
+    */
     case emptySpeech(AimyboxSpeech)
     /**
-     Sent when speakers are unvailable.
-     */
+    Sent when speakers are unvailable.
+    */
     case speakersUnavailable
     /**
-     */
+    */
     case speechSequenceCancelled([AimyboxSpeech])
 }
 

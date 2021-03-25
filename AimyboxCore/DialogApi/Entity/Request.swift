@@ -8,12 +8,12 @@
 import Foundation
 
 /**
- Request model, which is used across the library.
- You can extend it by adding some fields to `data` JSON in `CustomSkill` or custom `DialogApi`.
- */
+Request model, which is used across the library.
+You can extend it by adding some fields to `data` JSON in `CustomSkill` or custom `DialogApi`.
+*/
 public protocol Request: class {
     /**
-     User input, recognized by STT or manually entered.
-     */
+    User input, recognized by STT or manually entered.
+    */
     var query: String { get }
 }

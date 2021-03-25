@@ -13,46 +13,46 @@ import Aimybox
 
 public class SFSpeechToText: AimyboxComponent, SpeechToText {
     /**
-     Locale of recognizer.
-     */
+    Locale of recognizer.
+    */
     public let locale: Locale
     /**
-     Debounce delay in seconds. HIgher values results in higher lag between partial and final results.
-     */
+    Debounce delay in seconds. HIgher values results in higher lag between partial and final results.
+    */
     public var recognitionDebounceDelay: TimeInterval = 1.0
     /**
-     Used to notify *Aimybox* state machine about events.
-     */
+    Used to notify *Aimybox* state machine about events.
+    */
     public var notify: (SpeechToTextCallback)?
     /**
-     Used for audio signal processing.
-     */
+    Used for audio signal processing.
+    */
     private let audioEngine: AVAudioEngine
     /**
-     Node on which audio stream is routed.
-     */
+    Node on which audio stream is routed.
+    */
     private var audioInputNode: AVAudioNode?
     /**
-     Actual iOS speech recognizer.
-     */
+    Actual iOS speech recognizer.
+    */
     private let speechRecognizer: SFSpeechRecognizer
     /**
-     Retained for a purpose of controling audio stream routed to recognizer.
-     */
+    Retained for a purpose of controling audio stream routed to recognizer.
+    */
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     /**
-     Speech recognition task itself.
-     */
+    Speech recognition task itself.
+    */
     private var recognitionTask: SFSpeechRecognitionTask?
     /**
-     Debouncer used to controll delay time of aquiring final results of speech recognizing process.
-     */
+    Debouncer used to controll delay time of aquiring final results of speech recognizing process.
+    */
     private var recognitionDebouncer: DispatchDebouncer
     /**
-     Init that uses provided locale.
+    Init that uses provided locale.
      
-     If locale is not supported, that init will fail.
-     */
+    If locale is not supported, that init will fail.
+    */
     public init?(locale: Locale) {
         self.locale = locale
         audioEngine = AVAudioEngine()

@@ -9,12 +9,12 @@ import Foundation
 
 public enum DialogAPIEvent {
     /**
-     Happens when `Aimybox` sends request.
-     */
+    Happens when `Aimybox` sends request.
+    */
     case requestSent(Request)
     /**
-     Happens when `DialogAPI` received response.
-     */
+    Happens when `DialogAPI` received response.
+    */
     case responseReceived(Response)
 }
 

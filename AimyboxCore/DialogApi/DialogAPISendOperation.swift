@@ -9,13 +9,13 @@ import Foundation
 
 class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
     /**
-     */
+    */
     private var defaultMaxPollAttempts = 10
     /**
-     */
+    */
     private let defaultRequestTimeout = 1.0
     /**
-     */
+    */
     private var query: String
     /**
     */
@@ -108,8 +108,8 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
 }
 
 /**
- Domain of internal errors.
- */
+Domain of internal errors.
+*/
 fileprivate extension DialogAPIError {
     enum Internal: Error {
         case requestTimeout

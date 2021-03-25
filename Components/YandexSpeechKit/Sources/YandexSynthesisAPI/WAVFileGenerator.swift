@@ -15,7 +15,7 @@ final class WAVFileGenerator {
     }
 
     /** http://soundfile.sapp.org/doc/WaveFormat/
-     */
+    */
     private func createWaveHeader(data: Data) -> Data {
 
         let sampleRate: Int32 = 48_000

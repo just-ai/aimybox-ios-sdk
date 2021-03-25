@@ -11,14 +11,14 @@ import AVFoundation
 
 public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
-     Used to notify *Aimybox* state machine about events.
-     */
+    Used to notify *Aimybox* state machine about events.
+    */
     public var notify: (TextToSpeechCallback)?
     /**
-     */
+    */
     private var languageCode: String
     /** Yandex Cloud Synthesis
-     */
+    */
     private lazy var synthesisAPI = YandexSynthesisAPI(
         iAMToken: token,
         folderId: folderID,
@@ -30,13 +30,13 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     */
     var player: AVPlayer?
     /**
-     */
+    */
     var notificationQueue: OperationQueue
     /**
-     */
+    */
     var isCancelled: Bool = false
     /**
-     */
+    */
     var synthesisConfig: YandexSynthesisConfig
 
     private let token: String
@@ -111,10 +111,10 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         }
 
         notify(
-             isCancelled
-                 ? .failure(.speechSequenceCancelled(speeches))
-                 : .success(.speechSequenceCompleted(speeches))
-         )
+            isCancelled
+                ? .failure(.speechSequenceCancelled(speeches))
+                : .success(.speechSequenceCompleted(speeches))
+        )
     }
 
     private func synthesize(_ speech: AimyboxSpeech) {
@@ -134,10 +134,9 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             language: languageCode,
             config: synthesisConfig
         ) { [weak self] in
-             if let url = $0, self?.isCancelled == false {
-                 self?.synthesize(textSpeech, using: url)
-
-             }
+            if let url = $0, self?.isCancelled == false {
+                self?.synthesize(textSpeech, using: url)
+            }
             synthesisGroup.leave()
         }
         synthesisGroup.wait()
@@ -167,9 +166,9 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         }
 
         let stopObservation = player.observe(\.rate) { _, _ in
-             guard player.rate == 0 else {
+            guard player.rate == 0 else {
                 return
-             }
+            }
             notify(.success(.speechEnded(speech)))
             synthesisGroup.leave()
         }

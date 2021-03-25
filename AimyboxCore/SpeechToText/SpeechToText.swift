@@ -9,24 +9,24 @@
 import Foundation
 
 /**
- Class conforming to this protocol is able to recognise a text from the user's speech in real time.
- */
+Class conforming to this protocol is able to recognise a text from the user's speech in real time.
+*/
 public protocol SpeechToText: AimyboxComponent {
     /**
-     Start recognition.
-     */
+    Start recognition.
+    */
     func startRecognition()
     /**
-     Stop audio recording, but await for final result.
-     */
+    Stop audio recording, but await for final result.
+    */
     func stopRecognition()
     /**
-     Cancel recognition entirely and abandon all results.
-     */
+    Cancel recognition entirely and abandon all results.
+    */
     func cancelRecognition()
     /**
-     Used to notify *Aimybox* state machine about events.
-     */
+    Used to notify *Aimybox* state machine about events.
+    */
     var notify: (SpeechToTextCallback)? { get set }
 }
 

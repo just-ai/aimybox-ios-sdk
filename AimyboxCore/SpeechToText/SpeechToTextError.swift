@@ -9,29 +9,29 @@
 import Foundation
 
 /**
- Speech to text possible errors.
- */
+Speech to text possible errors.
+*/
 public enum SpeechToTextError: Error {
     /**
-     User didn't grant a permission to use a device microphone.
+    User didn't grant a permission to use a device microphone.
      
-     Check info in **NSMicrophoneUsageDescription**.
-     */
+    Check info in **NSMicrophoneUsageDescription**.
+    */
     case microphonePermissionReject
     /**
-     User didn't grant a permission to use, a native, Speech Frameworks recognition.
+    User didn't grant a permission to use, a native, Speech Frameworks recognition.
      
-     Check info in **NSSpeechRecognitionUsageDescription**
-     or use another STT component.
-     */
+    Check info in **NSSpeechRecognitionUsageDescription**
+    or use another STT component.
+    */
     case speechRecognitionPermissionReject
     /**
-     Microphone is unreachable for recording.
-     */
+    Microphone is unreachable for recording.
+    */
     case microphoneUnreachable
     /**
-     Speech recognition is unavailable.
-     */
+    Speech recognition is unavailable.
+    */
     case speechRecognitionUnavailable
 }
 

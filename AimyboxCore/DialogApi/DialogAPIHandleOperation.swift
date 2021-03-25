@@ -9,7 +9,7 @@ import Foundation
 
 class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
     /**
-     */
+    */
     private var response: TDialogAPI.TResponse
     /**
     */
@@ -18,7 +18,7 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
     */
     private var aimybox: Aimybox
     /**
-     */
+    */
     public private(set) var result: TDialogAPI.TResponse?
 
     public init(response: TDialogAPI.TResponse, dialogAPI: TDialogAPI, aimybox: Aimybox) {
@@ -93,8 +93,8 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
 }
 
 /**
- Domain of internal errors.
- */
+Domain of internal errors.
+*/
 fileprivate extension DialogAPIError {
     enum Internal: Error {
 

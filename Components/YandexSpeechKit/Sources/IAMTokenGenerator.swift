@@ -16,7 +16,7 @@ public class IAMTokenGenerator: IAMTokenProvider {
 
     private let tokenURL: URL
     /** Use OAuth code in Yandex.Cloud.
-     */
+    */
     private let passport: String
 
     public init(
