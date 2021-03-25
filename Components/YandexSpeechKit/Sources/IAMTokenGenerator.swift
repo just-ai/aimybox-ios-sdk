@@ -42,7 +42,7 @@ public class IAMTokenGenerator: IAMTokenProvider {
 
         var result: T? = nil
 
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             defer {
                 group.leave()
             }

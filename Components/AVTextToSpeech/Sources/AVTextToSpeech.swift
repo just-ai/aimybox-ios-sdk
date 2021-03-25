@@ -157,7 +157,7 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
 
         let player = AVPlayer(url: audioSpeech.audioURL)
 
-        let statusObservation = player.currentItem?.observe(\.status) { [weak self] (item, _) in
+        let statusObservation = player.currentItem?.observe(\.status) { [weak self] _, _ in
             switch item.status {
             case .failed:
                 self?.blockGroup.leave()

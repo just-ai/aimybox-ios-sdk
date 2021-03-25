@@ -142,7 +142,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             return _notify(.failure(.microphoneUnreachable))
         }
 
-        recognitionAPI.openStream(onOpen: { [audioEngine, weak self, audioFormat] (stream) in
+        recognitionAPI.openStream(onOpen: { [audioEngine, weak self, audioFormat] stream in
             let inputNode = audioEngine.inputNode
             let inputFormat = inputNode.outputFormat(forBus: 0)
             let recordingFormat = audioFormat
@@ -204,7 +204,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
             }, onResponse: { [weak self] response in
                 self?.proccessResults(response)
-            }, error: { (error) in
+            }, error: { _ in
                 _notify(.failure(.speechRecognitionUnavailable))
             }, completion: { [weak self] in
                 self?.stopRecognition()

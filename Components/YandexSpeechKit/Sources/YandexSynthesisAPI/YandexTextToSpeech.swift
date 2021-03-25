@@ -152,7 +152,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
 
         let player = AVPlayer(url: url)
 
-        let statusObservation = player.currentItem?.observe(\.status) { (item, _) in
+        let statusObservation = player.currentItem?.observe(\.status) { item, _ in
             switch item.status {
             case .failed:
                 _notify(.failure(.emptySpeech(speech)))
@@ -162,7 +162,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             }
         }
 
-        let stopObservation = player.observe(\.rate) { (player, _) in
+        let stopObservation = player.observe(\.rate) { _, _ in
              guard player.rate == 0 else { return }
             _notify(.success(.speechEnded(speech)))
             synthesisGroup.leave()

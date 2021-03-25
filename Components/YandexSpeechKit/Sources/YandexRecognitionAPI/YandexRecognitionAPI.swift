@@ -49,7 +49,7 @@ final class YandexRecognitionAPI {
     ) {
 
         let channel = Channel(address: apiAdress)
-        channel.addConnectivityObserver { (state) in
+        channel.addConnectivityObserver { state in
             print("ConnectivityObserverState: \(state)")
         }
 
@@ -62,7 +62,7 @@ final class YandexRecognitionAPI {
                 try client?.metadata.add(key: xDataLoggingEnabledKey, value: "true")
             }
 
-            stream = try client?.streamingRecognize { [weak self] (result) in
+            stream = try client?.streamingRecognize { [weak self] result in
                 self?.operationQueue.addOperation {
                     result.success
                         ? completion()

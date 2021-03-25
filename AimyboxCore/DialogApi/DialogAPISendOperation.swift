@@ -32,7 +32,7 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
 
     override public func main() {
 
-        let request = dialogAPI.customSkills.reduce(into: dialogAPI.createRequest(query: query)) { (_request, _skill) in
+        let request = dialogAPI.customSkills.reduce(into: dialogAPI.createRequest(query: query)) { _request, _skill in
             _request = _skill.onRequest(_request)
         }
 

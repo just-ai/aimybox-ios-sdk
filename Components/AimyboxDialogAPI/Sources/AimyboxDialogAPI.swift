@@ -61,7 +61,7 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         var result: AimyboxResult<AimyboxResponse, Error>?
 
         group.enter()
-        URLSession.shared.dataTask(with: request) { (data, response, _error) in
+        URLSession.shared.dataTask(with: request) { data, response, _error in
             if let error = _error {
                 result = .failure(error)
                 return

@@ -116,7 +116,7 @@ open class AimyboxBaseTestCase: XCTestCase {
         speechRecognitionUnavailableSemaphore = DispatchSemaphore(value: 0)
 
         // MARK: - DialogAPI
-        config.dialogAPI.notify = { [weak self] (result) in
+        config.dialogAPI.notify = { [weak self] result in
             switch result {
             case .success(let event):
                 switch event {
@@ -171,7 +171,7 @@ open class AimyboxBaseTestCase: XCTestCase {
         skill_2_onRequestSemaphore = DispatchSemaphore(value: 0)
 
         // MARK: - TextToSpeech
-        config.textToSpeech.notify = { [weak self] (result) in
+        config.textToSpeech.notify = { [weak self] result in
             switch result {
             case .success(let event):
                 switch event {

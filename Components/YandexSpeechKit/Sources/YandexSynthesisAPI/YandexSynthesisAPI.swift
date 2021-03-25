@@ -73,7 +73,7 @@ final class YandexSynthesisAPI {
     }
 
     private func perform(_ request: URLRequest, onResponse: @escaping (URL?) -> Void) {
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 return onResponse(nil)
             }
