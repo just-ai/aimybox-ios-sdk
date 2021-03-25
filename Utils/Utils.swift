@@ -23,7 +23,6 @@ class DispatchDebouncer {
     init() {
     }
 
-    public
     func debounce(delay seconds: TimeInterval, _ block: @escaping () -> Void ) {
         DispatchQueue.main.async { [weak self] in
             self?.timer?.invalidate()
@@ -50,14 +49,13 @@ extension URL {
 /**
 Decoding extensions.
 */
+public
 extension KeyedDecodingContainer {
 
-    public
     func decode<T: Decodable>(_ key: Key, as type: T.Type = T.self) throws -> T {
         try self.decode(T.self, forKey: key)
     }
 
-    public
     func decodeIfPresent<T: Decodable>(_ key: KeyedDecodingContainer.Key) throws -> T? {
         try decodeIfPresent(T.self, forKey: key)
     }
@@ -67,9 +65,9 @@ extension KeyedDecodingContainer {
 /**
 Functional style optional chaining.
 */
+public
 extension Optional {
 
-    public
     func or(_ defaultUnwrapped: Wrapped) -> Wrapped {
         switch self {
         case .none:
