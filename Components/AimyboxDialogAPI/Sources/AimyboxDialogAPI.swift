@@ -81,8 +81,8 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
                 let response = try JSONDecoder().decode(AimyboxResponse.self, from: _data)
                 result = .success(response)
 
-            } catch let __error {
-                result = .failure(__error)
+            } catch {
+                result = .failure(error)
             }
 
             group.leave()

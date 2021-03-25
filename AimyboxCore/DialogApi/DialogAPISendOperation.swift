@@ -50,7 +50,7 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
             dialogAPI.notify?(.failure(.requestTimeout(request)))
         } catch DialogAPIError.Internal.requestCancellation {
             dialogAPI.notify?(.failure(.requestCancellation(request)))
-        } catch let error {
+        } catch {
             dialogAPI.notify?(.failure(.clientSide(error)))
         }
     }
@@ -67,7 +67,7 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 response = .success(try block())
-            } catch let error {
+            } catch {
                 response = .failure(error)
             }
             timeoutSemaphore.signal()

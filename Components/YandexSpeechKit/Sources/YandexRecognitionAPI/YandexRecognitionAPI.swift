@@ -82,8 +82,8 @@ final class YandexRecognitionAPI {
                 try? self?.receiveMessages(on: onResponse, error: handler, stream: self?.stream)
             }
 
-        } catch let grpc_error {
-            handler(grpc_error)
+        } catch {
+            handler(error)
         }
     }
 
