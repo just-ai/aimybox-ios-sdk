@@ -95,7 +95,9 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     // MARK: - Internals
 
     private func synthesize(_ speeches: [AimyboxSpeech]) {
-        guard let _notify = notify else { return }
+        guard let _notify = notify else {
+            return
+        }
 
         _notify(.success(.speechSequenceStarted(speeches)))
 
@@ -146,7 +148,9 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     }
 
     private func synthesize(_ speech: AimyboxSpeech, using url: URL) {
-        guard let _notify = notify else { return }
+        guard let _notify = notify else {
+            return
+        }
 
         let synthesisGroup = DispatchGroup()
 
@@ -163,7 +167,9 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         }
 
         let stopObservation = player.observe(\.rate) { _, _ in
-             guard player.rate == 0 else { return }
+             guard player.rate == 0 else {
+                return
+             }
             _notify(.success(.speechEnded(speech)))
             synthesisGroup.leave()
         }

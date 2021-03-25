@@ -114,7 +114,9 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     // MARK: - Internals
 
     private func synthesize(_ speeches: [AimyboxSpeech]) {
-        guard let _notify = notify else { return }
+        guard let _notify = notify else {
+            return
+        }
 
         _notify(.success(.speechSequenceStarted(speeches)))
 
@@ -210,13 +212,17 @@ class AVTextToSpeechDelegate: NSObject, AVSpeechSynthesizerDelegate {
     weak var tts: AVTextToSpeech?
 
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-        guard let aimySpeech = tts?.textQueue[utterance] else { return }
+        guard let aimySpeech = tts?.textQueue[utterance] else {
+            return
+        }
 
         tts?.notify?(.success(.speechStarted(aimySpeech)))
     }
 
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        guard let aimySpeech = tts?.textQueue[utterance] else { return }
+        guard let aimySpeech = tts?.textQueue[utterance] else {
+            return
+        }
 
         tts?.notify?(.success(.speechEnded(aimySpeech)))
 

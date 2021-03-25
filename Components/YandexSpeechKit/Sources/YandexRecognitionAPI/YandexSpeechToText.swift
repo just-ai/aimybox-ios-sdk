@@ -83,7 +83,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     public func startRecognition() {
-        guard wasSpeechStopped else { return }
+        guard wasSpeechStopped else {
+            return
+        }
         wasSpeechStopped = false
 
         checkPermissions { [weak self] result in
@@ -119,7 +121,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
     private func onPermissionGranted() {
         prepareRecognition()
-        guard !wasSpeechStopped else { return }
+        guard !wasSpeechStopped else {
+            return
+        }
 
         do {
             try audioEngine.start()
@@ -130,7 +134,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     private func prepareRecognition() {
-        guard let _notify = notify else { return }
+        guard let _notify = notify else {
+            return
+        }
 
         // Setup AudioSession for recording
         let audioSession = AVAudioSession.sharedInstance()
@@ -186,7 +192,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
                             break
                         }
 
-                        guard let _bytes = outputBuffer.int16ChannelData else { return }
+                        guard let _bytes = outputBuffer.int16ChannelData else {
+                            return
+                        }
 
                         let channels = UnsafeBufferPointer(start: _bytes, count: Int(audioFormat.channelCount))
 

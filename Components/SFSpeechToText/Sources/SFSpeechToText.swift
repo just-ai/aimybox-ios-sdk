@@ -56,7 +56,9 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
     public init?(locale: Locale) {
         self.locale = locale
         audioEngine = AVAudioEngine()
-        guard let recognizer = SFSpeechRecognizer(locale: locale) else { return nil }
+        guard let recognizer = SFSpeechRecognizer(locale: locale) else {
+            return nil
+        }
         recognizer.defaultTaskHint = .dictation
         speechRecognizer = recognizer
         recognitionDebouncer = DispatchDebouncer()
@@ -120,7 +122,9 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     private func prepareRecognition() {
-        guard let _notify = notify else { return }
+        guard let _notify = notify else {
+            return
+        }
 
         // Setup AudioSession for recording
         do {
