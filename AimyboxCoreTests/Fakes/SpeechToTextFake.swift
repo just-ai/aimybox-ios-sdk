@@ -21,9 +21,10 @@ class SpeechToTextFake: AimyboxComponent, SpeechToText {
     
     func startRecognition() {
         guard errorState == nil else {
-            let error = self.errorState!
-            operationQueue.addOperation { [weak self] in
-                self?.notify?(.failure(error))
+            if let error = self.errorState {
+                operationQueue.addOperation { [weak self] in
+                    self?.notify?(.failure(error))
+                }
             }
             return
         }

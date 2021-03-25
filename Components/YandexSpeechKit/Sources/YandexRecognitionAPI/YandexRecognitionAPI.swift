@@ -101,6 +101,7 @@ final class YandexRecognitionAPI {
             self?.operationQueue.addOperation {
                 switch result {
                 case .result(let object) where object != nil:
+                    // swiftlint:disable:next force_unwrapping
                     response(object!)
                     
                 case .error(let error):

@@ -41,7 +41,9 @@ final class YandexSynthesisAPI {
         config: YandexSynthesisConfig,
         onResponse completion: @escaping (URL?) -> Void
     ) {
-        var components = URLComponents(url: address, resolvingAgainstBaseURL: true)!
+        guard var components = URLComponents(url: address, resolvingAgainstBaseURL: true) else {
+            return
+        }
         
         var queries = [
             URLQueryItem(name: "folderId", value: folderId),

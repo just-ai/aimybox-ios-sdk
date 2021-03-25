@@ -28,6 +28,6 @@ public protocol TextReply: Reply {
 public extension TextReply {
     
     var textSpeech: TextSpeech {
-        TextSpeech(text: tts != nil ? tts! : text)
+        TextSpeech(text: tts ?? text)
     }
 }

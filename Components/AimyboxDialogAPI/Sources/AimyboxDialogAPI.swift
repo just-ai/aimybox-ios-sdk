@@ -32,7 +32,7 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     public init(apiKey: String = "", unitKey: String, route: URL? = nil) {
         self.apiKey = apiKey
         self.unitKey = unitKey
-        self.route = route == nil ? AimyboxConstants.api_request_route : route!
+        self.route = route ?? AimyboxConstants.api_request_route
 
         super.init()
 
