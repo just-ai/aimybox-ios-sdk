@@ -134,7 +134,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     private func prepareRecognition() {
-        guard let _notify = notify else {
+        guard let notify = notify else {
             return
         }
 
@@ -145,7 +145,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             try audioSession.setMode(.measurement)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
-            return _notify(.failure(.microphoneUnreachable))
+            return notify(.failure(.microphoneUnreachable))
         }
 
         recognitionAPI.openStream(onOpen: { [audioEngine, weak self, audioFormat] stream in
@@ -192,11 +192,11 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
                             break
                         }
 
-                        guard let _bytes = outputBuffer.int16ChannelData else {
+                        guard let bytes = outputBuffer.int16ChannelData else {
                             return
                         }
 
-                        let channels = UnsafeBufferPointer(start: _bytes, count: Int(audioFormat.channelCount))
+                        let channels = UnsafeBufferPointer(start: bytes, count: Int(audioFormat.channelCount))
 
                         request.audioContent = Data(
                             bytesNoCopy: channels[0],
@@ -213,7 +213,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             }, onResponse: { [weak self] response in
                 self?.proccessResults(response)
             }, error: { _ in
-                _notify(.failure(.speechRecognitionUnavailable))
+                notify(.failure(.speechRecognitionUnavailable))
             }, completion: { [weak self] in
                 self?.stopRecognition()
         })

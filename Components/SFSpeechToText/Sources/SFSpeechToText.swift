@@ -122,7 +122,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     private func prepareRecognition() {
-        guard let _notify = notify else {
+        guard let notify = notify else {
             return
         }
 
@@ -144,11 +144,11 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         // Get the a task, so we can cancel it
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
             guard error == nil else {
-                return _notify(.failure(.speechRecognitionUnavailable))
+                return notify(.failure(.speechRecognitionUnavailable))
             }
 
-            if let _result = result {
-                self?.proccessResults(result: _result)
+            if let result = result {
+                self?.proccessResults(result: result)
             } else {
                 _notify(.success(.emptyRecognitionResult))
             }

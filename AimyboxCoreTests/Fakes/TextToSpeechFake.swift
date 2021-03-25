@@ -46,9 +46,9 @@ class TextToSpeechFake: AimyboxComponent, TextToSpeech {
     func stop() {
         cancelRunningOperation()
         operationQueue.addOperation { [weak self] in
-            if let _currentSpeech = self?.currentSpeech {
+            if let currentSpeech = self?.currentSpeech {
                 self?.currentSpeech = nil
-                self?.notify?(.failure(.speechSequenceCancelled(_currentSpeech)))
+                self?.notify?(.failure(.speechSequenceCancelled(currentSpeech)))
             }
         }
     }

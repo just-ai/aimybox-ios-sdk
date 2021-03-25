@@ -145,18 +145,18 @@ open class DialogAPICoreTests: AimyboxBaseTestCase {
 
     func testCustomSkillsOnRequestModifyRequest() {
 
-        let oldHandler_1 = dapi.skill_1.onRequestHandler
-        let oldHandler_2 = dapi.skill_2.onRequestHandler
-        let sentQuery_1 = "ping"
-        let sentQuery_2 = "-pong"
+        let oldHandler1 = dapi.skill1.onRequestHandler
+        let oldHandler2 = dapi.skill2.onRequestHandler
+        let sentQuery1 = "ping"
+        let sentQuery2 = "-pong"
 
-        dapi.skill_1.onRequestHandler = { request in
-            request.query = sentQuery_1
-            return oldHandler_1?(request) ?? request
+        dapi.skill1.onRequestHandler = { request in
+            request.query = sentQuery1
+            return oldHandler1?(request) ?? request
         }
-        dapi.skill_2.onRequestHandler = { request in
-            request.query += sentQuery_2
-            return oldHandler_2?(request) ?? request
+        dapi.skill2.onRequestHandler = { request in
+            request.query += sentQuery2
+            return oldHandler2?(request) ?? request
         }
 
         aimybox.startRecognition()
@@ -193,9 +193,9 @@ open class DialogAPICoreTests: AimyboxBaseTestCase {
         dapi.skill_1.canHandle = true
         let oldHandler = dapi.skill_1.onResponseHandler
         dapi.skill_1.onResponseHandler = { response, aimybox, defaultHandler in
-            let _response = oldHandler?(response, aimybox, defaultHandler) ?? response
+            let response = oldHandler?(response, aimybox, defaultHandler) ?? response
             aimybox.standby()
-            return _response
+            return response
         }
 
         aimybox.startRecognition()
@@ -215,9 +215,9 @@ open class DialogAPICoreTests: AimyboxBaseTestCase {
 
         let oldHandler = dapi.skill_1.onResponseHandler
         dapi.skill_1.onResponseHandler = { response, aimybox, defaultHandler in
-            let _response = oldHandler?(response, aimybox, defaultHandler) ?? response
+            let response = oldHandler?(response, aimybox, defaultHandler) ?? response
             defaultHandler(response)
-            return _response
+            return response
         }
 
         aimybox.startRecognition()

@@ -82,21 +82,21 @@ final class YandexSynthesisAPI {
                 return onResponse(nil)
             }
 
-            guard let _local_data = data else {
+            guard let localData = data else {
                 return onResponse(nil)
             }
 
-            guard let _local_url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+            guard let localUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
                 .first?
                 .appendingPathComponent("\(UUID().uuidString).wav") else {
                 return onResponse(nil)
             }
 
-            try? WAVFileGenerator().createWAVFile(using: _local_data).write(to: _local_url)
+            try? WAVFileGenerator().createWAVFile(using: localData).write(to: localUrl)
 
-            onResponse(_local_url)
+            onResponse(localUrl)
 
-            try? FileManager.default.removeItem(at: _local_url)
+            try? FileManager.default.removeItem(at: localUrl)
         }
 
         DispatchQueue.global(qos: .userInitiated).async {

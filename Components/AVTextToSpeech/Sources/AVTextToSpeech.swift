@@ -114,7 +114,7 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     // MARK: - Internals
 
     private func synthesize(_ speeches: [AimyboxSpeech]) {
-        guard let _notify = notify else {
+        guard let notify = notify else {
             return
         }
 
@@ -129,7 +129,7 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
             synthesize(speech)
         }
 
-        _notify(.success(.speechSequenceCompleted(speeches)))
+        notify(.success(.speechSequenceCompleted(speeches)))
     }
 
     private func synthesize(_ speech: AimyboxSpeech) {

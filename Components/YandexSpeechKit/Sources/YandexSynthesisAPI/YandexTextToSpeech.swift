@@ -95,22 +95,22 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     // MARK: - Internals
 
     private func synthesize(_ speeches: [AimyboxSpeech]) {
-        guard let _notify = notify else {
+        guard let notify = notify else {
             return
         }
 
-        _notify(.success(.speechSequenceStarted(speeches)))
+        notify(.success(.speechSequenceStarted(speeches)))
 
         speeches.unwrapSSML.forEach { speech in
 
             guard speech.isValid() && !isCancelled else {
-                return _notify(.failure(.emptySpeech(speech)))
+                return notify(.failure(.emptySpeech(speech)))
             }
 
             synthesize(speech)
         }
 
-        _notify(
+        notify(
              isCancelled
                  ? .failure(.speechSequenceCancelled(speeches))
                  : .success(.speechSequenceCompleted(speeches))
@@ -133,9 +133,9 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             text: textSpeech.text,
             language: languageCode,
             config: synthesisConfig
-        ) { [weak self] url in
-             if let _wav_url = url, self?.isCancelled == false {
-                 self?.synthesize(textSpeech, using: _wav_url)
+        ) { [weak self] in
+             if let url = $0, self?.isCancelled == false {
+                 self?.synthesize(textSpeech, using: url)
 
              }
             synthesisGroup.leave()
@@ -148,7 +148,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     }
 
     private func synthesize(_ speech: AimyboxSpeech, using url: URL) {
-        guard let _notify = notify else {
+        guard let notify = notify else {
             return
         }
 
@@ -159,7 +159,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         let statusObservation = player.currentItem?.observe(\.status) { item, _ in
             switch item.status {
             case .failed:
-                _notify(.failure(.emptySpeech(speech)))
+                notify(.failure(.emptySpeech(speech)))
                 synthesisGroup.leave()
             default:
                 break
@@ -170,7 +170,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
              guard player.rate == 0 else {
                 return
              }
-            _notify(.success(.speechEnded(speech)))
+            notify(.success(.speechEnded(speech)))
             synthesisGroup.leave()
         }
         let failedToPlayToEndObservation = NotificationCenter.default.addObserver(
@@ -178,7 +178,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             object: player.currentItem,
             queue: notificationQueue
         ) { _ in
-            _notify(.failure(.emptySpeech(speech)))
+            notify(.failure(.emptySpeech(speech)))
             synthesisGroup.leave()
         }
 

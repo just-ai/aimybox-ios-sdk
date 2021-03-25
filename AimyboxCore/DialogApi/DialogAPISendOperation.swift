@@ -31,21 +31,17 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
     }
 
     override public func main() {
-
-        let request = dialogAPI.customSkills.reduce(into: dialogAPI.createRequest(query: query)) { _request, _skill in
-            _request = _skill.onRequest(_request)
+        let request = dialogAPI.customSkills.reduce(into: dialogAPI.createRequest(query: query)) { request, skill in
+            request = skill.onRequest(request)
         }
 
         do {
-
-            let _dialogAPI = dialogAPI
-
-            _dialogAPI.notify?(.success(.requestSent(request)))
+            let dialogAPI = self.dialogAPI
+            dialogAPI.notify?(.success(.requestSent(request)))
 
             result = try perform {
-                try _dialogAPI.send(request: request)
+                try dialogAPI.send(request: request)
             }
-
         } catch DialogAPIError.Internal.requestTimeout {
             dialogAPI.notify?(.failure(.requestTimeout(request)))
         } catch DialogAPIError.Internal.requestCancellation {

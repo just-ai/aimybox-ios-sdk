@@ -137,22 +137,22 @@ class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig
         self.nextAction = .nothing
         self.config = config
 
-        if let _injectedBlock = config.speechToText.notify {
+        if let injectedBlock = config.speechToText.notify {
             config.speechToText.notify = { [weak self] in
                 self?.onSpeechToText($0)
-                _injectedBlock($0)
+                injectedBlock($0)
             }
         }
-        if let _injectedBlock = config.textToSpeech.notify {
+        if let injectedBlock = config.textToSpeech.notify {
             config.textToSpeech.notify = { [weak self] in
                 self?.onTextToSpeech($0)
-                _injectedBlock($0)
+                injectedBlock($0)
             }
         }
-        if let _injectedBlock = config.dialogAPI.notify {
+        if let injectedBlock = config.dialogAPI.notify {
             config.dialogAPI.notify = { [weak self] in
                 self?.onDialogAPI($0)
-                _injectedBlock($0)
+                injectedBlock($0)
             }
         }
 

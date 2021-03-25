@@ -28,11 +28,8 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
     }
 
     override public func main() {
-
-        let skill = dialogAPI.customSkills.first { $0.canHandle(response: response) }
-
-        if let _skill = skill {
-            let _ = _skill.onResponse(response, aimybox) { [weak self] response in
+        if let skill = dialogAPI.customSkills.first(where: { $0.canHandle(response: response) }) {
+            let _ = skill.onResponse(response, aimybox) { [weak self] response in
                 self?.defaultHandler(response: response, aimybox: aimybox)
             }
         } else {
@@ -46,8 +43,6 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
 
         do {
             try throwIfCanceled()
-
-            let lastReply = response.replies.last(where: supportedReplies)
 
             try response.replies.filter(supportedReplies).forEach { reply in
 
@@ -65,7 +60,7 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
                 }()
 
                 let nextAction: AimyboxNextAction = {
-                    if let _lastReply = lastReply, _lastReply === reply {
+                    if let lastReply = response.replies.last(where: supportedReplies), lastReply === reply {
                         return .byQuestion(is: response.question)
                     } else {
                         return .standby

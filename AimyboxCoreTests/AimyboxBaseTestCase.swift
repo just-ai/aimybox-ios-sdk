@@ -42,11 +42,11 @@ open class AimyboxBaseTestCase: XCTestCase {
     var clientSideErrorSemaphore: DispatchSemaphore?
     /// CustomSkills
     /// 1
-    var skill_1_onResponseSemaphore: DispatchSemaphore?
-    var skill_1_onRequestSemaphore: DispatchSemaphore?
+    var skill1onResponseSemaphore: DispatchSemaphore?
+    var skill1onRequestSemaphore: DispatchSemaphore?
     /// 2
-    var skill_2_onResponseSemaphore: DispatchSemaphore?
-    var skill_2_onRequestSemaphore: DispatchSemaphore?
+    var skill2onResponseSemaphore: DispatchSemaphore?
+    var skill2onRequestSemaphore: DispatchSemaphore?
     // MARK: - TextToSpeech
     /// Events
     var speechSequenceStartedSemaphore: DispatchSemaphore?

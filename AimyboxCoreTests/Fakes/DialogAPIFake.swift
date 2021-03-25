@@ -27,9 +27,9 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
 
     public var isQuestion: Bool = false
 
-    public lazy var reply_1: Reply = FakeTextReply(text: replyQuery)
+    public lazy var reply1: Reply = FakeTextReply(text: replyQuery)
 
-    public lazy var reply_2: Reply = FakeTextReply(text: replyQuery)
+    public lazy var reply2: Reply = FakeTextReply(text: replyQuery)
 
     public lazy var response = DialogAPIResponseFake(query: replyQuery,
                                                      action: action,
@@ -37,9 +37,9 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
                                                      question: isQuestion,
                                                      replies: [reply_1, reply_2])
 
-    public var skill_1 = DialogAPICustomSkillFake()
+    public var skill1 = DialogAPICustomSkillFake()
 
-    public var skill_2 = DialogAPICustomSkillFake()
+    public var skill2 = DialogAPICustomSkillFake()
 
     public lazy var customSkills: [DialogAPICustomSkillFake] = [skill_1, skill_2]
 
@@ -49,8 +49,8 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
 
     func send(request: DialogAPIRequestFake) throws -> DialogAPIResponseFake {
 
-        if let _error = errorState {
-            throw _error
+        if let error = errorState {
+            throw error
         }
 
         sentQuery = request.query

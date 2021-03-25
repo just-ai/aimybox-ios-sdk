@@ -10,9 +10,9 @@ import Aimybox
 
 fileprivate struct AimyboxConstants {
 
-    private static let api_base_route = URL(static: "https://api.aimybox.com")
+    private static let apiBaseRoute = URL(static: "https://api.aimybox.com")
 
-    public static let api_request_route = api_base_route.appendingPathComponent("/request")
+    public static let apiRequestRoute = apiBaseRoute.appendingPathComponent("/request")
 }
 
 public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
@@ -32,7 +32,7 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     public init(apiKey: String = "", unitKey: String, route: URL? = nil) {
         self.apiKey = apiKey
         self.unitKey = unitKey
-        self.route = route ?? AimyboxConstants.api_request_route
+        self.route = route ?? AimyboxConstants.apiRequestRoute
 
         super.init()
 
@@ -61,8 +61,8 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         var result: AimyboxResult<AimyboxResponse, Error>?
 
         group.enter()
-        URLSession.shared.dataTask(with: request) { data, response, _error in
-            if let error = _error {
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
                 result = .failure(error)
                 return
             }
@@ -72,13 +72,13 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
                 return
             }
 
-            guard let _data = data else {
+            guard let data = data else {
                 result = .failure(NSError(domain: "Missing response data", code: 204, userInfo: ["statusCode": code]))
                 return
             }
 
             do {
-                let response = try JSONDecoder().decode(AimyboxResponse.self, from: _data)
+                let response = try JSONDecoder().decode(AimyboxResponse.self, from: data)
                 result = .success(response)
 
             } catch {
@@ -90,15 +90,13 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
 
         group.wait()
 
-        guard let _result = result else {
-            throw NSError(domain: "No response from dapi request.", code: 204, userInfo: [:])
-        }
-
-        switch _result {
+        switch result {
         case .success(let response):
             return response
         case .failure(let error):
             throw error
+        default:
+            throw NSError(domain: "No response from dapi request.", code: 204, userInfo: [:])
         }
     }
 

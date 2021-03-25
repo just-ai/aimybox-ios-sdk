@@ -55,11 +55,11 @@ public class IAMTokenGenerator: IAMTokenProvider {
                 return
             }
 
-            guard let _data = data else {
+            guard let data = data else {
                 return
             }
 
-            result = try? JSONDecoder().decode(T.self, from: _data)
+            result = try? JSONDecoder().decode(T.self, from: data)
         }
 
         group.enter()
