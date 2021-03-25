@@ -6,8 +6,8 @@
 //  Copyright © 2019 Just Ai. All rights reserved.
 //
 
-import Foundation
 import AimyboxCore
+import Foundation
 
 class DialogAPIResponseFake: Response {
     public init(query: String, action: String, intent: String, question: Bool, replies: [Reply]) {

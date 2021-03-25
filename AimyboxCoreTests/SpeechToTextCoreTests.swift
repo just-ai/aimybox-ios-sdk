@@ -6,8 +6,8 @@
 //  Copyright © 2019 Just Ai. All rights reserved.
 //
 
-import XCTest
 @testable import AimyboxCore
+import XCTest
 
 class SpeechToTextCoreTests: AimyboxBaseTestCase {
 

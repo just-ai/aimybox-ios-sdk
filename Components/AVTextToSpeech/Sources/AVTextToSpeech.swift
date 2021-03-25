@@ -5,8 +5,8 @@
 //  Created by Vladyslav Popovych on 01.12.2019.
 //
 
-import Foundation
 import AVFoundation
+import Foundation
 
 #if canImport(Aimybox)
 import Aimybox

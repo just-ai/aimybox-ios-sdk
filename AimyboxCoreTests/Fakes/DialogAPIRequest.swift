@@ -6,7 +6,6 @@
 //  Copyright © 2019 Just Ai. All rights reserved.
 //
 
-import Foundation
 import AimyboxCore
 
 class DialogAPIRequestFake: Request {

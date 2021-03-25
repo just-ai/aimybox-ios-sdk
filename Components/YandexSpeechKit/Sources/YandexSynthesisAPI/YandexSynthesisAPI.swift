@@ -6,8 +6,8 @@
 //  Copyright © 2020 Just Ai. All rights reserved.
 //
 
-import Foundation
 import AVFoundation
+import Foundation
 
 final class YandexSynthesisAPI {
 

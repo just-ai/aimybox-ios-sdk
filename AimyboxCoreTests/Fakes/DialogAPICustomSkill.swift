@@ -6,8 +6,8 @@
 //  Copyright © 2019 Just Ai. All rights reserved.
 //
 
-import Foundation
 import AimyboxCore
+import Foundation
 
 class DialogAPICustomSkillFake: CustomSkill {
 

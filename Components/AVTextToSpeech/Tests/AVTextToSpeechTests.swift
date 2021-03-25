@@ -5,8 +5,8 @@
 //  Created by Vladyslav Popovych on 19.12.2019.
 //
 
-import XCTest
 @testable import AVTextToSpeech
+import XCTest
 
 class AVTextToSpeechTests: XCTestCase {
 
