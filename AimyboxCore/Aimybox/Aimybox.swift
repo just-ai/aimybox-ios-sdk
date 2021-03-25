@@ -110,9 +110,10 @@ public class AimyboxBuilder {
      
      - Returns: A type-erased object that conforms to `AimyboxConfig` protocol.
      */
-    public static func config<TDialogAPI>(_ speechToText: SpeechToText,
-                                         _ textToSpeech: TextToSpeech,
-                                         _ dialogAPI: TDialogAPI) -> AimyboxConfigConcrete<TDialogAPI>
+    public static func config<TDialogAPI>(
+        _ speechToText: SpeechToText,
+        _ textToSpeech: TextToSpeech,
+        _ dialogAPI: TDialogAPI) -> AimyboxConfigConcrete<TDialogAPI>
     {
         AimyboxConfigConcrete<TDialogAPI>(speechToText, textToSpeech, dialogAPI)
     }
