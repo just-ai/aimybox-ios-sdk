@@ -53,22 +53,22 @@ public protocol DialogAPI: AimyboxComponent {
 public typealias DialogAPICallback = (DialogAPIResult) -> Void
 
 extension DialogAPI {
-    
+
     public func send(query: String, sender aimybox: Aimybox) {
-        
+
         cancelRunningOperation()
-        
+
         let apiOperation = DialogAPISendOperation<Self>(query: query, dialogAPI: self)
-        
+
         apiOperation.completionBlock = { [weak self] in
-            
+
             guard let result = apiOperation.result else {
                 return
             }
-            
+
             self?.handle(response: result, sender: aimybox)
         }
-        
+
         operationQueue.addOperation(apiOperation)
     }
     /**
@@ -77,14 +77,14 @@ extension DialogAPI {
     public func cancelRequest() {
         cancelRunningOperation()
     }
-    
+
     private func handle(response: TResponse, sender aimybox: Aimybox) {
-        
+
         let handleOperation = DialogAPIHandleOperation<Self>(response: response, dialogAPI: self, aimybox: aimybox)
-        
+
         notify?(.success(.responseReceived(response)))
-        
+
         operationQueue.addOperation(handleOperation)
-        
+
     }
 }

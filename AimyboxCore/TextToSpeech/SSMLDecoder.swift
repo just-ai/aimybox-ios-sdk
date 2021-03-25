@@ -27,7 +27,7 @@ final class SSMLDecoder: NSObject, XMLParserDelegate {
             return []
         }
     }
-    
+
     func parser(
         _ parser: XMLParser,
         didStartElement elementName: String,
@@ -45,7 +45,7 @@ final class SSMLDecoder: NSObject, XMLParserDelegate {
             }
         }
     }
-    
+
     func parser(
         _ parser: XMLParser,
         didEndElement elementName: String,
@@ -70,7 +70,7 @@ final class SSMLDecoder: NSObject, XMLParserDelegate {
     func parserDidEndDocument(_ parser: XMLParser) {
         parserGroup.leave()
     }
-    
+
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         if pTagText == nil {
             pTagText = string

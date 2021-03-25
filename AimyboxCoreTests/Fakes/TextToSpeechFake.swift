@@ -10,22 +10,22 @@ import Foundation
 import AimyboxCore
 
 class TextToSpeechFake: AimyboxComponent, TextToSpeech {
-    
+
     var currentSpeech: [AimyboxSpeech]?
-    
+
     var errorState: TextToSpeechError?
-    
+
     func synthesize(contentsOf speeches: [AimyboxSpeech]) {
         if let error = errorState {
             notify?(.failure(error))
             return
         }
-        
+
         currentSpeech = speeches
         operationQueue.addOperation { [weak self] in
-            
+
             self?.notify?(.success(.speechSequenceStarted(speeches)))
-            
+
             speeches.forEach { speech in
                 self?.notify?(.success(.speechStarted(speech)))
                 guard speech.isValid() else {
@@ -36,13 +36,13 @@ class TextToSpeechFake: AimyboxComponent, TextToSpeech {
                 Thread.sleep(forTimeInterval: 2.5)
                 self?.notify?(.success(.speechEnded(speech)))
             }
-            
+
             self?.notify?(.success(.speechSequenceCompleted(speeches)))
         }
         operationQueue.waitUntilAllOperationsAreFinished()
         currentSpeech = nil
     }
-    
+
     func stop() {
         cancelRunningOperation()
         operationQueue.addOperation { [weak self] in
@@ -52,6 +52,6 @@ class TextToSpeechFake: AimyboxComponent, TextToSpeech {
             }
         }
     }
-    
+
     var notify: (TextToSpeechCallback)?
 }

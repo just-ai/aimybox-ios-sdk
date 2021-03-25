@@ -15,13 +15,13 @@ public class AimyboxRequest: Request {
         self.unitKey = unitKey
         self.data = data
     }
-    
+
     public var query: String
-    
+
     public var apiKey: String
-    
+
     public var unitKey: String
-    
+
     public var data: [String: Data]
 }
 

@@ -18,7 +18,7 @@ public protocol AudioReply: Reply {
 }
 
 public extension AudioReply {
-    
+
     var audioSpeech: AudioSpeech {
         AudioSpeech(audioURL: url)
     }

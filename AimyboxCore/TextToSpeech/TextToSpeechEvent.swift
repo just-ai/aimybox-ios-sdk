@@ -35,7 +35,7 @@ public extension TextToSpeechEvent {
         guard let delegate = delegate, let tts = tts else {
             return
         }
-        
+
         switch self {
         case .speechSequenceStarted(let sequence):
             delegate.tts(tts, speechSequenceStarted: sequence)

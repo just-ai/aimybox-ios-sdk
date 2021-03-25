@@ -10,10 +10,10 @@ import Foundation
 import AimyboxCore
 
 class DialogAPIRequestFake: Request {
-    
+
     public init(query: String) {
         self.query = query
     }
-    
+
     var query: String
 }

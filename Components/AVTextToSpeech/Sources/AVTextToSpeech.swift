@@ -56,7 +56,7 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
      */
     internal var isCancelled: Bool = false
-    
+
     private override init() {
         rate = AVSpeechUtteranceDefaultSpeechRate
         volume = 1.0
@@ -70,7 +70,7 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         speechDelegate.tts = self
         speechSynthesizer.delegate = speechDelegate
     }
-    
+
     public init?(locale: Locale? = nil) {
         rate = AVSpeechUtteranceDefaultSpeechRate
         voice = AVSpeechSynthesisVoice(language: locale?.languageCode)
@@ -85,9 +85,9 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         speechDelegate.tts = self
         speechSynthesizer.delegate = speechDelegate
     }
-    
+
     // MARK: - TextToSpeech
-    
+
     public func synthesize(contentsOf speeches: [AimyboxSpeech]) {
         operationQueue.addOperation { [weak self] in
             self?.prepareAudioEngine { engineIsReady in
@@ -100,36 +100,36 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         }
         operationQueue.waitUntilAllOperationsAreFinished()
     }
-    
+
     public func stop() {
         operationQueue.addOperation { [weak self] in
             self?.speechSynthesizer.stopSpeaking(at: .word)
         }
     }
-    
+
     public func cancelSynthesis() {
         isCancelled = true
     }
-    
+
     // MARK: - Internals
-    
+
     private func synthesize(_ speeches: [AimyboxSpeech]) {
         guard let _notify = notify else { return }
-        
+
         _notify(.success(.speechSequenceStarted(speeches)))
 
         speeches.unwrapSSML.forEach { speech in
-            
+
             guard speech.isValid() && !isCancelled else {
                 return _notify(.failure(.emptySpeech(speech)))
             }
-            
+
             synthesize(speech)
         }
 
         _notify(.success(.speechSequenceCompleted(speeches)))
     }
-    
+
     private func synthesize(_ speech: AimyboxSpeech) {
         if let textSpeech = speech as? TextSpeech {
             synthesize(textSpeech)
@@ -137,7 +137,7 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
             synthesize(audioSpeech)
         }
     }
-    
+
     private func synthesize(_ textSpeech: TextSpeech) {
         let utterance = AVSpeechUtterance(string: textSpeech.text)
         utterance.rate = rate
@@ -147,16 +147,16 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
 
         blockGroup.enter()
         speechSynthesizer.speak(utterance)
-        
+
         textQueue[utterance] = textSpeech
         blockGroup.wait()
     }
-    
+
     private func synthesize(_ audioSpeech: AudioSpeech) {
         blockGroup.enter()
-        
+
         let player = AVPlayer(url: audioSpeech.audioURL)
-        
+
         let statusObservation = player.currentItem?.observe(\.status) { [weak self] (item, _) in
             switch item.status {
             case .failed:
@@ -182,15 +182,15 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
             self?.notify?(.failure(.emptySpeech(audioSpeech)))
             self?.blockGroup.leave()
         }
-        
+
         player.play()
         blockGroup.wait()
-        
+
         statusObservation?.invalidate()
         NotificationCenter.default.removeObserver(didPlayToEndObservation)
         NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
     }
-    
+
     private func prepareAudioEngine(_ completion: (Bool) -> Void) {
         do {
             let audioSession = AVAudioSession.sharedInstance()
@@ -205,29 +205,29 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
 }
 
 class AVTextToSpeechDelegate: NSObject, AVSpeechSynthesizerDelegate {
-    
+
     weak var tts: AVTextToSpeech?
-    
+
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         guard let aimySpeech = tts?.textQueue[utterance] else { return }
-        
+
         tts?.notify?(.success(.speechStarted(aimySpeech)))
     }
 
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         guard let aimySpeech = tts?.textQueue[utterance] else { return }
-        
+
         tts?.notify?(.success(.speechEnded(aimySpeech)))
-        
+
         tts?.textQueue.removeValue(forKey: utterance)
-        
+
         tts?.blockGroup.leave()
     }
-    
+
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
         tts?.blockGroup.leave()
     }
-    
+
     public func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
         tts?.blockGroup.leave()
     }

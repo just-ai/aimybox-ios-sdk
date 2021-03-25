@@ -27,11 +27,11 @@ open class AimyboxComponent {
         opQueue.underlyingQueue = queue
         operationQueue = opQueue
     }
-    
+
     var hasRunningOperations: Bool {
         operationQueue.operationCount != 0
     }
-    
+
     public func cancelRunningOperation() {
         if hasRunningOperations {
             operationQueue.cancelAllOperations()

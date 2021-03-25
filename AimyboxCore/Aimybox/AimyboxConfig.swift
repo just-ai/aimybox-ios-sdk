@@ -46,7 +46,7 @@ public struct AimyboxConfigConcrete<TDialogAPI: DialogAPI>: AimyboxConfig {
      Communicates with NLU engine and provides responses for user queries.
      */
     public var dialogAPI: TDialogAPI
-    
+
     public init(_ speechToText: SpeechToText, _ textToSpeech: TextToSpeech, _ dialogAPI: TDialogAPI) {
         self.speechToText = speechToText
         self.textToSpeech = textToSpeech

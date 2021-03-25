@@ -26,7 +26,7 @@ public extension TextToSpeechError {
         guard let delegate = delegate, let tts = tts else {
             return
         }
-        
+
         switch self {
         case .emptySpeech(let speech):
             delegate.tts(tts, speechSkipped: speech)

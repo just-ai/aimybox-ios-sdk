@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol IAMTokenProvider {
-    
+
     func token() -> IAMToken?
 }

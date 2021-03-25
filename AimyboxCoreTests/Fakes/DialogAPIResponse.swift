@@ -17,14 +17,14 @@ class DialogAPIResponseFake: Response {
         self.question = question
         self.replies = replies
     }
-    
+
     var query: String
-    
+
     var action: String
-    
+
     var intent: String
-    
+
     var question: Bool
-    
+
     var replies: [Reply]
 }

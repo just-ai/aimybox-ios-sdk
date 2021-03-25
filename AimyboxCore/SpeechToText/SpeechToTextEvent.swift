@@ -51,7 +51,7 @@ public extension SpeechToTextEvent {
         guard let delegate = delegate, let stt = stt else {
             return
         }
-        
+
         switch self {
         case .recognitionPermissionsGranted:
             delegate.sttRecognitionPermissionsGranted(stt)

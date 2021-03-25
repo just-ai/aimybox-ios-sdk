@@ -9,15 +9,15 @@
 import Foundation
 
 final class WAVFileGenerator {
-    
+
     func createWAVFile(using rawData: Data) -> Data {
         createWaveHeader(data: rawData) + rawData
     }
-    
+
     /** http://soundfile.sapp.org/doc/WaveFormat/
      */
     private func createWaveHeader(data: Data) -> Data {
-        
+
         let sampleRate: Int32 = 48000
         let dataSize: Int32 = Int32(data.count)
         let chunkSize: Int32 = 36 + dataSize
@@ -27,7 +27,7 @@ final class WAVFileGenerator {
         let bitsPerSample: Int16 = 16
         let byteRate: Int32 = sampleRate * Int32(channels * bitsPerSample / 8)
         let blockAlign: Int16 = channels * bitsPerSample / 8
-        
+
         var header = Data()
 
         header.append([UInt8]("RIFF".utf8), count: 4)

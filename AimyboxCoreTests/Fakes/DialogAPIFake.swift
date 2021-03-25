@@ -10,15 +10,15 @@ import Foundation
 import AimyboxCore
 
 class DialogAPIFake: AimyboxComponent, DialogAPI {
-    
+
     var timeoutPollAttempts = 10
-    
+
     public var sendTimeout: TimeInterval = 0.5
-    
+
     public var errorState: Error?
-    
+
     public var sentQuery: String = ""
-    
+
     public var replyQuery: String = ""
 
     public var action: String = ""
@@ -36,17 +36,17 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
                                                      intent: intent,
                                                      question: isQuestion,
                                                      replies: [reply_1, reply_2])
-    
+
     public var skill_1 = DialogAPICustomSkillFake()
-    
+
     public var skill_2 = DialogAPICustomSkillFake()
-    
+
     public lazy var customSkills: [DialogAPICustomSkillFake] = [skill_1, skill_2]
-    
+
     public override init() {
         super.init()
     }
-    
+
     func send(request: DialogAPIRequestFake) throws -> DialogAPIResponseFake {
 
         if let _error = errorState {
@@ -54,23 +54,23 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
         }
 
         sentQuery = request.query
-        
+
         notify?(.success(.requestSent(request)))
-        
+
         Thread.sleep(forTimeInterval: sendTimeout)
-        
+
         return response
     }
-    
+
     func createRequest(query: String) -> DialogAPIRequestFake {
         DialogAPIRequestFake(query: query)
     }
-    
+
     var notify: (DialogAPICallback)?
-    
+
     typealias TRequest = DialogAPIRequestFake
-    
+
     typealias TResponse = DialogAPIResponseFake
-    
+
     typealias TCustomSkill = DialogAPICustomSkillFake
 }

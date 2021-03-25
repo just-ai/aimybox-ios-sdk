@@ -68,7 +68,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         self.address = address
         super.init()
     }
-    
+
     public func synthesize(contentsOf speeches: [AimyboxSpeech]) {
         isCancelled = false
         operationQueue.addOperation { [weak self] in
@@ -82,30 +82,30 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         }
         operationQueue.waitUntilAllOperationsAreFinished()
     }
-    
+
     public func stop() {
         isCancelled = true
         player?.pause()
     }
-    
+
     public func cancelSynthesis() {
         operationQueue.addOperation { [weak self] in
             self?.isCancelled = true
         }
     }
     // MARK: - Internals
-    
+
     private func synthesize(_ speeches: [AimyboxSpeech]) {
         guard let _notify = notify else { return }
-        
+
         _notify(.success(.speechSequenceStarted(speeches)))
 
         speeches.unwrapSSML.forEach { speech in
-            
+
             guard speech.isValid() && !isCancelled else {
                 return _notify(.failure(.emptySpeech(speech)))
             }
-            
+
             synthesize(speech)
         }
 
@@ -115,7 +115,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
                  : .success(.speechSequenceCompleted(speeches))
          )
     }
-    
+
     private func synthesize(_ speech: AimyboxSpeech) {
         if let textSpeech = speech as? TextSpeech {
             synthesize(textSpeech)
@@ -123,10 +123,10 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             synthesize(audioSpeech)
         }
     }
-    
+
     private func synthesize(_ textSpeech: TextSpeech) {
         let synthesisGroup = DispatchGroup()
-        
+
         synthesisGroup.enter()
         synthesisAPI.request(
             text: textSpeech.text,
@@ -141,24 +141,23 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         }
         synthesisGroup.wait()
     }
-    
+
     private func synthesize(_ audioSpeech: AudioSpeech) {
         synthesize(audioSpeech, using: audioSpeech.audioURL)
     }
-    
+
     private func synthesize(_ speech: AimyboxSpeech, using url: URL) {
         guard let _notify = notify else { return }
-        
+
         let synthesisGroup = DispatchGroup()
-        
+
         let player = AVPlayer(url: url)
-        
+
         let statusObservation = player.currentItem?.observe(\.status) { (item, _) in
             switch item.status {
             case .failed:
                 _notify(.failure(.emptySpeech(speech)))
                 synthesisGroup.leave()
-                
             default:
                 break
             }
@@ -177,7 +176,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             _notify(.failure(.emptySpeech(speech)))
             synthesisGroup.leave()
         }
-        
+
         synthesisGroup.enter()
         self.player = player
         isCancelled ? synthesisGroup.leave() : player.play()
@@ -188,7 +187,7 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         statusObservation?.invalidate()
         NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
     }
-    
+
     private func prepareAudioEngine(_ completion: (Bool) -> Void) {
         do {
             let audioSession = AVAudioSession.sharedInstance()

@@ -11,7 +11,7 @@ import Foundation
  Base protocol for any speeches.
  */
 public protocol AimyboxSpeech: class {
-    
+
     func isValid() -> Bool
 }
 
@@ -21,11 +21,11 @@ public protocol AimyboxSpeech: class {
 public class TextSpeech: AimyboxSpeech {
 
     public let text: String
-    
+
     public init(text: String) {
         self.text = text
     }
-    
+
     public func isValid() -> Bool {
         !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
@@ -36,7 +36,7 @@ public class AudioSpeech: AimyboxSpeech {
      URL to the audio source.
      */
     public let audioURL: URL
-    
+
     public init(audioURL: URL) {
         self.audioURL = audioURL
     }

@@ -10,13 +10,13 @@
 import Aimybox
 
 final class AimyboxAudioReply: AudioReply, Decodable {
-    
+
     var url: URL
-    
+
     init(url: URL) {
         self.url = url
     }
-    
+
     static let jsonKey: String = "audio"
 }
 

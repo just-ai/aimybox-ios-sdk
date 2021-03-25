@@ -40,23 +40,23 @@ final class YandexRecognitionAPI {
         self.operationQueue = queue
         self.recognitionConfig = config ?? .defaultConfig(folderID: folderID, language: code)
     }
-    
+
     public func openStream(
         onOpen: @escaping (Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?) -> Void,
         onResponse: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) -> Void,
         error handler: @escaping (Error) -> Void,
         completion: @escaping () -> Void
     ) {
-        
+
         let channel = Channel(address: apiAdress)
         channel.addConnectivityObserver { (state) in
             print("ConnectivityObserverState: \(state)")
         }
-        
+
         client = Yandex_Cloud_Ai_Stt_V2_SttServiceServiceClient(channel: channel)
-        
+
         do {
-            
+
             try client?.metadata.add(key: "authorization", value: "Bearer \(iAMToken)")
             if dataLoggingEnabled {
                 try client?.metadata.add(key: xDataLoggingEnabledKey, value: "true")
@@ -69,19 +69,19 @@ final class YandexRecognitionAPI {
                         : handler(NSError(domain: result.description, code: result.statusCode.rawValue, userInfo: nil))
                 }
             }
-            
+
             try stream?.send(
                 Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with {
                     $0.config = recognitionConfig
                 }
             )
-            
+
             onOpen(stream)
-            
+
             operationQueue.addOperation { [weak self] in
                 try? self?.receiveMessages(on: onResponse, error: handler, stream: self?.stream)
             }
-            
+
         } catch let grpc_error {
             handler(grpc_error)
         }
@@ -105,14 +105,14 @@ final class YandexRecognitionAPI {
                 case .result(let object) where object != nil:
                     // swiftlint:disable:next force_unwrapping
                     response(object!)
-                    
+
                 case .error(let error):
                     handler(error)
-                    
+
                 default:
                     break
                 }
-                
+
                 self?.operationQueue.addOperation { [weak self] in
                     try? self?.receiveMessages(on: response, error: handler, stream: stream)
                 }
@@ -123,7 +123,7 @@ final class YandexRecognitionAPI {
 }
 
 extension Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
-    
+
     static func defaultConfig(folderID: String, language code: String) -> Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
         Yandex_Cloud_Ai_Stt_V2_RecognitionConfig.with {
             $0.folderID = folderID

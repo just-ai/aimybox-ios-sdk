@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol DialogAPIDelegate: class {
-    
+
     // MARK: - Lifecycle
     /**
      Happens when `Aimybox` sends request.
@@ -18,7 +18,7 @@ public protocol DialogAPIDelegate: class {
      Happens when `DialogAPI` received response.
      */
     func dialogAPI(received response: Response)
-    
+
     // MARK: - Errors
     /**
       Happens when request timeouts.

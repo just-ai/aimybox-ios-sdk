@@ -67,7 +67,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         dataLoggingEnabled: Bool = false
     ) {
         let token = tokenProvider.token()
-        
+
         guard let iamToken = token?.iamToken else {
             return nil
         }
@@ -81,7 +81,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         self.dataLoggingEnabled = dataLoggingEnabled
         super.init()
     }
-    
+
     public func startRecognition() {
         guard wasSpeechStopped else { return }
         wasSpeechStopped = false
@@ -95,7 +95,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             }
         }
     }
-    
+
     public func stopRecognition() {
         wasSpeechStopped = true
         audioEngine.stop()
@@ -103,7 +103,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         audioInputNode = nil
         recognitionAPI.closeStream()
     }
-    
+
     public func cancelRecognition() {
         wasSpeechStopped = true
         audioEngine.stop()
@@ -114,9 +114,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             self?.notify?(.success(.recognitionCancelled))
         }
     }
-     
+
     // MARK: - Internals
-    
+
     private func onPermissionGranted() {
         prepareRecognition()
         guard !wasSpeechStopped else { return }
@@ -128,10 +128,10 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             notify?(.failure(.microphoneUnreachable))
         }
     }
-    
+
     private func prepareRecognition() {
         guard let _notify = notify else { return }
-        
+
         // Setup AudioSession for recording
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -141,7 +141,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         } catch {
             return _notify(.failure(.microphoneUnreachable))
         }
-        
+
         recognitionAPI.openStream(onOpen: { [audioEngine, weak self, audioFormat] (stream) in
             let inputNode = audioEngine.inputNode
             let inputFormat = inputNode.outputFormat(forBus: 0)
@@ -187,9 +187,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
                         }
 
                         guard let _bytes = outputBuffer.int16ChannelData else { return }
-                        
+
                         let channels = UnsafeBufferPointer(start: _bytes, count: Int(audioFormat.channelCount))
-                        
+
                         request.audioContent = Data(
                             bytesNoCopy: channels[0],
                             count: Int(buffer.frameCapacity*audioFormat.streamDescription.pointee.mBytesPerFrame),
@@ -210,7 +210,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
                 self?.stopRecognition()
         })
     }
-    
+
     private func proccessResults(_ response: Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) {
         guard
             !wasSpeechStopped,
@@ -224,24 +224,24 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             notify?(.success(.recognitionPartialResult(bestAlternative.text)))
             return
         }
-        
+
         let finalResult = bestAlternative.text.trimmingCharacters(in: .whitespacesAndNewlines)
-        
+
         guard finalResult.isEmpty == false else {
             notify?(.success(.emptyRecognitionResult))
             return
         }
-        
+
         notify?(.success(.recognitionPartialResult(finalResult)))
         notify?(.success(.recognitionResult(finalResult)))
     }
 
     // MARK: - User Permissions
     private func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
-        
+
         var recordAllowed: Bool = false
         let permissionsDispatchGroup = DispatchGroup()
-        
+
         permissionsDispatchGroup.enter()
         DispatchQueue.main.async {
             // Microphone recording permission
@@ -250,7 +250,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
                 permissionsDispatchGroup.leave()
             }
         }
-        
+
         permissionsDispatchGroup.notify(queue: .main) {
             if recordAllowed {
                 completion(.success(.recognitionPermissionsGranted))

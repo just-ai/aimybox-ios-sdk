@@ -12,12 +12,12 @@ import Foundation
  */
 public class DispatchDebouncer {
     private var timer: Timer?
-    
+
     private var fired: Bool = false
 
     public init() {
     }
-    
+
     public func debounce(delay seconds: TimeInterval, _ block: @escaping () -> Void ) {
         DispatchQueue.main.async { [weak self] in
             self?.timer?.invalidate()
@@ -56,12 +56,12 @@ extension KeyedDecodingContainer {
  Functional style optional chaining.
  */
 extension Optional {
-    
+
     public func or(_ defaultUnwrapped: Wrapped) -> Wrapped {
         switch self {
         case .none:              return defaultUnwrapped
         case .some(let wrapped): return wrapped
         }
     }
-    
+
 }

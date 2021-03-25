@@ -11,17 +11,17 @@ import Aimybox
 public class AimyboxCustomSkill: CustomSkill {
 
     public typealias TRequest = AimyboxRequest
-    
+
     public typealias TResponse = AimyboxResponse
-    
+
     public func onRequest(_ request: AimyboxRequest) -> AimyboxRequest {
         request
     }
-    
+
     public func canHandle(response: AimyboxResponse) -> Bool {
         false
     }
-    
+
     public func onResponse(
         _ response: AimyboxResponse,
         _ aimybox: Aimybox,

@@ -63,17 +63,17 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         super.init()
         speechRecognizer.queue = operationQueue
     }
-    
+
     // MARK: - Locale management
-    
+
     public class func supports(locale: Locale) -> Bool {
         SFSpeechRecognizer.supportedLocales().contains(locale)
     }
-    
+
     // MARK: - SpechToTextProtocol conformance
-    
+
     public func startRecognition() {
-        
+
         checkPermissions { [weak self] result in
             switch result {
             case .success:
@@ -83,7 +83,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
             }
         }
     }
-    
+
     public func stopRecognition() {
         recognitionRequest?.endAudio()
         recognitionTask?.finish()
@@ -91,7 +91,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         audioInputNode?.removeTap(onBus: 0)
         audioInputNode = nil
     }
-    
+
     public func cancelRecognition() {
         recognitionRequest?.endAudio()
         recognitionTask?.cancel()
@@ -106,9 +106,9 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
             }
         }
     }
-    
+
     // MARK: - Internals
-    
+
     private func onPermissionGranted() {
         prepareRecognition()
         do {
@@ -118,10 +118,10 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
             notify?(.failure(.microphoneUnreachable))
         }
     }
-    
+
     private func prepareRecognition() {
         guard let _notify = notify else { return }
-        
+
         // Setup AudioSession for recording
         do {
             let audioSession = AVAudioSession.sharedInstance()
@@ -142,7 +142,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
             guard error == nil else {
                 return _notify(.failure(.speechRecognitionUnavailable))
             }
-            
+
             if let _result = result {
                 self?.proccessResults(result: _result)
             } else {
@@ -159,13 +159,13 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         audioInputNode = inputNode
         audioEngine.prepare()
     }
-    
+
     private func proccessResults(result: SFSpeechRecognitionResult) {
-        
+
         guard result.isFinal == true else {
             let partialResult = result.bestTranscription.formattedString
             notify?(.success(.recognitionPartialResult(partialResult)))
-            
+
             recognitionDebouncer.debounce(delay: recognitionDebounceDelay) { [weak self] in
                 self?.operationQueue.addOperation {
                     self?.stopRecognition()
@@ -173,24 +173,24 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
             }
             return
         }
-        
+
         let finalResult = result.bestTranscription.formattedString.trimmingCharacters(in: .whitespacesAndNewlines)
-        
+
         guard finalResult.isEmpty == false else {
             notify?(.success(.emptyRecognitionResult))
             return
         }
-        
+
         notify?(.success(.recognitionResult(finalResult)))
     }
-    
+
     // MARK: - User Permissions
     private func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
-        
+
         var recordAllowed: Bool = false
         var recognitionAllowed: Bool = false
         let permissionsDispatchGroup = DispatchGroup()
-        
+
         permissionsDispatchGroup.enter()
         DispatchQueue.main.async {
             // Microphone recording permission
@@ -199,7 +199,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
                 permissionsDispatchGroup.leave()
             }
         }
-        
+
         permissionsDispatchGroup.enter()
         DispatchQueue.main.async {
             // Speech recognizer permission
@@ -208,7 +208,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
                 permissionsDispatchGroup.leave()
             }
         }
-        
+
         permissionsDispatchGroup.notify(queue: .main) {
             switch (recordAllowed, recognitionAllowed) {
             case (true, true):

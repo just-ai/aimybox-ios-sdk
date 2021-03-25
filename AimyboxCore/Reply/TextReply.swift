@@ -26,7 +26,7 @@ public protocol TextReply: Reply {
 }
 
 public extension TextReply {
-    
+
     var textSpeech: TextSpeech {
         TextSpeech(text: tts ?? text)
     }

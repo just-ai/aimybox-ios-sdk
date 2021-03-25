@@ -11,7 +11,7 @@ import Foundation
  Speech to text delegate is notified to all events that relate to speech recognition process.
  */
 public protocol SpeechToTextDelegate: class {
-    
+
     // MARK: - Lifecycle
     /**
      Called when user grants permission to use microphone and recognition API's. Optional.
@@ -49,7 +49,7 @@ public protocol SpeechToTextDelegate: class {
     Called when sound volume of microphone input changes. Optional.
     */
     func stt(_ stt: SpeechToText, soundVolumeRmsChanged: Int)
-    
+
     // MARK: - Errors
     /**
      User didn't grant a permission to use a device microphone.

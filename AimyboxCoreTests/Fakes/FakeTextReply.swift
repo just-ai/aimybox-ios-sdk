@@ -10,16 +10,16 @@ import Foundation
 import AimyboxCore
 
 class FakeTextReply: TextReply {
-    
+
     internal init(text: String, tts: String? = nil, language: String? = nil) {
         self.text = text
         self.tts = tts
         self.language = language
     }
-    
+
     var text: String
-    
+
     var tts: String?
-    
+
     var language: String?
 }

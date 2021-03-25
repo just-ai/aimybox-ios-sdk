@@ -10,15 +10,15 @@ import Foundation
 import AimyboxCore
 
 class SpeechToTextFake: AimyboxComponent, SpeechToText {
-    
+
     public var partialResult: String = "Ping"
-    
+
     public var partialResultCount: Int = 3
-    
+
     public var finalResult: String = "Ping-Pong"
-    
+
     public var errorState: SpeechToTextError?
-    
+
     func startRecognition() {
         guard errorState == nil else {
             if let error = self.errorState {
@@ -28,14 +28,14 @@ class SpeechToTextFake: AimyboxComponent, SpeechToText {
             }
             return
         }
-        
+
         let partialResult = self.partialResult
         let finalResult = self.finalResult
         let partialResultCount = self.partialResultCount
-        
+
         operationQueue.addOperation { [weak self] in
             self?.notify?(.success(.recognitionStarted))
-            
+
             (1...partialResultCount).forEach { index in
                 self?.operationQueue.underlyingQueue?.asyncAfter(deadline: .now() + 0.25*Double(index)) { [weak self] in
                     self?.operationQueue.addOperation {
@@ -57,19 +57,19 @@ class SpeechToTextFake: AimyboxComponent, SpeechToText {
             }
         }
     }
-    
+
     func stopRecognition() {
         let finalResult = self.finalResult
         operationQueue.addOperation { [weak self] in
             self?.notify?(.success(.recognitionResult(finalResult)))
         }
     }
-    
+
     func cancelRecognition() {
         operationQueue.addOperation { [weak self] in
             self?.notify?(.success(.recognitionCancelled))
         }
     }
-    
+
     var notify: (SpeechToTextCallback)?
 }

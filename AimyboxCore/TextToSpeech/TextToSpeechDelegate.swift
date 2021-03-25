@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol TextToSpeechDelegate: class {
-    
+
     // MARK: - Lifecycle
     /**
      Happens when `TextToSpeech` actually starts to synthesise a list of speeches.
@@ -26,7 +26,7 @@ public protocol TextToSpeechDelegate: class {
      Happens when `TextToSpeech` ends to synthesise the whole list of speeches.
      */
     func tts(_ tts: TextToSpeech, speechSequenceCompleted sequence: [AimyboxSpeech])
-    
+
     // MARK: - Errors
     /**
      Happens when `TextToSpeech` skips any of speeches (if it's empty for example).

@@ -12,11 +12,11 @@ import XCTest
 open class AimyboxBaseTestCase: XCTestCase {
 
     var aimybox: Aimybox!
-    
+
     var stt: SpeechToTextFake!
     var dapi: DialogAPIFake!
     var tts: TextToSpeechFake!
-    
+
     // MARK: - SpeechToText
     /// For Events
     var recognitionStartedSemaphore: DispatchSemaphore?
@@ -58,17 +58,17 @@ open class AimyboxBaseTestCase: XCTestCase {
     var emptySpeechSemaphore: DispatchSemaphore?
     var speakersUnavailableSemaphore: DispatchSemaphore?
     var speechSequenceCancelledSemaphore: DispatchSemaphore?
-    
+
     open func setupComponents() {
         stt = SpeechToTextFake()
         tts = TextToSpeechFake()
         dapi = DialogAPIFake()
     }
-    
+
     override open func setUp() {
         setupComponents()
         let config = AimyboxBuilder.config(stt, tts, dapi)
-        
+
         // MARK: - SpeechToText
         config.speechToText.notify = { [weak self] result in
             switch result {
@@ -90,7 +90,7 @@ open class AimyboxBaseTestCase: XCTestCase {
                 default:
                     XCTAssert(false)
                 }
-                
+
             case .failure(let error):
                 switch error {
                 case .microphonePermissionReject:
@@ -114,7 +114,7 @@ open class AimyboxBaseTestCase: XCTestCase {
         speechRecognitionPermissionRejectSemaphore = DispatchSemaphore(value: 0)
         microphoneUnreachableSemaphore = DispatchSemaphore(value: 0)
         speechRecognitionUnavailableSemaphore = DispatchSemaphore(value: 0)
-        
+
         // MARK: - DialogAPI
         config.dialogAPI.notify = { [weak self] (result) in
             switch result {
@@ -138,7 +138,7 @@ open class AimyboxBaseTestCase: XCTestCase {
                 }
             }
         }
-        
+
         requestSentSemaphore = DispatchSemaphore(value: 0)
         responseReceivedSemaphore = DispatchSemaphore(value: 0)
         requestTimeoutSemaphore = DispatchSemaphore(value: 0)
@@ -207,10 +207,10 @@ open class AimyboxBaseTestCase: XCTestCase {
         emptySpeechSemaphore = DispatchSemaphore(value: 0)
         speakersUnavailableSemaphore = DispatchSemaphore(value: 0)
         speechSequenceCancelledSemaphore = DispatchSemaphore(value: 0)
-        
+
         aimybox = AimyboxBuilder.aimybox(with: config)
     }
-    
+
     override open func tearDown() {
         aimybox = nil
         stt = nil
@@ -262,7 +262,7 @@ public extension DispatchSemaphore {
     @inline(__always) func waitOrFail(timeout: DispatchTime = .now() + 5.0) {
         XCTAssertEqual(wait(timeout: timeout), .success, "Timeout for event wait.")
     }
-    
+
     @inline(__always) func waitOrPass(timeout: DispatchTime = .now() + 5.0) {
         XCTAssertEqual(wait(timeout: timeout), .timedOut, "Timeout for event pass.")
     }

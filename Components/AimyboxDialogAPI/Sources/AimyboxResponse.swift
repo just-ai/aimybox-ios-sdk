@@ -17,13 +17,13 @@ final public class AimyboxResponse: Response, Decodable {
     }
 
     public var query: String = ""
-    
+
     public var action: String = ""
-    
+
     public var intent: String = ""
-    
+
     public var question: Bool = false
-    
+
     public var replies: [Reply] = []
 
     // MARK: Decodable
@@ -38,7 +38,7 @@ final public class AimyboxResponse: Response, Decodable {
 
     public required init(from decoder: Decoder) throws {
         let map = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         query = try map.decodeIfPresent(.query).or("")
         action = try map.decodeIfPresent(.action).or("")
         intent = try map.decodeIfPresent(.intent).or("")
@@ -54,7 +54,7 @@ final public class AimyboxResponse: Response, Decodable {
             }
         }
     }
-    
+
 }
 
 private struct AimyboxReplyType: Decodable {
