@@ -32,7 +32,8 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
         self.aimybox = aimybox
     }
 
-    override public
+    public
+    override
     func main() {
         if let skill = dialogAPI.customSkills.first(where: { $0.canHandle(response: response) }) {
             let _ = skill.onResponse(response, aimybox) { [weak self] response in
