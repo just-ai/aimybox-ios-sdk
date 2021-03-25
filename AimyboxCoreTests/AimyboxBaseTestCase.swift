@@ -27,7 +27,7 @@ class AimyboxBaseTestCase: XCTestCase {
     var recognitionCancelledSemaphore: DispatchSemaphore?
     /// For Errors
     var microphonePermissionRejectSemaphore: DispatchSemaphore?
-    var speechRecognitionPermissionRejectSemaphore: DispatchSemaphore?
+    var speechPermissionRejectSemaphore: DispatchSemaphore?
     var microphoneUnreachableSemaphore: DispatchSemaphore?
     var speechRecognitionUnavailableSemaphore: DispatchSemaphore?
     /// For other
@@ -100,7 +100,7 @@ class AimyboxBaseTestCase: XCTestCase {
                 case .microphonePermissionReject:
                     self?.microphonePermissionRejectSemaphore?.signal()
                 case .speechRecognitionPermissionReject:
-                    self?.speechRecognitionPermissionRejectSemaphore?.signal()
+                    self?.speechPermissionRejectSemaphore?.signal()
                 case .microphoneUnreachable:
                     self?.microphoneUnreachableSemaphore?.signal()
                 case .speechRecognitionUnavailable:
@@ -115,7 +115,7 @@ class AimyboxBaseTestCase: XCTestCase {
         recognitionCancelledSemaphore = DispatchSemaphore(value: 0)
         recognitionEmptyResultSemaphore = DispatchSemaphore(value: 0)
         microphonePermissionRejectSemaphore = DispatchSemaphore(value: 0)
-        speechRecognitionPermissionRejectSemaphore = DispatchSemaphore(value: 0)
+        speechPermissionRejectSemaphore = DispatchSemaphore(value: 0)
         microphoneUnreachableSemaphore = DispatchSemaphore(value: 0)
         speechRecognitionUnavailableSemaphore = DispatchSemaphore(value: 0)
 
@@ -229,7 +229,7 @@ class AimyboxBaseTestCase: XCTestCase {
         recognitionCancelledSemaphore = nil
         /// For Errors
         microphonePermissionRejectSemaphore = nil
-        speechRecognitionPermissionRejectSemaphore = nil
+        speechPermissionRejectSemaphore = nil
         microphoneUnreachableSemaphore = nil
         speechRecognitionUnavailableSemaphore = nil
         /// For other
