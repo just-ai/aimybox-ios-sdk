@@ -132,7 +132,7 @@ extension Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
                 $0.profanityFilter = true
                 $0.partialResults = true
                 $0.audioEncoding = .linear16Pcm
-                $0.sampleRateHertz = 48000
+                $0.sampleRateHertz = 48_000
                 $0.audioChannelCount = 1
                 $0.singleUtterance = true
                 $0.languageCode = code

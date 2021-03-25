@@ -18,7 +18,7 @@ final class WAVFileGenerator {
      */
     private func createWaveHeader(data: Data) -> Data {
 
-        let sampleRate: Int32 = 48000
+        let sampleRate: Int32 = 48_000
         let dataSize: Int32 = Int32(data.count)
         let chunkSize: Int32 = 36 + dataSize
         let subChunkSize: Int32 = 16

@@ -273,7 +273,7 @@ extension AVAudioFormat {
     static var defaultFormat: AVAudioFormat {
         guard let audioFormat = AVAudioFormat(
                 commonFormat: .pcmFormatInt16,
-                sampleRate: 48000,
+                sampleRate: 48_000,
                 channels: 1,
                 interleaved: false
         ) else {

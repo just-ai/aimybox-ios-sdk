@@ -129,7 +129,7 @@ public struct YandexSynthesisConfig {
         self.emotion = emotion ?? "neutral"
         self.speed = speed ?? 1.0
         self.format = format ?? "lpcm"
-        self.sampleRateHertz = sampleRateHertz ?? 48000
+        self.sampleRateHertz = sampleRateHertz ?? 48_000
     }
 
 }
