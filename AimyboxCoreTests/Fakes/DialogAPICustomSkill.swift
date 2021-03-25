@@ -25,7 +25,11 @@ class DialogAPICustomSkillFake: CustomSkill {
         canHandle
     }
 
-    func onResponse(_ response: DialogAPIResponseFake, _ aimybox: Aimybox, default handler: (Response) -> ()) -> DialogAPIResponseFake {
+    func onResponse(
+        _ response: DialogAPIResponseFake,
+        _ aimybox: Aimybox,
+        default handler: (Response) -> ()
+    ) -> DialogAPIResponseFake {
         onResponseHandler?(response, aimybox, handler) ?? response
     }
 }

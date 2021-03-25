@@ -22,7 +22,11 @@ public class AimyboxCustomSkill: CustomSkill {
         false
     }
     
-    public func onResponse(_ response: AimyboxResponse, _ aimybox: Aimybox, default handler: (Response) -> ()) -> AimyboxResponse {
+    public func onResponse(
+        _ response: AimyboxResponse,
+        _ aimybox: Aimybox,
+        default handler: (Response) -> ()) -> AimyboxResponse
+    {
         response
     }
 }

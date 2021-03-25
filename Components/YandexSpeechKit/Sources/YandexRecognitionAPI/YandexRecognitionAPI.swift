@@ -64,7 +64,9 @@ final class YandexRecognitionAPI {
 
             stream = try client?.streamingRecognize { [weak self] (result) in
                 self?.operationQueue.addOperation {
-                    result.success ? completion() : handler(NSError(domain: result.description, code: result.statusCode.rawValue, userInfo: nil))
+                    result.success
+                        ? completion()
+                        : handler(NSError(domain: result.description, code: result.statusCode.rawValue, userInfo: nil))
                 }
             }
             

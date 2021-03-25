@@ -129,7 +129,11 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         let synthesisGroup = DispatchGroup()
         
         synthesisGroup.enter()
-        synthesisAPI.request(text: textSpeech.text, language: languageCode, config: synthesisConfig) { [weak self] url in
+        synthesisAPI.request(
+            text: textSpeech.text,
+            language: languageCode,
+            config: synthesisConfig
+        ) { [weak self] url in
              if let _wav_url = url, self?.isCancelled == false {
                  self?.synthesize(textSpeech, using: _wav_url)
 
@@ -166,9 +170,11 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             _notify(.success(.speechEnded(speech)))
             synthesisGroup.leave()
         }
-        let failedToPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemFailedToPlayToEndTime,
-                                                                                  object: player.currentItem,
-                                                                                  queue: notificationQueue) { _ in
+        let failedToPlayToEndObservation = NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemFailedToPlayToEndTime,
+            object: player.currentItem,
+            queue: notificationQueue
+        ) { _ in
             _notify(.failure(.emptySpeech(speech)))
             synthesisGroup.leave()
         }

@@ -85,13 +85,14 @@ public class AimyboxBuilder {
     /**
      Creates concrete object that conforms to a `Aimybox` protocol.
      
-     - Parameter config: Object that conforms to `AimyboxConfig` protocol, created using `AimyboxBuilder.config(_, _, _)`.
+     - Parameter config: Object that conforms to `AimyboxConfig` protocol,
+       created using `AimyboxBuilder.config(_, _, _)`.
      
      - Returns: A concrete object up-casted to `Aimybox` protocol.
      */
-    public static func aimybox<TDialogAPI, TConfig>(with config: TConfig) -> Aimybox where TConfig: AimyboxConfig,
-                                                                                            TConfig.TDialogAPI == TDialogAPI
-    {
+    public static func aimybox<TDialogAPI, TConfig>(
+        with config: TConfig
+    ) -> Aimybox where TConfig: AimyboxConfig, TConfig.TDialogAPI == TDialogAPI {
         #if TESTING
         return AimyboxConcrete<TDialogAPI, TConfig>(config: config) as Aimybox
         #else

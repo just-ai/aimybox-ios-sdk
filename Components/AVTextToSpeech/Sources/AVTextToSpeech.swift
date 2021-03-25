@@ -21,7 +21,8 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
      */
     public var voice: AVSpeechSynthesisVoice?
     /**
-     The volume used when speaking the utterance. Allowed values are in the range from 0.0 (silent) to 1.0 (loudest). The default volume is 1.0.
+     The volume used when speaking the utterance. Allowed values are in t
+     he range from 0.0 (silent) to 1.0 (loudest). The default volume is 1.0.
      */
     public var volume: Float
     /**
@@ -174,9 +175,11 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
             self?.notify?(.success(.speechEnded(audioSpeech)))
             self?.blockGroup.leave()
         }
-        let failedToPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemFailedToPlayToEndTime,
-                                                                                  object: player.currentItem,
-                                                                                  queue: notificationQueue) { [weak self] _ in
+        let failedToPlayToEndObservation = NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemFailedToPlayToEndTime,
+            object: player.currentItem,
+            queue: notificationQueue
+        ) { [weak self] _ in
             self?.notify?(.failure(.emptySpeech(audioSpeech)))
             self?.blockGroup.leave()
         }

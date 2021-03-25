@@ -190,9 +190,11 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
                         
                         let channels = UnsafeBufferPointer(start: _bytes, count: Int(audioFormat.channelCount))
                         
-                        request.audioContent = Data(bytesNoCopy: channels[0],
-                                                    count: Int(buffer.frameCapacity*audioFormat.streamDescription.pointee.mBytesPerFrame),
-                                                    deallocator: .none)
+                        request.audioContent = Data(
+                            bytesNoCopy: channels[0],
+                            count: Int(buffer.frameCapacity*audioFormat.streamDescription.pointee.mBytesPerFrame),
+                            deallocator: .none
+                        )
                     })
                 )
             }
@@ -210,7 +212,11 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
     
     private func proccessResults(_ response: Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) {
-        guard !wasSpeechStopped, let phrase = response.chunks.first, let bestAlternative = phrase.alternatives.first else {
+        guard
+            !wasSpeechStopped,
+            let phrase = response.chunks.first,
+            let bestAlternative = phrase.alternatives.first
+        else {
             return
         }
 
@@ -257,7 +263,12 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
 extension AVAudioFormat {
     static var defaultFormat: AVAudioFormat {
-        guard let audioFormat = AVAudioFormat(commonFormat: .pcmFormatInt16, sampleRate: 48000, channels: 1, interleaved: false) else {
+        guard let audioFormat = AVAudioFormat(
+                commonFormat: .pcmFormatInt16,
+                sampleRate: 48000,
+                channels: 1,
+                interleaved: false
+        ) else {
             fatalError()
         }
         return audioFormat
