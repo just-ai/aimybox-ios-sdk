@@ -75,7 +75,7 @@ class IAMTokenGenerator: IAMTokenProvider {
             task.resume()
         }
 
-        let _ = group.wait(timeout: .now() + 10.0)
+        _ = group.wait(timeout: .now() + 10.0)
 
         return result
     }
