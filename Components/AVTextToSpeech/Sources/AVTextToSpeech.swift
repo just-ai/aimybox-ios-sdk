@@ -168,9 +168,11 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
             }
         }
 
-        let didPlayToEndObservation = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-                                                                      object: player.currentItem,
-                                                                      queue: notificationQueue) { [weak self] _ in
+        let didPlayToEndObservation = NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemDidPlayToEndTime,
+            object: player.currentItem,
+            queue: notificationQueue
+        ) { [weak self] _ in
             self?.notify?(.success(.speechEnded(audioSpeech)))
             self?.blockGroup.leave()
         }
