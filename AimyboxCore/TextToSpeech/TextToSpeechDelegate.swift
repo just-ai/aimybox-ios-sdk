@@ -27,7 +27,7 @@ public protocol TextToSpeechDelegate: class {
      */
     func tts(_ tts: TextToSpeech, speechSequenceCompleted sequence: [AimyboxSpeech])
     
-    // MARK:- Errors
+    // MARK: - Errors
     /**
      Happens when `TextToSpeech` skips any of speeches (if it's empty for example).
      */

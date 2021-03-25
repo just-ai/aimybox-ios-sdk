@@ -50,7 +50,7 @@ public protocol SpeechToTextDelegate: class {
     */
     func stt(_ stt: SpeechToText, soundVolumeRmsChanged: Int)
     
-    // MARK:- Errors
+    // MARK: - Errors
     /**
      User didn't grant a permission to use a device microphone.
      */

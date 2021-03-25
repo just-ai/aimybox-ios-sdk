@@ -19,7 +19,7 @@ public protocol DialogAPIDelegate: class {
      */
     func dialogAPI(received response: Response)
     
-    // MARK:- Errors
+    // MARK: - Errors
     /**
       Happens when request timeouts.
      */
