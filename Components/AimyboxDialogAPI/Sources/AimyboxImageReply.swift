@@ -25,4 +25,3 @@ final class AimyboxImageReply: ImageReply, Decodable {
 }
 
 #endif
-

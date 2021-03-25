@@ -157,7 +157,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
             inputNode.removeTap(onBus: 0)
             inputNode.installTap(onBus: 0, bufferSize: 1024, format: inputFormat) { [weak stream] buffer, time in
                 try? stream?.send(
-                    Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with({ request in
+                    Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with { request in
                         let capacity = UInt32(Float(buffer.frameCapacity) / Float(ratio > 0 ? ratio : 1))
                         guard let outputBuffer = AVAudioPCMBuffer(
                             pcmFormat: recordingFormat,
@@ -195,7 +195,7 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
                             count: Int(buffer.frameCapacity*audioFormat.streamDescription.pointee.mBytesPerFrame),
                             deallocator: .none
                         )
-                    })
+                    }
                 )
             }
 

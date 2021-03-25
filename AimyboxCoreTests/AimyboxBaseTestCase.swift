@@ -267,4 +267,3 @@ public extension DispatchSemaphore {
         XCTAssertEqual(wait(timeout: timeout), .timedOut, "Timeout for event pass.")
     }
 }
-

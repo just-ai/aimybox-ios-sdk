@@ -48,7 +48,7 @@ final class YandexSynthesisAPI {
         var queries = [
             URLQueryItem(name: "folderId", value: folderId),
             URLQueryItem(name: "text", value: text),
-            URLQueryItem(name: "lang", value: code)
+            URLQueryItem(name: "lang", value: code),
         ]
 
         queries.append(contentsOf: config.asParams.map { URLQueryItem(name: $0.0, value: $0.1) })
