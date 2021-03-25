@@ -169,7 +169,7 @@ class DialogAPICoreTests: AimyboxBaseTestCase {
 
         requestSentSemaphore?.waitOrFail()
 
-        XCTAssert(dapi.sentQuery == sentQuery_1+sentQuery_2)
+        XCTAssert(dapi.sentQuery == sentQuery_1 + sentQuery_2)
     }
 
     func testCustomSkillOnRequestOvverideRequest() {

@@ -41,7 +41,9 @@ class SpeechToTextFake: AimyboxComponent, SpeechToText {
             self?.notify?(.success(.recognitionStarted))
 
             (1...partialResultCount).forEach { index in
-                self?.operationQueue.underlyingQueue?.asyncAfter(deadline: .now() + 0.25*Double(index)) { [weak self] in
+                self?.operationQueue.underlyingQueue?.asyncAfter(
+                    deadline: .now() + 0.25 * Double(index)
+                ) { [weak self] in
                     self?.operationQueue.addOperation {
                         self?.notify?(.success(.recognitionPartialResult("\(partialResult): \(index)")))
                     }
@@ -49,7 +51,7 @@ class SpeechToTextFake: AimyboxComponent, SpeechToText {
             }
 
             self?.operationQueue.underlyingQueue?.asyncAfter(
-                deadline: .now() + 0.25*Double(partialResultCount+1)
+                deadline: .now() + 0.25 * Double(partialResultCount + 1)
             ) { [weak self] in
                 self?.operationQueue.addOperation {
                     self?.notify?(

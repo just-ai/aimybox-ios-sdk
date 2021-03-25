@@ -219,7 +219,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
                         request.audioContent = Data(
                             bytesNoCopy: channels[0],
-                            count: Int(buffer.frameCapacity*audioFormat.streamDescription.pointee.mBytesPerFrame),
+                            count: Int(buffer.frameCapacity * audioFormat.streamDescription.pointee.mBytesPerFrame),
                             deallocator: .none
                         )
                     }
