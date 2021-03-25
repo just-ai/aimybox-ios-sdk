@@ -7,7 +7,8 @@
 
 import Foundation
 
-public enum TextToSpeechError: Error {
+public
+enum TextToSpeechError: Error {
     /**
     Speech is empty and will be skipped.
     */
@@ -19,9 +20,12 @@ public enum TextToSpeechError: Error {
     /**
     */
     case speechSequenceCancelled([AimyboxSpeech])
+
 }
 
-public extension TextToSpeechError {
+public
+extension TextToSpeechError {
+
     func forward(to delegate: TextToSpeechDelegate?, by tts: TextToSpeech?) {
         guard let delegate = delegate, let tts = tts else {
             return
@@ -36,4 +40,5 @@ public extension TextToSpeechError {
             delegate.tts(tts, speechSequenceCancelled: sequence)
         }
     }
+
 }

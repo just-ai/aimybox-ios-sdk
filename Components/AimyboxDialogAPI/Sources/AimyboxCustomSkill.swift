@@ -8,27 +8,34 @@
 #if canImport(Aimybox)
 import Aimybox
 
-public class AimyboxCustomSkill: CustomSkill {
+public
+class AimyboxCustomSkill: CustomSkill {
 
-    public typealias TRequest = AimyboxRequest
+    public
+    typealias TRequest = AimyboxRequest
 
-    public typealias TResponse = AimyboxResponse
+    public
+    typealias TResponse = AimyboxResponse
 
-    public func onRequest(_ request: AimyboxRequest) -> AimyboxRequest {
+    public
+    func onRequest(_ request: AimyboxRequest) -> AimyboxRequest {
         request
     }
 
-    public func canHandle(response: AimyboxResponse) -> Bool {
+    public
+    func canHandle(response: AimyboxResponse) -> Bool {
         false
     }
 
-    public func onResponse(
+    public
+    func onResponse(
         _ response: AimyboxResponse,
         _ aimybox: Aimybox,
         default handler: (Response) -> Void) -> AimyboxResponse
     {
         response
     }
+
 }
 
 #endif

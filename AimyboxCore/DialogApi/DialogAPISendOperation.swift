@@ -7,22 +7,28 @@
 
 import Foundation
 
+final
 class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
     /**
     */
-    private var defaultMaxPollAttempts = 10
+    private
+    var defaultMaxPollAttempts = 10
     /**
     */
-    private let defaultRequestTimeout = 1.0
+    private
+    let defaultRequestTimeout = 1.0
     /**
     */
-    private var query: String
+    private
+    var query: String
     /**
     */
-    private var dialogAPI: TDialogAPI
+    private
+    var dialogAPI: TDialogAPI
     /**
     */
-    public private(set) var result: TDialogAPI.TResponse?
+    public private(set)
+    var result: TDialogAPI.TResponse?
 
     init(query: String, dialogAPI: TDialogAPI) {
         self.query = query
@@ -30,7 +36,9 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
         self.defaultMaxPollAttempts = dialogAPI.timeoutPollAttempts
     }
 
-    override public func main() {
+    override
+    public
+    func main() {
         let request = dialogAPI.customSkills.reduce(into: dialogAPI.createRequest(query: query)) { request, skill in
             request = skill.onRequest(request)
         }
@@ -51,7 +59,8 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
         }
     }
 
-    private func perform<T>(_ block: @escaping () throws -> T) throws -> T {
+    private
+    func perform<T>(_ block: @escaping () throws -> T) throws -> T {
 
         try throwIfCanceled()
 
@@ -100,20 +109,25 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
         }
     }
 
-    private func throwIfCanceled() throws {
+    private
+    func throwIfCanceled() throws {
         if isCancelled {
             throw DialogAPIError.Internal.requestCancellation
         }
     }
+
 }
 
 /**
 Domain of internal errors.
 */
-fileprivate extension DialogAPIError {
+private
+extension DialogAPIError {
+
     enum Internal: Error {
         case requestTimeout
         case requestCancellation
         case clientSide
     }
+
 }

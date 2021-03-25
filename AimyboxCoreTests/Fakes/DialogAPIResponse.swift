@@ -10,7 +10,9 @@ import AimyboxCore
 import Foundation
 
 class DialogAPIResponseFake: Response {
-    public init(query: String, action: String, intent: String, question: Bool, replies: [Reply]) {
+
+    public
+    init(query: String, action: String, intent: String, question: Bool, replies: [Reply]) {
         self.query = query
         self.action = action
         self.intent = intent

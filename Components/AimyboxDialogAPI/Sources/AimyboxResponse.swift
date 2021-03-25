@@ -8,23 +8,31 @@
 #if canImport(Aimybox)
 import Aimybox
 
-final public class AimyboxResponse: Response, Decodable {
+public
+final
+class AimyboxResponse: Response, Decodable {
 
     static var tableOfRepleis: [String: ReplayFactory] = [:]
 
-    public static func registerReplyType<T: Reply>(of type: T.Type, key: String) where T: Decodable {
+    public
+    static func registerReplyType<T: Reply>(of type: T.Type, key: String) where T: Decodable {
         Self.tableOfRepleis[key] = ReplayFactory { try $0.decode(type.self) }
     }
 
-    public var query: String = ""
+    public
+    var query: String = ""
 
-    public var action: String = ""
+    public
+    var action: String = ""
 
-    public var intent: String = ""
+    public
+    var intent: String = ""
 
-    public var question: Bool = false
+    public
+    var question: Bool = false
 
-    public var replies: [Reply] = []
+    public
+    var replies: [Reply] = []
 
     // MARK: Decodable
 
@@ -36,7 +44,9 @@ final public class AimyboxResponse: Response, Decodable {
         case replies
     }
 
-    public required init(from decoder: Decoder) throws {
+    public
+    required
+    init(from decoder: Decoder) throws {
         let map = try decoder.container(keyedBy: CodingKeys.self)
 
         query = try map.decodeIfPresent(.query).or("")
@@ -57,7 +67,8 @@ final public class AimyboxResponse: Response, Decodable {
 
 }
 
-private struct AimyboxReplyType: Decodable {
+private
+struct AimyboxReplyType: Decodable {
     var type: String
 }
 

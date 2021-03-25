@@ -8,15 +8,20 @@
 
 import Foundation
 
-final class SSMLDecoder: NSObject, XMLParserDelegate {
+final
+class SSMLDecoder: NSObject, XMLParserDelegate {
 
-    private let parserGroup = DispatchGroup()
+    private
+    let parserGroup = DispatchGroup()
 
-    private var audioTagUrl: URL?
+    private
+    var audioTagUrl: URL?
 
-    private var pTagText: String?
+    private
+    var pTagText: String?
 
-    private var speeches: [AimyboxSpeech] = []
+    private
+    var speeches: [AimyboxSpeech] = []
 
     func decode(_ string: String) -> [AimyboxSpeech] {
         let wrapped = "<p>\(string)</p>"
@@ -79,7 +84,8 @@ final class SSMLDecoder: NSObject, XMLParserDelegate {
         }
     }
 
-    private func decode(_ data: Data) -> [AimyboxSpeech] {
+    private
+    func decode(_ data: Data) -> [AimyboxSpeech] {
         let parser = XMLParser(data: data)
         parser.delegate = self
         parser.shouldProcessNamespaces = false
@@ -95,6 +101,8 @@ final class SSMLDecoder: NSObject, XMLParserDelegate {
 
 }
 
-private let audioTag: String = "audio"
+private
+let audioTag: String = "audio"
 
-private let pTag: String = "p"
+private
+let pTag: String = "p"

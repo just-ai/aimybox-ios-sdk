@@ -7,7 +7,8 @@
 
 import Foundation
 
-public enum DialogAPIError: Error {
+public
+enum DialogAPIError: Error {
     /**
     Happens when request timeouts.
     */
@@ -24,9 +25,12 @@ public enum DialogAPIError: Error {
     Happens when `DialogAPI` catches errors at request creation etc.
     */
     case clientSide(Error)
+
 }
 
-public extension DialogAPIError {
+public
+extension DialogAPIError {
+
     func forward(to delegate: DialogAPIDelegate?) {
         guard let delegate = delegate else {
             return
@@ -43,4 +47,5 @@ public extension DialogAPIError {
             delegate.dialogAPIProcessingCancellation()
         }
     }
+
 }

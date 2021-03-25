@@ -9,21 +9,29 @@
 import Foundation
 import SwiftGRPC
 
-final class YandexRecognitionAPI {
+final
+class YandexRecognitionAPI {
 
-    private let apiAdress: String
+    private
+    let apiAdress: String
 
-    private let dataLoggingEnabled: Bool
+    private
+    let dataLoggingEnabled: Bool
 
-    private let iAMToken: String
+    private
+    let iAMToken: String
 
-    private let operationQueue: OperationQueue
+    private
+    let operationQueue: OperationQueue
 
-    private let recognitionConfig: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig
+    private
+    let recognitionConfig: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig
 
-    private var client: Yandex_Cloud_Ai_Stt_V2_SttServiceServiceClient?
+    private
+    var client: Yandex_Cloud_Ai_Stt_V2_SttServiceServiceClient?
 
-    private var stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
+    private
+    var stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
 
     init(
         iAM token: String,
@@ -41,7 +49,8 @@ final class YandexRecognitionAPI {
         self.recognitionConfig = config ?? .defaultConfig(folderID: folderID, language: code)
     }
 
-    public func openStream(
+    public
+    func openStream(
         onOpen: @escaping (Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?) -> Void,
         onResponse: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) -> Void,
         error handler: @escaping (Error) -> Void,
@@ -87,14 +96,16 @@ final class YandexRecognitionAPI {
         }
     }
 
-    public func closeStream() {
+    public
+    func closeStream() {
         try? stream?.closeSend { [weak self] in
             self?.stream = nil
         }
         client = nil
     }
 
-    private func receiveMessages(
+    private
+    func receiveMessages(
         on response: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) -> Void,
         error handler: @escaping (Error) -> Void,
         stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?

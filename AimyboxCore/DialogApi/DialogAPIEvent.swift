@@ -7,7 +7,8 @@
 
 import Foundation
 
-public enum DialogAPIEvent {
+public
+enum DialogAPIEvent {
     /**
     Happens when `Aimybox` sends request.
     */
@@ -16,9 +17,12 @@ public enum DialogAPIEvent {
     Happens when `DialogAPI` received response.
     */
     case responseReceived(Response)
+
 }
 
-public extension DialogAPIEvent {
+public
+extension DialogAPIEvent {
+
     func forward(to delegate: DialogAPIDelegate?) {
         guard let delegate = delegate else {
             return
@@ -31,4 +35,5 @@ public extension DialogAPIEvent {
             delegate.dialogAPI(received: response)
         }
     }
+
 }

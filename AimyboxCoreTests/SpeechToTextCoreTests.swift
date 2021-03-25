@@ -11,7 +11,8 @@ import XCTest
 
 class SpeechToTextCoreTests: AimyboxBaseTestCase {
 
-    override func invokeTest() {
+    override
+    func invokeTest() {
         (0..<1).forEach { _ in
             super.invokeTest()
         }

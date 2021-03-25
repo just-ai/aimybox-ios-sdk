@@ -9,7 +9,8 @@
 @testable import AimyboxCore
 import XCTest
 
-open class AimyboxBaseTestCase: XCTestCase {
+open
+class AimyboxBaseTestCase: XCTestCase {
 
     var aimybox: Aimybox!
 
@@ -59,13 +60,16 @@ open class AimyboxBaseTestCase: XCTestCase {
     var speakersUnavailableSemaphore: DispatchSemaphore?
     var speechSequenceCancelledSemaphore: DispatchSemaphore?
 
-    open func setupComponents() {
+    open
+    func setupComponents() {
         stt = SpeechToTextFake()
         tts = TextToSpeechFake()
         dapi = DialogAPIFake()
     }
 
-    override open func setUp() {
+    override
+    open
+    func setUp() {
         setupComponents()
         let config = AimyboxBuilder.config(stt, tts, dapi)
 
@@ -211,7 +215,9 @@ open class AimyboxBaseTestCase: XCTestCase {
         aimybox = AimyboxBuilder.aimybox(with: config)
     }
 
-    override open func tearDown() {
+    override
+    open
+    func tearDown() {
         aimybox = nil
         stt = nil
         dapi = nil
@@ -258,7 +264,9 @@ open class AimyboxBaseTestCase: XCTestCase {
     }
 }
 
-public extension DispatchSemaphore {
+public
+extension DispatchSemaphore {
+
     @inline(__always)
     func waitOrFail(timeout: DispatchTime = .now() + 5.0) {
         XCTAssertEqual(wait(timeout: timeout), .success, "Timeout for event wait.")
@@ -268,4 +276,5 @@ public extension DispatchSemaphore {
     func waitOrPass(timeout: DispatchTime = .now() + 5.0) {
         XCTAssertEqual(wait(timeout: timeout), .timedOut, "Timeout for event pass.")
     }
+
 }

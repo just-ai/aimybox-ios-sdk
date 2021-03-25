@@ -8,20 +8,27 @@
 #if canImport(Aimybox)
 import Aimybox
 
-fileprivate struct AimyboxConstants {
+private
+struct AimyboxConstants {
 
-    private static let apiBaseRoute = URL(static: "https://api.aimybox.com")
+    static let apiBaseRoute = URL(static: "https://api.aimybox.com")
 
-    public static let apiRequestRoute = apiBaseRoute.appendingPathComponent("/request")
+    public
+    static let apiRequestRoute = apiBaseRoute.appendingPathComponent("/request")
+
 }
 
-public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
+public
+class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
 
-    public var timeoutPollAttempts: Int = 10
+    public
+    var timeoutPollAttempts: Int = 10
 
-    public var customSkills: [AimyboxCustomSkill] = []
+    public
+    var customSkills: [AimyboxCustomSkill] = []
 
-    public var notify: (DialogAPICallback)?
+    public
+    var notify: (DialogAPICallback)?
 
     var apiKey: String
 
@@ -29,7 +36,8 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
 
     var route: URL
 
-    public init(apiKey: String = "", unitKey: String, route: URL? = nil) {
+    public
+    init(apiKey: String = "", unitKey: String, route: URL? = nil) {
         self.apiKey = apiKey
         self.unitKey = unitKey
         self.route = route ?? AimyboxConstants.apiRequestRoute
@@ -43,11 +51,13 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         cancelRequest()
     }
 
-    public func createRequest(query: String) -> AimyboxRequest {
+    public
+    func createRequest(query: String) -> AimyboxRequest {
         AimyboxRequest(query: query, apiKey: apiKey, unitKey: unitKey, data: [:])
     }
 
-    public func send(request: AimyboxRequest) throws -> AimyboxResponse {
+    public
+    func send(request: AimyboxRequest) throws -> AimyboxResponse {
 
         let data = try JSONEncoder().encode(request)
 
@@ -100,7 +110,8 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
         }
     }
 
-    private func registerDefaultReplyTypes() {
+    private
+    func registerDefaultReplyTypes() {
         AimyboxResponse.registerReplyType(of: AimyboxTextReply.self, key: AimyboxTextReply.jsonKey)
         AimyboxResponse.registerReplyType(of: AimyboxAudioReply.self, key: AimyboxAudioReply.jsonKey)
         AimyboxResponse.registerReplyType(of: AimyboxImageReply.self, key: AimyboxImageReply.jsonKey)

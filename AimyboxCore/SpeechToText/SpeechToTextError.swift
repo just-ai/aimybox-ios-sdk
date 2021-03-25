@@ -11,7 +11,8 @@ import Foundation
 /**
 Speech to text possible errors.
 */
-public enum SpeechToTextError: Error {
+public
+enum SpeechToTextError: Error {
     /**
     User didn't grant a permission to use a device microphone.
      
@@ -33,9 +34,11 @@ public enum SpeechToTextError: Error {
     Speech recognition is unavailable.
     */
     case speechRecognitionUnavailable
+
 }
 
-public extension SpeechToTextError {
+public
+extension SpeechToTextError {
     func forward(to delegate: SpeechToTextDelegate?, by stt: SpeechToText?) {
         guard let delegate = delegate, let stt = stt else {
             return

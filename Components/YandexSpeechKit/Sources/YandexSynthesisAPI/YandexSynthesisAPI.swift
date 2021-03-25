@@ -9,17 +9,23 @@
 import AVFoundation
 import Foundation
 
-final class YandexSynthesisAPI {
+final
+class YandexSynthesisAPI {
 
-    private let address: URL
+    private
+    let address: URL
 
-    private let dataLoggingEnabled: Bool
+    private
+    let dataLoggingEnabled: Bool
 
-    private let folderId: String
+    private
+    let folderId: String
 
-    private let operationQueue: OperationQueue
+    private
+    let operationQueue: OperationQueue
 
-    private let token: String
+    private
+    let token: String
 
     init(
         iAMToken: String,
@@ -72,7 +78,8 @@ final class YandexSynthesisAPI {
         perform(request, onResponse: completion)
     }
 
-    private func perform(_ request: URLRequest, onResponse: @escaping (URL?) -> Void) {
+    private
+    func perform(_ request: URLRequest, onResponse: @escaping (URL?) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 return onResponse(nil)
@@ -106,7 +113,8 @@ final class YandexSynthesisAPI {
 
 }
 
-public struct YandexSynthesisConfig {
+public
+struct YandexSynthesisConfig {
 
     let emotion: String
 
@@ -118,7 +126,8 @@ public struct YandexSynthesisConfig {
 
     let voice: String
 
-    public init(
+    public
+    init(
         voice: String? = nil,
         emotion: String? = nil,
         speed: Float? = nil,
@@ -134,7 +143,8 @@ public struct YandexSynthesisConfig {
 
 }
 
-public extension YandexSynthesisConfig {
+public
+extension YandexSynthesisConfig {
 
     var asParams: [String: String] {
         var params = [String: String]()

@@ -7,19 +7,25 @@
 //
 import Foundation
 
-public struct IAMToken: Codable {
+public
+struct IAMToken: Codable {
 
     var iamToken: String
+
 }
 
-public class IAMTokenGenerator: IAMTokenProvider {
+public
+class IAMTokenGenerator: IAMTokenProvider {
 
-    private let tokenURL: URL
+    private
+    let tokenURL: URL
     /** Use OAuth code in Yandex.Cloud.
     */
-    private let passport: String
+    private
+    let passport: String
 
-    public init(
+    public
+    init(
         passport: String,
         api tokenURL: URL = URL(static: "https://iam.api.cloud.yandex.net/iam/v1/tokens")
     ) {
@@ -27,7 +33,8 @@ public class IAMTokenGenerator: IAMTokenProvider {
         self.passport = passport
     }
 
-    public func token() -> IAMToken? {
+    public
+    func token() -> IAMToken? {
 
         var request = URLRequest(url: tokenURL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         request.httpMethod = "POST"
@@ -36,7 +43,8 @@ public class IAMTokenGenerator: IAMTokenProvider {
         return perform(request: request) // blocking
     }
 
-    private func perform<T: Codable>(request: URLRequest) -> T? {
+    private
+    func perform<T: Codable>(request: URLRequest) -> T? {
 
         let group = DispatchGroup()
 
@@ -71,4 +79,5 @@ public class IAMTokenGenerator: IAMTokenProvider {
 
         return result
     }
+
 }

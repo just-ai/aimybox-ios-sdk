@@ -7,7 +7,8 @@
 
 import Foundation
 
-public enum TextToSpeechEvent {
+public
+enum TextToSpeechEvent {
     /**
     Happens when TextToSpeech actually starts to synthesise a list of speeches.
     */
@@ -28,9 +29,12 @@ public enum TextToSpeechEvent {
     Happens when TextToSpeech skips any of speeches (if it's empty for example).
     */
     case speechSkipped(AimyboxSpeech)
+
 }
 
-public extension TextToSpeechEvent {
+public
+extension TextToSpeechEvent {
+
     func forward(to delegate: TextToSpeechDelegate?, by tts: TextToSpeech?) {
         guard let delegate = delegate, let tts = tts else {
             return
@@ -49,4 +53,5 @@ public extension TextToSpeechEvent {
             delegate.tts(tts, speechSkipped: speech)
         }
     }
+
 }

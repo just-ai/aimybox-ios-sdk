@@ -10,16 +10,20 @@ import Foundation
 /**
 Represents a reply with audio content, which should be played.
 */
-public protocol AudioReply: Reply {
+public
+protocol AudioReply: Reply {
     /**
     URL to the audio source.
     */
     var url: URL { get }
+
 }
 
-public extension AudioReply {
+public
+extension AudioReply {
 
     var audioSpeech: AudioSpeech {
         AudioSpeech(audioURL: url)
     }
+
 }

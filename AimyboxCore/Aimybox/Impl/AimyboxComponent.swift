@@ -10,17 +10,20 @@ import Foundation
 /**
 Base class that provides async behavior.
 */
-open class AimyboxComponent {
+open
+class AimyboxComponent {
     /**
     Background, serial queue for component operations.
     */
-    public var operationQueue: OperationQueue
+    public
+    var operationQueue: OperationQueue
     /**
     Desigated initializer that creates op queue for component.
      
     - Note: If you ovveride `init()` in sub-class, you must call super.init().
     */
-    public init() {
+    public
+    init() {
         let queue = DispatchQueue(label: "com.justai.aimybox-\("\(type(of: self))".lowercased())-thread")
         let opQueue = OperationQueue()
         opQueue.maxConcurrentOperationCount = 1
@@ -32,7 +35,8 @@ open class AimyboxComponent {
         operationQueue.operationCount != 0
     }
 
-    public func cancelRunningOperation() {
+    public
+    func cancelRunningOperation() {
         if hasRunningOperations {
             operationQueue.cancelAllOperations()
         }

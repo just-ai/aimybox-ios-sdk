@@ -10,15 +10,21 @@ import Foundation
 /**
 Handy debouncer.
 */
-public class DispatchDebouncer {
-    private var timer: Timer?
+public
+class DispatchDebouncer {
 
-    private var fired: Bool = false
+    private
+    var timer: Timer?
 
-    public init() {
+    private
+    var fired: Bool = false
+
+    public
+    init() {
     }
 
-    public func debounce(delay seconds: TimeInterval, _ block: @escaping () -> Void ) {
+    public
+    func debounce(delay seconds: TimeInterval, _ block: @escaping () -> Void ) {
         DispatchQueue.main.async { [weak self] in
             self?.timer?.invalidate()
             self?.timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { _ in
@@ -26,9 +32,11 @@ public class DispatchDebouncer {
             }
         }
     }
+
 }
 
-public extension URL {
+public
+extension URL {
 
     init(static string: StaticString) {
         guard let result = URL(string: String(describing: string)) else {
@@ -43,13 +51,17 @@ public extension URL {
 Decoding extensions.
 */
 extension KeyedDecodingContainer {
-    public func decode<T: Decodable>(_ key: Key, as type: T.Type = T.self) throws -> T {
+
+    public
+    func decode<T: Decodable>(_ key: Key, as type: T.Type = T.self) throws -> T {
         try self.decode(T.self, forKey: key)
     }
 
-    public func decodeIfPresent<T: Decodable>(_ key: KeyedDecodingContainer.Key) throws -> T? {
+    public
+    func decodeIfPresent<T: Decodable>(_ key: KeyedDecodingContainer.Key) throws -> T? {
         try decodeIfPresent(T.self, forKey: key)
     }
+
 }
 
 /**
@@ -57,7 +69,8 @@ Functional style optional chaining.
 */
 extension Optional {
 
-    public func or(_ defaultUnwrapped: Wrapped) -> Wrapped {
+    public
+    func or(_ defaultUnwrapped: Wrapped) -> Wrapped {
         switch self {
         case .none:
             return defaultUnwrapped

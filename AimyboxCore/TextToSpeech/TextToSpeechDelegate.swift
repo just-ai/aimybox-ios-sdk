@@ -7,7 +7,8 @@
 
 import Foundation
 
-public protocol TextToSpeechDelegate: class {
+public
+protocol TextToSpeechDelegate: class {
 
     // MARK: - Lifecycle
     /**
@@ -45,7 +46,8 @@ public protocol TextToSpeechDelegate: class {
 /**
 All methods listed here are optional for delegates to implement.
 */
-public extension SpeechToTextDelegate {
+public
+extension SpeechToTextDelegate {
     func tts(_ tts: TextToSpeech, speechSequenceStarted sequence: [AimyboxSpeech]) {}
     func tts(_ tts: TextToSpeech, speechStarted speech: AimyboxSpeech) {}
     func tts(_ tts: TextToSpeech, speechEnded speech: AimyboxSpeech) {}

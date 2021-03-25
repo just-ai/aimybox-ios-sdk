@@ -11,7 +11,8 @@ import Foundation
 /**
 Lifecycle states, used by *Aimybox* state machine.
 */
-public enum AimyboxState {
+public
+enum AimyboxState {
     /**
     Voice assistant is ready to work.
      
@@ -47,4 +48,5 @@ public enum AimyboxState {
     All components excepting *TextToSpeech* are inactive.
     */
     case speaking
+
 }

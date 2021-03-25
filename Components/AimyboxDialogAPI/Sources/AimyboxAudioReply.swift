@@ -9,7 +9,8 @@
 #if canImport(Aimybox)
 import Aimybox
 
-final class AimyboxAudioReply: AudioReply, Decodable {
+final
+class AimyboxAudioReply: AudioReply, Decodable {
 
     var url: URL
 

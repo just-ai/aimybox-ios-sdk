@@ -10,7 +10,7 @@ import AimyboxCore
 
 class FakeTextReply: TextReply {
 
-    internal init(text: String, tts: String? = nil, language: String? = nil) {
+    init(text: String, tts: String? = nil, language: String? = nil) {
         self.text = text
         self.tts = tts
         self.language = language

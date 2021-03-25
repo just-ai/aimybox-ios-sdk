@@ -8,7 +8,9 @@
 
 import Foundation
 
-public protocol IAMTokenProvider {
+public
+protocol IAMTokenProvider {
 
     func token() -> IAMToken?
+
 }

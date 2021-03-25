@@ -11,11 +11,14 @@ import Foundation
 
 class DialogAPICustomSkillFake: CustomSkill {
 
-    public var onResponseHandler: ((DialogAPIResponseFake, Aimybox, (Response) -> Void) -> DialogAPIResponseFake)?
+    public
+    var onResponseHandler: ((DialogAPIResponseFake, Aimybox, (Response) -> Void) -> DialogAPIResponseFake)?
 
-    public var onRequestHandler: ((DialogAPIRequestFake) -> DialogAPIRequestFake)?
+    public
+    var onRequestHandler: ((DialogAPIRequestFake) -> DialogAPIRequestFake)?
 
-    public var canHandle: Bool = false
+    public
+    var canHandle: Bool = false
 
     func onRequest(_ request: DialogAPIRequestFake) -> DialogAPIRequestFake {
         onRequestHandler?(request) ?? request
@@ -32,4 +35,5 @@ class DialogAPICustomSkillFake: CustomSkill {
     ) -> DialogAPIResponseFake {
         onResponseHandler?(response, aimybox, handler) ?? response
     }
+
 }

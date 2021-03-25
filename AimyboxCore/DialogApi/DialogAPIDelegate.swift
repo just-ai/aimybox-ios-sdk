@@ -7,7 +7,8 @@
 
 import Foundation
 
-public protocol DialogAPIDelegate: class {
+public
+protocol DialogAPIDelegate: class {
 
     // MARK: - Lifecycle
     /**
@@ -41,7 +42,8 @@ public protocol DialogAPIDelegate: class {
 /**
 All methods listed here are optional for delegates to implement.
 */
-public extension DialogAPIDelegate {
+public
+extension DialogAPIDelegate {
     func dialogAPI(sent request: Request) {}
     func dialogAPI(cancelled request: Request) {}
     func dialogAPI(received response: Response) {}

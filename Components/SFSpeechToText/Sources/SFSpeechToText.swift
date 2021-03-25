@@ -11,49 +11,60 @@ import Speech
 #if canImport(Aimybox)
 import Aimybox
 
-public class SFSpeechToText: AimyboxComponent, SpeechToText {
+public
+class SFSpeechToText: AimyboxComponent, SpeechToText {
     /**
     Locale of recognizer.
     */
-    public let locale: Locale
+    public
+    let locale: Locale
     /**
     Debounce delay in seconds. HIgher values results in higher lag between partial and final results.
     */
-    public var recognitionDebounceDelay: TimeInterval = 1.0
+    public
+    var recognitionDebounceDelay: TimeInterval = 1.0
     /**
     Used to notify *Aimybox* state machine about events.
     */
-    public var notify: (SpeechToTextCallback)?
+    public
+    var notify: (SpeechToTextCallback)?
     /**
     Used for audio signal processing.
     */
-    private let audioEngine: AVAudioEngine
+    private
+    let audioEngine: AVAudioEngine
     /**
     Node on which audio stream is routed.
     */
-    private var audioInputNode: AVAudioNode?
+    private
+    var audioInputNode: AVAudioNode?
     /**
     Actual iOS speech recognizer.
     */
-    private let speechRecognizer: SFSpeechRecognizer
+    private
+    let speechRecognizer: SFSpeechRecognizer
     /**
     Retained for a purpose of controling audio stream routed to recognizer.
     */
-    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private
+    var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     /**
     Speech recognition task itself.
     */
-    private var recognitionTask: SFSpeechRecognitionTask?
+    private
+    var recognitionTask: SFSpeechRecognitionTask?
     /**
     Debouncer used to controll delay time of aquiring final results of speech recognizing process.
     */
-    private var recognitionDebouncer: DispatchDebouncer
+    private
+    var recognitionDebouncer: DispatchDebouncer
     /**
     Init that uses provided locale.
      
     If locale is not supported, that init will fail.
     */
-    public init?(locale: Locale) {
+    public
+    init?(locale: Locale) {
         self.locale = locale
         audioEngine = AVAudioEngine()
         guard let recognizer = SFSpeechRecognizer(locale: locale) else {
@@ -68,13 +79,15 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
 
     // MARK: - Locale management
 
-    public class func supports(locale: Locale) -> Bool {
+    public
+    class func supports(locale: Locale) -> Bool {
         SFSpeechRecognizer.supportedLocales().contains(locale)
     }
 
     // MARK: - SpechToTextProtocol conformance
 
-    public func startRecognition() {
+    public
+    func startRecognition() {
 
         checkPermissions { [weak self] result in
             switch result {
@@ -86,7 +99,8 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         }
     }
 
-    public func stopRecognition() {
+    public
+    func stopRecognition() {
         recognitionRequest?.endAudio()
         recognitionTask?.finish()
         audioEngine.stop()
@@ -94,7 +108,8 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         audioInputNode = nil
     }
 
-    public func cancelRecognition() {
+    public
+    func cancelRecognition() {
         recognitionRequest?.endAudio()
         recognitionTask?.cancel()
         recognitionTask = nil
@@ -111,7 +126,8 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
 
     // MARK: - Internals
 
-    private func onPermissionGranted() {
+    private
+    func onPermissionGranted() {
         prepareRecognition()
         do {
             try audioEngine.start()
@@ -121,7 +137,8 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         }
     }
 
-    private func prepareRecognition() {
+    private
+    func prepareRecognition() {
         guard let notify = notify else {
             return
         }
@@ -164,7 +181,8 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
         audioEngine.prepare()
     }
 
-    private func proccessResults(result: SFSpeechRecognitionResult) {
+    private
+    func proccessResults(result: SFSpeechRecognitionResult) {
 
         guard result.isFinal == true else {
             let partialResult = result.bestTranscription.formattedString
@@ -189,7 +207,9 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     // MARK: - User Permissions
-    private func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
+
+    private
+    func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
 
         var recordAllowed: Bool = false
         var recognitionAllowed: Bool = false
@@ -224,6 +244,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
             }
         }
     }
+
 }
 
 #endif

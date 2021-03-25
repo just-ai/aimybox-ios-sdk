@@ -14,19 +14,24 @@ For detailed info about methods available, refer to `Aimybox` protocol.
 */
 class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig {
 
-    public weak var delegate: AimyboxDelegate?
+    public
+    weak var delegate: AimyboxDelegate?
 
-    public private(set) var state: AimyboxState {
+    public private(set)
+    var state: AimyboxState {
         willSet {
             delegate?.aimybox(self, willMoveFrom: state, to: newValue)
         }
     }
 
-    public private(set) var nextAction: AimyboxNextAction
+    public private(set)
+    var nextAction: AimyboxNextAction
 
-    public private(set) var config: TConfig
+    public private(set)
+    var config: TConfig
 
-    public init(with config: TConfig) {
+    public
+    init(with config: TConfig) {
         self.state = .standby
         self.nextAction = .nothing
         self.config = config
@@ -42,7 +47,8 @@ class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig
     }
 
     // MARK: - Text to speech lifecycle
-    public func startRecognition() {
+    public
+    func startRecognition() {
         stopSpeaking()
         cancelRecognition()
 
@@ -51,14 +57,16 @@ class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig
         config.speechToText.startRecognition()
     }
 
-    public func stopRecognition() {
+    public
+    func stopRecognition() {
         guard case .listening = state else {
             return
         }
         config.speechToText.stopRecognition()
     }
 
-    public func cancelRecognition() {
+    public
+    func cancelRecognition() {
         guard case .listening = state else {
             return
         }
@@ -67,7 +75,8 @@ class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig
 
     // MARK: - DialogAPI lifecycle
 
-    public func sendRequest(query: String) {
+    public
+    func sendRequest(query: String) {
         cancelRecognition()
         stopSpeaking()
 
@@ -87,26 +96,31 @@ class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig
     }
 
     // MARK: - TextToSpeech
-    public func speak(speech: AimyboxSpeech) {
+    public
+    func speak(speech: AimyboxSpeech) {
         speak(speech: speech, next: .standby)
     }
 
-    public func speak(speech: AimyboxSpeech, next action: AimyboxNextAction) {
+    public
+    func speak(speech: AimyboxSpeech, next action: AimyboxNextAction) {
         speak(speech: [speech], next: action)
     }
 
-    public func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction) {
+    public
+    func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction) {
         nextAction = action
         config.textToSpeech.synthesize(contentsOf: speech)
     }
 
-    public func cancelSynthesis() {
+    public
+    func cancelSynthesis() {
         config.textToSpeech.cancelSynthesis()
     }
 
     // MARK: - State independent methods
 
-    public func standby() {
+    public
+    func standby() {
         let oldState = state
         state = .standby
 
@@ -132,7 +146,8 @@ class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig
 
     // MARK: - Init for testing.
     #if TESTING
-    public init(config: TConfig) {
+    public
+    init(config: TConfig) {
         self.state = .standby
         self.nextAction = .nothing
         self.config = config
@@ -159,11 +174,13 @@ class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig
         self.config = config
     }
     #endif
+
 }
 
 extension AimyboxConcrete {
 
-    private func onSpeechToText(_ result: SpeechToTextResult) {
+    private
+    func onSpeechToText(_ result: SpeechToTextResult) {
         switch result {
         case .success(let event):
             handle(event)
@@ -176,7 +193,8 @@ extension AimyboxConcrete {
         }
     }
 
-    private func handle(_ event: SpeechToTextEvent) {
+    private
+    func handle(_ event: SpeechToTextEvent) {
         switch event {
         case .recognitionResult(let query):
             sendRequest(query: query)
@@ -193,7 +211,8 @@ extension AimyboxConcrete {
         }
     }
 
-    private func handle(_ error: SpeechToTextError) {
+    private
+    func handle(_ error: SpeechToTextError) {
         guard case .listening = state else {
             return
         }
@@ -201,7 +220,8 @@ extension AimyboxConcrete {
         standby()
     }
 
-    private func onTextToSpeech(_ result: TextToSpeechResult) {
+    private
+    func onTextToSpeech(_ result: TextToSpeechResult) {
         switch result {
         case .success(let event):
             handle(event)
@@ -212,7 +232,8 @@ extension AimyboxConcrete {
         }
     }
 
-    private func handle(_ event: TextToSpeechEvent) {
+    private
+    func handle(_ event: TextToSpeechEvent) {
         switch event {
         case .speechSequenceCompleted:
             switch nextAction {
@@ -232,7 +253,8 @@ extension AimyboxConcrete {
         }
     }
 
-    private func handle(_ error: TextToSpeechError) {
+    private
+    func handle(_ error: TextToSpeechError) {
         switch error {
         case .emptySpeech:
             break
@@ -246,7 +268,8 @@ extension AimyboxConcrete {
         }
     }
 
-    private func onDialogAPI(_ result: DialogAPIResult) {
+    private
+    func onDialogAPI(_ result: DialogAPIResult) {
         switch result {
         case .success(let event):
             handle(event)
@@ -259,14 +282,16 @@ extension AimyboxConcrete {
         }
     }
 
-    private func handle(_ event: DialogAPIEvent) {
+    private
+    func handle(_ event: DialogAPIEvent) {
         switch event {
         default:
             break
         }
     }
 
-    private func handle(_ error: DialogAPIError) {
+    private
+    func handle(_ error: DialogAPIError) {
         switch error {
         case .requestTimeout:
             standby()
@@ -276,4 +301,5 @@ extension AimyboxConcrete {
             break
         }
     }
+
 }

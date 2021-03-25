@@ -9,7 +9,8 @@
 #if canImport(Aimybox)
 import Aimybox
 
-final class AimyboxButtonReply: ButtonReply, Decodable {
+final
+class AimyboxButtonReply: ButtonReply, Decodable {
 
     var text: String
 
@@ -19,9 +20,11 @@ final class AimyboxButtonReply: ButtonReply, Decodable {
         self.text = text
         self.url = url
     }
+
 }
 
-final class AimyboxButtonsReply: ButtonsReply, Decodable {
+final
+class AimyboxButtonsReply: ButtonsReply, Decodable {
 
     var buttons: [ButtonReply] {
         get { typedButtons.compactMap { $0 as ButtonReply } }
@@ -39,6 +42,7 @@ final class AimyboxButtonsReply: ButtonsReply, Decodable {
     }
 
     static let jsonKey: String = "buttons"
+
 }
 
 #endif

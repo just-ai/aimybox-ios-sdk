@@ -10,7 +10,8 @@ import Foundation
 /**
 Represents a reply with text content, which should be synthesized and/or displayed in the UI.
 */
-public protocol TextReply: Reply {
+public
+protocol TextReply: Reply {
     /**
     Text to show in the UI. Also, this text should be synthesized, if `tts` text is null.
     */
@@ -23,11 +24,14 @@ public protocol TextReply: Reply {
     The language code of the reply.
     */
     var language: String? { get }
+
 }
 
-public extension TextReply {
+public
+extension TextReply {
 
     var textSpeech: TextSpeech {
         TextSpeech(text: tts ?? text)
     }
+
 }

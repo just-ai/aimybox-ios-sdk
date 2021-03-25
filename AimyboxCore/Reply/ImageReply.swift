@@ -10,7 +10,8 @@ import Foundation
 /**
 Represents a reply with image content, which should be displayed in the UI.
 */
-public protocol ImageReply: Reply {
+public
+protocol ImageReply: Reply {
     /**
     URL to the image or GIF.
     */

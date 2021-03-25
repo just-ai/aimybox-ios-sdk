@@ -13,7 +13,8 @@ Top level object that manages voice assistant behavior.
 
 - Attention: Use `AimyboxBuilder` to instanciate object conforming to a `Aimybox` protocol.
 */
-public protocol Aimybox: class {
+public
+protocol Aimybox: class {
     /**
     Transitions listening state.
     - Note: For more detailed overview of side effects involved, refer to `AimyboxState.listening`.
@@ -81,7 +82,8 @@ let aimybox = AimyboxBuilder.aimybox(with: config)
  
 - Note: Type match is checked at compile time, so be aware of that.
 */
-public class AimyboxBuilder {
+public
+class AimyboxBuilder {
     /**
     Creates concrete object that conforms to a `Aimybox` protocol.
      
@@ -90,7 +92,8 @@ public class AimyboxBuilder {
      
     - Returns: A concrete object up-casted to `Aimybox` protocol.
     */
-    public static func aimybox<TDialogAPI, TConfig>(
+    public
+    static func aimybox<TDialogAPI, TConfig>(
         with config: TConfig
     ) -> Aimybox where TConfig: AimyboxConfig, TConfig.TDialogAPI == TDialogAPI {
         #if TESTING
@@ -110,7 +113,8 @@ public class AimyboxBuilder {
      
     - Returns: A type-erased object that conforms to `AimyboxConfig` protocol.
     */
-    public static func config<TDialogAPI>(
+    public
+    static func config<TDialogAPI>(
         _ speechToText: SpeechToText,
         _ textToSpeech: TextToSpeech,
         _ dialogAPI: TDialogAPI) -> AimyboxConfigConcrete<TDialogAPI>

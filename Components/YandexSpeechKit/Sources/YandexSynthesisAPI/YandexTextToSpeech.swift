@@ -9,17 +9,21 @@
 import Aimybox
 import AVFoundation
 
-public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
+public
+class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
     Used to notify *Aimybox* state machine about events.
     */
-    public var notify: (TextToSpeechCallback)?
+    public
+    var notify: (TextToSpeechCallback)?
     /**
     */
-    private var languageCode: String
+    private
+    var languageCode: String
     /** Yandex Cloud Synthesis
     */
-    private lazy var synthesisAPI = YandexSynthesisAPI(
+    private
+    lazy var synthesisAPI = YandexSynthesisAPI(
         iAMToken: token,
         folderId: folderID,
         api: address,
@@ -39,15 +43,20 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     */
     var synthesisConfig: YandexSynthesisConfig
 
-    private let token: String
+    private
+    let token: String
 
-    private let folderID: String
+    private
+    let folderID: String
 
-    private let address: URL
+    private
+    let address: URL
 
-    private let dataLoggingEnabled: Bool
+    private
+    let dataLoggingEnabled: Bool
 
-    public init?(
+    public
+    init?(
         tokenProvider: IAMTokenProvider,
         folderID: String,
         language code: String = "ru-RU",
@@ -68,7 +77,8 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         super.init()
     }
 
-    public func synthesize(contentsOf speeches: [AimyboxSpeech]) {
+    public
+    func synthesize(contentsOf speeches: [AimyboxSpeech]) {
         isCancelled = false
         operationQueue.addOperation { [weak self] in
             self?.prepareAudioEngine { engineIsReady in
@@ -82,19 +92,22 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         operationQueue.waitUntilAllOperationsAreFinished()
     }
 
-    public func stop() {
+    public
+    func stop() {
         isCancelled = true
         player?.pause()
     }
 
-    public func cancelSynthesis() {
+    public
+    func cancelSynthesis() {
         operationQueue.addOperation { [weak self] in
             self?.isCancelled = true
         }
     }
     // MARK: - Internals
 
-    private func synthesize(_ speeches: [AimyboxSpeech]) {
+    private
+    func synthesize(_ speeches: [AimyboxSpeech]) {
         guard let notify = notify else {
             return
         }
@@ -117,7 +130,8 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         )
     }
 
-    private func synthesize(_ speech: AimyboxSpeech) {
+    private
+    func synthesize(_ speech: AimyboxSpeech) {
         if let textSpeech = speech as? TextSpeech {
             synthesize(textSpeech)
         } else if let audioSpeech = speech as? AudioSpeech {
@@ -125,7 +139,8 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         }
     }
 
-    private func synthesize(_ textSpeech: TextSpeech) {
+    private
+    func synthesize(_ textSpeech: TextSpeech) {
         let synthesisGroup = DispatchGroup()
 
         synthesisGroup.enter()
@@ -142,11 +157,13 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         synthesisGroup.wait()
     }
 
-    private func synthesize(_ audioSpeech: AudioSpeech) {
+    private
+    func synthesize(_ audioSpeech: AudioSpeech) {
         synthesize(audioSpeech, using: audioSpeech.audioURL)
     }
 
-    private func synthesize(_ speech: AimyboxSpeech, using url: URL) {
+    private
+    func synthesize(_ speech: AimyboxSpeech, using url: URL) {
         guard let notify = notify else {
             return
         }
@@ -192,7 +209,8 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
     }
 
-    private func prepareAudioEngine(_ completion: (Bool) -> Void) {
+    private
+    func prepareAudioEngine(_ completion: (Bool) -> Void) {
         do {
             let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(.playback)
@@ -203,9 +221,11 @@ public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             completion(false)
         }
     }
+
 }
 
-private extension Array where Element == AimyboxSpeech {
+private
+extension Array where Element == AimyboxSpeech {
 
     var unwrapSSML: [Element] {
         var unwrapped = [Element]()
@@ -220,4 +240,5 @@ private extension Array where Element == AimyboxSpeech {
         }
         return unwrapped
     }
+
 }

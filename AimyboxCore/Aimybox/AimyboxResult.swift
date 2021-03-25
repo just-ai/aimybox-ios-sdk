@@ -11,13 +11,17 @@ import Foundation
 /**
 Used to support versions of swift < 5.0.
 */
-public enum AimyboxResult<T, E> where E: Error {
+public
+enum AimyboxResult<T, E> where E: Error {
     case success(T)
     case failure(E)
 }
 
-public typealias SpeechToTextResult = AimyboxResult<SpeechToTextEvent, SpeechToTextError>
+public
+typealias SpeechToTextResult = AimyboxResult<SpeechToTextEvent, SpeechToTextError>
 
-public typealias TextToSpeechResult = AimyboxResult<TextToSpeechEvent, TextToSpeechError>
+public
+typealias TextToSpeechResult = AimyboxResult<TextToSpeechEvent, TextToSpeechError>
 
-public typealias DialogAPIResult = AimyboxResult<DialogAPIEvent, DialogAPIError>
+public
+typealias DialogAPIResult = AimyboxResult<DialogAPIEvent, DialogAPIError>

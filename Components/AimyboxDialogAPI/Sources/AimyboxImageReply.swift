@@ -9,19 +9,24 @@
 #if canImport(Aimybox)
 import Aimybox
 
-final class AimyboxImageReply: ImageReply, Decodable {
+final
+class AimyboxImageReply: ImageReply, Decodable {
 
-    public var url: URL
+    public
+    var url: URL
 
-    public init(url: URL) {
+    public
+    init(url: URL) {
         self.url = url
     }
 
-    public enum CodingKeys: String, CodingKey {
+    public
+    enum CodingKeys: String, CodingKey {
         case url = "imageUrl"
     }
 
     static let jsonKey: String = "image"
+
 }
 
 #endif

@@ -8,7 +8,8 @@
 
 import Foundation
 
-final class WAVFileGenerator {
+final
+class WAVFileGenerator {
 
     func createWAVFile(using rawData: Data) -> Data {
         createWaveHeader(data: rawData) + rawData
@@ -16,7 +17,8 @@ final class WAVFileGenerator {
 
     /** http://soundfile.sapp.org/doc/WaveFormat/
     */
-    private func createWaveHeader(data: Data) -> Data {
+    private
+    func createWaveHeader(data: Data) -> Data {
 
         let sampleRate: Int32 = 48_000
         let dataSize: Int32 = Int32(data.count)

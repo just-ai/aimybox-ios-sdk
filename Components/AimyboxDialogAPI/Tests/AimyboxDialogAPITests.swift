@@ -12,7 +12,8 @@ class AimyboxDialogAPITests: XCTestCase {
 
     var dapi: AimyboxDialogAPI!
 
-    override func setUp() {
+    override
+    func setUp() {
         super.setUp()
 
         dapi = AimyboxDialogAPI(
@@ -21,7 +22,8 @@ class AimyboxDialogAPITests: XCTestCase {
         )
     }
 
-    override func tearDown() {
+    override
+    func tearDown() {
         super.tearDown()
 
         dapi = nil
@@ -53,4 +55,5 @@ class AimyboxDialogAPITests: XCTestCase {
 
         XCTAssertNoThrow(try dapi.send(request: request))
     }
+
 }

@@ -11,26 +11,32 @@ import Foundation
 #if canImport(Aimybox)
 import Aimybox
 
-public class YandexSpeechToText: AimyboxComponent, SpeechToText {
+public
+class YandexSpeechToText: AimyboxComponent, SpeechToText {
     /**
     Customize `config` parameter if you change recognition audioFormat in recognition config.
     */
-    public var audioFormat: AVAudioFormat = .defaultFormat
+    public
+    var audioFormat: AVAudioFormat = .defaultFormat
     /**
     Used to notify *Aimybox* state machine about events.
     */
-    public var notify: (SpeechToTextCallback)?
+    public
+    var notify: (SpeechToTextCallback)?
     /**
     Used for audio signal processing.
     */
-    private let audioEngine: AVAudioEngine
+    private
+    let audioEngine: AVAudioEngine
     /**
     Node on which audio stream is routed.
     */
-    private var audioInputNode: AVAudioNode?
+    private
+    var audioInputNode: AVAudioNode?
     /**
     */
-    private lazy var recognitionAPI = YandexRecognitionAPI(
+    private
+    lazy var recognitionAPI = YandexRecognitionAPI(
         iAM: iamToken,
         folderID: folderID,
         language: languageCode,
@@ -41,24 +47,32 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     )
     /**
     */
-    private var wasSpeechStopped: Bool = true
+    private
+    var wasSpeechStopped: Bool = true
 
-    private let iamToken: String
+    private
+    let iamToken: String
 
-    private let folderID: String
+    private
+    let folderID: String
 
-    private let languageCode: String
+    private
+    let languageCode: String
 
-    private let sttAPIAdress: String
+    private
+    let sttAPIAdress: String
 
-    private let config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig?
+    private
+    let config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig?
 
-    private let dataLoggingEnabled: Bool
+    private
+    let dataLoggingEnabled: Bool
 
     /**
     Init that uses provided params.
     */
-    public init?(
+    public
+    init?(
         tokenProvider: IAMTokenProvider,
         folderID: String,
         language code: String = "ru-RU",
@@ -82,7 +96,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         super.init()
     }
 
-    public func startRecognition() {
+    public
+    func startRecognition() {
         guard wasSpeechStopped else {
             return
         }
@@ -98,7 +113,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         }
     }
 
-    public func stopRecognition() {
+    public
+    func stopRecognition() {
         wasSpeechStopped = true
         audioEngine.stop()
         audioInputNode?.removeTap(onBus: 0)
@@ -106,7 +122,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         recognitionAPI.closeStream()
     }
 
-    public func cancelRecognition() {
+    public
+    func cancelRecognition() {
         wasSpeechStopped = true
         audioEngine.stop()
         audioInputNode?.removeTap(onBus: 0)
@@ -119,7 +136,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
     // MARK: - Internals
 
-    private func onPermissionGranted() {
+    private
+    func onPermissionGranted() {
         prepareRecognition()
         guard !wasSpeechStopped else {
             return
@@ -133,7 +151,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         }
     }
 
-    private func prepareRecognition() {
+    private
+    func prepareRecognition() {
         guard let notify = notify else {
             return
         }
@@ -219,7 +238,8 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
         })
     }
 
-    private func proccessResults(_ response: Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) {
+    private
+    func proccessResults(_ response: Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) {
         guard
             !wasSpeechStopped,
             let phrase = response.chunks.first,
@@ -245,7 +265,9 @@ public class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     // MARK: - User Permissions
-    private func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
+
+    private
+    func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
 
         var recordAllowed: Bool = false
         let permissionsDispatchGroup = DispatchGroup()

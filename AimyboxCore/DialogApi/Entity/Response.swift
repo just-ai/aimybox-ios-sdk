@@ -11,7 +11,8 @@ import Foundation
 Response model, which is used across the library.
 You can parse additional data from `json` in your `CustomSkill`.
 */
-public protocol Response: class {
+public
+protocol Response: class {
     /**
     User's original query to your agent.
     */
@@ -32,4 +33,5 @@ public protocol Response: class {
     Array of replies that will be displayed to user.
     */
     var replies: [Reply] { get }
+
 }

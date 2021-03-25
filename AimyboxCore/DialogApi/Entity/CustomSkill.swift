@@ -11,7 +11,8 @@ import Foundation
 Interface for custom client-side skill.
 To enable it in Aimybox, add an instance of the skill to `Aimybox.Config.skills`.
 */
-public protocol CustomSkill {
+public
+protocol CustomSkill {
     /**
     Adopting object must use request that conforms to `Request` protocol.
     */
@@ -41,11 +42,15 @@ public protocol CustomSkill {
     func onResponse(_ response: TResponse, _ aimybox: Aimybox, default handler: ResponseDefaultHandler) -> TResponse
 }
 
-public typealias ResponseDefaultHandler = (Response) -> Void
+public
+typealias ResponseDefaultHandler = (Response) -> Void
 
 /**
 All methods listed here are optional for delegates to implement.
 */
-public extension CustomSkill {
+public
+extension CustomSkill {
+
     func onRequest(_ request: TRequest) -> TRequest { request }
+
 }

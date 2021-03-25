@@ -10,24 +10,30 @@ import Foundation
 class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
     /**
     */
-    private var response: TDialogAPI.TResponse
+    private
+    var response: TDialogAPI.TResponse
     /**
     */
-    private var dialogAPI: TDialogAPI
+    private
+    var dialogAPI: TDialogAPI
     /**
     */
-    private var aimybox: Aimybox
+    private
+    var aimybox: Aimybox
     /**
     */
-    public private(set) var result: TDialogAPI.TResponse?
+    public private(set)
+    var result: TDialogAPI.TResponse?
 
-    public init(response: TDialogAPI.TResponse, dialogAPI: TDialogAPI, aimybox: Aimybox) {
+    public
+    init(response: TDialogAPI.TResponse, dialogAPI: TDialogAPI, aimybox: Aimybox) {
         self.response = response
         self.dialogAPI = dialogAPI
         self.aimybox = aimybox
     }
 
-    override public func main() {
+    override public
+    func main() {
         if let skill = dialogAPI.customSkills.first(where: { $0.canHandle(response: response) }) {
             let _ = skill.onResponse(response, aimybox) { [weak self] response in
                 self?.defaultHandler(response: response, aimybox: aimybox)
@@ -37,7 +43,8 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
         }
     }
 
-    private func defaultHandler(response: Response, aimybox: Aimybox) {
+    private
+    func defaultHandler(response: Response, aimybox: Aimybox) {
 
         let supportedReplies: (Reply) -> Bool = { $0 is TextReply || $0 is AudioReply }
 
@@ -85,20 +92,24 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
         }
     }
 
-    private func throwIfCanceled() throws {
+    private
+    func throwIfCanceled() throws {
         if isCancelled {
             throw DialogAPIError.Internal.processingCancellation
         }
     }
+
 }
 
 /**
 Domain of internal errors.
 */
-fileprivate extension DialogAPIError {
-    enum Internal: Error {
+private
+extension DialogAPIError {
 
+    enum Internal: Error {
         case processingCancellation
         case processingInstanceInconsistency
     }
+
 }

@@ -11,7 +11,8 @@ import Foundation
 /**
 Defines what will happens once speech synthesis is completed.
 */
-public enum AimyboxNextAction {
+public
+enum AimyboxNextAction {
     /**
     Go to standby state.
     */
@@ -33,4 +34,5 @@ public enum AimyboxNextAction {
     static func byQuestion(is question: Bool) -> AimyboxNextAction {
         question ? .recognition : .standby
     }
+
 }

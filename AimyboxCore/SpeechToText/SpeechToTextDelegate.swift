@@ -10,7 +10,8 @@ import Foundation
 /**
 Speech to text delegate is notified to all events that relate to speech recognition process.
 */
-public protocol SpeechToTextDelegate: class {
+public
+protocol SpeechToTextDelegate: class {
 
     // MARK: - Lifecycle
     /**
@@ -72,7 +73,8 @@ public protocol SpeechToTextDelegate: class {
 /**
 All methods listed here are optional for delegates to implement.
 */
-public extension SpeechToTextDelegate {
+public
+extension SpeechToTextDelegate {
     func sttRecognitionPermissionsGranted(_ stt: SpeechToText) {}
     func sttRecognitionStarted(_ stt: SpeechToText) {}
     func stt(_ stt: SpeechToText, recognitionPartial result: String) {}

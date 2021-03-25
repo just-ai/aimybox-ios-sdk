@@ -11,13 +11,17 @@ import Foundation
 
 class SpeechToTextFake: AimyboxComponent, SpeechToText {
 
-    public var partialResult: String = "Ping"
+    public
+    var partialResult: String = "Ping"
 
-    public var partialResultCount: Int = 3
+    public
+    var partialResultCount: Int = 3
 
-    public var finalResult: String = "Ping-Pong"
+    public
+    var finalResult: String = "Ping-Pong"
 
-    public var errorState: SpeechToTextError?
+    public
+    var errorState: SpeechToTextError?
 
     func startRecognition() {
         guard errorState == nil else {

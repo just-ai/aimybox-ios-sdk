@@ -10,40 +10,51 @@ import Foundation
 /**
 Base protocol for any speeches.
 */
-public protocol AimyboxSpeech: class {
+public
+protocol AimyboxSpeech: class {
 
     func isValid() -> Bool
+
 }
 
 /**
 Text to be spoken.
 */
-public class TextSpeech: AimyboxSpeech {
+public
+class TextSpeech: AimyboxSpeech {
 
-    public let text: String
+    public
+    let text: String
 
-    public init(text: String) {
+    public
+    init(text: String) {
         self.text = text
     }
 
-    public func isValid() -> Bool {
+    public
+    func isValid() -> Bool {
         !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
 
-public class AudioSpeech: AimyboxSpeech {
+public
+class AudioSpeech: AimyboxSpeech {
     /**
     URL to the audio source.
     */
-    public let audioURL: URL
+    public
+    let audioURL: URL
 
-    public init(audioURL: URL) {
+    public
+    init(audioURL: URL) {
         self.audioURL = audioURL
     }
     /**
     If url is valid, it's synthesizers task to check if it could play it.
     */
-    public func isValid() -> Bool {
+    public
+    func isValid() -> Bool {
         true
     }
+
 }

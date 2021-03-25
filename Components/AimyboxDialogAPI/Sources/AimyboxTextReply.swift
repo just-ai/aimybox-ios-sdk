@@ -9,27 +9,34 @@
 #if canImport(Aimybox)
 import Aimybox
 
-final class AimyboxTextReply: TextReply, Decodable {
+final
+class AimyboxTextReply: TextReply, Decodable {
 
-    public var text: String
+    public
+    var text: String
 
-    public var tts: String?
+    public
+    var tts: String?
 
-    public var language: String?
+    public
+    var language: String?
 
-    public init(text: String, tts: String?, language: String?) {
+    public
+    init(text: String, tts: String?, language: String?) {
         self.text = text
         self.tts = tts
         self.language = language
     }
 
-    public enum CodingKeys: String, CodingKey {
+    public
+    enum CodingKeys: String, CodingKey {
         case text
         case tts
         case language = "lang"
     }
 
     static let jsonKey: String = "text"
+
 }
 
 #endif

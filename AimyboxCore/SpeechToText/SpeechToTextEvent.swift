@@ -7,7 +7,8 @@
 
 import Foundation
 
-public enum SpeechToTextEvent {
+public
+enum SpeechToTextEvent {
     /**
     Happens when user granted permission to microphone and recognizer.
     */
@@ -44,9 +45,11 @@ public enum SpeechToTextEvent {
     Happens when sound volume of microphone input changes.
     */
     case soundVolumeRmsChanged(Int)
+
 }
 
-public extension SpeechToTextEvent {
+public
+extension SpeechToTextEvent {
     func forward(to delegate: SpeechToTextDelegate?, by stt: SpeechToText?) {
         guard let delegate = delegate, let stt = stt else {
             return
@@ -73,4 +76,5 @@ public extension SpeechToTextEvent {
             delegate.stt(stt, soundVolumeRmsChanged: value)
         }
     }
+
 }

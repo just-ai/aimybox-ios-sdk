@@ -10,10 +10,12 @@ import XCTest
 
 class YandexSpeechKitTests: XCTestCase {
 
-    override func setUp() {
+    override
+    func setUp() {
     }
 
-    override func tearDown() {
+    override
+    func tearDown() {
     }
 
     func testPerformanceExample() {

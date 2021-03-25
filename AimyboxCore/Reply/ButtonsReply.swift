@@ -10,16 +10,19 @@ import Foundation
 /**
 Represents a reply with which needs user interaction.
 */
-public protocol ButtonsReply: Reply {
+public
+protocol ButtonsReply: Reply {
     /**
     */
     var buttons: [ButtonReply] { get }
+
 }
 
 /**
 Clickable button with which the user can quickly respond without using STT.
 */
-public protocol ButtonReply: Reply {
+public
+protocol ButtonReply: Reply {
     /**
     Text to be displayed in buttons interface.
     */
@@ -28,4 +31,5 @@ public protocol ButtonReply: Reply {
     Link that could be opened on devices browser.
     */
     var url: URL? { get }
+
 }

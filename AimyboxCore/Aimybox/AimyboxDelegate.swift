@@ -8,16 +8,21 @@
 
 import Foundation
 
-public protocol AimyboxDelegate: SpeechToTextDelegate, TextToSpeechDelegate, DialogAPIDelegate {
+public
+protocol AimyboxDelegate: SpeechToTextDelegate, TextToSpeechDelegate, DialogAPIDelegate {
     /**
     Called before new state is set. Optional.
     */
     func aimybox(_ aimybox: Aimybox, willMoveFrom oldState: AimyboxState, to newState: AimyboxState)
+
 }
 
 /**
 All methods listed here are optional for delegates to implement.
 */
-public extension AimyboxDelegate {
+public
+extension AimyboxDelegate {
+
     func aimybox(_ aimybox: Aimybox, willMoveFrom oldState: AimyboxState, to newState: AimyboxState) {}
+
 }
