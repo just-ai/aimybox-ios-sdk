@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public enum DialogAPIError: Error {
     /**
      Happens when request timeouts.

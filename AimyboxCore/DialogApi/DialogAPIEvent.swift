@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public enum DialogAPIEvent {
     /**
      Happens when `Aimybox` sends request.

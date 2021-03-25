@@ -73,7 +73,6 @@ class DialogAPISendOperation<TDialogAPI: DialogAPI>: Operation {
             timeoutSemaphore.signal()
         }
 
-        
         // Poll for cancel or timeout or success event
         var pollAttempt = 0
 

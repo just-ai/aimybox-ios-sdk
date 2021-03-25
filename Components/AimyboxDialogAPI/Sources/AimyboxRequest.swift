@@ -16,7 +16,6 @@ public class AimyboxRequest: Request {
         self.data = data
     }
     
-    
     public var query: String
     
     public var apiKey: String

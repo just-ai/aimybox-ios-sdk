@@ -10,7 +10,6 @@ import Foundation
 import AVFoundation
 import Aimybox
 
-
 public class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
      Used to notify *Aimybox* state machine about events.

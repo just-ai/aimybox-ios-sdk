@@ -39,7 +39,6 @@ public extension URL {
 
 }
 
-
 /**
  Decoding extensions.
  */

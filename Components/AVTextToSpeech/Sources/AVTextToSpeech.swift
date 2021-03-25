@@ -57,7 +57,6 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
      */
     internal var isCancelled: Bool = false
     
-    
     private override init() {
         rate = AVSpeechUtteranceDefaultSpeechRate
         volume = 1.0

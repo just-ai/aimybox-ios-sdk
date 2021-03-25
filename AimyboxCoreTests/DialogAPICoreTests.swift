@@ -62,7 +62,6 @@ open class DialogAPICoreTests: AimyboxBaseTestCase {
         XCTAssert(aimybox.state == .standby)
     }
     
-    
     func testStateAfterSendRequestFailedWithClientError() {
         
         dapi.errorState = NSError(domain: "ClientError", code: 1, userInfo: nil)

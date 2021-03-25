@@ -260,7 +260,6 @@ extension AimyboxConcrete {
         }
     }
     
-    
     private func handle(_ event: DialogAPIEvent) {
         switch event {
         default:

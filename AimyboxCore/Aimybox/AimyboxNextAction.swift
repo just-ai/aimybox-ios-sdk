@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /**
  Defines what will happens once speech synthesis is completed.
  */
