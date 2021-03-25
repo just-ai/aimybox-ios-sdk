@@ -37,7 +37,7 @@ class AimyboxDialogAPITests: XCTestCase {
         XCTAssert(request.query == query)
         XCTAssert(request.apiKey == dapi.api_key)
         XCTAssert(request.unitKey == dapi.unit_key)
-        XCTAssert(request.data == [:])
+        XCTAssert(request.data.isEmpty)
     }
 
     func testSendRequest() {
