@@ -9,7 +9,7 @@
 import Aimybox
 
 public class AimyboxRequest: Request {
-    public init(query: String, apiKey: String, unitKey: String, data: [String : Data]) {
+    public init(query: String, apiKey: String, unitKey: String, data: [String: Data]) {
         self.query = query
         self.apiKey = apiKey
         self.unitKey = unitKey

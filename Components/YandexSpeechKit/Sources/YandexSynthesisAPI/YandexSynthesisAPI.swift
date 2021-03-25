@@ -136,8 +136,8 @@ public struct YandexSynthesisConfig {
 
 public extension YandexSynthesisConfig {
 
-    var asParams: [String : String] {
-        var params = [String : String]()
+    var asParams: [String: String] {
+        var params = [String: String]()
 
         params["emotion"] = emotion
         params["format"] = format

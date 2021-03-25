@@ -73,7 +73,7 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
             }
 
             guard let _data = data else {
-                result = .failure(NSError(domain: "Missing response data", code: 204, userInfo: ["statusCode":code]))
+                result = .failure(NSError(domain: "Missing response data", code: 204, userInfo: ["statusCode": code]))
                 return
             }
 
