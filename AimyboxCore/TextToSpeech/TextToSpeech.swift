@@ -29,4 +29,4 @@ public protocol TextToSpeech: AimyboxComponent {
     var notify: (TextToSpeechCallback)? { get set }
 }
 
-public typealias TextToSpeechCallback = (TextToSpeechResult)->()
+public typealias TextToSpeechCallback = (TextToSpeechResult) -> Void

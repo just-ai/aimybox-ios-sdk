@@ -11,7 +11,7 @@ import AimyboxCore
 
 class DialogAPICustomSkillFake: CustomSkill {
 
-    public var onResponseHandler: ((DialogAPIResponseFake, Aimybox, (Response) -> ()) -> DialogAPIResponseFake)?
+    public var onResponseHandler: ((DialogAPIResponseFake, Aimybox, (Response) -> Void) -> DialogAPIResponseFake)?
 
     public var onRequestHandler: ((DialogAPIRequestFake) -> DialogAPIRequestFake)?
 
@@ -28,7 +28,7 @@ class DialogAPICustomSkillFake: CustomSkill {
     func onResponse(
         _ response: DialogAPIResponseFake,
         _ aimybox: Aimybox,
-        default handler: (Response) -> ()
+        default handler: (Response) -> Void
     ) -> DialogAPIResponseFake {
         onResponseHandler?(response, aimybox, handler) ?? response
     }

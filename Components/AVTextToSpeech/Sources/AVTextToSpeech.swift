@@ -192,7 +192,7 @@ public class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
     }
     
-    private func prepareAudioEngine(_ completion: (Bool)->()) {
+    private func prepareAudioEngine(_ completion: (Bool) -> Void) {
         do {
             let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(.playback)

@@ -42,10 +42,10 @@ final class YandexRecognitionAPI {
     }
     
     public func openStream(
-        onOpen: @escaping (Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?)->(),
-        onResponse: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse)->(),
-        error handler: @escaping (Error)->(),
-        completion: @escaping ()->()
+        onOpen: @escaping (Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?) -> Void,
+        onResponse: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) -> Void,
+        error handler: @escaping (Error) -> Void,
+        completion: @escaping () -> Void
     ) {
         
         let channel = Channel(address: apiAdress)
@@ -95,8 +95,8 @@ final class YandexRecognitionAPI {
     }
 
     private func receiveMessages(
-        on response: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse)->(),
-        error handler: @escaping (Error)->(),
+        on response: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) -> Void,
+        error handler: @escaping (Error) -> Void,
         stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
     ) throws {
         try stream?.receive { [weak self, weak stream] result in

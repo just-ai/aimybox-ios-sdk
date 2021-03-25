@@ -50,7 +50,7 @@ public protocol DialogAPI: AimyboxComponent {
     var timeoutPollAttempts: Int { get set }
 }
 
-public typealias DialogAPICallback = (DialogAPIResult)->()
+public typealias DialogAPICallback = (DialogAPIResult) -> Void
 
 extension DialogAPI {
     

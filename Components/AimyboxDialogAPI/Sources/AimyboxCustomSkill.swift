@@ -25,7 +25,7 @@ public class AimyboxCustomSkill: CustomSkill {
     public func onResponse(
         _ response: AimyboxResponse,
         _ aimybox: Aimybox,
-        default handler: (Response) -> ()) -> AimyboxResponse
+        default handler: (Response) -> Void) -> AimyboxResponse
     {
         response
     }

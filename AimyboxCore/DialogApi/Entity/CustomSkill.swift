@@ -41,7 +41,7 @@ public protocol CustomSkill {
     func onResponse(_ response: TResponse, _ aimybox: Aimybox, default handler: ResponseDefaultHandler) -> TResponse
 }
 
-public typealias ResponseDefaultHandler = (Response)->()
+public typealias ResponseDefaultHandler = (Response) -> Void
 
 /**
  All methods listed here are optional for delegates to implement.
