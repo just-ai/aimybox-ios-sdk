@@ -63,7 +63,7 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
     }
     
     func createRequest(query: String) -> DialogAPIRequestFake {
-        return DialogAPIRequestFake(query: query)
+        DialogAPIRequestFake(query: query)
     }
     
     var notify: (DialogAPICallback)?

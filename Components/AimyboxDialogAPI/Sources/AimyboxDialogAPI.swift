@@ -44,7 +44,7 @@ public class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     }
     
     public func createRequest(query: String) -> AimyboxRequest {
-        return AimyboxRequest(query: query, apiKey: apiKey, unitKey: unitKey, data: [:])
+        AimyboxRequest(query: query, apiKey: apiKey, unitKey: unitKey, data: [:])
     }
 
     public func send(request: AimyboxRequest) throws -> AimyboxResponse {

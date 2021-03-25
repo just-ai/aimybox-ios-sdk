@@ -15,15 +15,15 @@ public class AimyboxCustomSkill: CustomSkill {
     public typealias TResponse = AimyboxResponse
     
     public func onRequest(_ request: AimyboxRequest) -> AimyboxRequest {
-        return request
+        request
     }
     
     public func canHandle(response: AimyboxResponse) -> Bool {
-        return false
+        false
     }
     
     public func onResponse(_ response: AimyboxResponse, _ aimybox: Aimybox, default handler: (Response) -> ()) -> AimyboxResponse {
-        return response
+        response
     }
 }
 

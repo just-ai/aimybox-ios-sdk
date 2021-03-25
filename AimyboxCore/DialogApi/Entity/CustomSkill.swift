@@ -47,5 +47,5 @@ public typealias ResponseDefaultHandler = (Response)->()
  All methods listed here are optional for delegates to implement.
 */
 public extension CustomSkill {
-    func onRequest(_ request: TRequest) -> TRequest { return request }
+    func onRequest(_ request: TRequest) -> TRequest { request }
 }

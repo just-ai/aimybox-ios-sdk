@@ -113,6 +113,6 @@ public class AimyboxBuilder {
                                          _ textToSpeech: TextToSpeech,
                                          _ dialogAPI: TDialogAPI) -> AimyboxConfigConcrete<TDialogAPI>
     {
-        return AimyboxConfigConcrete<TDialogAPI>(speechToText, textToSpeech, dialogAPI)
+        AimyboxConfigConcrete<TDialogAPI>(speechToText, textToSpeech, dialogAPI)
     }
 }

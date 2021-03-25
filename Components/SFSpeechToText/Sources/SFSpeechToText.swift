@@ -67,7 +67,7 @@ public class SFSpeechToText: AimyboxComponent, SpeechToText {
     // MARK: - Locale management
     
     public class func supports(locale: Locale) -> Bool {
-        return SFSpeechRecognizer.supportedLocales().contains(locale)
+        SFSpeechRecognizer.supportedLocales().contains(locale)
     }
     
     // MARK: - SpechToTextProtocol conformance

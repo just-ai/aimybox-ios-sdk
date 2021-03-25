@@ -27,7 +27,7 @@ public class TextSpeech: AimyboxSpeech {
     }
     
     public func isValid() -> Bool {
-        return !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
 
@@ -44,6 +44,6 @@ public class AudioSpeech: AimyboxSpeech {
      If url is valid, it's synthesizers task to check if it could play it.
      */
     public func isValid() -> Bool {
-        return true
+        true
     }
 }
