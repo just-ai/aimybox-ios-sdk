@@ -117,8 +117,9 @@ class AimyboxBuilder {
     static func config<TDialogAPI>(
         _ speechToText: SpeechToText,
         _ textToSpeech: TextToSpeech,
-        _ dialogAPI: TDialogAPI) -> AimyboxConfigConcrete<TDialogAPI>
-    {
+        _ dialogAPI: TDialogAPI
+    ) -> AimyboxConfigConcrete<TDialogAPI> {
         AimyboxConfigConcrete<TDialogAPI>(speechToText, textToSpeech, dialogAPI)
     }
+
 }
