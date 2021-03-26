@@ -70,6 +70,8 @@ class AimyboxBaseTestCase: XCTestCase {
     override
     open
     func setUp() {
+        super.setUp()
+
         setupComponents()
         let config = AimyboxBuilder.config(stt, tts, dapi)
 
@@ -218,6 +220,8 @@ class AimyboxBaseTestCase: XCTestCase {
     override
     open
     func tearDown() {
+        super.tearDown()
+
         aimybox = nil
         stt = nil
         dapi = nil
