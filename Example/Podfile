@@ -9,10 +9,8 @@ target 'AimyboxExample' do
   pod 'Aimybox',
     :subspecs => ['AimyboxDialogAPI', 'YandexSpeechKit', "AVTextToSpeech", "SFSpeechToText"],
     :path => '../'
-
   pod 'SDWebImage'
   pod 'SwiftLint'
-
 end
 
 post_install do |installer|
