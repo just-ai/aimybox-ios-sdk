@@ -59,11 +59,11 @@
 		031729D4260E1CF1004608F2 /* AimyboxExample */ = {
 			isa = PBXGroup;
 			children = (
-				03172AE5260E6C05004608F2 /* swiftlint.yml */,
+				031729E3260E1CF3004608F2 /* Info.plist */,
 				031729D5260E1CF1004608F2 /* AppDelegate.swift */,
 				031729DE260E1CF3004608F2 /* Assets.xcassets */,
+				03172AE5260E6C05004608F2 /* swiftlint.yml */,
 				031729E0260E1CF3004608F2 /* LaunchScreen.storyboard */,
-				031729E3260E1CF3004608F2 /* Info.plist */,
 			);
 			path = AimyboxExample;
 			sourceTree = "<group>";
