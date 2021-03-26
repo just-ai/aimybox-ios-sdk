@@ -48,7 +48,7 @@ class IAMTokenGenerator: IAMTokenProvider {
 
         let group = DispatchGroup()
 
-        var result: T? = nil
+        var result: T?
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             defer {
