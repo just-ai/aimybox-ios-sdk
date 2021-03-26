@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -79,7 +79,6 @@
 				696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */,
 				7948DA7CE5715E5323C3DDF7 /* Pods-AimyboxExample.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
