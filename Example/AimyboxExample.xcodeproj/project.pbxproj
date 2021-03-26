@@ -59,7 +59,6 @@
 		031729D4260E1CF1004608F2 /* AimyboxExample */ = {
 			isa = PBXGroup;
 			children = (
-				031729E3260E1CF3004608F2 /* Info.plist */,
 				031729D5260E1CF1004608F2 /* AppDelegate.swift */,
 				03172AF1260E7050004608F2 /* Sources */,
 				03172AF2260E706E004608F2 /* Supporting Files */,
@@ -77,6 +76,7 @@
 		03172AF2260E706E004608F2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				031729E3260E1CF3004608F2 /* Info.plist */,
 				031729DE260E1CF3004608F2 /* Assets.xcassets */,
 				03172AE5260E6C05004608F2 /* swiftlint.yml */,
 				031729E0260E1CF3004608F2 /* LaunchScreen.storyboard */,
@@ -377,7 +377,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8298429F2B;
-				INFOPLIST_FILE = AimyboxExample/Info.plist;
+				INFOPLIST_FILE = "AimyboxExample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,7 +399,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8298429F2B;
-				INFOPLIST_FILE = AimyboxExample/Info.plist;
+				INFOPLIST_FILE = "AimyboxExample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
