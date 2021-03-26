@@ -262,9 +262,9 @@ attributes:
     - '@objc'
     - '@usableFromInline'
   always_on_same_line: []
-cyclomatic_complexity: 10
-file_header:
-  forbidden_pattern: ^\/\/(?! (MARK|TODO):)
+#cyclomatic_complexity: 10
+#file_header:
+#  forbidden_pattern: ^\/\/(?! (MARK|TODO):)
 file_length: 400
 function_body_length: 50
 function_parameter_count: 5
