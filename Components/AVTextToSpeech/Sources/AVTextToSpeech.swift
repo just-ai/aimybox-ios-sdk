@@ -60,7 +60,7 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
 
     var notificationQueue: OperationQueue
 
-    var isCancelled: Bool = false
+    var isCancelled = false
 
     private
     override

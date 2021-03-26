@@ -17,7 +17,7 @@ class DispatchDebouncer {
     var timer: Timer?
 
     private
-    var fired: Bool = false
+    var fired = false
 
     public
     init() {

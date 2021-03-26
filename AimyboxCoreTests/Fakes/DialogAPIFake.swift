@@ -32,7 +32,7 @@ class DialogAPIFake: AimyboxComponent, DialogAPI {
     var intent: String = ""
 
     public
-    var isQuestion: Bool = false
+    var isQuestion = false
 
     public
     lazy var reply1: Reply = FakeTextReply(text: replyQuery)

@@ -18,7 +18,7 @@ class DialogAPICustomSkillFake: CustomSkill {
     var onRequestHandler: ((DialogAPIRequestFake) -> DialogAPIRequestFake)?
 
     public
-    var canHandle: Bool = false
+    var canHandle = false
 
     func onRequest(_ request: DialogAPIRequestFake) -> DialogAPIRequestFake {
         onRequestHandler?(request) ?? request

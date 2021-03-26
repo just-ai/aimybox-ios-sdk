@@ -38,7 +38,7 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     var notificationQueue: OperationQueue
     /**
     */
-    var isCancelled: Bool = false
+    var isCancelled = false
     /**
     */
     var synthesisConfig: YandexSynthesisConfig

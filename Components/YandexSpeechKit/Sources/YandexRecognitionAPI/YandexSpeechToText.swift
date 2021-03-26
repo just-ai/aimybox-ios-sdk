@@ -50,7 +50,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     /**
     */
     private
-    var wasSpeechStopped: Bool = true
+    var wasSpeechStopped = true
 
     private
     let iamToken: String
@@ -272,7 +272,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     private
     func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
 
-        var recordAllowed: Bool = false
+        var recordAllowed = false
         let permissionsDispatchGroup = DispatchGroup()
 
         permissionsDispatchGroup.enter()

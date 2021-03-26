@@ -211,8 +211,8 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
     private
     func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
 
-        var recordAllowed: Bool = false
-        var recognitionAllowed: Bool = false
+        var recordAllowed = false
+        var recognitionAllowed = false
         let permissionsDispatchGroup = DispatchGroup()
 
         permissionsDispatchGroup.enter()

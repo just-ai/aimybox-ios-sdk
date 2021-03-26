@@ -29,7 +29,7 @@ class AimyboxResponse: Response, Decodable {
     var intent: String = ""
 
     public
-    var question: Bool = false
+    var question = false
 
     public
     var replies: [Reply] = []
