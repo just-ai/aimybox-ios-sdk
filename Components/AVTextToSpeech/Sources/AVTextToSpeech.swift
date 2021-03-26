@@ -47,7 +47,6 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
     To notify about start/end of synthesizing.
     */
-    internal
     var textQueue: [AVSpeechUtterance: AimyboxSpeech]
     /**
     */
