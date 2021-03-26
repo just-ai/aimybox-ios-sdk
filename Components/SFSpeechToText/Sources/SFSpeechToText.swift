@@ -150,12 +150,12 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
             try audioSession.setMode(.measurement)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
-            return _notify(.failure(.microphoneUnreachable))
+            return notify(.failure(.microphoneUnreachable))
         }
         // Setup Speech Recognition request
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         guard let recognitionRequest = recognitionRequest, speechRecognizer.isAvailable else {
-            return _notify(.failure(.speechRecognitionUnavailable))
+            return notify(.failure(.speechRecognitionUnavailable))
         }
         recognitionRequest.shouldReportPartialResults = true
         // Get the a task, so we can cancel it
@@ -167,7 +167,7 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
             if let result = result {
                 self?.proccessResults(result: result)
             } else {
-                _notify(.success(.emptyRecognitionResult))
+                notify(.success(.emptyRecognitionResult))
             }
         }
         // Link recognition request with audio stream

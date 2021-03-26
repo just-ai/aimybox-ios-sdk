@@ -224,7 +224,6 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
 
 }
 
-private
 extension Array where Element == AimyboxSpeech {
 
     var unwrapSSML: [Element] {

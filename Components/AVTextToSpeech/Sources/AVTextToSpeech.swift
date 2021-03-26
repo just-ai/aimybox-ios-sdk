@@ -53,21 +53,13 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     */
     public
     var blockGroup: DispatchGroup
-    /**
-    */
-    internal
+
     var speechDelegate: AVTextToSpeechDelegate
-    /**
-    */
-    internal
+
     var audioPlayer: AVAudioPlayer?
-    /**
-    */
-    internal
+
     var notificationQueue: OperationQueue
-    /**
-    */
-    internal
+
     var isCancelled: Bool = false
 
     private
@@ -138,12 +130,12 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
             return
         }
 
-        _notify(.success(.speechSequenceStarted(speeches)))
+        notify(.success(.speechSequenceStarted(speeches)))
 
         speeches.unwrapSSML.forEach { speech in
 
             guard speech.isValid() && !isCancelled else {
-                return _notify(.failure(.emptySpeech(speech)))
+                return notify(.failure(.emptySpeech(speech)))
             }
 
             synthesize(speech)
@@ -182,7 +174,7 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
 
         let player = AVPlayer(url: audioSpeech.audioURL)
 
-        let statusObservation = player.currentItem?.observe(\.status) { [weak self] _, _ in
+        let statusObservation = player.currentItem?.observe(\.status) { [weak self] item, _ in
             switch item.status {
             case .failed:
                 self?.blockGroup.leave()
