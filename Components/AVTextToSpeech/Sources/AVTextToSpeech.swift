@@ -53,6 +53,7 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     public
     var blockGroup: DispatchGroup
 
+    // swiftlint:disable:next weak_delegate
     var speechDelegate: AVTextToSpeechDelegate
 
     var audioPlayer: AVAudioPlayer?
