@@ -6,6 +6,8 @@
 //  Copyright © 2020 Just Ai. All rights reserved.
 //
 
+// swiftlint:disable closure_body_length
+
 import AVFoundation
 import Foundation
 #if canImport(Aimybox)
@@ -167,7 +169,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
             return notify(.failure(.microphoneUnreachable))
         }
 
-        recognitionAPI.openStream(onOpen: { [audioEngine, weak self, audioFormat] stream in
+        recognitionAPI.openStream { [audioEngine, weak self, audioFormat] stream in
             let inputNode = audioEngine.inputNode
             let inputFormat = inputNode.outputFormat(forBus: 0)
             let recordingFormat = audioFormat
@@ -229,13 +231,13 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
             self?.audioInputNode = inputNode
             audioEngine.prepare()
 
-            }, onResponse: { [weak self] response in
-                self?.proccessResults(response)
-            }, error: { _ in
-                notify(.failure(.speechRecognitionUnavailable))
-            }, completion: { [weak self] in
-                self?.stopRecognition()
-        })
+        } onResponse: { [weak self] response in
+            self?.proccessResults(response)
+        } error: { _ in
+            notify(.failure(.speechRecognitionUnavailable))
+        } completion: { [weak self] in
+            self?.stopRecognition()
+        }
     }
 
     private

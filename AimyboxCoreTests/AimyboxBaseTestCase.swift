@@ -6,6 +6,8 @@
 //  Copyright © 2019 Just Ai. All rights reserved.
 //
 
+// swiftlint:disable closure_body_length
+
 @testable import AimyboxCore
 import XCTest
 
@@ -75,7 +77,8 @@ class AimyboxBaseTestCase: XCTestCase {
         setupComponents()
         let config = AimyboxBuilder.config(stt, tts, dapi)
 
-        // MARK: - SpeechToText
+        // SpeechToText
+
         config.speechToText.notify = { [weak self] result in
             switch result {
             case .success(let event):
@@ -121,7 +124,8 @@ class AimyboxBaseTestCase: XCTestCase {
         microphoneUnreachableSemaphore = DispatchSemaphore(value: 0)
         speechRecognitionUnavailableSemaphore = DispatchSemaphore(value: 0)
 
-        // MARK: - DialogAPI
+        // DialogAPI
+
         config.dialogAPI.notify = { [weak self] result in
             switch result {
             case .success(let event):
@@ -150,8 +154,10 @@ class AimyboxBaseTestCase: XCTestCase {
         requestTimeoutSemaphore = DispatchSemaphore(value: 0)
         requestCancelledSemaphore = DispatchSemaphore(value: 0)
         clientSideErrorSemaphore = DispatchSemaphore(value: 0)
-        /// CustomSkills
-        /// 1
+
+        // CustomSkills
+
+        // 1
         dapi.skill_1.canHandle = false
         dapi.skill_1.onRequestHandler = { [weak self] request in
             self?.skill_1_onRequestSemaphore?.signal()
@@ -163,7 +169,7 @@ class AimyboxBaseTestCase: XCTestCase {
         }
         skill_1_onResponseSemaphore = DispatchSemaphore(value: 0)
         skill_1_onRequestSemaphore = DispatchSemaphore(value: 0)
-        /// 2
+        // 2
         dapi.skill_2.canHandle = false
         dapi.skill_2.onRequestHandler = { [weak self] request in
             self?.skill_2_onRequestSemaphore?.signal()
@@ -176,7 +182,8 @@ class AimyboxBaseTestCase: XCTestCase {
         skill_2_onResponseSemaphore = DispatchSemaphore(value: 0)
         skill_2_onRequestSemaphore = DispatchSemaphore(value: 0)
 
-        // MARK: - TextToSpeech
+        // TextToSpeech
+
         config.textToSpeech.notify = { [weak self] result in
             switch result {
             case .success(let event):
@@ -203,13 +210,16 @@ class AimyboxBaseTestCase: XCTestCase {
                 }
             }
         }
-        /// Events
+        // Events
+
         speechSequenceStartedSemaphore = DispatchSemaphore(value: 0)
         speechStartedSemaphore = DispatchSemaphore(value: 0)
         speechEndedSemaphore = DispatchSemaphore(value: 0)
         speechSequenceCompletedSemaphore = DispatchSemaphore(value: 0)
         speechSkippedSemaphore = DispatchSemaphore(value: 0)
-        /// Errors
+
+        // Errors
+
         emptySpeechSemaphore = DispatchSemaphore(value: 0)
         speakersUnavailableSemaphore = DispatchSemaphore(value: 0)
         speechSequenceCancelledSemaphore = DispatchSemaphore(value: 0)
