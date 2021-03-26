@@ -27,7 +27,7 @@ extension String {
         let attributes: [NSAttributedString.Key: Any?] = [
             .paragraphStyle: paragraphStyle,
             .font: font,
-            .foregroundColor: textColor
+            .foregroundColor: textColor,
         ]
 
         return NSAttributedString(string: self, attributes: attributes.compactMapValues { $0 })

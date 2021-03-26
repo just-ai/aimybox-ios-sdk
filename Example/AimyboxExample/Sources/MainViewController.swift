@@ -123,7 +123,7 @@ class MainViewController: UIViewController {
         guard
             let size = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         else {
-           return
+            return
         }
         bottomConstraint.constant = -size.height + view.safeAreaInsets.bottom
         asyncAfter(delay: 0.26) {
@@ -178,7 +178,8 @@ class MainViewController: UIViewController {
         let locale = Locale(identifier: "ru-RU")
         guard
             let speechToText = SFSpeechToText(locale: locale),
-            let textToSpeech = AVTextToSpeech(locale: locale)
+            let textToSpeech = AVTextToSpeech(locale: locale),
+            let aiUnitKey = UIDevice.current.identifierForVendor?.uuidString
         else {
             showError { [weak self] in
                 self?.initializeAimybox()
@@ -356,12 +357,9 @@ extension MainViewController: UITableViewDataSource {
 }
 
 private
-let aiUnitKey = UIDevice.current.identifierForVendor!.uuidString
-
-private
 let aiRoute = URL(
-    string: "https://bot.aimylogic.com/chatapi/webhook/zenbox/cVcGlsvz:800911b5cd537cba8c734e772f8c4a1ebd68fb1a"
-)!
+    static: "https://bot.aimylogic.com/chatapi/webhook/zenbox/cVcGlsvz:800911b5cd537cba8c734e772f8c4a1ebd68fb1a"
+)
 
 private
 let errorButtonTitle = "Хорошо"

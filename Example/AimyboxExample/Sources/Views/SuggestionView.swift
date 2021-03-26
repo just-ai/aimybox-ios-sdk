@@ -7,7 +7,7 @@ class SuggestionView: UIStackView {
         SuggestionReply(text: "Какая погода будет завтра"),
         SuggestionReply(text: "Какой курс акций ВТБ?"),
         SuggestionReply(text: "Какой курс доллара?"),
-        SuggestionReply(text: "Давай переведем деньги")
+        SuggestionReply(text: "Давай переведем деньги"),
     ] {
         didSet {
             isHidden = suggestions.isEmpty
@@ -67,6 +67,7 @@ class SuggestionView: UIStackView {
         updateUI()
     }
 
+    @available(*, unavailable)
     required
     init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -82,7 +83,7 @@ class SuggestionView: UIStackView {
                     for: .normal
                 )
                 $0.heightAnchor.constraint(equalToConstant: 40).activate()
-                $0.layer.borderColor = UIColor.init(hex: 0x4D83E9).cgColor
+                $0.layer.borderColor = UIColor(hex: 0x4D83E9).cgColor
                 $0.layer.borderWidth = 1
                 $0.layer.cornerRadius = 10
                 $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)

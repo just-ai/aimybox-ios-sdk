@@ -22,7 +22,8 @@ class WeatherReply: Decodable, Reply {
 
     let weatherImageURL: URL?
 
-    required init(from decoder: Decoder) throws {
+    required
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.city = try container.decode(.city)
         self.date = try container.decode(.date)
@@ -36,7 +37,7 @@ class WeatherReply: Decodable, Reply {
 extension WeatherReply {
 
     var temperatureString: String {
-        return "\(temperature)"
+        "\(temperature)"
     }
 
 }

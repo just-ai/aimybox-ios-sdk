@@ -21,9 +21,4 @@ class ChatCell: BubbleCell {
         bubbleColor = .init(hex: 0x4D83E9)
     }
 
-    required
-    init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
 }

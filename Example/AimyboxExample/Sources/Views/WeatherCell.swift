@@ -98,6 +98,7 @@ class WeatherCell: UITableViewCell {
         buildConstraintsAsForCard(parent: contentView, child: stackView)
     }
 
+    @available(*, unavailable)
     required
     init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
