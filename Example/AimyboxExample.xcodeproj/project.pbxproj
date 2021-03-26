@@ -20,7 +20,7 @@
 		031729DE260E1CF3004608F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		031729E1260E1CF3004608F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		031729E3260E1CF3004608F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03172AE5260E6C05004608F2 /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		03172AE5260E6C05004608F2 /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = swiftlint.yml; path = "AimyboxExample/Supporting Files/swiftlint.yml"; sourceTree = SOURCE_ROOT; };
 		5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AimyboxExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.debug.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.debug.xcconfig"; sourceTree = "<group>"; };
 		7948DA7CE5715E5323C3DDF7 /* Pods-AimyboxExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.release.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -61,11 +61,27 @@
 			children = (
 				031729E3260E1CF3004608F2 /* Info.plist */,
 				031729D5260E1CF1004608F2 /* AppDelegate.swift */,
+				03172AF1260E7050004608F2 /* Sources */,
+				03172AF2260E706E004608F2 /* Supporting Files */,
+			);
+			path = AimyboxExample;
+			sourceTree = "<group>";
+		};
+		03172AF1260E7050004608F2 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		03172AF2260E706E004608F2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				031729DE260E1CF3004608F2 /* Assets.xcassets */,
 				03172AE5260E6C05004608F2 /* swiftlint.yml */,
 				031729E0260E1CF3004608F2 /* LaunchScreen.storyboard */,
 			);
-			path = AimyboxExample;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		30CF1502F1CDF2E14F63A310 /* Frameworks */ = {
@@ -170,7 +186,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "LINT_PATH=${1:-\"${SRCROOT}/${TARGETNAME}\"}\n${PODS_ROOT}/SwiftLint/swiftlint --config \"swiftlint.yml\" --path \"${LINT_PATH}\"\n";
+			shellScript = "LINT_PATH=${1:-\"${SRCROOT}/${TARGETNAME}\"}\n${PODS_ROOT}/SwiftLint/swiftlint --config \"./AimyboxExample/Supporting Files/swiftlint.yml\" --path \"${LINT_PATH}\"\n";
 		};
 		72B40B4A297AFD59251E442D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

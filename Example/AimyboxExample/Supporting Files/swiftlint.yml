@@ -1,12 +1,12 @@
 included:
-  - ../AimyboxCore
-  - ../AimyboxCoreTests
-  - ../Components
-  - ../Utils
+  - ../../../AimyboxCore
+  - ../../../AimyboxCoreTests
+  - ../../../Components
+  - ../../../Utils
 excluded:
-  - ../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/google_rpc
-  - ../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/yandex_operation
-  - ../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/yandex_stt
+  - ../../../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/google_rpc
+  - ../../../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/yandex_operation
+  - ../../../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/yandex_stt
 whitelist_rules:
   # - anyobject_protocol
   - array_init
