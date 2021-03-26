@@ -71,6 +71,7 @@ class AimyboxBaseTestCase: XCTestCase {
 
     override
     open
+    // swiftlint:disable:next function_body_length
     func setUp() {
         super.setUp()
 

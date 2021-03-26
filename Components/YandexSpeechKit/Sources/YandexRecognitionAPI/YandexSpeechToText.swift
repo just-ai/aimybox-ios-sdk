@@ -154,6 +154,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     private
+    // swiftlint:disable:next function_body_length
     func prepareRecognition() {
         guard let notify = notify else {
             return
