@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "waves_icon.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
