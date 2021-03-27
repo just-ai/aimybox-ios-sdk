@@ -11,6 +11,7 @@ public
 protocol TextToSpeechDelegate: class {
 
     // MARK: - Lifecycle
+    func ttsDataReceived(_ tts: TextToSpeech)
     /**
     Happens when `TextToSpeech` actually starts to synthesise a list of speeches.
     */
@@ -48,6 +49,7 @@ All methods listed here are optional for delegates to implement.
 */
 public
 extension SpeechToTextDelegate {
+    func ttsDataReceived(_ tts: TextToSpeech) {}
     func tts(_ tts: TextToSpeech, speechSequenceStarted sequence: [AimyboxSpeech]) {}
     func tts(_ tts: TextToSpeech, speechStarted speech: AimyboxSpeech) {}
     func tts(_ tts: TextToSpeech, speechEnded speech: AimyboxSpeech) {}

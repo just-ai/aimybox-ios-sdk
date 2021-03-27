@@ -9,6 +9,8 @@ import Foundation
 
 public
 enum TextToSpeechEvent {
+
+    case speechDataReceived
     /**
     Happens when TextToSpeech actually starts to synthesise a list of speeches.
     */
@@ -41,6 +43,8 @@ extension TextToSpeechEvent {
         }
 
         switch self {
+        case .speechDataReceived:
+            delegate.ttsDataReceived(tts)
         case .speechSequenceStarted(let sequence):
             delegate.tts(tts, speechSequenceStarted: sequence)
         case .speechStarted(let speech):
