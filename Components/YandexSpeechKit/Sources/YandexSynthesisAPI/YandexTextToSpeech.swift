@@ -223,21 +223,3 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     }
 
 }
-
-extension Array where Element == AimyboxSpeech {
-
-    var unwrapSSML: [Element] {
-        var unwrapped = [Element]()
-        forEach { elem in
-            if let textSpeech = elem as? TextSpeech {
-                SSMLDecoder().decode(textSpeech.text).forEach {
-                    unwrapped.append($0)
-                }
-            } else {
-                unwrapped.append(elem)
-            }
-        }
-        return unwrapped
-    }
-
-}

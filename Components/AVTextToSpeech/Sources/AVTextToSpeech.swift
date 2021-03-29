@@ -132,7 +132,8 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         speeches.unwrapSSML.forEach { speech in
 
             guard speech.isValid() && !isCancelled else {
-                return notify(.failure(.emptySpeech(speech)))
+                notify(.failure(.emptySpeech(speech)))
+                return
             }
 
             synthesize(speech)
