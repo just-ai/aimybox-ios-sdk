@@ -5,9 +5,6 @@
 //  Created by Vladislav Popovich on 13.12.2019.
 //
 
-#if canImport(Aimybox)
-import Aimybox
-
 public
 class AimyboxCustomSkill: CustomSkill {
 
@@ -37,5 +34,3 @@ class AimyboxCustomSkill: CustomSkill {
     }
 
 }
-
-#endif

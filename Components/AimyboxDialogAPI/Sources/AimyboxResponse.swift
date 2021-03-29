@@ -5,9 +5,6 @@
 //  Created by Vladislav Popovich on 13.12.2019.
 //
 
-#if canImport(Aimybox)
-import Aimybox
-
 public
 final
 class AimyboxResponse: Response, Decodable {
@@ -77,5 +74,3 @@ struct ReplayFactory {
     var factory: ((inout UnkeyedDecodingContainer) throws -> Reply)?
 
 }
-
-#endif

@@ -8,9 +8,6 @@
 import AVFoundation
 import Foundation
 
-#if canImport(Aimybox)
-import Aimybox
-
 public
 class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     /**
@@ -261,5 +258,3 @@ class AVTextToSpeechDelegate: NSObject, AVSpeechSynthesizerDelegate {
     }
 
 }
-
-#endif

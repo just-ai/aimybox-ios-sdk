@@ -6,9 +6,6 @@
 //  Copyright © 2019 Just Ai. All rights reserved.
 //
 
-#if canImport(Aimybox)
-import Aimybox
-
 final
 class AimyboxAudioReply: AudioReply, Decodable {
 
@@ -20,5 +17,3 @@ class AimyboxAudioReply: AudioReply, Decodable {
 
     static let jsonKey: String = "audio"
 }
-
-#endif

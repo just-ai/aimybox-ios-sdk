@@ -6,9 +6,6 @@
 //  Copyright © 2019 Just Ai. All rights reserved.
 //
 
-#if canImport(Aimybox)
-import Aimybox
-
 final
 class AimyboxButtonReply: ButtonReply, Decodable {
 
@@ -44,5 +41,3 @@ class AimyboxButtonsReply: ButtonsReply, Decodable {
     static let jsonKey: String = "buttons"
 
 }
-
-#endif

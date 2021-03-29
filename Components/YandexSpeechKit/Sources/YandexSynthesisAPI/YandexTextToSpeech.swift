@@ -6,7 +6,6 @@
 //  Copyright © 2020 Just Ai. All rights reserved.
 //
 
-import Aimybox
 import AVFoundation
 
 public

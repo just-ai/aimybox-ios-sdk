@@ -5,9 +5,6 @@
 //  Created by Vladislav Popovich on 13.12.2019.
 //
 
-#if canImport(Aimybox)
-import Aimybox
-
 public
 class AimyboxRequest: Request {
 
@@ -43,5 +40,3 @@ extension AimyboxRequest: Encodable {
     }
 
 }
-
-#endif

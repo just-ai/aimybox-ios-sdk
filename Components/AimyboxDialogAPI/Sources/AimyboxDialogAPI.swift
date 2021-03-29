@@ -5,9 +5,6 @@
 //  Created by Vladyslav Popovych on 08.12.2019.
 //
 
-#if canImport(Aimybox)
-import Aimybox
-
 private
 struct AimyboxConstants {
 
@@ -119,5 +116,3 @@ class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
     }
 
 }
-
-#endif

@@ -8,8 +8,6 @@
 
 import AVFoundation
 import Speech
-#if canImport(Aimybox)
-import Aimybox
 
 public
 class SFSpeechToText: AimyboxComponent, SpeechToText {
@@ -246,5 +244,3 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
     }
 
 }
-
-#endif

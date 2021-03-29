@@ -10,8 +10,6 @@
 
 import AVFoundation
 import Foundation
-#if canImport(Aimybox)
-import Aimybox
 
 public
 class YandexSpeechToText: AimyboxComponent, SpeechToText {
@@ -307,5 +305,3 @@ extension AVAudioFormat {
         return audioFormat
     }
 }
-
-#endif
