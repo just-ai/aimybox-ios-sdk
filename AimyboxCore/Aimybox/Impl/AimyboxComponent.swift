@@ -54,6 +54,18 @@ class AimyboxComponent {
         }
     }
 
+    func prepareAudioEngineForRecordAndPlayback(_ completion: (Bool) -> Void) {
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playAndRecord)
+            try audioSession.setMode(.measurement)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            completion(true)
+        } catch {
+            completion(false)
+        }
+    }
+
 }
 
 public

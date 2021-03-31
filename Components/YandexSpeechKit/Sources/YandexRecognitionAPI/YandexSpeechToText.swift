@@ -158,14 +158,10 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
             return
         }
 
-        // Setup AudioSession for recording
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(.record)
-            try audioSession.setMode(.measurement)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {
-            return notify(.failure(.microphoneUnreachable))
+        prepareAudioEngineForRecordAndPlayback {
+            if !$0 {
+                notify(.failure(.microphoneUnreachable))
+            }
         }
 
         recognitionAPI.openStream { [audioEngine, weak self, audioFormat] stream in
@@ -173,7 +169,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
             let inputFormat = inputNode.outputFormat(forBus: 0)
             let recordingFormat = audioFormat
 
-            try? audioSession.setPreferredSampleRate(inputFormat.sampleRate)
+            try? AVAudioSession.sharedInstance().setPreferredSampleRate(inputFormat.sampleRate)
 
             let converter = AVAudioConverter(from: inputFormat, to: recordingFormat)
             let ratio = Float(inputFormat.sampleRate) / Float(

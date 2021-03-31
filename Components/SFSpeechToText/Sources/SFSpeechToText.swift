@@ -141,15 +141,12 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
             return
         }
 
-        // Setup AudioSession for recording
-        do {
-            let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(.record)
-            try audioSession.setMode(.measurement)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {
-            return notify(.failure(.microphoneUnreachable))
+        prepareAudioEngineForRecordAndPlayback {
+            if !$0 {
+                notify(.failure(.microphoneUnreachable))
+            }
         }
+
         // Setup Speech Recognition request
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         guard let recognitionRequest = recognitionRequest, speechRecognizer.isAvailable else {
