@@ -80,7 +80,7 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     func synthesize(contentsOf speeches: [AimyboxSpeech]) {
         isCancelled = false
         operationQueue.addOperation { [weak self] in
-            self?.prepareAudioEngine { engineIsReady in
+            self?.prepareAudioEngineForPlayback { engineIsReady in
                 if engineIsReady {
                     self?.synthesize(speeches)
                 } else {
@@ -207,19 +207,6 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         stopObservation.invalidate()
         statusObservation?.invalidate()
         NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
-    }
-
-    private
-    func prepareAudioEngine(_ completion: (Bool) -> Void) {
-        do {
-            let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(.playback)
-            try audioSession.setMode(.default)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-            completion(true)
-        } catch {
-            completion(false)
-        }
     }
 
 }

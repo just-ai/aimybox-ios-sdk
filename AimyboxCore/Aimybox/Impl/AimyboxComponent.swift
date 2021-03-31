@@ -5,7 +5,7 @@
 //  Created by Vladyslav Popovych on 08.12.2019.
 //
 
-import Foundation
+import AVFoundation
 
 /**
 Base class that provides async behavior.
@@ -41,6 +41,19 @@ class AimyboxComponent {
             operationQueue.cancelAllOperations()
         }
     }
+
+    func prepareAudioEngineForPlayback(_ completion: (Bool) -> Void) {
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playback)
+            try audioSession.setMode(.default)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            completion(true)
+        } catch {
+            completion(false)
+        }
+    }
+
 }
 
 public

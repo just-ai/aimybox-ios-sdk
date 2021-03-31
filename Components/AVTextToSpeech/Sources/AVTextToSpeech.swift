@@ -96,7 +96,7 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     public
     func synthesize(contentsOf speeches: [AimyboxSpeech]) {
         operationQueue.addOperation { [weak self] in
-            self?.prepareAudioEngine { engineIsReady in
+            self?.prepareAudioEngineForPlayback { engineIsReady in
                 if engineIsReady {
                     self?.synthesize(speeches)
                 } else {
@@ -208,18 +208,6 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
     }
 
-    private
-    func prepareAudioEngine(_ completion: (Bool) -> Void) {
-        do {
-            let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(.playback)
-            try audioSession.setMode(.default)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-            completion(true)
-        } catch {
-            completion(false)
-        }
-    }
 }
 
 class AVTextToSpeechDelegate: NSObject, AVSpeechSynthesizerDelegate {
