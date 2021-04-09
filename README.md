@@ -129,7 +129,7 @@ Pods installation:
 
 # More details
 
-Please refer to the [demo voice assistant](https://github.com/just-ai/aimybox-ios-assistant/) to see how to use Aimybox library in your project.
+Please refer to the [demo voice assistant](https://github.com/just-ai/aimybox-ios-sdk/tree/master/Example) to see how to use Aimybox library in your project.
 
 # Documentation
 
