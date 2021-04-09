@@ -19,7 +19,7 @@ Embed your own intelligent voice assistant into your existing iOS application.
 
 # Key Features
 
-* Provides ready to use [UI components](https://github.com/just-ai/aimybox-ios-assistant) for fast building of your voice assistant app
+* Provides ready to use [UI components](https://github.com/just-ai/aimybox-ios-sdk/tree/master/Example) for fast building of your voice assistant app
 * Modular and independent from speech-to-text and text-to-speech vendors
 * Provides ready to use speech-to-text and text-to-speech implementations
 * Works with any NLU providers like [Aimylogic](https://help.aimybox.com/en/article/aimylogic-webhook-5quhb1/)
