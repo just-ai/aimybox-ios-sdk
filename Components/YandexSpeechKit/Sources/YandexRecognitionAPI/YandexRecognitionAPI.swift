@@ -13,9 +13,6 @@ final
 class YandexRecognitionAPI {
 
     private
-    let apiAdress: String
-
-    private
     let dataLoggingEnabled: Bool
 
     private
@@ -26,6 +23,9 @@ class YandexRecognitionAPI {
 
     private
     let recognitionConfig: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig
+
+    private
+    let channel: Channel
 
     private
     var client: Yandex_Cloud_Ai_Stt_V2_SttServiceServiceClient?
@@ -42,7 +42,7 @@ class YandexRecognitionAPI {
         dataLoggingEnabled: Bool,
         operation queue: OperationQueue
     ) {
-        self.apiAdress = adress
+        self.channel = Channel(address: adress)
         self.dataLoggingEnabled = dataLoggingEnabled
         self.iAMToken = token
         self.operationQueue = queue
@@ -56,12 +56,6 @@ class YandexRecognitionAPI {
         error handler: @escaping (Error) -> Void,
         completion: @escaping () -> Void
     ) {
-
-        let channel = Channel(address: apiAdress)
-        channel.addConnectivityObserver { state in
-            print("ConnectivityObserverState: \(state)")
-        }
-
         client = Yandex_Cloud_Ai_Stt_V2_SttServiceServiceClient(channel: channel)
 
         do {
@@ -79,11 +73,10 @@ class YandexRecognitionAPI {
                 }
             }
 
-            try stream?.send(
-                Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with {
-                    $0.config = recognitionConfig
-                }
-            )
+            let streamingRecognitionRequest = Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with {
+                $0.config = recognitionConfig
+            }
+            try stream?.send(streamingRecognitionRequest) { _ in }
 
             onOpen(stream)
 
