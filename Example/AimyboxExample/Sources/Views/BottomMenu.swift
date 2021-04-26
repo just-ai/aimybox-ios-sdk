@@ -43,11 +43,11 @@ class BottomMenu: UIView {
 
     private
     let sendButton = UIButton().with {
+        $0.addTarget(self, action: #selector(sendHandler), for: .touchUpInside)
         $0.backgroundColor = .init(hex: 0x4D83E9)
         $0.heightAnchor.constraint(equalToConstant: 50).activate(usingPriority: .defaultHigh)
         $0.layer.cornerRadius = 25
         $0.widthAnchor.constraint(equalToConstant: 50).activate(usingPriority: .defaultHigh)
-        $0.addTarget(self, action: #selector(sendHandler), for: .touchUpInside)
     }
 
     private
@@ -178,15 +178,18 @@ class BottomMenu: UIView {
             textView.isHidden = false
             textView.textColor = .init(hex: 0xACB6C3)
             suggestionView.isHidden = suggestions.isEmpty
+            endAnimation()
         case .chat:
             sendButton.setImage(UIImage(named: "msg_icon"), for: .normal)
             textView.textColor = .black
             suggestionView.isHidden = suggestions.isEmpty
+            endAnimation()
         case .speak:
             sendButton.setImage(UIImage(named: "waves_icon"), for: .normal)
             textView.isHidden = true
             updateQuery(query)
             suggestionView.isHidden = suggestions.isEmpty
+            runAnimation()
         }
         setNeedsLayout()
     }
@@ -207,6 +210,25 @@ class BottomMenu: UIView {
             defaultTextViewHeight,
             textView.contentSize.height + textView.contentInset.top + textView.contentInset.bottom
         )
+    }
+
+    private
+    func runAnimation() {
+        let pulseAnimation = CASpringAnimation(keyPath: "transform.scale").with {
+            $0.autoreverses = true
+            $0.damping = 1.0
+            $0.duration = 0.4
+            $0.fromValue = 0.95
+            $0.initialVelocity = 0.5
+            $0.repeatCount = .infinity
+            $0.toValue = 1.1
+        }
+        sendButton.layer.add(pulseAnimation, forKey: nil)
+    }
+
+    private
+    func endAnimation() {
+        sendButton.layer.removeAllAnimations()
     }
 
 }
