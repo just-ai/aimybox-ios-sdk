@@ -11,7 +11,7 @@ class GradientView: UIView {
     override
     var layer: CAGradientLayer {
         // swiftlint:disable:next force_cast
-        return super.layer as! CAGradientLayer
+        super.layer as! CAGradientLayer
     }
 
     var colors: [UIColor]? {
