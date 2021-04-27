@@ -160,7 +160,7 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
         utterance.pitchMultiplier = pitchMultiplier
 
         blockGroup.enter()
-        notify?(.success(.speechDataReceived))
+        notify?(.success(.speechDataReceived(textSpeech)))
         speechSynthesizer.speak(utterance)
 
         textQueue[utterance] = textSpeech

@@ -293,6 +293,23 @@ extension MainViewController: AimyboxDelegate {
         }
     }
 
+    func dialogAPI(timeout request: Request) {
+        DispatchQueue.main.async { self.showError() }
+        resetBottomState()
+    }
+
+    func dialogAPI(client error: Error) {
+        DispatchQueue.main.async {
+            self.hideLoading()
+            self.showError()
+        }
+        resetBottomState()
+    }
+
+    func dialogAPIProcessingCancellation() {
+        resetBottomState()
+    }
+
     func stt(_ stt: SpeechToText, recognitionPartial result: String) {
         guard !result.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             return
@@ -314,21 +331,36 @@ extension MainViewController: AimyboxDelegate {
         resetBottomState()
     }
 
-    func dialogAPI(timeout request: Request) {
-        DispatchQueue.main.async { self.showError() }
-        resetBottomState()
+    func ttsDataReceived(_ tts: TextToSpeech) {
+        debugPrint(#function)
     }
 
-    func dialogAPI(client error: Error) {
-        DispatchQueue.main.async {
-            self.hideLoading()
-            self.showError()
-        }
-        resetBottomState()
+    func tts(_ tts: TextToSpeech, speechSequenceStarted sequence: [AimyboxSpeech]) {
+        debugPrint(#function)
     }
 
-    func dialogAPIProcessingCancellation() {
-        resetBottomState()
+    func tts(_ tts: TextToSpeech, speechStarted speech: AimyboxSpeech) {
+        debugPrint(#function)
+    }
+
+    func tts(_ tts: TextToSpeech, speechEnded speech: AimyboxSpeech) {
+        debugPrint(#function)
+    }
+
+    func tts(_ tts: TextToSpeech, speechSequenceCompleted sequence: [AimyboxSpeech]) {
+        debugPrint(#function)
+    }
+
+    func tts(_ tts: TextToSpeech, speechSkipped speech: AimyboxSpeech) {
+        debugPrint(#function)
+    }
+
+    func ttsSpeakersUnavailable(_ tts: TextToSpeech) {
+        debugPrint(#function)
+    }
+
+    func tts(_ tts: TextToSpeech, speechSequenceCancelled sequence: [AimyboxSpeech]) {
+        debugPrint(#function)
     }
 
     private

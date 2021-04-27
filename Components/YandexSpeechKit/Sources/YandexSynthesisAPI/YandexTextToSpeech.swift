@@ -149,7 +149,7 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             config: synthesisConfig
         ) { [weak self] in
             if let url = $0, self?.isCancelled == false {
-                self?.notify?(.success(.speechDataReceived))
+                self?.notify?(.success(.speechDataReceived(textSpeech)))
                 self?.synthesize(textSpeech, using: url)
             }
             synthesisGroup.leave()
@@ -200,7 +200,12 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
 
         synthesisGroup.enter()
         self.player = player
-        isCancelled ? synthesisGroup.leave() : player.play()
+        if isCancelled {
+            synthesisGroup.leave()
+        } else {
+            player.play()
+            notify(.success(.speechStarted(speech)))
+        }
         synthesisGroup.wait()
 
         self.player = nil
