@@ -36,6 +36,8 @@
 		03172B2D260E72DB004608F2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03172B13260E72DB004608F2 /* GradientView.swift */; };
 		03172B2E260E72DB004608F2 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03172B14260E72DB004608F2 /* ChatCell.swift */; };
 		03172B2F260E72DB004608F2 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03172B15260E72DB004608F2 /* SuggestionView.swift */; };
+		03FF16ED263850CF0008BA69 /* sound_out.wav in Resources */ = {isa = PBXBuildFile; fileRef = 03FF16EB263850CF0008BA69 /* sound_out.wav */; };
+		03FF16EE263850CF0008BA69 /* sound_in.wav in Resources */ = {isa = PBXBuildFile; fileRef = 03FF16EC263850CF0008BA69 /* sound_in.wav */; };
 		9D88A4B57DA462868DCED73F /* Pods_AimyboxExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,8 @@
 		03172B13260E72DB004608F2 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		03172B14260E72DB004608F2 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		03172B15260E72DB004608F2 /* SuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
+		03FF16EB263850CF0008BA69 /* sound_out.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_out.wav; sourceTree = "<group>"; };
+		03FF16EC263850CF0008BA69 /* sound_in.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_in.wav; sourceTree = "<group>"; };
 		5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AimyboxExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.debug.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.debug.xcconfig"; sourceTree = "<group>"; };
 		7948DA7CE5715E5323C3DDF7 /* Pods-AimyboxExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.release.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 				031729DE260E1CF3004608F2 /* Assets.xcassets */,
 				03172AE5260E6C05004608F2 /* swiftlint.yml */,
 				031729E0260E1CF3004608F2 /* LaunchScreen.storyboard */,
+				03FF16EA263850CF0008BA69 /* Sounds */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -189,6 +194,15 @@
 				03172B15260E72DB004608F2 /* SuggestionView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		03FF16EA263850CF0008BA69 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				03FF16EB263850CF0008BA69 /* sound_out.wav */,
+				03FF16EC263850CF0008BA69 /* sound_in.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		30CF1502F1CDF2E14F63A310 /* Frameworks */ = {
@@ -269,6 +283,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				031729E2260E1CF3004608F2 /* LaunchScreen.storyboard in Resources */,
+				03FF16EE263850CF0008BA69 /* sound_in.wav in Resources */,
+				03FF16ED263850CF0008BA69 /* sound_out.wav in Resources */,
 				03172AE6260E6C05004608F2 /* swiftlint.yml in Resources */,
 				031729DF260E1CF3004608F2 /* Assets.xcassets in Resources */,
 			);

@@ -42,24 +42,12 @@ class AimyboxComponent {
         }
     }
 
-    func prepareAudioEngineForPlayback(_ completion: (Bool) -> Void) {
+    func prepareAudioEngineForMultiRoute(_ completion: (Bool) -> Void) {
         do {
             let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(.playback)
+            try audioSession.setCategory(.multiRoute, options: .mixWithOthers)
             try audioSession.setMode(.default)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-            completion(true)
-        } catch {
-            completion(false)
-        }
-    }
-
-    func prepareAudioEngineForRecordAndPlayback(_ completion: (Bool) -> Void) {
-        do {
-            let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(.playAndRecord)
-            try audioSession.setMode(.measurement)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            try audioSession.setActive(true, options: [.notifyOthersOnDeactivation])
             completion(true)
         } catch {
             completion(false)

@@ -1,11 +1,28 @@
 import Aimybox
-import UIKit
+import AVFoundation
 
 final
 class MainViewController: UIViewController {
 
     private
+    enum SoundType: String {
+        case `in` = "sound_in"
+        case `out` = "sound_out"
+
+        var url: URL {
+            guard let url = Bundle.main.url(forResource: rawValue, withExtension: "wav") else {
+                fatalError()
+            }
+            return url
+        }
+
+    }
+
+    private
     var aimybox: Aimybox?
+
+    private
+    var player: AVPlayer?
 
     private
     var rows: [Reply] = [] {
@@ -218,6 +235,12 @@ class MainViewController: UIViewController {
         show(alert, sender: nil)
     }
 
+    private
+    func playSound(type: SoundType) {
+        player = AVPlayer(url: type.url)
+        player?.play()
+    }
+
 }
 
 extension MainViewController: AimyboxDelegate {
@@ -226,6 +249,11 @@ extension MainViewController: AimyboxDelegate {
         DispatchQueue.main.async { [weak self] in
             guard let this = self else {
                 return
+            }
+            if newState == .listening {
+                this.playSound(type: .in)
+            } else if oldState == .listening {
+                this.playSound(type: .out)
             }
             switch newState {
             case .listening:

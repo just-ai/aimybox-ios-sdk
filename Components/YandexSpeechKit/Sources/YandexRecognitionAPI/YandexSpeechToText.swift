@@ -158,7 +158,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
             return
         }
 
-        prepareAudioEngineForRecordAndPlayback {
+        prepareAudioEngineForMultiRoute {
             if !$0 {
                 notify(.failure(.microphoneUnreachable))
             }
