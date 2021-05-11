@@ -12,7 +12,7 @@ final
 class WAVFileGenerator {
 
     func createWAVFile(using rawData: Data) -> Data {
-        createWaveHeader(data: rawData) + rawData
+        rawData
     }
 
     /** http://soundfile.sapp.org/doc/WaveFormat/
