@@ -25,7 +25,8 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     lazy var synthesisAPI = YandexSynthesisAPI(
         iAMToken: token,
         folderId: folderID,
-        api: address,
+        host: host,
+        port: port,
         operation: operationQueue,
         dataLoggingEnabled: dataLoggingEnabled
     )
@@ -49,7 +50,10 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     let folderID: String
 
     private
-    let address: URL
+    let host: String
+
+    private
+    let port: Int
 
     private
     let dataLoggingEnabled: Bool
@@ -61,7 +65,8 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         language code: String = "ru-RU",
         config: YandexSynthesisConfig = YandexSynthesisConfig(),
         dataLoggingEnabled: Bool = false,
-        api address: URL = URL(static: "https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize")
+        host: String = "tts.api.cloud.yandex.net",
+        port: Int = 443
     ) {
         self.synthesisConfig = config
         self.languageCode = code
@@ -72,7 +77,8 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         self.token = token
         self.folderID = folderID
         self.dataLoggingEnabled = dataLoggingEnabled
-        self.address = address
+        self.host = host
+        self.port = port
         super.init()
     }
 

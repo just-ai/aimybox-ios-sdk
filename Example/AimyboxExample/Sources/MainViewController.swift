@@ -1,6 +1,8 @@
 import Aimybox
 import AVFoundation
 
+// swiftlint:disable file_length
+
 final
 class MainViewController: UIViewController {
 
@@ -192,11 +194,15 @@ class MainViewController: UIViewController {
     private
     func initializeAimybox() {
         showLoading()
-        let locale = Locale(identifier: "ru-RU")
+        // swiftlint:disable:next line_length
+        let aiRoute = URL(static: "https://bot.jaicp.com/chatapi/webhook/zenbox/JdAFcjNb:13156b1d7f4adcc27196cb87e5a987362510f7d2")
+        let folderID = "b1gvt2nubho67sa74uqh"
+        let provider = IAMTokenGenerator(passport: "AgAAAAAjWu2CAATuwWlt16g0F0IYrunICaVEoUs")
+        let synthesisConfig = YandexSynthesisConfig(voice: "kuznetsov_male", emotion: "good", speed: 1.0)
+
         guard
-            let speechToText = SFSpeechToText(locale: locale),
-            let textToSpeech = AVTextToSpeech(locale: locale),
-            let aiUnitKey = UIDevice.current.identifierForVendor?.uuidString
+            let speechToText = YandexSpeechToText(tokenProvider: provider, folderID: folderID),
+            let textToSpeech = YandexTextToSpeech(tokenProvider: provider, folderID: folderID, config: synthesisConfig)
         else {
             showError { [weak self] in
                 self?.initializeAimybox()
@@ -417,9 +423,12 @@ extension MainViewController: UITableViewDataSource {
 }
 
 private
-let aiRoute = URL(
-    static: "https://bot.aimylogic.com/chatapi/webhook/zenbox/cVcGlsvz:800911b5cd537cba8c734e772f8c4a1ebd68fb1a"
-)
+let aiUnitKey: String = {
+    guard let uuid = UIDevice.current.identifierForVendor?.uuidString else {
+        fatalError()
+    }
+    return uuid
+}()
 
 private
 let errorButtonTitle = "Хорошо"

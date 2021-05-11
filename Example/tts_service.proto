@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package speechkit.tts.v3;
+import "tts.proto";
+
+option go_package = "a.yandex-team.ru/voicetech/asr/cloud_engine/server/tts/proto/v3;tts";
+option java_package = "speechkit.tts.v3";
+
+// Service for adaptive synthesis from template with variable parts
+service Synthesizer {
+    // tts here will change, just for MVP
+    rpc UtteranceSynthesis (UtteranceSynthesisRequest) returns (stream UtteranceSynthesisResponse) {
+    }
+}

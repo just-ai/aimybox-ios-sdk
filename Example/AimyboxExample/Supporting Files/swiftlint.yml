@@ -5,9 +5,8 @@ included:
   - ../../../Components
   - ../../../Utils
 excluded:
-  - ../../../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/google_rpc
-  - ../../../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/yandex_operation
-  - ../../../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/yandex_stt
+  - ../../../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/Generated
+  - ../../../Components/YandexSpeechKit/Sources/YandexSynthesisAPI/Generated
 whitelist_rules:
   # - anyobject_protocol
   - array_init
