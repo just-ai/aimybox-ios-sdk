@@ -5,32 +5,34 @@ STT_OUT_PATH := ../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/Gener
 
 log: help
 
-## protosG: Pull protos from Google Repository
-protosGoogle:
+## protos-google: Pull protos from Google Repository
+protos-google:
+	rm -rf googleapis/
 	curl -L -O https://github.com/googleapis/googleapis/archive/master.zip
 	unzip master.zip
 	rm -f master.zip
 	mv googleapis-master googleapis
 
-## protosY: Pull protos from Yandex Repository
-protosYandex:
+## protos-yandex: Pull protos from Yandex Repository
+protos-yandex:
+	rm -rf yandexapis/
 	curl -L -O https://github.com/yandex-cloud/cloudapi/archive/refs/heads/master.zip
 	unzip master.zip
 	rm -f master.zip
 	mv cloudapi-master yandexapis
 
-## generate: Generate tts
-generate_tts:
+## generate-tts: Generate tts
+generate-tts:
 	protoc \
 		./tts.proto \
 		./tts_service.proto \
 		--grpc-swift_opt=Visibility=Public \
 		--grpc-swift_out=$(TTS_OUT_PATH) \
-		--swift_opt=Visibility=Public,Server=true \
+		--swift_opt=Visibility=Public \
 		--swift_out=$(TTS_OUT_PATH) 
 
-## generate: Generate stt
-generate_stt:
+## generate-stt: Generate stt
+generate-stt:
 	protoc \
  		./googleapis/google/api/http.proto \
     	./googleapis/google/rpc/status.proto \
@@ -42,6 +44,18 @@ generate_stt:
 		--grpc-swift_out=$(STT_OUT_PATH) \
 		--swift_opt=Visibility=Public \
     	--swift_out=$(STT_OUT_PATH)
-	
+
+## clear: Generate stt
+clear:
+	rm -rf Pods/
+	rm -rf googleapis/
+	rm -rf yandexapis/
+	rm $(TTS_OUT_PATH)/*
+	rm $(STT_OUT_PATH)/*
+
 ## generate: Generate all
-generate_all: | protosGoogle protosYandex generate_tts generate_stt
+generate: | protos-google protos-yandex generate-tts generate-stt
+
+## pod-install: Generate all
+pod-install:
+	pod install
