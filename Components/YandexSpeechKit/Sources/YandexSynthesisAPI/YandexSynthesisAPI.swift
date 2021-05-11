@@ -62,7 +62,6 @@ class YandexSynthesisAPI {
         let callOptions = CallOptions(
             customMetadata: [
                 "authorization": "Bearer \(token)",
-                "x-client-request-id": uuid,
                 "x-folder-id": folderId,
                 xDataLoggingEnabledKey: dataLoggingEnabled ? "true" : "false",
             ],
@@ -112,15 +111,18 @@ class YandexSynthesisAPI {
         DispatchQueue.global(qos: .userInitiated).async {
             guard let localUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
                 .first?
-                .appendingPathComponent("\(UUID().uuidString).wav") else {
+                .appendingPathComponent("\(UUID().uuidString).wav")
+            else {
                 return onResponse(nil)
             }
 
-            try? WAVFileGenerator().createWAVFile(using: data).write(to: localUrl)
-
-            onResponse(localUrl)
-
-            try? FileManager.default.removeItem(at: localUrl)
+            do {
+                try data.write(to: localUrl)
+                onResponse(localUrl)
+                try? FileManager.default.removeItem(at: localUrl)
+            } catch {
+                onResponse(nil)
+            }
         }
     }
 
@@ -155,27 +157,3 @@ struct YandexSynthesisConfig {
     }
 
 }
-
-public
-extension YandexSynthesisConfig {
-
-    var asParams: [String: String] {
-        var params = [String: String]()
-
-        params["emotion"] = emotion
-        params["format"] = format
-        params["sampleRateHertz"] = String(sampleRateHertz)
-        params["speed"] = String(speed)
-        params["voice"] = voice
-
-        return params
-    }
-}
-
-private
-let uuid: String = {
-    guard let uuid = UIDevice.current.identifierForVendor?.uuidString else {
-        fatalError()
-    }
-    return uuid
-}()
