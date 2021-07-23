@@ -93,7 +93,8 @@ class YandexRecognitionAPI {
 
     public
     func closeStream() {
-        streamingCall?.sendEnd(promise: nil)
+        streamingCall?.cancel(promise: nil)
+        streamingCall?.sendEnd()
         streamingCall = nil
     }
 
