@@ -28,7 +28,8 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         host: host,
         port: port,
         operation: operationQueue,
-        dataLoggingEnabled: dataLoggingEnabled
+        dataLoggingEnabled: dataLoggingEnabled,
+        normalizePartialData: normalizePartialData
     )
     /**
     */
@@ -58,6 +59,9 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     private
     let dataLoggingEnabled: Bool
 
+    private
+    let normalizePartialData: Bool
+
     public
     init?(
         tokenProvider: IAMTokenProvider,
@@ -65,6 +69,7 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         language code: String = "ru-RU",
         config: YandexSynthesisConfig = YandexSynthesisConfig(),
         dataLoggingEnabled: Bool = false,
+        normalizePartialData: Bool = false,
         host: String = "tts.api.cloud.yandex.net",
         port: Int = 443
     ) {
@@ -77,6 +82,7 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         self.token = token
         self.folderID = folderID
         self.dataLoggingEnabled = dataLoggingEnabled
+        self.normalizePartialData = normalizePartialData
         self.host = host
         self.port = port
         super.init()

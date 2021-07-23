@@ -48,7 +48,8 @@ class YandexSynthesisAPI {
         host: String,
         port: Int,
         operation queue: OperationQueue,
-        dataLoggingEnabled: Bool
+        dataLoggingEnabled: Bool,
+        normalizePartialData: Bool
     ) {
         self.folderId = folderId
         self.operationQueue = queue
@@ -64,6 +65,7 @@ class YandexSynthesisAPI {
                 "authorization": "Bearer \(token)",
                 "x-folder-id": folderId,
                 xDataLoggingEnabledKey: dataLoggingEnabled ? "true" : "false",
+                normalizePartialDataKey: normalizePartialData ? "true" : "false",
             ],
             logger: logger
         )

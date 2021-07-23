@@ -455,18 +455,24 @@ extension Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest: SwiftProtobuf.Mess
       switch fieldNumber {
       case 1: try {
         var v: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig?
+        var hadOneofValue = false
         if let current = self.streamingRequest {
-          try decoder.handleConflictingOneOf()
+          hadOneofValue = true
           if case .config(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.streamingRequest = .config(v)}
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.streamingRequest = .config(v)
+        }
       }()
       case 2: try {
-        if self.streamingRequest != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v {self.streamingRequest = .audioContent(v)}
+        if let v = v {
+          if self.streamingRequest != nil {try decoder.handleConflictingOneOf()}
+          self.streamingRequest = .audioContent(v)
+        }
       }()
       default: break
       }
@@ -544,16 +550,20 @@ extension Yandex_Cloud_Ai_Stt_V2_RecognitionAudio: SwiftProtobuf.Message, SwiftP
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try {
-        if self.audioSource != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v {self.audioSource = .content(v)}
+        if let v = v {
+          if self.audioSource != nil {try decoder.handleConflictingOneOf()}
+          self.audioSource = .content(v)
+        }
       }()
       case 2: try {
-        if self.audioSource != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.audioSource = .uri(v)}
+        if let v = v {
+          if self.audioSource != nil {try decoder.handleConflictingOneOf()}
+          self.audioSource = .uri(v)
+        }
       }()
       default: break
       }

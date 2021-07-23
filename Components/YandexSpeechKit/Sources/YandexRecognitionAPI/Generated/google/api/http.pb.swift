@@ -567,44 +567,58 @@ extension Google_Api_HttpRule: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularStringField(value: &self.selector) }()
       case 2: try {
-        if self.pattern != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.pattern = .get(v)}
+        if let v = v {
+          if self.pattern != nil {try decoder.handleConflictingOneOf()}
+          self.pattern = .get(v)
+        }
       }()
       case 3: try {
-        if self.pattern != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.pattern = .put(v)}
+        if let v = v {
+          if self.pattern != nil {try decoder.handleConflictingOneOf()}
+          self.pattern = .put(v)
+        }
       }()
       case 4: try {
-        if self.pattern != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.pattern = .post(v)}
+        if let v = v {
+          if self.pattern != nil {try decoder.handleConflictingOneOf()}
+          self.pattern = .post(v)
+        }
       }()
       case 5: try {
-        if self.pattern != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.pattern = .delete(v)}
+        if let v = v {
+          if self.pattern != nil {try decoder.handleConflictingOneOf()}
+          self.pattern = .delete(v)
+        }
       }()
       case 6: try {
-        if self.pattern != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.pattern = .patch(v)}
+        if let v = v {
+          if self.pattern != nil {try decoder.handleConflictingOneOf()}
+          self.pattern = .patch(v)
+        }
       }()
       case 7: try { try decoder.decodeSingularStringField(value: &self.body) }()
       case 8: try {
         var v: Google_Api_CustomHttpPattern?
+        var hadOneofValue = false
         if let current = self.pattern {
-          try decoder.handleConflictingOneOf()
+          hadOneofValue = true
           if case .custom(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.pattern = .custom(v)}
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.pattern = .custom(v)
+        }
       }()
       case 11: try { try decoder.decodeRepeatedMessageField(value: &self.additionalBindings) }()
       case 12: try { try decoder.decodeSingularStringField(value: &self.responseBody) }()

@@ -498,10 +498,12 @@ extension Speechkit_Tts_V3_AudioContent: SwiftProtobuf.Message, SwiftProtobuf._M
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try {
-        if self.audioSource != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v {self.audioSource = .content(v)}
+        if let v = v {
+          if self.audioSource != nil {try decoder.handleConflictingOneOf()}
+          self.audioSource = .content(v)
+        }
       }()
       case 2: try { try decoder.decodeSingularMessageField(value: &self._audioSpec) }()
       default: break
@@ -542,21 +544,29 @@ extension Speechkit_Tts_V3_AudioFormatOptions: SwiftProtobuf.Message, SwiftProto
       switch fieldNumber {
       case 1: try {
         var v: Speechkit_Tts_V3_RawAudio?
+        var hadOneofValue = false
         if let current = self.audioFormat {
-          try decoder.handleConflictingOneOf()
+          hadOneofValue = true
           if case .rawAudio(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.audioFormat = .rawAudio(v)}
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.audioFormat = .rawAudio(v)
+        }
       }()
       case 2: try {
         var v: Speechkit_Tts_V3_ContainerAudio?
+        var hadOneofValue = false
         if let current = self.audioFormat {
-          try decoder.handleConflictingOneOf()
+          hadOneofValue = true
           if case .containerAudio(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.audioFormat = .containerAudio(v)}
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.audioFormat = .containerAudio(v)
+        }
       }()
       default: break
       }
@@ -914,19 +924,25 @@ extension Speechkit_Tts_V3_Hints: SwiftProtobuf.Message, SwiftProtobuf._MessageI
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try {
-        if self.hint != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.hint = .voice(v)}
+        if let v = v {
+          if self.hint != nil {try decoder.handleConflictingOneOf()}
+          self.hint = .voice(v)
+        }
       }()
       case 2: try {
         var v: Speechkit_Tts_V3_AudioTemplate?
+        var hadOneofValue = false
         if let current = self.hint {
-          try decoder.handleConflictingOneOf()
+          hadOneofValue = true
           if case .audioTemplate(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.hint = .audioTemplate(v)}
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.hint = .audioTemplate(v)
+        }
       }()
       default: break
       }
@@ -976,19 +992,25 @@ extension Speechkit_Tts_V3_UtteranceSynthesisRequest: SwiftProtobuf.Message, Swi
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularStringField(value: &self.model) }()
       case 2: try {
-        if self.utterance != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.utterance = .text(v)}
+        if let v = v {
+          if self.utterance != nil {try decoder.handleConflictingOneOf()}
+          self.utterance = .text(v)
+        }
       }()
       case 3: try {
         var v: Speechkit_Tts_V3_TextTemplate?
+        var hadOneofValue = false
         if let current = self.utterance {
-          try decoder.handleConflictingOneOf()
+          hadOneofValue = true
           if case .textTemplate(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.utterance = .textTemplate(v)}
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.utterance = .textTemplate(v)
+        }
       }()
       case 4: try { try decoder.decodeRepeatedMessageField(value: &self.hints) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._outputAudioSpec) }()

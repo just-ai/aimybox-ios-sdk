@@ -43,6 +43,7 @@ class YandexRecognitionAPI {
         port: Int,
         config: Config? = nil,
         dataLoggingEnabled: Bool,
+        normalizePartialData: Bool,
         operation queue: OperationQueue
     ) {
         var logger = Logger(label: "gRPC STT", factory: StreamLogHandler.standardOutput(label:))
@@ -54,6 +55,7 @@ class YandexRecognitionAPI {
             customMetadata: [
                 "authorization": "Bearer \(iAMToken)",
                 xDataLoggingEnabledKey: dataLoggingEnabled ? "true" : "false",
+                normalizePartialDataKey: normalizePartialData ? "true" : "false",
             ],
             logger: logger
         )
@@ -117,6 +119,7 @@ extension Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
 }
 
 let xDataLoggingEnabledKey = "x-data-logging-enabled"
+let normalizePartialDataKey = "x-normalize-partials"
 
 private
 let uuid: String = {

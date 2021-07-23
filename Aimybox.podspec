@@ -44,8 +44,8 @@ Pod::Spec.new do |s|
     sp.source_files  = 'Components/YandexSpeechKit/Sources/*.{swift}', 'Components/YandexSpeechKit/Sources/**/*.{swift}', 'Components/YandexSpeechKit/Sources/**/**/*.{swift}'
     sp.dependency 'Aimybox/Core'
     sp.dependency 'Aimybox/Utils'
-    sp.dependency 'gRPC-Swift'
-    sp.dependency 'SwiftProtobuf'
+    sp.dependency 'gRPC-Swift', '1.2.0'
+    sp.dependency 'SwiftProtobuf', '1.17.0'
   end
 
 end

@@ -177,21 +177,29 @@ extension Yandex_Cloud_Operation_Operation: SwiftProtobuf.Message, SwiftProtobuf
       case 7: try { try decoder.decodeSingularMessageField(value: &self._metadata) }()
       case 8: try {
         var v: Google_Rpc_Status?
+        var hadOneofValue = false
         if let current = self.result {
-          try decoder.handleConflictingOneOf()
+          hadOneofValue = true
           if case .error(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.result = .error(v)}
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.result = .error(v)
+        }
       }()
       case 9: try {
         var v: SwiftProtobuf.Google_Protobuf_Any?
+        var hadOneofValue = false
         if let current = self.result {
-          try decoder.handleConflictingOneOf()
+          hadOneofValue = true
           if case .response(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.result = .response(v)}
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.result = .response(v)
+        }
       }()
       default: break
       }

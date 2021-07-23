@@ -41,6 +41,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         host: host,
         port: port,
         dataLoggingEnabled: dataLoggingEnabled,
+        normalizePartialData: normalizePartialData,
         operation: operationQueue
     )
     /**
@@ -66,6 +67,9 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     private
     let dataLoggingEnabled: Bool
 
+    private
+    let normalizePartialData: Bool
+
     /**
     Init that uses provided params.
     */
@@ -76,7 +80,8 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         language code: String = "ru-RU",
         host: String = "stt.api.cloud.yandex.net",
         port: Int = 443,
-        dataLoggingEnabled: Bool = false
+        dataLoggingEnabled: Bool = false,
+        normalizePartialData: Bool = false
     ) {
         let token = tokenProvider.token()
 
@@ -91,6 +96,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         self.port = port
         self.audioEngine = AVAudioEngine()
         self.dataLoggingEnabled = dataLoggingEnabled
+        self.normalizePartialData = normalizePartialData
         super.init()
     }
 

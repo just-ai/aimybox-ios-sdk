@@ -45,8 +45,15 @@ class AimyboxComponent {
     func prepareAudioEngineForMultiRoute(_ completion: (Bool) -> Void) {
         do {
             let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(.multiRoute, options: .mixWithOthers)
+
             try audioSession.setMode(.default)
+
+            if audioSession.currentRoute.outputs.contains(where: { $0.portType == .bluetoothA2DP }) {
+                try audioSession.setCategory(.playAndRecord, options: .allowBluetoothA2DP)
+            } else {
+                try audioSession.setCategory(.multiRoute, options: .mixWithOthers)
+            }
+
             try audioSession.setActive(true, options: [.notifyOthersOnDeactivation])
             completion(true)
         } catch {
