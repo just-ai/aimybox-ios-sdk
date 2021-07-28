@@ -7,6 +7,8 @@ included:
 excluded:
   - ../../../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/Generated
   - ../../../Components/YandexSpeechKit/Sources/YandexSynthesisAPI/Generated
+  - ../../../Components/YandexSpeechKit3/Sources/YandexRecognitionAPI/Generated
+  - ../../../Components/YandexSpeechKit3/Sources/YandexSynthesisAPI/Generated
 whitelist_rules:
   # - anyobject_protocol
   - array_init

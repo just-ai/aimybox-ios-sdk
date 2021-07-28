@@ -7,11 +7,10 @@ target 'AimyboxExample' do
   use_frameworks!
 
   pod 'Aimybox',
-    :subspecs => ['AimyboxDialogAPI', 'YandexSpeechKit', "AVTextToSpeech", "SFSpeechToText"],
+    :subspecs => ['AimyboxDialogAPI', 'YandexSpeechKitV3', "AVTextToSpeech", "SFSpeechToText"],
     :path => '../'
   pod 'SDWebImage'
   pod 'SwiftLint'
-  pod 'gRPC-Swift-Plugins'
 end
 
 post_install do |installer|

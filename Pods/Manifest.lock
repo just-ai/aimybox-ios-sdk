@@ -1,0 +1,39 @@
+PODS:
+  - BoringSSL-GRPC (0.0.4):
+    - BoringSSL-GRPC/Implementation (= 0.0.4)
+    - BoringSSL-GRPC/Interface (= 0.0.4)
+  - BoringSSL-GRPC/Implementation (0.0.4):
+    - BoringSSL-GRPC/Interface (= 0.0.4)
+  - BoringSSL-GRPC/Interface (0.0.4)
+  - gRPC-Core (1.24.2):
+    - gRPC-Core/Implementation (= 1.24.2)
+    - gRPC-Core/Interface (= 1.24.2)
+  - gRPC-Core/Implementation (1.24.2):
+    - BoringSSL-GRPC (= 0.0.4)
+    - gRPC-Core/Interface (= 1.24.2)
+  - gRPC-Core/Interface (1.24.2)
+  - SwiftGRPC (0.11.0):
+    - gRPC-Core (~> 1.24.1)
+    - SwiftProtobuf (~> 1.7.0)
+  - SwiftProtobuf (1.7.0)
+
+DEPENDENCIES:
+  - SwiftGRPC
+  - SwiftProtobuf
+
+SPEC REPOS:
+  trunk:
+    - BoringSSL-GRPC
+    - gRPC-Core
+    - SwiftGRPC
+    - SwiftProtobuf
+
+SPEC CHECKSUMS:
+  BoringSSL-GRPC: b8d2e9fca6d3870aec81ee7d583869caec2a6076
+  gRPC-Core: 5ca379163f100dfbc55214942ab7d23423513a17
+  SwiftGRPC: daeb5abeec734ee2a09072aed3fca1c2341a4869
+  SwiftProtobuf: 4fd9645e69b72cbae6ec8da5be0cdd20ca6565dd
+
+PODFILE CHECKSUM: a03ded568ea0ad41cad7f911c913468412bc9b12
+
+COCOAPODS: 1.10.1

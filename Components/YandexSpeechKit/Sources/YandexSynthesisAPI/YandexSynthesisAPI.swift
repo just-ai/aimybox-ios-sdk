@@ -8,24 +8,15 @@
 
 import AVFoundation
 import Foundation
-import GRPC
-import Logging
-import SwiftProtobuf
 
 final
 class YandexSynthesisAPI {
 
-    typealias TtsServiceClient = Speechkit_Tts_V3_SynthesizerClient
+    private
+    let address: URL
 
-    typealias Request = Speechkit_Tts_V3_UtteranceSynthesisRequest
-
-    typealias Response = Speechkit_Tts_V3_UtteranceSynthesisResponse
-
-    typealias StreamingCall = ServerStreamingCall<Request, Response>
-
-    typealias AudioFormatOptions = Speechkit_Tts_V3_AudioFormatOptions
-
-    typealias ContainerAudio = Speechkit_Tts_V3_ContainerAudio
+    private
+    let dataLoggingEnabled: Bool
 
     private
     let folderId: String
@@ -36,46 +27,18 @@ class YandexSynthesisAPI {
     private
     let token: String
 
-    private
-    let ttsServiceClient: TtsServiceClient
-
-    private
-    var streamingCall: YandexSynthesisAPI.StreamingCall?
-
     init(
         iAMToken: String,
         folderId: String,
-        host: String,
-        port: Int,
+        api address: URL,
         operation queue: OperationQueue,
-        dataLoggingEnabled: Bool,
-        normalizePartialData: Bool
+        dataLoggingEnabled: Bool
     ) {
+        self.address = address
+        self.dataLoggingEnabled = dataLoggingEnabled
         self.folderId = folderId
         self.operationQueue = queue
         self.token = iAMToken
-
-        var logger = Logger(label: "gRPC TTS", factory: StreamLogHandler.standardOutput(label:))
-        logger.logLevel = .debug
-
-        let group = PlatformSupport.makeEventLoopGroup(loopCount: 1, networkPreference: .best, logger: logger)
-
-        let callOptions = CallOptions(
-            customMetadata: [
-                "authorization": "Bearer \(token)",
-                "x-folder-id": folderId,
-                xDataLoggingEnabledKey: dataLoggingEnabled ? "true" : "false",
-                normalizePartialDataKey: normalizePartialData ? "true" : "false",
-            ],
-            logger: logger
-        )
-
-        let channel = ClientConnection
-            .secure(group: group)
-            .withBackgroundActivityLogger(logger)
-            .connect(host: host, port: port)
-
-        self.ttsServiceClient = TtsServiceClient(channel: channel, defaultCallOptions: callOptions)
     }
 
     func request(
@@ -84,47 +47,67 @@ class YandexSynthesisAPI {
         config: YandexSynthesisConfig,
         onResponse completion: @escaping (URL?) -> Void
     ) {
-        let request = Speechkit_Tts_V3_UtteranceSynthesisRequest.with {
-            $0.text = text
-            $0.model = "general"
-            $0.outputAudioSpec = AudioFormatOptions.with {
-                $0.containerAudio = ContainerAudio.with {
-                    $0.containerAudioType = .wav
-                }
-            }
-            $0.hints.append(
-                Speechkit_Tts_V3_Hints.with {
-                    $0.voice = config.voice
-                }
-            )
+        guard var components = URLComponents(url: address, resolvingAgainstBaseURL: true) else {
+            return
         }
 
-        streamingCall = ttsServiceClient.utteranceSynthesis(request) { [weak self] response in
-            if response.hasAudioChunk {
-                self?.perform(response.audioChunk.data, onResponse: completion)
-            } else {
-                completion(nil)
-            }
+        var queries = [
+            URLQueryItem(name: "folderId", value: folderId),
+            URLQueryItem(name: "text", value: text),
+            URLQueryItem(name: "lang", value: code),
+        ]
+
+        queries.append(contentsOf: config.asParams.map { URLQueryItem(name: $0.0, value: $0.1) })
+
+        components.queryItems = queries
+
+        guard
+            let str = components.url?.absoluteString.replacingOccurrences(of: "+", with: "%2B"),
+            let url = URL(string: str)
+        else {
+            return
         }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+        if dataLoggingEnabled {
+            request.addValue("true", forHTTPHeaderField: xDataLoggingEnabledKey)
+        }
+        perform(request, onResponse: completion)
     }
 
     private
-    func perform(_ data: Data, onResponse: @escaping (URL?) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            guard let localUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
-                .first?
-                .appendingPathComponent("\(UUID().uuidString).wav")
-            else {
+    func perform(_ request: URLRequest, onResponse: @escaping (URL?) -> Void) {
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil else {
                 return onResponse(nil)
             }
 
-            do {
-                try data.write(to: localUrl)
-                onResponse(localUrl)
-                try? FileManager.default.removeItem(at: localUrl)
-            } catch {
-                onResponse(nil)
+            guard let code = (response as? HTTPURLResponse)?.statusCode, 200..<300 ~= code else {
+                return onResponse(nil)
             }
+
+            guard let localData = data else {
+                return onResponse(nil)
+            }
+
+            guard let localUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+                .first?
+                .appendingPathComponent("\(UUID().uuidString).wav") else {
+                return onResponse(nil)
+            }
+
+            try? WAVFileGenerator().createWAVFile(using: localData).write(to: localUrl)
+
+            onResponse(localUrl)
+
+            try? FileManager.default.removeItem(at: localUrl)
+        }
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            task.resume()
         }
     }
 
@@ -158,4 +141,20 @@ struct YandexSynthesisConfig {
         self.sampleRateHertz = sampleRateHertz ?? 48_000
     }
 
+}
+
+public
+extension YandexSynthesisConfig {
+
+    var asParams: [String: String] {
+        var params = [String: String]()
+
+        params["emotion"] = emotion
+        params["format"] = format
+        params["sampleRateHertz"] = String(sampleRateHertz)
+        params["speed"] = String(speed)
+        params["voice"] = voice
+
+        return params
+    }
 }

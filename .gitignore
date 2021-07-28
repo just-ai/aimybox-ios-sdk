@@ -94,3 +94,4 @@ AimyboxCore.xcworkspace/contents.xcworkspacedata
 AimyboxCore.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 Example/googleapis
 Example/yandexapis
+Example/Pods/**
