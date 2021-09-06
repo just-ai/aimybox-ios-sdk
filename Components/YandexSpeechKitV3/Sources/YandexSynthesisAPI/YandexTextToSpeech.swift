@@ -163,6 +163,10 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             if let url = $0, self?.isCancelled == false {
                 self?.notify?(.success(.speechDataReceived(textSpeech)))
                 self?.synthesize(textSpeech, using: url)
+            } else if self?.isCancelled == true {
+                self?.notify?(.failure(.speechSequenceCancelled([textSpeech])))
+            } else {
+                self?.notify?(.failure(.speakersUnavailable))
             }
             synthesisGroup.leave()
         }
