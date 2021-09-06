@@ -86,7 +86,6 @@ class YandexSynthesisAPI {
     ) {
         let request = Speechkit_Tts_V3_UtteranceSynthesisRequest.with {
             $0.text = text
-            $0.model = "general"
             $0.outputAudioSpec = AudioFormatOptions.with {
                 $0.containerAudio = ContainerAudio.with {
                     $0.containerAudioType = .wav
