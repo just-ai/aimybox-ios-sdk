@@ -7,7 +7,7 @@ target 'AimyboxExample' do
   use_frameworks!
 
   pod 'Aimybox',
-    :subspecs => ['AimyboxDialogAPI', 'YandexSpeechKitV3', "AVTextToSpeech", "SFSpeechToText"],
+    :subspecs => ['AimyboxDialogAPI', 'YandexSpeechKitV3', 'AVTextToSpeech', 'SFSpeechToText'],
     :path => '../'
   pod 'SDWebImage'
   pod 'SwiftLint'
