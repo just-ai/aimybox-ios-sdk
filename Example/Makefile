@@ -1,7 +1,7 @@
 .PHONY: log protos generate clean help
 
-TTS_OUT_PATH := ../Components/YandexSpeechKit/Sources/YandexSynthesisAPI/Generated
-STT_OUT_PATH := ../Components/YandexSpeechKit/Sources/YandexRecognitionAPI/Generated
+TTS_OUT_PATH := ../Components/YandexSpeechKitV3/Sources/YandexSynthesisAPI/Generated
+STT_OUT_PATH := ../Components/YandexSpeechKitV3/Sources/YandexRecognitionAPI/Generated
 
 log: help
 

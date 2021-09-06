@@ -28,6 +28,7 @@ public struct Speechkit_Tts_V3_AudioContent {
   /// The audio source to read the data from.
   public var audioSource: Speechkit_Tts_V3_AudioContent.OneOf_AudioSource? = nil
 
+  /// Bytes with audio data.
   public var content: Data {
     get {
       if case .content(let v)? = audioSource {return v}
@@ -50,6 +51,7 @@ public struct Speechkit_Tts_V3_AudioContent {
 
   /// The audio source to read the data from.
   public enum OneOf_AudioSource: Equatable {
+    /// Bytes with audio data.
     case content(Data)
 
   #if !swift(>=4.1)
@@ -88,7 +90,7 @@ public struct Speechkit_Tts_V3_AudioFormatOptions {
     set {audioFormat = .rawAudio(newValue)}
   }
 
-  /// The audio format specified inside the file header.
+  /// The audio format specified inside the container metadata.
   public var containerAudio: Speechkit_Tts_V3_ContainerAudio {
     get {
       if case .containerAudio(let v)? = audioFormat {return v}
@@ -102,7 +104,7 @@ public struct Speechkit_Tts_V3_AudioFormatOptions {
   public enum OneOf_AudioFormat: Equatable {
     /// The audio format specified in request parameters.
     case rawAudio(Speechkit_Tts_V3_RawAudio)
-    /// The audio format specified inside the file header.
+    /// The audio format specified inside the container metadata.
     case containerAudio(Speechkit_Tts_V3_ContainerAudio)
 
   #if !swift(>=4.1)
@@ -145,7 +147,7 @@ public struct Speechkit_Tts_V3_RawAudio {
     public typealias RawValue = Int
     case unspecified // = 0
 
-    /// 16-bit signed little-endian (Linear PCM)
+    /// 16-bit signed little-endian (Linear PCM).
     case linear16Pcm // = 1
     case UNRECOGNIZED(Int)
 
@@ -201,6 +203,7 @@ public struct Speechkit_Tts_V3_ContainerAudio {
 
     /// RIFF linear pcm with header audio file format.
     case wav // = 1
+    case oggOpus // = 2
     case UNRECOGNIZED(Int)
 
     public init() {
@@ -211,6 +214,7 @@ public struct Speechkit_Tts_V3_ContainerAudio {
       switch rawValue {
       case 0: self = .unspecified
       case 1: self = .wav
+      case 2: self = .oggOpus
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -219,6 +223,7 @@ public struct Speechkit_Tts_V3_ContainerAudio {
       switch self {
       case .unspecified: return 0
       case .wav: return 1
+      case .oggOpus: return 2
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -235,6 +240,7 @@ extension Speechkit_Tts_V3_ContainerAudio.ContainerAudioType: CaseIterable {
   public static var allCases: [Speechkit_Tts_V3_ContainerAudio.ContainerAudioType] = [
     .unspecified,
     .wav,
+    .oggOpus,
   ]
 }
 
@@ -245,9 +251,10 @@ public struct Speechkit_Tts_V3_TextVariable {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// The name of the variable.
   public var variableName: String = String()
 
-  /// The text of the variable to be synthesized instead of the template.
+  /// The text of the variable.
   public var variableValue: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -260,10 +267,13 @@ public struct Speechkit_Tts_V3_AudioVariable {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// The name of the variable.
   public var variableName: String = String()
 
+  /// Start time of the variable in milliseconds.
   public var variableStartMs: Int64 = 0
 
+  /// Lenght of the variable in milliseconds.
   public var variableLengthMs: Int64 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -298,6 +308,7 @@ public struct Speechkit_Tts_V3_AudioTemplate {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Audio file.
   public var audio: Speechkit_Tts_V3_AudioContent {
     get {return _audio ?? Speechkit_Tts_V3_AudioContent()}
     set {_audio = newValue}
@@ -307,6 +318,7 @@ public struct Speechkit_Tts_V3_AudioTemplate {
   /// Clears the value of `audio`. Subsequent reads from it will return its default value.
   public mutating func clearAudio() {self._audio = nil}
 
+  /// Template and description of its variables.
   public var textTemplate: Speechkit_Tts_V3_TextTemplate {
     get {return _textTemplate ?? Speechkit_Tts_V3_TextTemplate()}
     set {_textTemplate = newValue}
@@ -316,6 +328,7 @@ public struct Speechkit_Tts_V3_AudioTemplate {
   /// Clears the value of `textTemplate`. Subsequent reads from it will return its default value.
   public mutating func clearTextTemplate() {self._textTemplate = nil}
 
+  /// Describing variables in audio.
   public var variables: [Speechkit_Tts_V3_AudioVariable] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -331,7 +344,7 @@ public struct Speechkit_Tts_V3_AudioChunk {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Sequence of bytes of the synthesized audio in format specified in output_audio_spec
+  /// Sequence of bytes of the synthesized audio in format specified in output_audio_spec.
   public var data: Data = Data()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -344,10 +357,14 @@ public struct Speechkit_Tts_V3_TextTemplate {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// hello, {user}
+  /// Template text.
+  ///
+  /// Sample:`The {animal} goes to the {place}.`
   public var textTemplate: String = String()
 
-  ///{user: Adam}
+  /// Defining variables in template text.
+  ///
+  /// Sample: `{animal: cat, place: forest}`
   public var variables: [Speechkit_Tts_V3_TextVariable] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -360,9 +377,10 @@ public struct Speechkit_Tts_V3_Hints {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// The hint for specifying the voice that need to synthesize in the audio.
+  /// The hint for TTS engine to specify synthesised audio characteristics. 
   public var hint: Speechkit_Tts_V3_Hints.OneOf_Hint? = nil
 
+  /// Name of speaker to use.
   public var voice: String {
     get {
       if case .voice(let v)? = hint {return v}
@@ -371,6 +389,7 @@ public struct Speechkit_Tts_V3_Hints {
     set {hint = .voice(newValue)}
   }
 
+  /// Template for synthesizing.
   public var audioTemplate: Speechkit_Tts_V3_AudioTemplate {
     get {
       if case .audioTemplate(let v)? = hint {return v}
@@ -379,12 +398,36 @@ public struct Speechkit_Tts_V3_Hints {
     set {hint = .audioTemplate(newValue)}
   }
 
+  /// hint to change speed
+  public var speed: Double {
+    get {
+      if case .speed(let v)? = hint {return v}
+      return 0
+    }
+    set {hint = .speed(newValue)}
+  }
+
+  /// hint to regulate volume
+  public var volume: Double {
+    get {
+      if case .volume(let v)? = hint {return v}
+      return 0
+    }
+    set {hint = .volume(newValue)}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  /// The hint for specifying the voice that need to synthesize in the audio.
+  /// The hint for TTS engine to specify synthesised audio characteristics. 
   public enum OneOf_Hint: Equatable {
+    /// Name of speaker to use.
     case voice(String)
+    /// Template for synthesizing.
     case audioTemplate(Speechkit_Tts_V3_AudioTemplate)
+    /// hint to change speed
+    case speed(Double)
+    /// hint to regulate volume
+    case volume(Double)
 
   #if !swift(>=4.1)
     public static func ==(lhs: Speechkit_Tts_V3_Hints.OneOf_Hint, rhs: Speechkit_Tts_V3_Hints.OneOf_Hint) -> Bool {
@@ -398,6 +441,14 @@ public struct Speechkit_Tts_V3_Hints {
       }()
       case (.audioTemplate, .audioTemplate): return {
         guard case .audioTemplate(let l) = lhs, case .audioTemplate(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.speed, .speed): return {
+        guard case .speed(let l) = lhs, case .speed(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.volume, .volume): return {
+        guard case .volume(let l) = lhs, case .volume(let r) = rhs else { preconditionFailure() }
         return l == r
       }()
       default: return false
@@ -414,11 +465,15 @@ public struct Speechkit_Tts_V3_UtteranceSynthesisRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// The name of the model.
+  ///
+  /// Currently avalible only `general`.
   public var model: String = String()
 
-  /// Text to synthesis, one of for advanced mark up in future
+  /// Text to synthesis, one of text synthesis markups.
   public var utterance: Speechkit_Tts_V3_UtteranceSynthesisRequest.OneOf_Utterance? = nil
 
+  /// Raw text (e.g. "Hello, Alice").
   public var text: String {
     get {
       if case .text(let v)? = utterance {return v}
@@ -427,6 +482,7 @@ public struct Speechkit_Tts_V3_UtteranceSynthesisRequest {
     set {utterance = .text(newValue)}
   }
 
+  /// Text template instalce, e.g. `{"Hello, {username}" with username="Alice"}`.
   public var textTemplate: Speechkit_Tts_V3_TextTemplate {
     get {
       if case .textTemplate(let v)? = utterance {return v}
@@ -438,7 +494,7 @@ public struct Speechkit_Tts_V3_UtteranceSynthesisRequest {
   /// Optional hints for synthesis.
   public var hints: [Speechkit_Tts_V3_Hints] = []
 
-  /// Optional. Default: 22050 Hz, linear 16-bit signed little-endian pcm
+  /// Optional. Default: 22050 Hz, linear 16-bit signed little-endian PCM, with WAV header
   public var outputAudioSpec: Speechkit_Tts_V3_AudioFormatOptions {
     get {return _outputAudioSpec ?? Speechkit_Tts_V3_AudioFormatOptions()}
     set {_outputAudioSpec = newValue}
@@ -450,9 +506,11 @@ public struct Speechkit_Tts_V3_UtteranceSynthesisRequest {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  /// Text to synthesis, one of for advanced mark up in future
+  /// Text to synthesis, one of text synthesis markups.
   public enum OneOf_Utterance: Equatable {
+    /// Raw text (e.g. "Hello, Alice").
     case text(String)
+    /// Text template instalce, e.g. `{"Hello, {username}" with username="Alice"}`.
     case textTemplate(Speechkit_Tts_V3_TextTemplate)
 
   #if !swift(>=4.1)
@@ -679,6 +737,7 @@ extension Speechkit_Tts_V3_ContainerAudio.ContainerAudioType: SwiftProtobuf._Pro
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "CONTAINER_AUDIO_TYPE_UNSPECIFIED"),
     1: .same(proto: "WAV"),
+    2: .same(proto: "OGG_OPUS"),
   ]
 }
 
@@ -915,6 +974,8 @@ extension Speechkit_Tts_V3_Hints: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "voice"),
     2: .standard(proto: "audio_template"),
+    3: .same(proto: "speed"),
+    4: .same(proto: "volume"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -944,6 +1005,22 @@ extension Speechkit_Tts_V3_Hints: SwiftProtobuf.Message, SwiftProtobuf._MessageI
           self.hint = .audioTemplate(v)
         }
       }()
+      case 3: try {
+        var v: Double?
+        try decoder.decodeSingularDoubleField(value: &v)
+        if let v = v {
+          if self.hint != nil {try decoder.handleConflictingOneOf()}
+          self.hint = .speed(v)
+        }
+      }()
+      case 4: try {
+        var v: Double?
+        try decoder.decodeSingularDoubleField(value: &v)
+        if let v = v {
+          if self.hint != nil {try decoder.handleConflictingOneOf()}
+          self.hint = .volume(v)
+        }
+      }()
       default: break
       }
     }
@@ -961,6 +1038,14 @@ extension Speechkit_Tts_V3_Hints: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     case .audioTemplate?: try {
       guard case .audioTemplate(let v)? = self.hint else { preconditionFailure() }
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }()
+    case .speed?: try {
+      guard case .speed(let v)? = self.hint else { preconditionFailure() }
+      try visitor.visitSingularDoubleField(value: v, fieldNumber: 3)
+    }()
+    case .volume?: try {
+      guard case .volume(let v)? = self.hint else { preconditionFailure() }
+      try visitor.visitSingularDoubleField(value: v, fieldNumber: 4)
     }()
     case nil: break
     }

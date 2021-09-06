@@ -94,6 +94,8 @@ class YandexSynthesisAPI {
             $0.hints.append(
                 Speechkit_Tts_V3_Hints.with {
                     $0.voice = config.voice
+                    $0.speed = config.speed
+                    $0.volume = config.volume
                 }
             )
         }
@@ -138,23 +140,27 @@ struct YandexSynthesisConfig {
 
     let sampleRateHertz: Int
 
-    let speed: Float
+    let speed: Double
 
     let voice: String
+
+    let volume: Double
 
     public
     init(
         voice: String? = nil,
         emotion: String? = nil,
-        speed: Float? = nil,
+        speed: Double? = nil,
         format: String? = nil,
-        sampleRateHertz: Int? = nil
+        sampleRateHertz: Int? = nil,
+        volume: Double? = nil
     ) {
         self.voice = voice ?? "alena"
         self.emotion = emotion ?? "neutral"
         self.speed = speed ?? 1.0
         self.format = format ?? "lpcm"
         self.sampleRateHertz = sampleRateHertz ?? 48_000
+        self.volume = volume ?? 1.0
     }
 
 }
