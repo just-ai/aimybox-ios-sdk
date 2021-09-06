@@ -10,8 +10,11 @@ import Foundation
 public
 struct IAMToken: Codable {
 
-    var iamToken: String
+    let iamToken: String
 
+    public init(iamToken: String) throws {
+        self.iamToken = iamToken
+    }
 }
 
 public
