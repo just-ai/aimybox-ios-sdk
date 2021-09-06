@@ -12,7 +12,8 @@ struct IAMToken: Codable {
 
     let iamToken: String
 
-    public init(iamToken: String) {
+    public
+    init(iamToken: String) {
         self.iamToken = iamToken
     }
 }
