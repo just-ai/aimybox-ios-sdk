@@ -91,13 +91,9 @@ class YandexSynthesisAPI {
                     $0.containerAudioType = .wav
                 }
             }
-            $0.hints.append(
-                Speechkit_Tts_V3_Hints.with {
-                    $0.voice = config.voice
-                    $0.speed = config.speed
-                    $0.volume = config.volume
-                }
-            )
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.voice = config.voice })
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.speed = config.speed })
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.volume = config.volume })
         }
 
         streamingCall = ttsServiceClient.utteranceSynthesis(request) { [weak self] response in
