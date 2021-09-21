@@ -11,6 +11,7 @@ target 'AimyboxExample' do
     :path => '../'
   pod 'SDWebImage'
   pod 'SwiftLint'
+  pod 'gRPC-Swift-Plugins'
 end
 
 post_install do |installer|
