@@ -167,9 +167,18 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
         }
         // Link recognition request with audio stream
         let inputNode = audioEngine.inputNode
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
+
+        let bus = inputNode.inputFormat(forBus: 0)
+
+        let audioFormat = AVAudioFormat(
+            commonFormat: bus.commonFormat,
+            sampleRate: bus.sampleRate,
+            channels: bus.channelCount,
+            interleaved: false
+        )
+
         inputNode.removeTap(onBus: 0)
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] buffer, _ in
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: audioFormat) { [weak self] buffer, _ in
             self?.recognitionRequest?.append(buffer)
         }
         audioInputNode = inputNode
