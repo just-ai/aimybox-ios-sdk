@@ -174,7 +174,7 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
             commonFormat: bus.commonFormat,
             sampleRate: bus.sampleRate,
             channels: bus.channelCount,
-            interleaved: false
+            interleaved: bus.isInterleaved
         )
 
         inputNode.removeTap(onBus: 0)

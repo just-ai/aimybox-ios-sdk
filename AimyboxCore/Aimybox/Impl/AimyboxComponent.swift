@@ -45,15 +45,17 @@ class AimyboxComponent {
     func prepareAudioEngineForMultiRoute(_ completion: (Bool) -> Void) {
         do {
             let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setActive(false)
-
             try audioSession.setMode(.default)
+
             try audioSession.setCategory(
                 .playAndRecord,
-                options: [.allowBluetooth, .defaultToSpeaker, .mixWithOthers]
+                options: [.allowBluetooth, .defaultToSpeaker]
             )
 
-            try audioSession.setActive(true, options: [.notifyOthersOnDeactivation])
+            if audioSession.isOtherAudioPlaying {
+                try audioSession.setActive(true, options: [.notifyOthersOnDeactivation])
+            }
+
             completion(true)
         } catch {
             completion(false)
