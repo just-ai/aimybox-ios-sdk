@@ -171,7 +171,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         // swiftlint:disable:next closure_body_length
         recognitionAPI.openStream { [audioEngine, weak self, audioFormat] stream in
             let inputNode = audioEngine.inputNode
-            let inputFormat = inputNode.outputFormat(forBus: 0)
+            let inputFormat = inputNode.inputFormat(forBus: 0)
             let recordingFormat = audioFormat
 
             try? AVAudioSession.sharedInstance().setPreferredSampleRate(inputFormat.sampleRate)
