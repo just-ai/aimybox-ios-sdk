@@ -49,7 +49,7 @@ class AimyboxComponent {
 
             try audioSession.setCategory(
                 .playAndRecord,
-                options: [.allowBluetooth, .defaultToSpeaker]
+                options: [.allowBluetoothA2DP, .defaultToSpeaker]
             )
 
             if audioSession.isOtherAudioPlaying {
