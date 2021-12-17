@@ -27,6 +27,9 @@ class MainViewController: UIViewController {
     var player: AVPlayer?
 
     private
+    let vad = VAT()
+
+    private
     var rows: [Reply] = [] {
         didSet {
             tableView.reloadData()
@@ -129,7 +132,8 @@ class MainViewController: UIViewController {
     func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        initializeAimybox()
+//        initializeAimybox()
+        vad.start()
     }
 
     deinit {

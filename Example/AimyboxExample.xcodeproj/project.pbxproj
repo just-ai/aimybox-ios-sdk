@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0315DC6C276A805E0095DA69 /* Predictor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0315DC68276A805E0095DA69 /* Predictor.mm */; };
+		0315DC6D276A805E0095DA69 /* vad_mobile.jit in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC6B276A805E0095DA69 /* vad_mobile.jit */; };
+		0315DC6F276A818D0095DA69 /* VAT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315DC6E276A818D0095DA69 /* VAT.swift */; };
+		0315DC72276A8BFB0095DA69 /* feature_extractor_mobile.jit in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC70276A8BFB0095DA69 /* feature_extractor_mobile.jit */; };
+		0315DC73276A8BFB0095DA69 /* model_mobile.jit in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC71276A8BFB0095DA69 /* model_mobile.jit */; };
 		031729D6260E1CF1004608F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031729D5260E1CF1004608F2 /* AppDelegate.swift */; };
 		031729DF260E1CF3004608F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031729DE260E1CF3004608F2 /* Assets.xcassets */; };
 		031729E2260E1CF3004608F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031729E0260E1CF3004608F2 /* LaunchScreen.storyboard */; };
@@ -42,6 +47,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0315DC67276A805E0095DA69 /* VAT-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VAT-Bridging-Header.h"; sourceTree = "<group>"; };
+		0315DC68276A805E0095DA69 /* Predictor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Predictor.mm; sourceTree = "<group>"; };
+		0315DC69276A805E0095DA69 /* Predictor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Predictor.h; sourceTree = "<group>"; };
+		0315DC6B276A805E0095DA69 /* vad_mobile.jit */ = {isa = PBXFileReference; lastKnownFileType = file; path = vad_mobile.jit; sourceTree = "<group>"; };
+		0315DC6E276A818D0095DA69 /* VAT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VAT.swift; sourceTree = "<group>"; };
+		0315DC70276A8BFB0095DA69 /* feature_extractor_mobile.jit */ = {isa = PBXFileReference; lastKnownFileType = file; path = feature_extractor_mobile.jit; sourceTree = "<group>"; };
+		0315DC71276A8BFB0095DA69 /* model_mobile.jit */ = {isa = PBXFileReference; lastKnownFileType = file; path = model_mobile.jit; sourceTree = "<group>"; };
 		031729D2260E1CF1004608F2 /* AimyboxExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimyboxExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		031729D5260E1CF1004608F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		031729DE260E1CF3004608F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +104,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0315DC66276A805E0095DA69 /* VAT */ = {
+			isa = PBXGroup;
+			children = (
+				0315DC69276A805E0095DA69 /* Predictor.h */,
+				0315DC67276A805E0095DA69 /* VAT-Bridging-Header.h */,
+				0315DC68276A805E0095DA69 /* Predictor.mm */,
+				0315DC6E276A818D0095DA69 /* VAT.swift */,
+				0315DC6A276A805E0095DA69 /* Resource */,
+			);
+			path = VAT;
+			sourceTree = "<group>";
+		};
+		0315DC6A276A805E0095DA69 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				0315DC70276A8BFB0095DA69 /* feature_extractor_mobile.jit */,
+				0315DC71276A8BFB0095DA69 /* model_mobile.jit */,
+				0315DC6B276A805E0095DA69 /* vad_mobile.jit */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		031729C9260E1CF1004608F2 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +161,7 @@
 				03172B03260E72DB004608F2 /* CustomReplies */,
 				03172AF8260E72DB004608F2 /* Extensions */,
 				03172B01260E72DB004608F2 /* Utils */,
+				0315DC66276A805E0095DA69 /* VAT */,
 				03172B0B260E72DB004608F2 /* Views */,
 			);
 			path = Sources;
@@ -283,9 +318,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				031729E2260E1CF3004608F2 /* LaunchScreen.storyboard in Resources */,
+				0315DC6D276A805E0095DA69 /* vad_mobile.jit in Resources */,
 				03FF16EE263850CF0008BA69 /* sound_in.wav in Resources */,
 				03FF16ED263850CF0008BA69 /* sound_out.wav in Resources */,
 				03172AE6260E6C05004608F2 /* swiftlint.yml in Resources */,
+				0315DC73276A8BFB0095DA69 /* model_mobile.jit in Resources */,
+				0315DC72276A8BFB0095DA69 /* feature_extractor_mobile.jit in Resources */,
 				031729DF260E1CF3004608F2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,8 +403,10 @@
 				031729D6260E1CF1004608F2 /* AppDelegate.swift in Sources */,
 				03172B19260E72DB004608F2 /* NSLayoutConstraintExtensions.swift in Sources */,
 				03172B27260E72DB004608F2 /* StockMarketCell.swift in Sources */,
+				0315DC6C276A805E0095DA69 /* Predictor.mm in Sources */,
 				03172B1E260E72DB004608F2 /* Helpers.swift in Sources */,
 				03172B24260E72DB004608F2 /* SuggestionReply.swift in Sources */,
+				0315DC6F276A818D0095DA69 /* VAT.swift in Sources */,
 				03172B2F260E72DB004608F2 /* SuggestionView.swift in Sources */,
 				03172B16260E72DB004608F2 /* UITableViewExtensions.swift in Sources */,
 				03172B2A260E72DB004608F2 /* PaddingLabel.swift in Sources */,
@@ -526,6 +566,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8298429F2B;
 				INFOPLIST_FILE = "AimyboxExample/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -533,6 +574,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "AimyboxExample/Sources/VAT/VAT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -548,6 +590,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8298429F2B;
 				INFOPLIST_FILE = "AimyboxExample/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -555,6 +598,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.justai.AimyboxExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "AimyboxExample/Sources/VAT/VAT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
