@@ -27,7 +27,9 @@ class MainViewController: UIViewController {
     var player: AVPlayer?
 
     private
-    let vad = VAT()
+    lazy var vad = VAT { [weak self] in
+        self?.keyPhraseDetected()
+    }
 
     private
     var rows: [Reply] = [] {
@@ -132,7 +134,7 @@ class MainViewController: UIViewController {
     func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        initializeAimybox()
+        initializeAimybox()
         vad.start()
     }
 
@@ -219,8 +221,8 @@ class MainViewController: UIViewController {
         let config = AimyboxBuilder.config(speechToText, textToSpeech, dialogAPI)
         aimybox = AimyboxBuilder.aimybox(with: config)
         aimybox?.delegate = self
-
-        startLoadDefaultCards()
+        hideLoading()
+//        startLoadDefaultCards()
     }
 
     private
@@ -247,6 +249,10 @@ class MainViewController: UIViewController {
         player?.play()
     }
 
+    private
+    func keyPhraseDetected() {
+        aimybox?.startRecognition()
+    }
 }
 
 extension MainViewController: AimyboxDelegate {
@@ -258,8 +264,10 @@ extension MainViewController: AimyboxDelegate {
             }
             if newState == .listening {
                 this.playSound(type: .in)
+                this.vad.stop()
             } else if oldState == .listening {
                 this.playSound(type: .out)
+                this.vad.start()
             }
             switch newState {
             case .listening:

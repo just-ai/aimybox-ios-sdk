@@ -4,7 +4,8 @@ import AVFoundation
 final
 class VAT {
 
-    private lazy var predictor: Predictor = {
+    private
+    let predictor: Predictor = {
         if
             let vadPath = Bundle.main.jitPath(named: "vad_mobile"),
             let featureExtractorPath = Bundle.main.jitPath(named: "feature_extractor_mobile"),
@@ -17,29 +18,39 @@ class VAT {
         }
     }()
 
-    private let audioEngine: AVAudioEngine
+    private
+    let audioEngine: AVAudioEngine
 
-    private let inputNode: AVAudioInputNode
+    private
+    let inputNode: AVAudioInputNode
 
-    private var chunks: [Float] = []
+    private
+    let inputFormat: AVAudioFormat
 
-    private let streamBuffer = StreamBuffer()
+    private
+    let converter: AVAudioConverter
 
-    private var isTtriggeredOnce = false
+    private
+    let keyPhraseHandler: (() -> Void)
 
-    private let inputFormat: AVAudioFormat
+    private
+    let streamBuffer = StreamBuffer()
 
-    private let converter: AVAudioConverter
+    private
+    var isTtriggeredOnce = false
 
-    private let ratio: Double
+    private
+    var triggeredProba: Float = 0
 
-    init() {
-        audioEngine = AVAudioEngine()
-        inputNode = audioEngine.inputNode
+    private
+    var chunks: [Float] = []
 
-        inputFormat = inputNode.inputFormat(forBus: 0)
-        converter = AVAudioConverter(from: inputFormat, to: Constants.modelInputFormat)!
-        ratio = Constants.modelInputFormat.sampleRate / inputFormat.sampleRate
+    init(keyPhraseHandler: @escaping (() -> Void)) {
+        self.audioEngine = AVAudioEngine()
+        self.inputNode = audioEngine.inputNode
+        self.inputFormat = inputNode.inputFormat(forBus: 0)
+        self.converter = AVAudioConverter(from: inputFormat, to: Constants.modelInputFormat)!
+        self.keyPhraseHandler = keyPhraseHandler
     }
 
     func requestRecordPermission() {
@@ -49,51 +60,18 @@ class VAT {
     }
 
     func start() {
-        print("Started...")
         guard !audioEngine.isRunning else {
             return
         }
 
         inputNode.installTap(onBus: 0, bufferSize: 2048, format: inputFormat) { [weak self] buffer, time in
-            let data = buffer.data(using: self?.converter, ratio: self?.ratio ?? 1)
+            let data = buffer.data(using: self?.converter)
             self?.chunks.append(contentsOf: data)
 
             while (self?.chunks.count ?? 0) > Constants.chunkLength {
-                var chunk = self?.chunks.prefix(Constants.chunkLength) ?? []
+                let chunk = self?.chunks.prefix(Constants.chunkLength) ?? []
                 self?.chunks.removeFirst(Constants.chunkLength)
-
-                let currentChunk = Array(chunk)
-                chunk.withUnsafeMutableBytes { vadPointer in
-                    let speechProbability = self?.predictor.recognizeVAD(
-                        vadPointer.baseAddress!,
-                        bufLength: Int32(Constants.chunkLength)
-                    )?.doubleValue ?? 0
-
-                    if speechProbability > Constants.vadThreshold || self?.isTtriggeredOnce == true {
-                        self?.streamBuffer.add(chunks: currentChunk)
-                        self?.isTtriggeredOnce = true
-                        print("Voice detected \(self?.streamBuffer.chunks.count ?? 0)")
-                    } else {
-                        self?.streamBuffer.add(chunks: currentChunk)
-                        self?.streamBuffer.clear()
-                    }
-
-                    if self?.streamBuffer.isFilled == true {
-                        var audioDataToPredict = self?.streamBuffer.chunks ?? []
-                        print("Buffer is Filled")
-
-                        audioDataToPredict.withUnsafeMutableBytes { fePointer in
-                            let features = self?.predictor.recognizeKeyPhrase(
-                                fePointer.baseAddress!,
-                                bufLength: Int32(VAT.Constants.minPredictionSamples)
-                            )
-                            print("Features \(features ?? -1)")
-                        }
-
-                        self?.streamBuffer.clear(all: true)
-                        self?.isTtriggeredOnce = false
-                    }
-                }
+                self?.processStream(currentChunk: Array(chunk))
             }
         }
         try? audioEngine.start()
@@ -104,12 +82,56 @@ class VAT {
         inputNode.removeTap(onBus: 0)
     }
 
+    private
+    func processStream(currentChunk: [Float]) {
+        var chunk = currentChunk
+        var speechProbability: Double = 0
+        chunk.withUnsafeMutableBytes { vadPointer in
+            speechProbability = predictor.recognizeVAD(
+                vadPointer.baseAddress!,
+                bufLength: Int32(Constants.chunkLength)
+            )?.doubleValue ?? 0
+        }
+
+        if speechProbability > Constants.vadThreshold || isTtriggeredOnce == true {
+            streamBuffer.add(chunks: currentChunk)
+            isTtriggeredOnce = true
+        } else {
+            streamBuffer.add(chunks: currentChunk)
+            streamBuffer.clear()
+        }
+
+        if streamBuffer.isFilled {
+            var keywordProbability: Double = 0
+            var audioDataToPredict = streamBuffer.chunks
+
+            audioDataToPredict.withUnsafeMutableBytes { fePointer in
+                keywordProbability = predictor.recognizeKeyPhrase(
+                    fePointer.baseAddress!,
+                    bufLength: Int32(VAT.Constants.minPredictionSamples)
+                )?.doubleValue ?? 0
+            }
+
+            if keywordProbability > Constants.clfThreshold && !isTtriggeredOnce {
+                isTtriggeredOnce = true
+            } else if keywordProbability > Constants.clfPostThreshold {
+                isTtriggeredOnce = false
+                streamBuffer.clear(all: true)
+                DispatchQueue.main.async {
+                    self.keyPhraseHandler()
+                }
+            } else {
+                isTtriggeredOnce = false
+            }
+        }
+    }
+
 }
 
 private
 extension AVAudioPCMBuffer {
 
-    func data(using converter: AVAudioConverter?, ratio: Double) -> [Float] {
+    func data(using converter: AVAudioConverter?) -> [Float] {
         let capacity = AVAudioFrameCount(VAT.Constants.modelInputFormat.sampleRate) * frameLength / AVAudioFrameCount(format.sampleRate)
         guard
             let converter = converter,
@@ -147,6 +169,10 @@ extension VAT {
 
         static var paddingPredictionSamples = 2_000
 
+        static var clfThreshold = 0.66
+
+        static var clfPostThreshold = 0.4
+
         static var modelInputFormat: AVAudioFormat = {
             guard let format = AVAudioFormat.init(
                 commonFormat: .pcmFormatFloat32,
@@ -159,12 +185,14 @@ extension VAT {
             return format
         }()
 
-        private init() {}
+        private
+        init() {}
     }
 
     final class StreamBuffer {
 
-        private(set) var chunks: [Float] = []
+        private(set)
+        var chunks: [Float] = []
 
         var isFilled: Bool {
             chunks.count >= VAT.Constants.minPredictionSamples
