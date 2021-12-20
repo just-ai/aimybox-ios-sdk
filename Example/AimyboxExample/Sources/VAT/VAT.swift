@@ -6,10 +6,11 @@ import AVFoundation
  Подготовка проекта:
  - подключить через cocoapods pod 'LibTorch-Lite'
  - скопировать в проект содержимое директории VAT
- - настроить в проекте bridging навстройки SWIFT_OBJC_BRIDGING_HEADER = /Sources/VAT/VAT-Bridging-Header.h
+ - настроить в проекте bridging SWIFT_OBJC_BRIDGING_HEADER = /Sources/VAT/VAT-Bridging-Header.h
 
- Для использования VAT необходимо создать инстанс VAT и передать в качестве
- параметра calback который сработает при определении ключевой фразы "Привет Катюша":
+ Использование:
+ - необходимо создать инстанс VAT
+ - передать в качестве параметра calback, который сработает при определении ключевой фразы "Привет Катюша":
  ```
  private
  lazy var vad = VAT { [weak self] in
