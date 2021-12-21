@@ -142,6 +142,8 @@ struct YandexSynthesisConfig {
 
     let volume: Double
 
+    let rawResults: Bool
+
     public
     init(
         voice: String? = nil,
@@ -149,7 +151,8 @@ struct YandexSynthesisConfig {
         speed: Double? = nil,
         format: String? = nil,
         sampleRateHertz: Int? = nil,
-        volume: Double? = nil
+        volume: Double? = nil,
+        rawResults: Bool = false
     ) {
         self.voice = voice ?? "alena"
         self.emotion = emotion ?? "neutral"
@@ -157,6 +160,7 @@ struct YandexSynthesisConfig {
         self.format = format ?? "lpcm"
         self.sampleRateHertz = sampleRateHertz ?? 48_000
         self.volume = volume ?? 1.0
+        self.rawResults = rawResults
     }
 
 }

@@ -114,6 +114,7 @@ extension Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
                 $0.profanityFilter = true
                 $0.sampleRateHertz = 48_000
                 $0.singleUtterance = true
+                $0.rawResults = false
             }
         }
     }
