@@ -1,5 +1,6 @@
 .PHONY: log protos generate clean help
 
+## export PATH=$PATH:[YOUR_PATH_TO_PROJECT]/aimybox-ios-sdk/Example/Pods/gRPC-Swift-Plugins/bin
 TTS_OUT_PATH := ../Components/YandexSpeechKitV3/Sources/YandexSynthesisAPI/Generated
 STT_OUT_PATH := ../Components/YandexSpeechKitV3/Sources/YandexRecognitionAPI/Generated
 

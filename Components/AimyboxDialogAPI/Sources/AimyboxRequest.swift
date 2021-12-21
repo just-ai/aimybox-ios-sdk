@@ -9,7 +9,7 @@ public
 class AimyboxRequest: Request {
 
     public
-    init(query: String, apiKey: String, unitKey: String, data: [String: Data]) {
+    init(query: String, apiKey: String, unitKey: String, data: [String: AnyEncodable]) {
         self.query = query
         self.apiKey = apiKey
         self.unitKey = unitKey
@@ -26,7 +26,7 @@ class AimyboxRequest: Request {
     var unitKey: String
 
     public
-    var data: [String: Data]
+    var data: [String: AnyEncodable]
 
 }
 
