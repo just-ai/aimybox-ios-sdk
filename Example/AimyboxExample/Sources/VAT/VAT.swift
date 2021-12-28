@@ -37,16 +37,16 @@ class VAT {
     }()
 
     private
-    let audioEngine: AVAudioEngine
+    var audioEngine: AVAudioEngine
 
     private
-    let inputNode: AVAudioInputNode
+    var inputNode: AVAudioInputNode
 
     private
-    let inputFormat: AVAudioFormat
+    var inputFormat: AVAudioFormat
 
     private
-    let converter: AVAudioConverter
+    var converter: AVAudioConverter
 
     private
     let keyPhraseHandler: (() -> Void)
@@ -55,7 +55,7 @@ class VAT {
     let streamBuffer = StreamBuffer()
 
     private
-    var isTtriggeredOnce = false
+    var isTriggeredOnce = false
 
     private
     var triggeredProba: Float = 0
@@ -78,9 +78,12 @@ class VAT {
     }
 
     func start() {
-        guard !audioEngine.isRunning else {
-            return
-        }
+        guard !audioEngine.isRunning else { return }
+
+        audioEngine = AVAudioEngine()
+        inputNode = audioEngine.inputNode
+        inputFormat = inputNode.inputFormat(forBus: 0)
+        converter = AVAudioConverter(from: inputFormat, to: Constants.modelInputFormat)!
 
         inputNode.installTap(onBus: 0, bufferSize: 2048, format: inputFormat) { [weak self] buffer, time in
             let data = buffer.data(using: self?.converter)
@@ -111,9 +114,9 @@ class VAT {
             )?.doubleValue ?? 0
         }
 
-        if speechProbability > Constants.vadThreshold || isTtriggeredOnce == true {
+        if speechProbability > Constants.vadThreshold || isTriggeredOnce == true {
             streamBuffer.add(chunks: currentChunk)
-            isTtriggeredOnce = true
+            isTriggeredOnce = true
         } else {
             streamBuffer.add(chunks: currentChunk)
             streamBuffer.clear()
@@ -130,16 +133,16 @@ class VAT {
                 )?.doubleValue ?? 0
             }
 
-            if keywordProbability > Constants.clfThreshold && !isTtriggeredOnce {
-                isTtriggeredOnce = true
+            if keywordProbability > Constants.clfThreshold && !isTriggeredOnce {
+                isTriggeredOnce = true
             } else if keywordProbability > Constants.clfPostThreshold {
-                isTtriggeredOnce = false
+                isTriggeredOnce = false
                 streamBuffer.clear(all: true)
                 DispatchQueue.main.async {
                     self.keyPhraseHandler()
                 }
             } else {
-                isTtriggeredOnce = false
+                isTriggeredOnce = false
             }
         }
     }
@@ -168,7 +171,7 @@ extension AVAudioPCMBuffer {
         assert(status != .error)
         assert(error == nil, error!.localizedDescription)
 
-        let pointer = UnsafeBufferPointer(start: modelBuffer.floatChannelData![0], count:Int(modelBuffer.frameLength))
+        let pointer = UnsafeBufferPointer(start: modelBuffer.floatChannelData![0], count: Int(modelBuffer.frameLength))
         return Array(pointer)
     }
 
@@ -192,7 +195,7 @@ extension VAT {
         static var clfPostThreshold = 0.4
 
         static var modelInputFormat: AVAudioFormat = {
-            guard let format = AVAudioFormat.init(
+            guard let format = AVAudioFormat(
                 commonFormat: .pcmFormatFloat32,
                 sampleRate: 16_000,
                 channels: 1,
