@@ -17,6 +17,11 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     public
     var audioFormat: AVAudioFormat = .defaultFormat
     /**
+    Debounce delay in seconds. Higher values results in higher lag between partial and final results.
+    */
+    public
+    var delayAfterSpeech: TimeInterval = 1.0
+    /**
     Used to notify *Aimybox* state machine about events.
     */
     public
@@ -69,6 +74,11 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
     private
     let normalizePartialData: Bool
+    /**
+    Debouncer used to control delay time of acquiring final results of speech recognizing process.
+    */
+    private
+    var recognitionDebouncer: DispatchDebouncer
 
     /**
     Init that uses provided params.
@@ -97,6 +107,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         self.audioEngine = AVAudioEngine()
         self.dataLoggingEnabled = dataLoggingEnabled
         self.normalizePartialData = normalizePartialData
+        recognitionDebouncer = DispatchDebouncer()
         super.init()
     }
 
@@ -233,12 +244,12 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
             audioEngine.prepare()
 
         } onResponse: { [weak self] response in
-            self?.proccessResults(response)
+            self?.processResults(response)
         }
     }
 
     private
-    func proccessResults(_ response: Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) {
+    func processResults(_ response: Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) {
         guard
             !wasSpeechStopped,
             let phrase = response.chunks.first,
@@ -259,8 +270,11 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
             return
         }
 
-        notify?(.success(.recognitionPartialResult(finalResult)))
-        notify?(.success(.recognitionResult(finalResult)))
+        recognitionDebouncer.debounce(delay: delayAfterSpeech) { [weak self] in
+            self?.notify?(.success(.recognitionPartialResult(finalResult)))
+            self?.notify?(.success(.recognitionResult(finalResult)))
+            self?.stopRecognition()
+        }
     }
 
     // MARK: - User Permissions

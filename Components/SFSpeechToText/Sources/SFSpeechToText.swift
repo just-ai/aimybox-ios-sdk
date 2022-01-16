@@ -17,10 +17,10 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
     public
     let locale: Locale
     /**
-    Debounce delay in seconds. HIgher values results in higher lag between partial and final results.
+    Debounce delay in seconds. Higher values results in higher lag between partial and final results.
     */
     public
-    var recognitionDebounceDelay: TimeInterval = 1.0
+    var delayAfterSpeech: TimeInterval = 1.0
     /**
     Used to notify *Aimybox* state machine about events.
     */
@@ -52,7 +52,7 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
     private
     var recognitionTask: SFSpeechRecognitionTask?
     /**
-    Debouncer used to controll delay time of aquiring final results of speech recognizing process.
+    Debouncer used to control delay time of acquiring final results of speech recognizing process.
     */
     private
     var recognitionDebouncer: DispatchDebouncer
@@ -160,7 +160,7 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
             }
 
             if let result = result {
-                self?.proccessResults(result: result)
+                self?.processResults(result: result)
             } else {
                 notify(.success(.emptyRecognitionResult))
             }
@@ -186,13 +186,13 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     private
-    func proccessResults(result: SFSpeechRecognitionResult) {
+    func processResults(result: SFSpeechRecognitionResult) {
 
         guard result.isFinal == true else {
             let partialResult = result.bestTranscription.formattedString
             notify?(.success(.recognitionPartialResult(partialResult)))
 
-            recognitionDebouncer.debounce(delay: recognitionDebounceDelay) { [weak self] in
+            recognitionDebouncer.debounce(delay: delayAfterSpeech) { [weak self] in
                 self?.operationQueue.addOperation {
                     self?.stopRecognition()
                 }
