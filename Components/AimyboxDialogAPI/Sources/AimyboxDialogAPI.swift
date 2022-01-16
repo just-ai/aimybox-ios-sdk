@@ -69,6 +69,10 @@ class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
 
         group.enter()
         URLSession.shared.dataTask(with: request) { data, response, error in
+            defer {
+                group.leave()
+            }
+
             if let error = error {
                 result = .failure(error)
                 return
@@ -91,8 +95,6 @@ class AimyboxDialogAPI: AimyboxComponent, DialogAPI {
             } catch {
                 result = .failure(error)
             }
-
-            group.leave()
         }.resume()
 
         group.wait()
