@@ -267,20 +267,17 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
     private
     func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
-
         var recordAllowed = false
         let permissionsDispatchGroup = DispatchGroup()
 
         permissionsDispatchGroup.enter()
-        DispatchQueue.main.async {
-            // Microphone recording permission
-            AVAudioSession.sharedInstance().requestRecordPermission { isAllowed in
-                recordAllowed = isAllowed
-                permissionsDispatchGroup.leave()
-            }
+        // Microphone recording permission
+        AVAudioSession.sharedInstance().requestRecordPermission { isAllowed in
+            recordAllowed = isAllowed
+            permissionsDispatchGroup.leave()
         }
 
-        permissionsDispatchGroup.notify(queue: .main) {
+        permissionsDispatchGroup.notify(queue: .global(qos: .userInteractive)) {
             if recordAllowed {
                 completion(.success(.recognitionPermissionsGranted))
             } else {

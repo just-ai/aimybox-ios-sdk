@@ -214,30 +214,25 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
 
     private
     func checkPermissions(_ completion: @escaping (SpeechToTextResult) -> Void ) {
-
         var recordAllowed = false
         var recognitionAllowed = false
         let permissionsDispatchGroup = DispatchGroup()
 
         permissionsDispatchGroup.enter()
-        DispatchQueue.main.async {
-            // Microphone recording permission
-            AVAudioSession.sharedInstance().requestRecordPermission { isAllowed in
-                recordAllowed = isAllowed
-                permissionsDispatchGroup.leave()
-            }
+        // Microphone recording permission
+        AVAudioSession.sharedInstance().requestRecordPermission { isAllowed in
+            recordAllowed = isAllowed
+            permissionsDispatchGroup.leave()
         }
 
         permissionsDispatchGroup.enter()
-        DispatchQueue.main.async {
-            // Speech recognizer permission
-            SFSpeechRecognizer.requestAuthorization { status in
-                recognitionAllowed = status == .authorized
-                permissionsDispatchGroup.leave()
-            }
+        // Speech recognizer permission
+        SFSpeechRecognizer.requestAuthorization { status in
+            recognitionAllowed = status == .authorized
+            permissionsDispatchGroup.leave()
         }
 
-        permissionsDispatchGroup.notify(queue: .main) {
+        permissionsDispatchGroup.notify(queue: .global(qos: .userInteractive)) {
             switch (recordAllowed, recognitionAllowed) {
             case (true, true):
                 completion(.success(.recognitionPermissionsGranted))
