@@ -195,9 +195,10 @@ class MainViewController: UIViewController {
     func initializeAimybox() {
         showLoading()
         let locale = Locale(identifier: "ru-RU")
+        
         guard
             let speechToText = SFSpeechToText(locale: locale),
-            let textToSpeech = AVTextToSpeech(locale: locale),
+            let textToSpeech = AimyvoiceTextToSpeech(apiKey: aimyvoiceApiKey),
             let aiUnitKey = UIDevice.current.identifierForVendor?.uuidString
         else {
             showError { [weak self] in
@@ -419,8 +420,11 @@ extension MainViewController: UITableViewDataSource {
 }
 
 let aiRoute = URL(
-    static: "https://bot.aimylogic.com/chatapi/webhook/zenbox/cVcGlsvz:800911b5cd537cba8c734e772f8c4a1ebd68fb1a"
+    static: "https://bot.jaicp.com/chatapi/webhook/zenbox/JdAFcjNb:13156b1d7f4adcc27196cb87e5a987362510f7d2"
 )
+
+private
+let aimyvoiceApiKey = "dG43pbulX9RFNi6rHH2aI5oArnXzl2Hf2oUHwo0V69SU5PJcSObkfuTzh6lEXnvILJA14caXVpWbBJSJGhLJqw=="
 
 private
 let errorButtonTitle = "Хорошо"
