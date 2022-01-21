@@ -285,10 +285,12 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         let permissionsDispatchGroup = DispatchGroup()
 
         permissionsDispatchGroup.enter()
-        // Microphone recording permission
-        AVAudioSession.sharedInstance().requestRecordPermission { isAllowed in
-            recordAllowed = isAllowed
-            permissionsDispatchGroup.leave()
+        DispatchQueue.main.async {
+            // Microphone recording permission
+            AVAudioSession.sharedInstance().requestRecordPermission { isAllowed in
+                recordAllowed = isAllowed
+                permissionsDispatchGroup.leave()
+            }
         }
 
         permissionsDispatchGroup.notify(queue: .global(qos: .userInteractive)) {

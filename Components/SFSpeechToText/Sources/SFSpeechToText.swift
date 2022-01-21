@@ -219,17 +219,21 @@ class SFSpeechToText: AimyboxComponent, SpeechToText {
         let permissionsDispatchGroup = DispatchGroup()
 
         permissionsDispatchGroup.enter()
-        // Microphone recording permission
-        AVAudioSession.sharedInstance().requestRecordPermission { isAllowed in
-            recordAllowed = isAllowed
-            permissionsDispatchGroup.leave()
+        DispatchQueue.main.async {
+            // Microphone recording permission
+            AVAudioSession.sharedInstance().requestRecordPermission { isAllowed in
+                recordAllowed = isAllowed
+                permissionsDispatchGroup.leave()
+            }
         }
 
         permissionsDispatchGroup.enter()
-        // Speech recognizer permission
-        SFSpeechRecognizer.requestAuthorization { status in
-            recognitionAllowed = status == .authorized
-            permissionsDispatchGroup.leave()
+        DispatchQueue.main.async {
+            // Speech recognizer permission
+            SFSpeechRecognizer.requestAuthorization { status in
+                recognitionAllowed = status == .authorized
+                permissionsDispatchGroup.leave()
+            }
         }
 
         permissionsDispatchGroup.notify(queue: .global(qos: .userInteractive)) {
