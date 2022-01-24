@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
     var aimybox: Aimybox?
 
     private
-    var player: AVPlayer?
+    var player: AVAudioPlayer?
 
     private
     var rows: [Reply] = [] {
@@ -239,7 +239,7 @@ class MainViewController: UIViewController {
 
     private
     func playSound(type: SoundType) {
-        player = AVPlayer(url: type.url)
+        player = try? AVAudioPlayer(contentsOf: type.url)
         player?.play()
     }
 
