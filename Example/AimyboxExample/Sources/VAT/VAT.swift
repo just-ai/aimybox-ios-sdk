@@ -116,7 +116,6 @@ class VAT {
 
         if speechProbability > Constants.vadThreshold || isTriggeredOnce == true {
             streamBuffer.add(chunks: currentChunk)
-            isTriggeredOnce = true
         } else {
             streamBuffer.add(chunks: currentChunk)
             streamBuffer.clear()
