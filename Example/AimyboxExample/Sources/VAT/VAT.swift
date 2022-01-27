@@ -95,6 +95,7 @@ class VAT {
                 self?.processStream(currentChunk: Array(chunk))
             }
         }
+        streamBuffer.clear(all: true)
         try? audioEngine.start()
     }
 
@@ -185,13 +186,13 @@ extension VAT {
 
         static var chunkLength = 4_000
 
-        static var minPredictionSamples = 32_000
+        static var minPredictionSamples = 12_000
 
         static var paddingPredictionSamples = 2_000
 
         static var clfThreshold = 0.66
 
-        static var clfPostThreshold = 0.4
+        static var clfPostThreshold = 0.5
 
         static var modelInputFormat: AVAudioFormat = {
             guard let format = AVAudioFormat(
