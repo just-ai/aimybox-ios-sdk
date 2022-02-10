@@ -45,6 +45,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         language: languageCode,
         host: host,
         port: port,
+        config: config,
         dataLoggingEnabled: dataLoggingEnabled,
         normalizePartialData: normalizePartialData,
         operation: operationQueue
@@ -68,6 +69,9 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
     private
     let port: Int
+    
+    private
+    let config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig?
 
     private
     let dataLoggingEnabled: Bool
@@ -90,6 +94,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         language code: String = "ru-RU",
         host: String = "stt.api.cloud.yandex.net",
         port: Int = 443,
+        config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig? = nil,
         dataLoggingEnabled: Bool = false,
         normalizePartialData: Bool = false
     ) {
@@ -105,6 +110,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         self.host = host
         self.port = port
         self.audioEngine = AVAudioEngine()
+        self.config = config
         self.dataLoggingEnabled = dataLoggingEnabled
         self.normalizePartialData = normalizePartialData
         recognitionDebouncer = DispatchDebouncer()
