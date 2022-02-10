@@ -45,6 +45,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         language: languageCode,
         host: host,
         port: port,
+        config: config,
         dataLoggingEnabled: dataLoggingEnabled,
         normalizePartialData: normalizePartialData,
         operation: operationQueue
