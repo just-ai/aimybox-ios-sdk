@@ -8,7 +8,7 @@
 import Foundation
 
 public
-protocol DialogAPIDelegate: class {
+protocol DialogAPIDelegate: AnyObject {
 
     // MARK: - Lifecycle
     /**

@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+public struct PinningConfig {
+    
+    var host: String
+    var port: Int = 443
+    var pin: String
+     
+}

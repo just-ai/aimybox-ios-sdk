@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+public
+enum SampleRate : Int64{
+    
+    case SampleRate48KHz = 48_000
+    case SampleRate16Khz = 16_000
+    case SampleRate8Khz = 8_000
+    
+}

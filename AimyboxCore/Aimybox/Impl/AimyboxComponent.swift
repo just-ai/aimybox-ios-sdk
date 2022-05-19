@@ -42,6 +42,7 @@ class AimyboxComponent {
         }
     }
 
+    public
     func prepareAudioEngineForMultiRoute(_ completion: (Bool) -> Void) {
         do {
             let audioSession = AVAudioSession.sharedInstance()

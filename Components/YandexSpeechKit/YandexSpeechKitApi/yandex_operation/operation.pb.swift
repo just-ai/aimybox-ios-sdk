@@ -21,64 +21,64 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// An Operation resource. For more information, see [Operation](/docs/api-design-guide/concepts/operation).
-public struct Yandex_Cloud_Operation_Operation {
+struct Yandex_Cloud_Operation_Operation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// ID of the operation.
-  public var id: String = String()
+  var id: String = String()
 
   /// Description of the operation. 0-256 characters long.
-  public var description_p: String = String()
+  var description_p: String = String()
 
   /// Creation timestamp.
-  public var createdAt: SwiftProtobuf.Google_Protobuf_Timestamp {
+  var createdAt: SwiftProtobuf.Google_Protobuf_Timestamp {
     get {return _createdAt ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
     set {_createdAt = newValue}
   }
   /// Returns true if `createdAt` has been explicitly set.
-  public var hasCreatedAt: Bool {return self._createdAt != nil}
+  var hasCreatedAt: Bool {return self._createdAt != nil}
   /// Clears the value of `createdAt`. Subsequent reads from it will return its default value.
-  public mutating func clearCreatedAt() {self._createdAt = nil}
+  mutating func clearCreatedAt() {self._createdAt = nil}
 
   /// ID of the user or service account who initiated the operation.
-  public var createdBy: String = String()
+  var createdBy: String = String()
 
   /// The time when the Operation resource was last modified.
-  public var modifiedAt: SwiftProtobuf.Google_Protobuf_Timestamp {
+  var modifiedAt: SwiftProtobuf.Google_Protobuf_Timestamp {
     get {return _modifiedAt ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
     set {_modifiedAt = newValue}
   }
   /// Returns true if `modifiedAt` has been explicitly set.
-  public var hasModifiedAt: Bool {return self._modifiedAt != nil}
+  var hasModifiedAt: Bool {return self._modifiedAt != nil}
   /// Clears the value of `modifiedAt`. Subsequent reads from it will return its default value.
-  public mutating func clearModifiedAt() {self._modifiedAt = nil}
+  mutating func clearModifiedAt() {self._modifiedAt = nil}
 
   /// If the value is `false`, it means the operation is still in progress.
   /// If `true`, the operation is completed, and either `error` or `response` is available.
-  public var done: Bool = false
+  var done: Bool = false
 
   /// Service-specific metadata associated with the operation.
   /// It typically contains the ID of the target resource that the operation is performed on.
   /// Any method that returns a long-running operation should document the metadata type, if any.
-  public var metadata: SwiftProtobuf.Google_Protobuf_Any {
+  var metadata: SwiftProtobuf.Google_Protobuf_Any {
     get {return _metadata ?? SwiftProtobuf.Google_Protobuf_Any()}
     set {_metadata = newValue}
   }
   /// Returns true if `metadata` has been explicitly set.
-  public var hasMetadata: Bool {return self._metadata != nil}
+  var hasMetadata: Bool {return self._metadata != nil}
   /// Clears the value of `metadata`. Subsequent reads from it will return its default value.
-  public mutating func clearMetadata() {self._metadata = nil}
+  mutating func clearMetadata() {self._metadata = nil}
 
   /// The operation result.
   /// If `done == false` and there was no failure detected, neither `error` nor `response` is set.
   /// If `done == false` and there was a failure detected, `error` is set.
   /// If `done == true`, exactly one of `error` or `response` is set.
-  public var result: Yandex_Cloud_Operation_Operation.OneOf_Result? = nil
+  var result: Yandex_Cloud_Operation_Operation.OneOf_Result? = nil
 
   /// The error result of the operation in case of failure or cancellation.
-  public var error: Google_Rpc_Status {
+  var error: Google_Rpc_Status {
     get {
       if case .error(let v)? = result {return v}
       return Google_Rpc_Status()
@@ -92,7 +92,7 @@ public struct Yandex_Cloud_Operation_Operation {
   /// If the original method is the standard Create/Update,
   /// the response should be the target resource of the operation.
   /// Any method that returns a long-running operation should document the response type, if any.
-  public var response: SwiftProtobuf.Google_Protobuf_Any {
+  var response: SwiftProtobuf.Google_Protobuf_Any {
     get {
       if case .response(let v)? = result {return v}
       return SwiftProtobuf.Google_Protobuf_Any()
@@ -100,13 +100,13 @@ public struct Yandex_Cloud_Operation_Operation {
     set {result = .response(newValue)}
   }
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// The operation result.
   /// If `done == false` and there was no failure detected, neither `error` nor `response` is set.
   /// If `done == false` and there was a failure detected, `error` is set.
   /// If `done == true`, exactly one of `error` or `response` is set.
-  public enum OneOf_Result: Equatable {
+  enum OneOf_Result: Equatable {
     /// The error result of the operation in case of failure or cancellation.
     case error(Google_Rpc_Status)
     /// The normal response of the operation in case of success.
@@ -118,7 +118,7 @@ public struct Yandex_Cloud_Operation_Operation {
     case response(SwiftProtobuf.Google_Protobuf_Any)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Yandex_Cloud_Operation_Operation.OneOf_Result, rhs: Yandex_Cloud_Operation_Operation.OneOf_Result) -> Bool {
+    static func ==(lhs: Yandex_Cloud_Operation_Operation.OneOf_Result, rhs: Yandex_Cloud_Operation_Operation.OneOf_Result) -> Bool {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
@@ -137,20 +137,25 @@ public struct Yandex_Cloud_Operation_Operation {
   #endif
   }
 
-  public init() {}
+  init() {}
 
   fileprivate var _createdAt: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
   fileprivate var _modifiedAt: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
   fileprivate var _metadata: SwiftProtobuf.Google_Protobuf_Any? = nil
 }
 
+#if swift(>=5.5) && canImport(_Concurrency)
+extension Yandex_Cloud_Operation_Operation: @unchecked Sendable {}
+extension Yandex_Cloud_Operation_Operation.OneOf_Result: @unchecked Sendable {}
+#endif  // swift(>=5.5) && canImport(_Concurrency)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "yandex.cloud.operation"
 
 extension Yandex_Cloud_Operation_Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Operation"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  static let protoMessageName: String = _protobuf_package + ".Operation"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "description"),
     3: .standard(proto: "created_at"),
@@ -162,7 +167,7 @@ extension Yandex_Cloud_Operation_Operation: SwiftProtobuf.Message, SwiftProtobuf
     9: .same(proto: "response"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -206,31 +211,32 @@ extension Yandex_Cloud_Operation_Operation: SwiftProtobuf.Message, SwiftProtobuf
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
     if !self.id.isEmpty {
       try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
     }
     if !self.description_p.isEmpty {
       try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 2)
     }
-    if let v = self._createdAt {
+    try { if let v = self._createdAt {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-    }
+    } }()
     if !self.createdBy.isEmpty {
       try visitor.visitSingularStringField(value: self.createdBy, fieldNumber: 4)
     }
-    if let v = self._modifiedAt {
+    try { if let v = self._modifiedAt {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-    }
+    } }()
     if self.done != false {
       try visitor.visitSingularBoolField(value: self.done, fieldNumber: 6)
     }
-    if let v = self._metadata {
+    try { if let v = self._metadata {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-    }
-    // The use of inline closures is to circumvent an issue where the compiler
-    // allocates stack space for every case branch when no optimizations are
-    // enabled. https://github.com/apple/swift-protobuf/issues/1034
+    } }()
     switch self.result {
     case .error?: try {
       guard case .error(let v)? = self.result else { preconditionFailure() }
@@ -245,7 +251,7 @@ extension Yandex_Cloud_Operation_Operation: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Yandex_Cloud_Operation_Operation, rhs: Yandex_Cloud_Operation_Operation) -> Bool {
+  static func ==(lhs: Yandex_Cloud_Operation_Operation, rhs: Yandex_Cloud_Operation_Operation) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.description_p != rhs.description_p {return false}
     if lhs._createdAt != rhs._createdAt {return false}

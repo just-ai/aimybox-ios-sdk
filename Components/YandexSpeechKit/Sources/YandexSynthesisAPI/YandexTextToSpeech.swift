@@ -7,6 +7,8 @@
 //
 
 import AVFoundation
+import AimyboxCore
+import Utils
 
 public
 class YandexTextToSpeech: AimyboxComponent, TextToSpeech {

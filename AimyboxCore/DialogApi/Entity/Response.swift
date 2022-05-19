@@ -12,7 +12,7 @@ Response model, which is used across the library.
 You can parse additional data from `json` in your `CustomSkill`.
 */
 public
-protocol Response: class {
+protocol Response: AnyObject {
     /**
     User's original query to your agent.
     */

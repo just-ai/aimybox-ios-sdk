@@ -38,8 +38,24 @@
 		03172B2F260E72DB004608F2 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03172B15260E72DB004608F2 /* SuggestionView.swift */; };
 		03FF16ED263850CF0008BA69 /* sound_out.wav in Resources */ = {isa = PBXBuildFile; fileRef = 03FF16EB263850CF0008BA69 /* sound_out.wav */; };
 		03FF16EE263850CF0008BA69 /* sound_in.wav in Resources */ = {isa = PBXBuildFile; fileRef = 03FF16EC263850CF0008BA69 /* sound_in.wav */; };
-		9D88A4B57DA462868DCED73F /* Pods_AimyboxExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */; };
+		78100921281822BD0092B259 /* Pods-AimyboxExample.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */; };
+		78100922281825AD0092B259 /* Pods_AimyboxExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */; };
+		78100923281825AD0092B259 /* Pods_AimyboxExample.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		78100924281825AD0092B259 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				78100923281825AD0092B259 /* Pods_AimyboxExample.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		031729D2260E1CF1004608F2 /* AimyboxExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimyboxExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D88A4B57DA462868DCED73F /* Pods_AimyboxExample.framework in Frameworks */,
+				78100922281825AD0092B259 /* Pods_AimyboxExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +251,7 @@
 				031729CF260E1CF1004608F2 /* Frameworks */,
 				031729D0260E1CF1004608F2 /* Resources */,
 				72B40B4A297AFD59251E442D /* [CP] Embed Pods Frameworks */,
+				78100924281825AD0092B259 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -284,6 +301,7 @@
 			files = (
 				031729E2260E1CF3004608F2 /* LaunchScreen.storyboard in Resources */,
 				03FF16EE263850CF0008BA69 /* sound_in.wav in Resources */,
+				78100921281822BD0092B259 /* Pods-AimyboxExample.debug.xcconfig in Resources */,
 				03FF16ED263850CF0008BA69 /* sound_out.wav in Resources */,
 				03172AE6260E6C05004608F2 /* swiftlint.yml in Resources */,
 				031729DF260E1CF3004608F2 /* Assets.xcassets in Resources */,
@@ -524,7 +542,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8298429F2B;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "AimyboxExample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -546,7 +564,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8298429F2B;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "AimyboxExample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
