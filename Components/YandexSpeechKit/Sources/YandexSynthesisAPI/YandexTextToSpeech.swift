@@ -8,7 +8,6 @@
 
 import AVFoundation
 import AimyboxCore
-import Utils
 
 public
 class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
@@ -27,9 +26,11 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     lazy var synthesisAPI = YandexSynthesisAPI(
         iAMToken: token,
         folderId: folderID,
-        api: address,
+        host: host,
+        port: port,
         operation: operationQueue,
-        dataLoggingEnabled: dataLoggingEnabled
+        dataLoggingEnabled: dataLoggingEnabled,
+        normalizePartialData: normalizePartialData
     )
     /**
     */
@@ -51,10 +52,16 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     let folderID: String
 
     private
-    let address: URL
+    let host: String
+
+    private
+    let port: Int
 
     private
     let dataLoggingEnabled: Bool
+
+    private
+    let normalizePartialData: Bool
 
     public
     init?(
@@ -63,7 +70,9 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         language code: String = "ru-RU",
         config: YandexSynthesisConfig = YandexSynthesisConfig(),
         dataLoggingEnabled: Bool = false,
-        api address: URL = URL(static: "https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize")
+        normalizePartialData: Bool = false,
+        host: String = "tts.api.cloud.yandex.net",
+        port: Int = 443
     ) {
         self.synthesisConfig = config
         self.languageCode = code
@@ -74,7 +83,9 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         self.token = token
         self.folderID = folderID
         self.dataLoggingEnabled = dataLoggingEnabled
-        self.address = address
+        self.normalizePartialData = normalizePartialData
+        self.host = host
+        self.port = port
         super.init()
     }
 
@@ -153,6 +164,10 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             if let url = $0, self?.isCancelled == false {
                 self?.notify?(.success(.speechDataReceived(textSpeech)))
                 self?.synthesize(textSpeech, using: url)
+            } else if self?.isCancelled == true {
+                self?.notify?(.failure(.speechSequenceCancelled([textSpeech])))
+            } else {
+                self?.notify?(.failure(.speakersUnavailable))
             }
             synthesisGroup.leave()
         }

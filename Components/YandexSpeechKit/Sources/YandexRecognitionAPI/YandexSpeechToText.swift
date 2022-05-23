@@ -58,7 +58,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     /**
     */
     private
-    lazy var recognitionAPI = YandexRecognitionAPI(
+    lazy var recognitionAPI = YandexRecognitionAPIV3(
         iAM: iamToken,
         folderID: folderID,
         language: languageCode,
@@ -94,7 +94,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         tokenProvider: IAMTokenProvider,
         folderID: String,
         language code: String = "ru-RU",
-        config : YandexSpeechToText.Config,
+        config : YandexSpeechToText.Config = YandexSpeechToText.Config(),
         dataLoggingEnabled: Bool = false
     ) {
         let token = tokenProvider.token()

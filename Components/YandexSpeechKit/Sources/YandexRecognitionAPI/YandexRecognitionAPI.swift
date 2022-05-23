@@ -15,11 +15,10 @@ typealias Request = Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest
 typealias Response = Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse
 typealias StreamingRecognizeCall = BidirectionalStreamingCall
 
+
 final
 class YandexRecognitionAPI {
     
-    
-
     private
     let dataLoggingEnabled: Bool
 
@@ -42,13 +41,10 @@ class YandexRecognitionAPI {
     var channel: GRPCChannel?
 
     private
-    var client: Yandex_Cloud_Ai_Stt_V2_SttServiceClient?
+    var sttServiceClient: Yandex_Cloud_Ai_Stt_V2_SttServiceClient?
     
     private
     var callOptions : CallOptions
-
-//    private
-//    var stream: Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?
 
     init(
         iAM token: String,
@@ -76,129 +72,91 @@ class YandexRecognitionAPI {
         if let pinningConfig = config.pinningConfig {
             self.channel = PinningChannelBuilder().createPinningChannel(with: pinningConfig, group: group)
         } else {
-            do{
-            self.channel = try GRPCChannelPool.with(
-                target: .host(config.apiUrl, port:config.apiPort),
-              transportSecurity: .plaintext,
-              eventLoopGroup: group
-            )
-            } catch{
-                
-            }
+//            do{
+//            self.channel = try GRPCChannelPool.with(
+//                target: .host(config.apiUrl, port:config.apiPort),
+//              transportSecurity: .plaintext,
+//              eventLoopGroup: group
+//            )
+//            } catch{
+//
+//            }
+            ClientConnection
+                .secure(group: group)
+                .withBackgroundActivityLogger(logger)
+                .connect(host: config.apiUrl, port:config.apiPort)
         }
         
-    
-        self.callOptions = CallOptions(customMetadata: [
-          "authorization": "Bearer \(iAMToken)",
-          "x-data-logging-enabled" : "\(config.enableDataLogging)",
-          "x-normalize-partials" : "\(config.normalizePartialData)"
-        ])
-        
+        let callOptions = CallOptions(
+            customMetadata: [
+                "authorization": "Bearer \(iAMToken)",
+                xDataLoggingEnabledKey: dataLoggingEnabled ? "true" : "false",
+                normalizePartialDataKey: normalizePartialData ? "true" : "false",
+            ],
+            logger: logger
+        )
+
         recognitionConfig = Yandex_Cloud_Ai_Stt_V2_RecognitionConfig.setConfig(folderID: folderID, code, config)
+        
+        self.sttServiceClient = SttServiceClient(channel: channel, defaultCallOptions: callOptions)
 
     }
     
-    public
-    func openStream(
-            onResponse: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) -> Void,
-            error handler: @escaping (Error) -> Void) ->  StreamingRecognizeCall<Request, Response>?{
-                
-        if let initedChannel = self.channel {
-            client = Yandex_Cloud_Ai_Stt_V2_SttServiceClient(channel: initedChannel , defaultCallOptions: self.callOptions)
-        } else {
-            //handler()
-        }
-        
-        let call = client?.streamingRecognize{ response in
-            onResponse(response)
-        }
-         
-        let request = Request.with{
-                $0.config = recognitionConfig
-        }
-        call?.sendMessage(request, promise: nil)
-        
-        return call
-    }
-
 //    public
 //    func openStream(
-//        onOpen: @escaping (Yandex_Cloud_Ai_Stt_V2_SttServiceStreamingRecognizeCall?) -> Void,
-//        onResponse: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) -> Void,
-//        error handler: @escaping (Error) -> Void,
-//        completion: @escaping () -> Void
-//    ) {
+//            onResponse: @escaping (Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) -> Void,
+//            error handler: @escaping (Error) -> Void) ->  StreamingRecognizeCall<Request, Response>?{
 //
-//
-//        do {
-//
-//
-//
-//            try client?.metadata.add(key: "authorization", value: "Bearer \(iAMToken)")
-//            if dataLoggingEnabled {
-//                try client?.metadata.add(key: xDataLoggingEnabledKey, value: "true")
-//            }
-//
-//            stream = try client?.streamingRecognize { [weak self] result in
-//                self?.operationQueue.addOperation {
-//                    result.success
-//                        ? completion()
-//                        : handler(NSError(domain: result.description, code: result.statusCode.rawValue, userInfo: nil))
-//                }
-//            }
-//
-//            let streamingRecognitionRequest = Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with {
-//                $0.config = recognitionConfig
-//            }
-//            try stream?.send(streamingRecognitionRequest) { _ in }
-//
-//            onOpen(stream)
-//
-//            operationQueue.addOperation { [weak self] in
-//                try? self?.receiveMessages(on: onResponse, error: handler, stream: self?.stream)
-//            }
-//
-//        } catch {
-//            handler(error)
+//        if let initedChannel = self.channel {
+//            client = Yandex_Cloud_Ai_Stt_V2_SttServiceClient(channel: initedChannel , defaultCallOptions: self.callOptions)
+//        } else {
+//            //handler()
 //        }
+//
+//        let call = client?.streamingRecognize{ response in
+//            onResponse(response)
+//        }
+//
+//        let request = Request.with{
+//                $0.config = recognitionConfig
+//        }
+//        call?.sendMessage(request, promise: nil)
+//
+//        return call
 //    }
+
+    public
+    func openStream(
+        onOpen: @escaping (StreamingCall?) -> Void,
+        onResponse: @escaping (Response) -> Void
+    ) {
+        guard streamingCall == nil else {
+            return
+        }
+        streamingCall = sttServiceClient.streamingRecognize { [weak self] response in
+            self?.operationQueue.addOperation {
+                onResponse(response)
+            }
+        }
+
+        let request = Request.with {
+            $0.config = config
+        }
+        streamingCall?.sendMessage(request, promise: nil)
+        onOpen(streamingCall)
+    }
 
     public
     func closeStream() {
-//        try? client?.closeSend { [weak self] in
-//            self?.stream = nil
-//        }
-        client = nil
+        streamingCall?.cancel(promise: nil)
+        streamingCall?.sendEnd()
+        streamingCall = nil
     }
 
-//    private
-//    func receiveMessages(
-//        on response: @escaping (Response) -> Void,
-//        error handler: @escaping (Error) -> Void,
-//        stream: StreamingRecognizeCall<Request, Response>?
-//    ) throws {
-//        try stream?.receive { [weak self, weak stream] result in
-//            self?.operationQueue.addOperation {
-//                switch result {
-//                case .result(let object) where object != nil:
-//                    // swiftlint:disable:next force_unwrapping
-//                    response(object!)
-//
-//                case .error(let error):
-//                    handler(error)
-//
-//                default:
-//                    break
-//                }
-//
-//                self?.operationQueue.addOperation { [weak self] in
-//                    try? self?.receiveMessages(on: response, error: handler, stream: stream)
-//                }
-//            }
-//        }
-//    }
-
 }
+
+
+
 
 extension Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
 
@@ -221,4 +179,15 @@ extension Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
     }
 }
 
-let xDataLoggingEnabledKey = "x-data-logging-enabled"
+
+//let xDataLoggingEnabledKey = "x-data-logging-enabled"
+//let normalizePartialDataKey = "x-normalize-partials"
+
+private
+let uuid: String = {
+    guard let uuid = UIDevice.current.identifierForVendor?.uuidString else {
+        fatalError()
+    }
+    return uuid
+}()
+

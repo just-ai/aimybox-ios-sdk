@@ -14,7 +14,6 @@
 		554D7AE723D9B9A800E90C7E /* IAMTokenGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554D7AE123D9B8D400E90C7E /* IAMTokenGenerator.swift */; };
 		557D2F30238C2B17007FC257 /* AimyboxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D2F2F238C2B17007FC257 /* AimyboxState.swift */; };
 		558FC15223AD254300ECB126 /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
-		55976F6A23DF283800EC6812 /* YandexRecognitionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55976F6823DF283200EC6812 /* YandexRecognitionAPI.swift */; };
 		55976F6D23DF298900EC6812 /* stt_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55976F6B23DF298900EC6812 /* stt_service.grpc.swift */; };
 		55976F6E23DF298900EC6812 /* stt_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55976F6C23DF298900EC6812 /* stt_service.pb.swift */; };
 		55976F7123DF3E6400EC6812 /* operation.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55976F6F23DF3E6400EC6812 /* operation.pb.swift */; };
@@ -33,6 +32,9 @@
 		55ED5F0323AD1011007F4D01 /* AimyboxButtonsReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F0223AD1010007F4D01 /* AimyboxButtonsReply.swift */; };
 		780598E5282C16DD00703691 /* PinningConfing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780598E4282C16DD00703691 /* PinningConfing.swift */; };
 		780598E7282C1C6000703691 /* PinningChannelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780598E6282C1C6000703691 /* PinningChannelBuilder.swift */; };
+		78DC90632837D5A3007700C4 /* tts.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90602837D5A2007700C4 /* tts.pb.swift */; };
+		78DC90642837D5A3007700C4 /* tts_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90612837D5A2007700C4 /* tts_service.grpc.swift */; };
+		78DC90652837D5A3007700C4 /* tts_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90622837D5A2007700C4 /* tts_service.pb.swift */; };
 		78E023242833C3A30024439D /* SampleRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E023232833C3A30024439D /* SampleRate.swift */; };
 		78F1B67228353A38000B31BE /* AimyboxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97233FD823898F2C0050E37F /* AimyboxCore.framework */; };
 		78F1B67328353A4A000B31BE /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
@@ -290,6 +292,10 @@
 		6A8AA06F95AB334B901796B9 /* Pods-YandexSpeechKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexSpeechKit.release.xcconfig"; path = "Target Support Files/Pods-YandexSpeechKit/Pods-YandexSpeechKit.release.xcconfig"; sourceTree = "<group>"; };
 		780598E4282C16DD00703691 /* PinningConfing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinningConfing.swift; sourceTree = "<group>"; };
 		780598E6282C1C6000703691 /* PinningChannelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinningChannelBuilder.swift; sourceTree = "<group>"; };
+		78DC905E2837CEC5007700C4 /* YandexRecognitionAPIV3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YandexRecognitionAPIV3.swift; sourceTree = "<group>"; };
+		78DC90602837D5A2007700C4 /* tts.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tts.pb.swift; sourceTree = "<group>"; };
+		78DC90612837D5A2007700C4 /* tts_service.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tts_service.grpc.swift; sourceTree = "<group>"; };
+		78DC90622837D5A2007700C4 /* tts_service.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tts_service.pb.swift; sourceTree = "<group>"; };
 		78E023232833C3A30024439D /* SampleRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleRate.swift; sourceTree = "<group>"; };
 		7FBB02CC69F1B0073A580A77 /* Pods_exampleasdf_YandexSpeechKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exampleasdf_YandexSpeechKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9709BCDE23AB8761005C47C2 /* FakeTextReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTextReply.swift; sourceTree = "<group>"; };
@@ -495,6 +501,7 @@
 		55976F6723DF281000EC6812 /* YandexRecognitionAPI */ = {
 			isa = PBXGroup;
 			children = (
+				78DC905E2837CEC5007700C4 /* YandexRecognitionAPIV3.swift */,
 				55976F6823DF283200EC6812 /* YandexRecognitionAPI.swift */,
 				5527AA9B23E06E7100153999 /* YandexSpeechToText.swift */,
 			);
@@ -539,6 +546,7 @@
 		780598E2282C160900703691 /* YandexSpeechKitApi */ = {
 			isa = PBXGroup;
 			children = (
+				78DC90662837D5B8007700C4 /* yandex_tts */,
 				55976F7523DF419000EC6812 /* yandex_operation */,
 				55976F7623DF41A000EC6812 /* yandex_stt */,
 				55976F7423DF417C00EC6812 /* google_rpc */,
@@ -555,6 +563,16 @@
 				780598E6282C1C6000703691 /* PinningChannelBuilder.swift */,
 			);
 			path = Security;
+			sourceTree = "<group>";
+		};
+		78DC90662837D5B8007700C4 /* yandex_tts */ = {
+			isa = PBXGroup;
+			children = (
+				78DC90612837D5A2007700C4 /* tts_service.grpc.swift */,
+				78DC90622837D5A2007700C4 /* tts_service.pb.swift */,
+				78DC90602837D5A2007700C4 /* tts.pb.swift */,
+			);
+			name = yandex_tts;
 			sourceTree = "<group>";
 		};
 		97233FCE23898F2C0050E37F = {
@@ -1299,6 +1317,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DC90632837D5A3007700C4 /* tts.pb.swift in Sources */,
+				78DC90642837D5A3007700C4 /* tts_service.grpc.swift in Sources */,
+				78DC90652837D5A3007700C4 /* tts_service.pb.swift in Sources */,
 				55E9F1FA23E2E9BA0053DEE1 /* YandexSynthesisAPI.swift in Sources */,
 				554D7AE723D9B9A800E90C7E /* IAMTokenGenerator.swift in Sources */,
 				55976F7123DF3E6400EC6812 /* operation.pb.swift in Sources */,
@@ -1311,7 +1332,6 @@
 				55E9F1FC23E2E9D20053DEE1 /* YandexTextToSpeech.swift in Sources */,
 				780598E5282C16DD00703691 /* PinningConfing.swift in Sources */,
 				5527AA9C23E06E7100153999 /* YandexSpeechToText.swift in Sources */,
-				55976F6A23DF283800EC6812 /* YandexRecognitionAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
