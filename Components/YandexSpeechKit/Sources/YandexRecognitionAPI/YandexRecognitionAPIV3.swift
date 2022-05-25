@@ -9,6 +9,9 @@
 import GRPC
 import Logging
 import SwiftProtobuf
+import NIO
+import NIOCore
+import NIOSSL
 
 final
 class YandexRecognitionAPIV3 {

@@ -1,13 +1,20 @@
 PODS:
   - _NIODataStructures (2.40.0)
+  - Aimybox/AimyboxDialogAPI (0.0.26):
+    - Aimybox/Core
+    - Aimybox/Utils
   - Aimybox/Core (0.0.26)
   - Aimybox/Utils (0.0.26)
   - Aimybox/YandexSpeechKit (0.0.26):
     - Aimybox/Core
     - Aimybox/Utils
-    - gRPC-Swift (= 1.2.0)
-    - SwiftProtobuf (= 1.17.0)
-  - CGRPCZlib (1.2.0)
+    - gRPC-Swift
+    - SwiftNIO
+    - SwiftNIOCore
+    - SwiftNIOSSL
+    - SwiftNIOTLS
+    - SwiftProtobuf
+  - CGRPCZlib (1.7.3)
   - CNIOAtomics (2.40.0)
   - CNIOBoringSSL (2.19.0)
   - CNIOBoringSSLShims (2.19.0):
@@ -16,14 +23,14 @@ PODS:
   - CNIOHTTPParser (2.40.0)
   - CNIOLinux (2.40.0)
   - CNIOWindows (2.40.0)
-  - gRPC-Swift (1.2.0):
-    - CGRPCZlib (= 1.2.0)
+  - gRPC-Swift (1.7.3):
+    - CGRPCZlib (= 1.7.3)
     - Logging (< 2.0.0, >= 1.4.0)
-    - SwiftNIO (< 3.0.0, >= 2.28.0)
+    - SwiftNIO (< 3.0.0, >= 2.32.0)
     - SwiftNIOExtras (< 2.0.0, >= 1.4.0)
-    - SwiftNIOHTTP2 (< 2.0.0, >= 1.16.1)
+    - SwiftNIOHTTP2 (< 2.0.0, >= 1.19.2)
     - SwiftNIOSSL (< 3.0.0, >= 2.14.0)
-    - SwiftNIOTransportServices (< 2.0.0, >= 1.6.0)
+    - SwiftNIOTransportServices (< 2.0.0, >= 1.11.1)
     - SwiftProtobuf (< 2.0.0, >= 1.9.0)
   - Logging (1.4.0)
   - SDWebImage (5.12.5):
@@ -160,12 +167,13 @@ PODS:
     - SwiftNIOFoundationCompat (< 3, >= 2.32.0)
     - SwiftNIOPosix (< 3, >= 2.32.0)
     - SwiftNIOTLS (< 3, >= 2.32.0)
-  - SwiftProtobuf (1.17.0)
+  - SwiftProtobuf (1.19.0)
 
 DEPENDENCIES:
-  - Aimybox/Core (from `~/Documents/Projects/aimybox-ios-sdk`)
-  - Aimybox/Utils (from `~/Documents/Projects/aimybox-ios-sdk`)
-  - Aimybox/YandexSpeechKit (from `~/Documents/Projects/aimybox-ios-sdk`)
+  - Aimybox/AimyboxDialogAPI (from `../`)
+  - Aimybox/Core (from `../`)
+  - Aimybox/Utils (from `../`)
+  - Aimybox/YandexSpeechKit (from `../`)
   - SDWebImage
   - SwiftLint
 
@@ -201,12 +209,12 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   Aimybox:
-    :path: "~/Documents/Projects/aimybox-ios-sdk"
+    :path: "../"
 
 SPEC CHECKSUMS:
   _NIODataStructures: 3d45d8e70a1d17a15b1dc59d102c63dbc0525ffd
-  Aimybox: 6d7c5f76316f583884d262044fbbe44c76abd581
-  CGRPCZlib: 097ec65892fa06ce0cca9ad1cf4ccd125895f3ba
+  Aimybox: fd9d64d15a2f89676b9ddc8c8b94debb6f4d68fb
+  CGRPCZlib: 30d7ed7cd286bf929605052dd64075a694d86d0c
   CNIOAtomics: 8edf08644e5e6fa0f021c239be9e8beb1cd9ef18
   CNIOBoringSSL: 2c9c96c2e95f15e83fb8d26b9738d939cc39ae33
   CNIOBoringSSLShims: c5c9346e7bbd1040f4f8793a35441dda7487539a
@@ -214,7 +222,7 @@ SPEC CHECKSUMS:
   CNIOHTTPParser: 8ce395236fa1d09ac3b4f4bcfba79b849b2ac684
   CNIOLinux: 62e3505f50de558c393dc2f273dde71dcce518da
   CNIOWindows: 3047f2d8165848a3936a0a755fee27c6b5ee479b
-  gRPC-Swift: 39aefe8f515f54d3fe809bf0258875249cd4ec71
+  gRPC-Swift: 910b685f0527f496c39751d1f1add981287e8b9d
   Logging: beeb016c9c80cf77042d62e83495816847ef108b
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
@@ -231,8 +239,8 @@ SPEC CHECKSUMS:
   SwiftNIOSSL: d153c5a6fc5b2301b0519b4c4d037a9414212da6
   SwiftNIOTLS: 598af547490133e9aac52aed0c23c4a90c31dcfc
   SwiftNIOTransportServices: 0b2b407819d82eb63af558c5396e33c945759503
-  SwiftProtobuf: 9c85136c6ba74b0a1b84279dbf0f6db8efb714e0
+  SwiftProtobuf: 6ef3f0e422ef90d6605ca20b21a94f6c1324d6b3
 
-PODFILE CHECKSUM: adb9aed950c8ac1fd91f6b71dd8d5d9b1f3a3525
+PODFILE CHECKSUM: b497e43744e2aabd76e082bb9462bee2820f2a9e
 
 COCOAPODS: 1.11.3

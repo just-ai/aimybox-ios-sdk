@@ -7,10 +7,31 @@
 //
 
 import AVFoundation
+#if SDK_BUILD
 import AimyboxCore
+#endif
 
 public
 class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
+
+    public
+    struct Config{
+
+        let apiUrl  = "tts.api.cloud.yandex.net"
+        let apiPort = 443
+        let voice = Voice.kuznetsov
+        let sampleRate = SampleRate.sampleRate48KHz
+        let speed = Speed.defaultVal
+        let volume = Volume.defaultVal
+        let rawResults = false
+        let enableDataLogging = false
+        let normalizePartialData = false
+        let pinningConfig : PinningConfig? = nil
+        
+        public
+        init(){}
+    }
+
     /**
     Used to notify *Aimybox* state machine about events.
     */
@@ -68,13 +89,13 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         tokenProvider: IAMTokenProvider,
         folderID: String,
         language code: String = "ru-RU",
-        config: YandexSynthesisConfig = YandexSynthesisConfig(),
-        dataLoggingEnabled: Bool = false,
-        normalizePartialData: Bool = false,
-        host: String = "tts.api.cloud.yandex.net",
-        port: Int = 443
+        config: YandexTextToSpeech.Config = YandexTextToSpeech.Config()
     ) {
-        self.synthesisConfig = config
+        self.synthesisConfig = YandexSynthesisConfig(speed: config.speed.rawValue,
+                                                     sampleRateHertz: Int(config.sampleRate.rawValue),
+                                                     volume: config.volume.rawValue,
+                                                     rawResults: config.rawResults
+        )
         self.languageCode = code
         self.notificationQueue = OperationQueue()
         guard let token = tokenProvider.token()?.iamToken else {
@@ -82,10 +103,10 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         }
         self.token = token
         self.folderID = folderID
-        self.dataLoggingEnabled = dataLoggingEnabled
-        self.normalizePartialData = normalizePartialData
-        self.host = host
-        self.port = port
+        self.dataLoggingEnabled = config.enableDataLogging
+        self.normalizePartialData = config.normalizePartialData
+        self.host = config.apiUrl
+        self.port = config.apiPort
         super.init()
     }
 

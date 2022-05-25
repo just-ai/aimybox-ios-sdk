@@ -8,30 +8,34 @@
 
 // swiftlint:disable closure_body_length
 
-import AimyboxCore
-import AVFoundation
+
 import Foundation
 import GRPC
 import NIO
 import NIOCore
+import AVFoundation
 
+#if SDK_BUILD
+import Utils
+import AimyboxCore
+#endif
 
 public
 class YandexSpeechToText: AimyboxComponent, SpeechToText {
-    
+
     public
-    struct  Config {
+    struct Config {
         
-        let apiUrl : String = "stt.api.cloud.yandex.net"
-        let apiPort = 443
-        let enableProfanityFilter = true
-        let enablePartialResults = true
-        let sampleRate: SampleRate = SampleRate.SampleRate48KHz
-        let rawResults = false
-        let literatureText = false
-        let enableDataLogging = false
-        let normalizePartialData = false
-        let pinningConfig : PinningConfig? = nil
+        public var apiUrl = "stt.api.cloud.yandex.net"
+        public var apiPort = 443
+        public var enableProfanityFilter = true
+        public var enablePartialResults = true
+        public var sampleRate = SampleRate.sampleRate48KHz
+        public var rawResults = false
+        public var literatureText = false
+        public var enableDataLogging = false
+        public var normalizePartialData = false
+        public var pinningConfig: PinningConfig? = nil
         
         public
         init(){}
@@ -82,7 +86,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     private
     let languageCode: String
 
-    
+
     private
     let config: YandexSpeechToText.Config
 
@@ -97,7 +101,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         tokenProvider: IAMTokenProvider,
         folderID: String,
         language code: String = "ru-RU",
-        config : YandexSpeechToText.Config = YandexSpeechToText.Config()
+        config: YandexSpeechToText.Config = YandexSpeechToText.Config()
     ) {
         let token = tokenProvider.token()
 

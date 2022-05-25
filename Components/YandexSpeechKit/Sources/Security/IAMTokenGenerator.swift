@@ -5,7 +5,9 @@
 //  Created by Vladislav Popovich on 23.01.2020.
 //  Copyright © 2020 Just Ai. All rights reserved.
 //
-import Utils
+#if !COCOAPODS
+    import Utils
+#endif
 import Foundation
 
 public

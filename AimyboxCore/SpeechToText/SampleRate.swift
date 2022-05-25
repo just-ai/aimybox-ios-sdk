@@ -11,8 +11,8 @@ import Foundation
 public
 enum SampleRate : Int64{
     
-    case SampleRate48KHz = 48_000
-    case SampleRate16Khz = 16_000
-    case SampleRate8Khz = 8_000
+    case sampleRate48KHz = 48_000
+    case sampleRate16Khz = 16_000
+    case sampleRate8Khz = 8_000
     
 }

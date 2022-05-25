@@ -1,12 +1,16 @@
 platform :ios, '12.0'
 inhibit_all_warnings!
 
+install! 'cocoapods',
+         :deterministic_uuids => false
+
 target 'AimyboxExample' do
   use_frameworks!
 
-  pod 'Aimybox/Core', :path => '~/Documents/Projects/aimybox-ios-sdk'
-  pod 'Aimybox/Utils', :path => '~/Documents/Projects/aimybox-ios-sdk'
-  pod 'Aimybox/YandexSpeechKit', :path => '~/Documents/Projects/aimybox-ios-sdk'
+  pod 'Aimybox/Core', :path => '../'
+  pod 'Aimybox/Utils', :path => '../'
+  pod 'Aimybox/AimyboxDialogAPI', :path => '../'
+  pod 'Aimybox/YandexSpeechKit', :path => '../'
  
  
   pod 'SDWebImage'

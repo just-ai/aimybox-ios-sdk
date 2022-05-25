@@ -275,6 +275,7 @@ generic_type_name:
 identifier_name:
   min_length: 0
   max_length: 40
+  allowed_symbols: "_"
 large_tuple: 5
 line_length: 120
 number_separator:
@@ -284,3 +285,4 @@ trailing_comma:
 type_name:
   min_length: 0
   max_length: 50
+  allowed_symbols: "_"

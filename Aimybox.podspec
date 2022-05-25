@@ -24,29 +24,33 @@ Pod::Spec.new do |s|
 
   s.subspec 'AimyboxDialogAPI' do |sp|
     sp.source_files  = 'Components/AimyboxDialogAPI/Sources/*.{swift}'
-    sp.dependency 'Core'
-    sp.dependency 'Utils'
+    sp.dependency 'Aimybox/Core'
+    sp.dependency 'Aimybox/Utils'
   end
 
   s.subspec 'AVTextToSpeech' do |sp|
     sp.source_files  = 'Components/AVTextToSpeech/Sources/*.{swift}'
-    sp.dependency 'Core'
-    sp.dependency 'Utils'
+    sp.dependency 'Aimybox/Core'
+    sp.dependency 'Aimybox/Utils'
   end
 
   s.subspec 'SFSpeechToText' do |sp|
     sp.source_files  = 'Components/SFSpeechToText/Sources/*.{swift}'
-    sp.dependency 'Core'
-    sp.dependency 'Utils'
+    sp.dependency 'Aimybox/Core'
+    sp.dependency 'Aimybox/Utils'
   end
 
   s.subspec 'YandexSpeechKit' do |sp|
-    sp.source_files  = 'Components/YandexSpeechKit/Sources/**/*.{swift}', 'Components/YandexSpeechKit/YandexSpeechKitApi/**/*.{swift}'
+    sp.source_files  = 'Components/YandexSpeechKit/Sources/**/*.{swift}', 'Components/YandexSpeechKit/Sources/**/**/*.{swift}', 'Components/YandexSpeechKit/Sources/**/**/**/*.{swift}'
     sp.exclude_files = 'Components/YandexSpeechKit/Sources/*.{plist}'
-    sp.dependency 'Core'
-    sp.dependency 'Utils'
-    sp.dependency 'SwiftProtobuf', '1.17.0'
-    sp.dependency 'gRPC-Swift', '1.2.0'
+    sp.dependency 'Aimybox/Core'
+    sp.dependency 'Aimybox/Utils'
+    sp.dependency 'SwiftProtobuf'
+    sp.dependency 'gRPC-Swift'
+    sp.dependency 'SwiftNIO'
+    sp.dependency 'SwiftNIOCore'
+    sp.dependency 'SwiftNIOTLS'
+    sp.dependency 'SwiftNIOSSL'
   end	
 
 end

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,11 +30,14 @@
 		55ED5F0323AD1011007F4D01 /* AimyboxButtonsReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F0223AD1010007F4D01 /* AimyboxButtonsReply.swift */; };
 		780598E5282C16DD00703691 /* PinningConfing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780598E4282C16DD00703691 /* PinningConfing.swift */; };
 		780598E7282C1C6000703691 /* PinningChannelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780598E6282C1C6000703691 /* PinningChannelBuilder.swift */; };
+		782293C6283E7DDF00FD01C1 /* AimyboxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97233FD823898F2C0050E37F /* AimyboxCore.framework */; platformFilter = ios; };
+		782293CA283E7DDF00FD01C1 /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; platformFilter = ios; };
 		78DC90632837D5A3007700C4 /* tts.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90602837D5A2007700C4 /* tts.pb.swift */; };
 		78DC90642837D5A3007700C4 /* tts_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90612837D5A2007700C4 /* tts_service.grpc.swift */; };
 		78DC90652837D5A3007700C4 /* tts_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90622837D5A2007700C4 /* tts_service.pb.swift */; };
 		78DC9069283B8F5B007700C4 /* YandexRecognitionAPIV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC905E2837CEC5007700C4 /* YandexRecognitionAPIV3.swift */; };
 		78E023242833C3A30024439D /* SampleRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E023232833C3A30024439D /* SampleRate.swift */; };
+		7F5BC0A79E7C5A6A6CEDCCD5 /* Pods_YandexSpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 661ADAA6029247A0E5B1B218 /* Pods_YandexSpeechKit.framework */; };
 		9709BCDF23AB8761005C47C2 /* FakeTextReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709BCDE23AB8761005C47C2 /* FakeTextReply.swift */; };
 		9709BCE123ABA5E2005C47C2 /* TextToSpeechCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709BCE023ABA5E2005C47C2 /* TextToSpeechCoreTests.swift */; };
 		97233FEA2389906B0050E37F /* AimyboxBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97233FE92389906B0050E37F /* AimyboxBaseTestCase.swift */; };
@@ -116,14 +119,14 @@
 			remoteGlobalIDString = 97AF240123ABF23300CB839E;
 			remoteInfo = AimyboxDialogAPI;
 		};
-		78B523D8283CEF5900180C35 /* PBXContainerItemProxy */ = {
+		782293C8283E7DDF00FD01C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 97233FD723898F2C0050E37F;
 			remoteInfo = AimyboxCore;
 		};
-		78B523DA283CEF5D00180C35 /* PBXContainerItemProxy */ = {
+		782293CC283E7DDF00FD01C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
 			proxyType = 1;
@@ -315,6 +318,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				782293CA283E7DDF00FD01C1 /* Utils.framework in Frameworks */,
+				782293C6283E7DDF00FD01C1 /* AimyboxCore.framework in Frameworks */,
+				7F5BC0A79E7C5A6A6CEDCCD5 /* Pods_YandexSpeechKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +405,6 @@
 		554D7AD623D9B87600E90C7E /* YandexSpeechKit */ = {
 			isa = PBXGroup;
 			children = (
-				780598E2282C160900703691 /* YandexSpeechKitApi */,
 				554D7ADE23D9B89D00E90C7E /* Tests */,
 				554D7ADD23D9B89700E90C7E /* Sources */,
 			);
@@ -410,6 +415,7 @@
 		554D7ADD23D9B89700E90C7E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				780598E2282C160900703691 /* YandexSpeechKitApi */,
 				780598E3282C166500703691 /* Security */,
 				55E9F1F823E2E9700053DEE1 /* YandexSynthesisAPI */,
 				55976F6723DF281000EC6812 /* YandexRecognitionAPI */,
@@ -856,8 +862,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				78B523D9283CEF5900180C35 /* PBXTargetDependency */,
-				78B523DB283CEF5D00180C35 /* PBXTargetDependency */,
+				782293C9283E7DDF00FD01C1 /* PBXTargetDependency */,
+				782293CD283E7DDF00FD01C1 /* PBXTargetDependency */,
 			);
 			name = YandexSpeechKit;
 			productName = YandexSpeechKit;
@@ -1406,15 +1412,17 @@
 			target = 97AF240123ABF23300CB839E /* AimyboxDialogAPI */;
 			targetProxy = 55DAC62223ACEC290009BF1A /* PBXContainerItemProxy */;
 		};
-		78B523D9283CEF5900180C35 /* PBXTargetDependency */ = {
+		782293C9283E7DDF00FD01C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
-			targetProxy = 78B523D8283CEF5900180C35 /* PBXContainerItemProxy */;
+			targetProxy = 782293C8283E7DDF00FD01C1 /* PBXContainerItemProxy */;
 		};
-		78B523DB283CEF5D00180C35 /* PBXTargetDependency */ = {
+		782293CD283E7DDF00FD01C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 97C75B6123AC00F9006C209C /* Utils */;
-			targetProxy = 78B523DA283CEF5D00180C35 /* PBXContainerItemProxy */;
+			targetProxy = 782293CC283E7DDF00FD01C1 /* PBXContainerItemProxy */;
 		};
 		78B523DD283CEF8000180C35 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1673,9 +1681,10 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "$(inherited) -DDEBUG -DSDK_BUILD";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG SDK_BUILD";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1734,9 +1743,12 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_SWIFT_FLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "$(inherited) -DSDK_BUILD";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SDK_BUILD;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
