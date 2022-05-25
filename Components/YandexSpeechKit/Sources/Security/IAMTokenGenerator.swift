@@ -5,8 +5,8 @@
 //  Created by Vladislav Popovich on 23.01.2020.
 //  Copyright © 2020 Just Ai. All rights reserved.
 //
-import Foundation
 import Utils
+import Foundation
 
 public
 struct IAMToken: Codable {

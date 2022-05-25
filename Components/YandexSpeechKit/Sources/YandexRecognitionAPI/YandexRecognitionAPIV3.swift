@@ -37,12 +37,10 @@ class YandexRecognitionAPIV3 {
 
 
     init(
-        iAMToken: String,
+        iAM iAMToken: String,
         folderID: String,
         language code: String,
         config: YandexSpeechToText.Config,
-        dataLoggingEnabled: Bool,
-        normalizePartialData: Bool,
         operation queue: OperationQueue
     ) {
         var logger = Logger(label: "gRPC STT", factory: StreamLogHandler.standardOutput(label:))
@@ -53,8 +51,8 @@ class YandexRecognitionAPIV3 {
         let callOptions = CallOptions(
             customMetadata: [
                 "authorization": "Bearer \(iAMToken)",
-                xDataLoggingEnabledKey: dataLoggingEnabled ? "true" : "false",
-                normalizePartialDataKey: normalizePartialData ? "true" : "false",
+                xDataLoggingEnabledKey: config.enableDataLogging ? "true" : "false",
+                normalizePartialDataKey: config.normalizePartialData ? "true" : "false",
             ],
             logger: logger
         )
@@ -62,11 +60,11 @@ class YandexRecognitionAPIV3 {
         let channel = ClientConnection
             .usingTLSBackedByNIOSSL(on: group)
             .withBackgroundActivityLogger(logger)
-            .connect(host: host, port: port)
+            .connect(host: config.apiUrl, port: config.apiPort)
 
         self.sttServiceClient = SttServiceClient(channel: channel, defaultCallOptions: callOptions)
         self.operationQueue = queue
-        self.config = config ?? .defaultConfig(folderID: folderID, language: code)
+        self.config = .defaultConfig(folderID: folderID, language: code)
     }
 
     public

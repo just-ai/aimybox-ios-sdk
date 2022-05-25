@@ -8,12 +8,12 @@
 
 // swiftlint:disable closure_body_length
 
+import AimyboxCore
 import AVFoundation
 import Foundation
 import GRPC
 import NIO
 import NIOCore
-import AimyboxCore
 
 
 public
@@ -32,6 +32,9 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         let enableDataLogging = false
         let normalizePartialData = false
         let pinningConfig : PinningConfig? = nil
+        
+        public
+        init(){}
     
     }
     
@@ -94,8 +97,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         tokenProvider: IAMTokenProvider,
         folderID: String,
         language code: String = "ru-RU",
-        config : YandexSpeechToText.Config = YandexSpeechToText.Config(),
-        dataLoggingEnabled: Bool = false
+        config : YandexSpeechToText.Config = YandexSpeechToText.Config()
     ) {
         let token = tokenProvider.token()
 
@@ -108,7 +110,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         self.languageCode = code
         self.config = config
         self.audioEngine = AVAudioEngine()
-        self.dataLoggingEnabled = dataLoggingEnabled
+        self.dataLoggingEnabled = config.enableDataLogging
         
         super.init() //TODO -- ?? Is it good place?
     }
@@ -171,154 +173,83 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     private
     // swiftlint:disable:next function_body_length
     func prepareRecognition() {
-//        guard notify != nil else {
-//            return
-//        }
+        guard let notify = notify else {
+            return
+        }
 
         prepareAudioEngineForMultiRoute {
             if !$0 {
-                notify?(.failure(.microphoneUnreachable))
+                notify(.failure(.microphoneUnreachable))
             }
         }
-        
-        guard let streamingCall = recognitionAPI.openStream( onResponse: { [weak self] response in
+
+        // swiftlint:disable:next closure_body_length
+        recognitionAPI.openStream { [audioEngine, weak self, audioFormat] stream in
+            let inputNode = audioEngine.inputNode
+            let inputFormat = inputNode.inputFormat(forBus: 0)
+            let recordingFormat = audioFormat
+
+            try? AVAudioSession.sharedInstance().setPreferredSampleRate(inputFormat.sampleRate)
+
+            let converter = AVAudioConverter(from: inputFormat, to: recordingFormat)
+            let ratio = Float(inputFormat.sampleRate) / Float(
+                recordingFormat.sampleRate > 0 ? recordingFormat.sampleRate : AVAudioFormat.defaultFormat.sampleRate
+            )
+
+            inputNode.removeTap(onBus: 0)
+            // swiftlint:disable:next closure_body_length
+            inputNode.installTap(onBus: 0, bufferSize: 1024, format: inputFormat) { buffer, _ in
+                // swiftlint:disable:next closure_body_length
+                let request = YandexRecognitionAPIV3.Request.with { request in
+                    let capacity = UInt32(Float(buffer.frameCapacity) / Float(ratio > 0 ? ratio : 1))
+                    guard let outputBuffer = AVAudioPCMBuffer(
+                        pcmFormat: recordingFormat,
+                        frameCapacity: capacity
+                    ) else {
+                        return
+                    }
+
+                    outputBuffer.frameLength = outputBuffer.frameCapacity
+
+                    let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
+                        outStatus.pointee = AVAudioConverterInputStatus.haveData
+                        return buffer
+                    }
+
+                    let status = converter?.convert(
+                        to: outputBuffer,
+                        error: nil,
+                        withInputFrom: inputBlock
+                    )
+
+                    switch status {
+                    case .error:
+                        return
+                    default:
+                        break
+                    }
+
+                    guard let bytes = outputBuffer.int16ChannelData else {
+                        return
+                    }
+
+                    let channels = UnsafeBufferPointer(start: bytes, count: Int(audioFormat.channelCount))
+
+                    request.audioContent = Data(
+                        bytesNoCopy: channels[0],
+                        count: Int(buffer.frameCapacity * audioFormat.streamDescription.pointee.mBytesPerFrame),
+                        deallocator: .none
+                    )
+                }
+                stream?.sendMessage(request, promise: nil)
+            }
+
+            self?.audioInputNode = inputNode
+            audioEngine.prepare()
+
+        } onResponse: { [weak self] response in
             self?.proccessResults(response)
-        }, error: { [weak self] _ in
-            self?.notify?(.failure(.speechRecognitionUnavailable))
-        })
-        else { return }
-        
-        let inputNode = audioEngine.inputNode
-               let inputFormat = inputNode.inputFormat(forBus: 0)
-               let recordingFormat = audioFormat
-   
-               try? AVAudioSession.sharedInstance().setPreferredSampleRate(inputFormat.sampleRate)
-   
-               let converter = AVAudioConverter(from: inputFormat, to: recordingFormat)
-               let ratio = Float(inputFormat.sampleRate) / Float(
-                   recordingFormat.sampleRate > 0 ? recordingFormat.sampleRate : AVAudioFormat.defaultFormat.sampleRate
-               )
-   
-               inputNode.removeTap(onBus: 0)
-               inputNode.installTap(onBus: 0, bufferSize: 1024, format: inputFormat) { buffer, _ in
-                   try? streamingCall?.sendMessage(
-                       Request.with { request in
-                           let capacity = UInt32(Float(buffer.frameCapacity) / Float(ratio > 0 ? ratio : 1))
-                           guard let outputBuffer = AVAudioPCMBuffer(
-                               pcmFormat: recordingFormat,
-                               frameCapacity: capacity
-                           ) else {
-                               return
-                           }
-   
-                           outputBuffer.frameLength = outputBuffer.frameCapacity
-   
-                           let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
-                               outStatus.pointee = AVAudioConverterInputStatus.haveData
-                               return buffer
-                           }
-   
-                           let status = converter?.convert(
-                               to: outputBuffer,
-                               error: nil,
-                               withInputFrom: inputBlock
-                           )
-   
-                           switch status {
-                           case .error:
-                               return
-                           default:
-                               break
-                           }
-   
-                           guard let bytes = outputBuffer.int16ChannelData else {
-                               return
-                           }
-   
-                           let channels = UnsafeBufferPointer(start: bytes, count: Int(audioFormat.channelCount))
-   
-                           request.audioContent = Data(
-                               bytesNoCopy: channels[0],
-                               count: Int(buffer.frameCapacity * audioFormat.streamDescription.pointee.mBytesPerFrame),
-                               deallocator: .none
-                           )
-                       }
-                   )
-               }
-
-               self?.audioInputNode = inputNode
-               audioEngine.prepare()
-
-
-//        recognitionAPI.openStream { [audioEngine, weak self, audioFormat] stream in
-//            let inputNode = audioEngine.inputNode
-//            let inputFormat = inputNode.inputFormat(forBus: 0)
-//            let recordingFormat = audioFormat
-//
-//            try? AVAudioSession.sharedInstance().setPreferredSampleRate(inputFormat.sampleRate)
-//
-//            let converter = AVAudioConverter(from: inputFormat, to: recordingFormat)
-//            let ratio = Float(inputFormat.sampleRate) / Float(
-//                recordingFormat.sampleRate > 0 ? recordingFormat.sampleRate : AVAudioFormat.defaultFormat.sampleRate
-//            )
-//
-//            inputNode.removeTap(onBus: 0)
-//            inputNode.installTap(onBus: 0, bufferSize: 1024, format: inputFormat) { [weak stream] buffer, _ in
-//                try? stream?.send(
-//                    Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with { request in
-//                        let capacity = UInt32(Float(buffer.frameCapacity) / Float(ratio > 0 ? ratio : 1))
-//                        guard let outputBuffer = AVAudioPCMBuffer(
-//                            pcmFormat: recordingFormat,
-//                            frameCapacity: capacity
-//                        ) else {
-//                            return
-//                        }
-//
-//                        outputBuffer.frameLength = outputBuffer.frameCapacity
-//
-//                        let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
-//                            outStatus.pointee = AVAudioConverterInputStatus.haveData
-//                            return buffer
-//                        }
-//
-//                        let status = converter?.convert(
-//                            to: outputBuffer,
-//                            error: nil,
-//                            withInputFrom: inputBlock
-//                        )
-//
-//                        switch status {
-//                        case .error:
-//                            return
-//                        default:
-//                            break
-//                        }
-//
-//                        guard let bytes = outputBuffer.int16ChannelData else {
-//                            return
-//                        }
-//
-//                        let channels = UnsafeBufferPointer(start: bytes, count: Int(audioFormat.channelCount))
-//
-//                        request.audioContent = Data(
-//                            bytesNoCopy: channels[0],
-//                            count: Int(buffer.frameCapacity * audioFormat.streamDescription.pointee.mBytesPerFrame),
-//                            deallocator: .none
-//                        )
-//                    }
-//                )
-//            }
-
-//            self?.audioInputNode = inputNode
-//            audioEngine.prepare()
-//
-//        } onResponse: { [weak self] response in
-//            self?.proccessResults(response)
-//        } error: { _ in
-//            notify(.failure(.speechRecognitionUnavailable))
-//        } completion: { [weak self] in
-//            self?.stopRecognition()
-//        }
+        }
     }
 
     private

@@ -38,9 +38,8 @@
 		03172B2F260E72DB004608F2 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03172B15260E72DB004608F2 /* SuggestionView.swift */; };
 		03FF16ED263850CF0008BA69 /* sound_out.wav in Resources */ = {isa = PBXBuildFile; fileRef = 03FF16EB263850CF0008BA69 /* sound_out.wav */; };
 		03FF16EE263850CF0008BA69 /* sound_in.wav in Resources */ = {isa = PBXBuildFile; fileRef = 03FF16EC263850CF0008BA69 /* sound_in.wav */; };
-		78100921281822BD0092B259 /* Pods-AimyboxExample.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */; };
-		78100922281825AD0092B259 /* Pods_AimyboxExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */; };
-		78100923281825AD0092B259 /* Pods_AimyboxExample.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		78100923281825AD0092B259 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EAD25E509C7BBABC225FBCCB /* Pods_AimyboxExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E486909674E45894A9E6FEF /* Pods_AimyboxExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,7 +49,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				78100923281825AD0092B259 /* Pods_AimyboxExample.framework in Embed Frameworks */,
+				78100923281825AD0092B259 /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,9 +90,10 @@
 		03172B15260E72DB004608F2 /* SuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
 		03FF16EB263850CF0008BA69 /* sound_out.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_out.wav; sourceTree = "<group>"; };
 		03FF16EC263850CF0008BA69 /* sound_in.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_in.wav; sourceTree = "<group>"; };
-		5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AimyboxExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.debug.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.debug.xcconfig"; sourceTree = "<group>"; };
-		7948DA7CE5715E5323C3DDF7 /* Pods-AimyboxExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.release.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.release.xcconfig"; sourceTree = "<group>"; };
+		5E486909674E45894A9E6FEF /* Pods_AimyboxExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AimyboxExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		750CEED071546C186A0A55EB /* Pods-AimyboxExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.release.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.release.xcconfig"; sourceTree = "<group>"; };
+		787B8A2F283D368A003EBF9A /* Aimybox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Aimybox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1220E52F7DCAE2873494204 /* Pods-AimyboxExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.debug.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78100922281825AD0092B259 /* Pods_AimyboxExample.framework in Frameworks */,
+				EAD25E509C7BBABC225FBCCB /* Pods_AimyboxExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +114,7 @@
 				031729D4260E1CF1004608F2 /* AimyboxExample */,
 				031729D3260E1CF1004608F2 /* Products */,
 				3D1AF8FF42D43FF106B3932C /* Pods */,
-				30CF1502F1CDF2E14F63A310 /* Frameworks */,
+				E8C5318F7B093162DCAD7E50 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -221,21 +221,22 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		30CF1502F1CDF2E14F63A310 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3D1AF8FF42D43FF106B3932C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */,
-				7948DA7CE5715E5323C3DDF7 /* Pods-AimyboxExample.release.xcconfig */,
+				D1220E52F7DCAE2873494204 /* Pods-AimyboxExample.debug.xcconfig */,
+				750CEED071546C186A0A55EB /* Pods-AimyboxExample.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E8C5318F7B093162DCAD7E50 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				787B8A2F283D368A003EBF9A /* Aimybox.framework */,
+				5E486909674E45894A9E6FEF /* Pods_AimyboxExample.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,13 +246,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 031729E6260E1CF3004608F2 /* Build configuration list for PBXNativeTarget "AimyboxExample" */;
 			buildPhases = (
-				87FF4B556D4BBB2576E890F5 /* [CP] Check Pods Manifest.lock */,
+				C06067C6931149EE97D73372 /* [CP] Check Pods Manifest.lock */,
 				031729CE260E1CF1004608F2 /* Sources */,
 				03172AE3260E6B9F004608F2 /* Run SwiftLint */,
 				031729CF260E1CF1004608F2 /* Frameworks */,
 				031729D0260E1CF1004608F2 /* Resources */,
-				72B40B4A297AFD59251E442D /* [CP] Embed Pods Frameworks */,
 				78100924281825AD0092B259 /* Embed Frameworks */,
+				C05A265DAA67F58AE81B7B80 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -269,7 +270,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					031729D1260E1CF1004608F2 = {
 						CreatedOnToolsVersion = 12.2;
@@ -301,7 +302,6 @@
 			files = (
 				031729E2260E1CF3004608F2 /* LaunchScreen.storyboard in Resources */,
 				03FF16EE263850CF0008BA69 /* sound_in.wav in Resources */,
-				78100921281822BD0092B259 /* Pods-AimyboxExample.debug.xcconfig in Resources */,
 				03FF16ED263850CF0008BA69 /* sound_out.wav in Resources */,
 				03172AE6260E6C05004608F2 /* swiftlint.yml in Resources */,
 				031729DF260E1CF3004608F2 /* Assets.xcassets in Resources */,
@@ -329,7 +329,7 @@
 			shellPath = /bin/sh;
 			shellScript = "LINT_PATH=${1:-\"${SRCROOT}/${TARGETNAME}\"}\n${PODS_ROOT}/SwiftLint/swiftlint --config \"./AimyboxExample/Supporting Files/swiftlint.yml\" --path \"${LINT_PATH}\"\n";
 		};
-		72B40B4A297AFD59251E442D /* [CP] Embed Pods Frameworks */ = {
+		C05A265DAA67F58AE81B7B80 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -346,7 +346,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		87FF4B556D4BBB2576E890F5 /* [CP] Check Pods Manifest.lock */ = {
+		C06067C6931149EE97D73372 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -469,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -524,7 +524,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -536,13 +536,13 @@
 		};
 		031729E7260E1CF3004608F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */;
+			baseConfigurationReference = D1220E52F7DCAE2873494204 /* Pods-AimyboxExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 99PHV8HCMK;
 				INFOPLIST_FILE = "AimyboxExample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -558,13 +558,13 @@
 		};
 		031729E8260E1CF3004608F2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7948DA7CE5715E5323C3DDF7 /* Pods-AimyboxExample.release.xcconfig */;
+			baseConfigurationReference = 750CEED071546C186A0A55EB /* Pods-AimyboxExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 99PHV8HCMK;
 				INFOPLIST_FILE = "AimyboxExample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

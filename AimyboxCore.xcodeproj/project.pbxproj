@@ -24,8 +24,6 @@
 		55E9F1FA23E2E9BA0053DEE1 /* YandexSynthesisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F1F923E2E9BA0053DEE1 /* YandexSynthesisAPI.swift */; };
 		55E9F1FC23E2E9D20053DEE1 /* YandexTextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F1FB23E2E9D20053DEE1 /* YandexTextToSpeech.swift */; };
 		55E9F1FE23E2EC430053DEE1 /* IAMTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E9F1FD23E2EC430053DEE1 /* IAMTokenProvider.swift */; };
-		55E9F20123E2F0590053DEE1 /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
-		55E9F20223E2F0590053DEE1 /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55ED5EFD23AD0EF1007F4D01 /* AimyboxTextReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5EFC23AD0EF1007F4D01 /* AimyboxTextReply.swift */; };
 		55ED5EFF23AD0FF4007F4D01 /* AimyboxAudioReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5EFE23AD0FF4007F4D01 /* AimyboxAudioReply.swift */; };
 		55ED5F0123AD1002007F4D01 /* AimyboxImageReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F0023AD1002007F4D01 /* AimyboxImageReply.swift */; };
@@ -35,9 +33,8 @@
 		78DC90632837D5A3007700C4 /* tts.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90602837D5A2007700C4 /* tts.pb.swift */; };
 		78DC90642837D5A3007700C4 /* tts_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90612837D5A2007700C4 /* tts_service.grpc.swift */; };
 		78DC90652837D5A3007700C4 /* tts_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90622837D5A2007700C4 /* tts_service.pb.swift */; };
+		78DC9069283B8F5B007700C4 /* YandexRecognitionAPIV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC905E2837CEC5007700C4 /* YandexRecognitionAPIV3.swift */; };
 		78E023242833C3A30024439D /* SampleRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E023232833C3A30024439D /* SampleRate.swift */; };
-		78F1B67228353A38000B31BE /* AimyboxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97233FD823898F2C0050E37F /* AimyboxCore.framework */; };
-		78F1B67328353A4A000B31BE /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
 		9709BCDF23AB8761005C47C2 /* FakeTextReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709BCDE23AB8761005C47C2 /* FakeTextReply.swift */; };
 		9709BCE123ABA5E2005C47C2 /* TextToSpeechCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709BCE023ABA5E2005C47C2 /* TextToSpeechCoreTests.swift */; };
 		97233FEA2389906B0050E37F /* AimyboxBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97233FE92389906B0050E37F /* AimyboxBaseTestCase.swift */; };
@@ -91,10 +88,6 @@
 		9775865C23A657D80009DA4B /* DialogAPICustomSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865B23A657D80009DA4B /* DialogAPICustomSkill.swift */; };
 		9775865E23A663B40009DA4B /* AimyboxNextAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775865D23A663B40009DA4B /* AimyboxNextAction.swift */; };
 		97AF240B23ABF23400CB839E /* AimyboxDialogAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AF240223ABF23300CB839E /* AimyboxDialogAPI.framework */; };
-		97AF75D023AE6FB1009FAC1A /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
-		97AF75D123AE6FB1009FAC1A /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		97AF75D523AE6FF3009FAC1A /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; };
-		97AF75D623AE6FF3009FAC1A /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97C75B6223AC00F9006C209C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97AF75DF23AEA997009FAC1A /* SSMLDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF75DE23AEA997009FAC1A /* SSMLDecoder.swift */; };
 		97C75B5523ABF9D5006C209C /* AVTextToSpeechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5423ABF9D5006C209C /* AVTextToSpeechTests.swift */; };
 		97C75B7B23AC0154006C209C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C75B5B23AC00E2006C209C /* Utils.swift */; };
@@ -102,33 +95,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5527AAA123E07DE300153999 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
-			remoteInfo = Utils;
-		};
 		554D7AE823D9B9DC00E90C7E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 554D7AB823D9B61400E90C7E;
 			remoteInfo = YandexSpeechKit;
-		};
-		554D7AED23D9BDFD00E90C7E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 97233FD723898F2C0050E37F;
-			remoteInfo = AimyboxCore;
-		};
-		558FC14E23AD244800ECB126 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
-			remoteInfo = Utils;
 		};
 		558FC15023AD253E00ECB126 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -144,19 +116,26 @@
 			remoteGlobalIDString = 97AF240123ABF23300CB839E;
 			remoteInfo = AimyboxDialogAPI;
 		};
-		55E9F1FF23E2F0450053DEE1 /* PBXContainerItemProxy */ = {
+		78B523D8283CEF5900180C35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97233FD723898F2C0050E37F;
+			remoteInfo = AimyboxCore;
+		};
+		78B523DA283CEF5D00180C35 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
 			remoteInfo = Utils;
 		};
-		55E9F20323E2F0590053DEE1 /* PBXContainerItemProxy */ = {
+		78B523DC283CEF8000180C35 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
-			remoteInfo = Utils;
+			remoteGlobalIDString = 97233FD723898F2C0050E37F;
+			remoteInfo = AimyboxCore;
 		};
 		97233FED2389906B0050E37F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -207,13 +186,6 @@
 			remoteGlobalIDString = 97233FD723898F2C0050E37F;
 			remoteInfo = AimyboxCore;
 		};
-		97AF75D723AE6FF3009FAC1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 97C75B6123AC00F9006C209C;
-			remoteInfo = Utils;
-		};
 		97C75B7D23AC01EC006C209C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97233FCF23898F2C0050E37F /* Project object */;
@@ -222,42 +194,6 @@
 			remoteInfo = Utils;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		55E9F20523E2F05A0053DEE1 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				55E9F20223E2F0590053DEE1 /* Utils.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		97AF75D423AE6FB1009FAC1A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				97AF75D123AE6FB1009FAC1A /* Utils.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		97AF75D923AE6FF3009FAC1A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				97AF75D623AE6FF3009FAC1A /* Utils.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4D46AEAA3C7D73B90D3BD6CE /* Pods-YandexSpeechKitTests-YandexSpeechKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexSpeechKitTests-YandexSpeechKit.release.xcconfig"; path = "Target Support Files/Pods-YandexSpeechKitTests-YandexSpeechKit/Pods-YandexSpeechKitTests-YandexSpeechKit.release.xcconfig"; sourceTree = "<group>"; };
@@ -273,7 +209,6 @@
 		554D7AE523D9B91400E90C7E /* YandexSpeechKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexSpeechKitTests.swift; sourceTree = "<group>"; };
 		554D7AEC23D9BB7500E90C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		557D2F2F238C2B17007FC257 /* AimyboxState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimyboxState.swift; sourceTree = "<group>"; };
-		55976F6823DF283200EC6812 /* YandexRecognitionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexRecognitionAPI.swift; sourceTree = "<group>"; };
 		55976F6B23DF298900EC6812 /* stt_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stt_service.grpc.swift; sourceTree = "<group>"; };
 		55976F6C23DF298900EC6812 /* stt_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stt_service.pb.swift; sourceTree = "<group>"; };
 		55976F6F23DF3E6400EC6812 /* operation.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = operation.pb.swift; sourceTree = "<group>"; };
@@ -380,8 +315,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78F1B67328353A4A000B31BE /* Utils.framework in Frameworks */,
-				78F1B67228353A38000B31BE /* AimyboxCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +329,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97AF75D523AE6FF3009FAC1A /* Utils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,7 +344,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55E9F20123E2F0590053DEE1 /* Utils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +374,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97AF75D023AE6FB1009FAC1A /* Utils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,7 +432,6 @@
 			isa = PBXGroup;
 			children = (
 				78DC905E2837CEC5007700C4 /* YandexRecognitionAPIV3.swift */,
-				55976F6823DF283200EC6812 /* YandexRecognitionAPI.swift */,
 				5527AA9B23E06E7100153999 /* YandexSpeechToText.swift */,
 			);
 			path = YandexRecognitionAPI;
@@ -927,8 +856,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				5527AAA223E07DE300153999 /* PBXTargetDependency */,
-				554D7AEE23D9BDFD00E90C7E /* PBXTargetDependency */,
+				78B523D9283CEF5900180C35 /* PBXTargetDependency */,
+				78B523DB283CEF5D00180C35 /* PBXTargetDependency */,
 			);
 			name = YandexSpeechKit;
 			productName = YandexSpeechKit;
@@ -961,12 +890,10 @@
 				97233FD423898F2C0050E37F /* Sources */,
 				97233FD523898F2C0050E37F /* Frameworks */,
 				97233FD623898F2C0050E37F /* Resources */,
-				97AF75D923AE6FF3009FAC1A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				97AF75D823AE6FF3009FAC1A /* PBXTargetDependency */,
 			);
 			name = AimyboxCore;
 			productName = AimyboxCore;
@@ -999,14 +926,11 @@
 				9759AE8723ABF4D0009D04E2 /* Sources */,
 				9759AE8823ABF4D0009D04E2 /* Frameworks */,
 				9759AE8923ABF4D0009D04E2 /* Resources */,
-				55E9F20523E2F05A0053DEE1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				55E9F20023E2F0450053DEE1 /* PBXTargetDependency */,
 				9759AEC923ABF500009D04E2 /* PBXTargetDependency */,
-				55E9F20423E2F0590053DEE1 /* PBXTargetDependency */,
 			);
 			name = AVTextToSpeech;
 			productName = AVTextToSpeech;
@@ -1078,13 +1002,11 @@
 				97AF23FE23ABF23300CB839E /* Sources */,
 				97AF23FF23ABF23300CB839E /* Frameworks */,
 				97AF240023ABF23300CB839E /* Resources */,
-				97AF75D423AE6FB1009FAC1A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				9759AECB23ABF508009D04E2 /* PBXTargetDependency */,
-				558FC14F23AD244800ECB126 /* PBXTargetDependency */,
 			);
 			name = AimyboxDialogAPI;
 			productName = AimyboxDialogAPI;
@@ -1122,6 +1044,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				78B523DD283CEF8000180C35 /* PBXTargetDependency */,
 			);
 			name = Utils;
 			productName = Utils;
@@ -1321,6 +1244,7 @@
 				78DC90642837D5A3007700C4 /* tts_service.grpc.swift in Sources */,
 				78DC90652837D5A3007700C4 /* tts_service.pb.swift in Sources */,
 				55E9F1FA23E2E9BA0053DEE1 /* YandexSynthesisAPI.swift in Sources */,
+				78DC9069283B8F5B007700C4 /* YandexRecognitionAPIV3.swift in Sources */,
 				554D7AE723D9B9A800E90C7E /* IAMTokenGenerator.swift in Sources */,
 				55976F7123DF3E6400EC6812 /* operation.pb.swift in Sources */,
 				5529C08823E4842400DDA444 /* WAVFileGenerator.swift in Sources */,
@@ -1467,25 +1391,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5527AAA223E07DE300153999 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 97C75B6123AC00F9006C209C /* Utils */;
-			targetProxy = 5527AAA123E07DE300153999 /* PBXContainerItemProxy */;
-		};
 		554D7AE923D9B9DC00E90C7E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 554D7AB823D9B61400E90C7E /* YandexSpeechKit */;
 			targetProxy = 554D7AE823D9B9DC00E90C7E /* PBXContainerItemProxy */;
-		};
-		554D7AEE23D9BDFD00E90C7E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
-			targetProxy = 554D7AED23D9BDFD00E90C7E /* PBXContainerItemProxy */;
-		};
-		558FC14F23AD244800ECB126 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 97C75B6123AC00F9006C209C /* Utils */;
-			targetProxy = 558FC14E23AD244800ECB126 /* PBXContainerItemProxy */;
 		};
 		558FC15123AD253E00ECB126 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1497,15 +1406,20 @@
 			target = 97AF240123ABF23300CB839E /* AimyboxDialogAPI */;
 			targetProxy = 55DAC62223ACEC290009BF1A /* PBXContainerItemProxy */;
 		};
-		55E9F20023E2F0450053DEE1 /* PBXTargetDependency */ = {
+		78B523D9283CEF5900180C35 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 97C75B6123AC00F9006C209C /* Utils */;
-			targetProxy = 55E9F1FF23E2F0450053DEE1 /* PBXContainerItemProxy */;
+			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
+			targetProxy = 78B523D8283CEF5900180C35 /* PBXContainerItemProxy */;
 		};
-		55E9F20423E2F0590053DEE1 /* PBXTargetDependency */ = {
+		78B523DB283CEF5D00180C35 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 97C75B6123AC00F9006C209C /* Utils */;
-			targetProxy = 55E9F20323E2F0590053DEE1 /* PBXContainerItemProxy */;
+			targetProxy = 78B523DA283CEF5D00180C35 /* PBXContainerItemProxy */;
+		};
+		78B523DD283CEF8000180C35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
+			targetProxy = 78B523DC283CEF8000180C35 /* PBXContainerItemProxy */;
 		};
 		97233FEE2389906B0050E37F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1541,11 +1455,6 @@
 			isa = PBXTargetDependency;
 			target = 97233FD723898F2C0050E37F /* AimyboxCore */;
 			targetProxy = 9759AECA23ABF508009D04E2 /* PBXContainerItemProxy */;
-		};
-		97AF75D823AE6FF3009FAC1A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 97C75B6123AC00F9006C209C /* Utils */;
-			targetProxy = 97AF75D723AE6FF3009FAC1A /* PBXContainerItemProxy */;
 		};
 		97C75B7E23AC01EC006C209C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1710,11 +1619,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1777,11 +1687,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -2216,11 +2127,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;

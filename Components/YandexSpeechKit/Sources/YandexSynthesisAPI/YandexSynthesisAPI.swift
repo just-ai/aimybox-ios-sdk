@@ -71,7 +71,7 @@ class YandexSynthesisAPI {
         )
 
         let channel = ClientConnection
-            .secure(group: group)
+            .usingTLSBackedByNIOSSL(on: group)
             .withBackgroundActivityLogger(logger)
             .connect(host: host, port: port)
 

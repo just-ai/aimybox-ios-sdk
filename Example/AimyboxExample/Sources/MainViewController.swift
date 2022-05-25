@@ -1,5 +1,6 @@
 import Aimybox
 import AVFoundation
+import 
 
 // swiftlint:disable file_length
 
@@ -195,9 +196,13 @@ class MainViewController: UIViewController {
     func initializeAimybox() {
         showLoading()
         let locale = Locale(identifier: "ru-RU")
+        let tokenGenerator = IAMTokenGenerator("gg")
         guard
-            let speechToText = SFSpeechToText(locale: locale),
-            let textToSpeech = AVTextToSpeech(locale: locale),
+            let config = YandexSpeechToText.Config(),
+            let ain = tokenGenerator.token(),
+                
+            let speechToText = YandexSpeechToText(ain, "", config: config, locale: locale),
+            let textToSpeech = YandexTextToSpeech(ain, ""),
             let aiUnitKey = UIDevice.current.identifierForVendor?.uuidString
         else {
             showError { [weak self] in
