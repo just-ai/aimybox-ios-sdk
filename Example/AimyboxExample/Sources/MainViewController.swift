@@ -195,9 +195,8 @@ class MainViewController: UIViewController {
     private
     func initializeAimybox() {
         showLoading()
-        let locale = Locale(identifier: "ru-RU")
         let tokenGenerator = IAMTokenGenerator(passport: "AgAAAAAjWu2CAATuwWlt16g0F0IYrunICaVEoUs")
-        let pc = PinningConfig(host: "stt.api.cloud.yandex.net", port: 443, pin: "8985gdjk9WoGv5XvJJywsMdD3L2l/UW/A09XiB6Iyjm1q4=")
+        let pc = PinningConfig(host: "stt.api.cloud.yandex.net", port: 443, pin: "WNqaGKomhIKI5e5jeAmWPdVIj9qBfKcANP+yrOd8Yh8=")
         var sttConfig = YandexSpeechToText.Config()
         sttConfig.pinningConfig = pc
         guard

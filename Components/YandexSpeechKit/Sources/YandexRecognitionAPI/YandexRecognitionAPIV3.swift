@@ -38,7 +38,6 @@ class YandexRecognitionAPIV3 {
     private
     var streamingCall: YandexRecognitionAPIV3.StreamingCall?
 
-
     init(
         iAM iAMToken: String,
         folderID: String,
@@ -59,13 +58,22 @@ class YandexRecognitionAPIV3 {
             ],
             logger: logger
         )
+        
+        
+        var channel : GRPCChannel!
+        
+        if let pinningConfig = config.pinningConfig {
+            channel = PinningChannelBuilder.createPinningChannel(with: pinningConfig, group: group)
+        } else {
+            channel = ClientConnection
+                .usingTLSBackedByNIOSSL(on: group)
+                .withBackgroundActivityLogger(logger)
+                .connect(host: config.apiUrl, port: config.apiPort)
+        }
 
-        let channel = ClientConnection
-            .usingTLSBackedByNIOSSL(on: group)
-            .withBackgroundActivityLogger(logger)
-            .connect(host: config.apiUrl, port: config.apiPort)
-
+        
         self.sttServiceClient = SttServiceClient(channel: channel, defaultCallOptions: callOptions)
+        
         self.operationQueue = queue
         self.config = .defaultConfig(folderID: folderID, language: code)
     }

@@ -6,50 +6,53 @@
 //  Copyright © 2022 Just Ai. All rights reserved.
 //
 
+import CommonCrypto
 import Foundation
 import GRPC
 import NIO
 import NIOCore
 import NIOSSL
-
+import NIOTransportServices
 
 
 internal final
 class PinningChannelBuilder {
-    
-    func createPinningChannel(with config : PinningConfig, group: EventLoopGroup) -> GRPCChannel? {
+
+    static
+    func createPinningChannel(with config: PinningConfig, group: EventLoopGroup) -> GRPCChannel? {
+
+        guard let encodedPin = Data(base64Encoded: config.pin, options: .ignoreUnknownCharacters) else {
+            return nil
+        }
         
+        let group = NIOTSEventLoopGroup(loopCount: 1)
+        let tlsConfiguration = GRPCTLSConfiguration.makeClientConfigurationBackedByNIOSSL(configuration: TLSConfiguration.clientDefault)
+        {certs, eventLoopVerification in
+            
+            if let leaf = certs.first, let publicKey = try? leaf.extractPublicKey(){
+                if let certSPKI = try? sha256(data: Data(publicKey.toSPKIBytes())), encodedPin == certSPKI {
+                    eventLoopVerification.succeed(.certificateVerified)
+                } else {
+                    eventLoopVerification.fail(NIOSSLError.unableToValidateCertificate)
+                }
+            } else {
+                eventLoopVerification.fail(NIOSSLError.noCertificateToValidate)
+            }
+        }
         
-       let myPublicKey = Array(Data(base64Encoded: config.pin, options: .ignoreUnknownCharacters)!)
-        
-       let channel = ClientConnection.usingTLSBackedByNIOSSL(on: PlatformSupport.makeEventLoopGroup(loopCount: 1))
-                    .withTLSCustomVerificationCallback({ cert, eventLoopVerification in
-                        // Extract the leaf certificate's public key,
-                        // then compare it to the one you have.
-                        if let leaf = cert.first,
-                           let publicKey = try? leaf.extractPublicKey() {
-        
-                            if let certSPKI = try? publicKey.toSPKIBytes(),
-                               myPublicKey == certSPKI {
-                                eventLoopVerification.succeed(.certificateVerified)
-                            } else {
-                                eventLoopVerification.fail(NIOSSLError.unableToValidateCertificate)
-                            }
-                        } else {
-                            eventLoopVerification.fail(NIOSSLError.noCertificateToValidate)
-                        }
-                    })
-                    .connect(host: config.pin, port: config.port)
-    
-    return channel
+        let builder = ClientConnection.usingTLS(with: tlsConfiguration, on: group)
+        return builder.connect(host: config.host, port: config.port)
         
     }
     
+    
+    static
+    func sha256(data : Data) -> Data {
+        var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
+        data.withUnsafeBytes {
+            _ = CC_SHA256($0.baseAddress, CC_LONG(data.count), &hash)
+        }
+        return Data(hash)
+    }
 }
 
-//https://developer.apple.com/forums/thread/679787
-//let privateKey = Curve25519.KeyAgreement.PrivateKey()
-//let publicKey = privateKey.publicKey
-//print(publicKey.rawRepresentation.base64EncodedString())
-
-//https://github.com/grpc/grpc-swift/pull/1107
