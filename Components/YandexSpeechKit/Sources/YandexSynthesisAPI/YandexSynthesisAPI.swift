@@ -86,7 +86,6 @@ class YandexSynthesisAPI {
     func request(
         text: String,
         language code: String,
-    //    config: YandexSynthesisConfig,
         config: YandexTextToSpeech.Config,
         onResponse completion: @escaping (URL?) -> Void
     ) {

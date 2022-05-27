@@ -18,9 +18,7 @@ class YandexRecognitionAPIV3 {
 
     typealias StreamingCall = BidirectionalStreamingCall<Request, Response>
 
-    typealias SttServiceClient = Yandex_Cloud_Ai_Stt_V2_SttServiceClient
-
-    typealias Config = Yandex_Cloud_Ai_Stt_V2_RecognitionConfig
+    typealias SttServiceClient = Speechkit_Stt_V3_RecognizerClient
 
     typealias Request = Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest
 
@@ -29,8 +27,6 @@ class YandexRecognitionAPIV3 {
     private
     let operationQueue: OperationQueue
 
-    private
-    let config: Config
 
     private
     let sttServiceClient: SttServiceClient
@@ -40,7 +36,7 @@ class YandexRecognitionAPIV3 {
 
     init(
         iAM iAMToken: String,
-        folderID: String,
+        folderId: String,
         language code: String,
         config: YandexSpeechToText.Config,
         operation queue: OperationQueue
@@ -53,6 +49,7 @@ class YandexRecognitionAPIV3 {
         let callOptions = CallOptions(
             customMetadata: [
                 "authorization": "Bearer \(iAMToken)",
+                "x-folder-id": folderId,
                 xDataLoggingEnabledKey: config.enableDataLogging ? "true" : "false",
                 normalizePartialDataKey: config.normalizePartialData ? "true" : "false",
             ],
@@ -84,7 +81,7 @@ class YandexRecognitionAPIV3 {
         guard streamingCall == nil else {
             return
         }
-        streamingCall = sttServiceClient.streamingRecognize { [weak self] response in
+        streamingCall = sttServiceClient. streamingRecognize { [weak self] response in
             self?.operationQueue.addOperation {
                 onResponse(response)
             }
