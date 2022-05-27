@@ -8,16 +8,15 @@
 
 // swiftlint:disable closure_body_length
 
-
+import AVFoundation
 import Foundation
 import GRPC
 import NIO
 import NIOCore
-import AVFoundation
 
 #if SDK_BUILD
-import Utils
 import AimyboxCore
+import Utils
 #endif
 
 public
@@ -25,23 +24,42 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
     public
     struct Config {
-        
-        public var apiUrl = "stt.api.cloud.yandex.net"
-        public var apiPort = 443
-        public var enableProfanityFilter = true
-        public var enablePartialResults = true
-        public var sampleRate = SampleRate.sampleRate48KHz
-        public var rawResults = false
-        public var literatureText = false
-        public var enableDataLogging = false
-        public var normalizePartialData = false
-        public var pinningConfig: PinningConfig? = nil
-        
+
         public
-        init(){}
-    
+        var apiUrl = "stt.api.cloud.yandex.net"
+
+        public
+        var apiPort = 443
+
+        public
+        var enableProfanityFilter = true
+
+        public
+        var enablePartialResults = true
+
+        public
+        var sampleRate = SampleRate.sampleRate48KHz
+
+        public
+        var rawResults = false
+
+        public
+        var literatureText = false
+
+        public
+        var enableDataLogging = false
+
+        public
+        var normalizePartialData = false
+
+        public
+        var pinningConfig: PinningConfig?
+
+        public
+        init() {}
+
     }
-    
+
     /**
     Customize `config` parameter if you change recognition audioFormat in recognition config.
     */
@@ -86,7 +104,6 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     private
     let languageCode: String
 
-
     private
     let config: YandexSpeechToText.Config
 
@@ -115,8 +132,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         self.config = config
         self.audioEngine = AVAudioEngine()
         self.dataLoggingEnabled = config.enableDataLogging
-        
-        super.init() //TODO -- ?? Is it good place?
+        super.init()
     }
 
     public

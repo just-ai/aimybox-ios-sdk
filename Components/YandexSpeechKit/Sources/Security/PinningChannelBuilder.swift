@@ -14,7 +14,6 @@ import NIOCore
 import NIOSSL
 import NIOTransportServices
 
-
 internal final
 class PinningChannelBuilder {
 
@@ -25,11 +24,12 @@ class PinningChannelBuilder {
             return nil
         }
         
-        let group = NIOTSEventLoopGroup(loopCount: 1)
-        let tlsConfiguration = GRPCTLSConfiguration.makeClientConfigurationBackedByNIOSSL(configuration: TLSConfiguration.clientDefault)
-        {certs, eventLoopVerification in
+      //  let group = NIOTSEventLoopGroup(loopCount: 1)
+        let tlsConfiguration =
+            GRPCTLSConfiguration.makeClientConfigurationBackedByNIOSSL(configuration: TLSConfiguration.clientDefault) {
+                certs, eventLoopVerification in
             
-            if let leaf = certs.first, let publicKey = try? leaf.extractPublicKey(){
+            if let leaf = certs.first, let publicKey = try? leaf.extractPublicKey() {
                 if let certSPKI = try? sha256(data: Data(publicKey.toSPKIBytes())), encodedPin == certSPKI {
                     eventLoopVerification.succeed(.certificateVerified)
                 } else {
@@ -47,12 +47,11 @@ class PinningChannelBuilder {
     
     
     static
-    func sha256(data : Data) -> Data {
-        var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
+    func sha256(data: Data) -> Data {
+        var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH) )
         data.withUnsafeBytes {
             _ = CC_SHA256($0.baseAddress, CC_LONG(data.count), &hash)
         }
         return Data(hash)
     }
 }
-

@@ -9,10 +9,10 @@
 import Foundation
 
 public
-enum SampleRate : Int64{
-    
+enum SampleRate: Int64 {
+
     case sampleRate48KHz = 48_000
     case sampleRate16Khz = 16_000
-    case sampleRate8Khz = 8_000
-    
+    case sampleRate8Khz = 8000
+
 }

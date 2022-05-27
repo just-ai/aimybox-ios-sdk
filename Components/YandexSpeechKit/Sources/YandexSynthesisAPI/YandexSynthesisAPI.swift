@@ -45,11 +45,9 @@ class YandexSynthesisAPI {
     init(
         iAMToken: String,
         folderId: String,
-        host: String,
-        port: Int,
-        operation queue: OperationQueue,
-        dataLoggingEnabled: Bool,
-        normalizePartialData: Bool
+        config: YandexTextToSpeech.Config,
+        operation queue: OperationQueue
+
     ) {
         self.folderId = folderId
         self.operationQueue = queue
@@ -64,24 +62,32 @@ class YandexSynthesisAPI {
             customMetadata: [
                 "authorization": "Bearer \(token)",
                 "x-folder-id": folderId,
-                xDataLoggingEnabledKey: dataLoggingEnabled ? "true" : "false",
-                normalizePartialDataKey: normalizePartialData ? "true" : "false",
+                xDataLoggingEnabledKey: config.enableDataLogging ? "true" : "false",
+                normalizePartialDataKey: config.normalizePartialData ? "true" : "false",
             ],
             logger: logger
         )
 
-        let channel = ClientConnection
-            .usingTLSBackedByNIOSSL(on: group)
-            .withBackgroundActivityLogger(logger)
-            .connect(host: host, port: port)
 
+        var channel: GRPCChannel!
+
+        if let pinningConfig = config.pinningConfig {
+            channel = PinningChannelBuilder.createPinningChannel(with: pinningConfig, group: group)
+        } else {
+            channel = ClientConnection
+                .usingTLSBackedByNIOSSL(on: group)
+                .withBackgroundActivityLogger(logger)
+                .connect(host: config.apiUrl, port: config.apiPort)
+        }
+        
         self.ttsServiceClient = TtsServiceClient(channel: channel, defaultCallOptions: callOptions)
     }
 
     func request(
         text: String,
         language code: String,
-        config: YandexSynthesisConfig,
+    //    config: YandexSynthesisConfig,
+        config: YandexTextToSpeech.Config,
         onResponse completion: @escaping (URL?) -> Void
     ) {
         let request = Speechkit_Tts_V3_UtteranceSynthesisRequest.with {
@@ -91,9 +97,9 @@ class YandexSynthesisAPI {
                     $0.containerAudioType = .wav
                 }
             }
-            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.voice = config.voice })
-            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.speed = config.speed })
-            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.volume = config.volume })
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.voice = config.voice.rawValue })
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.speed = config.speed.rawValue })
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.volume = config.volume.rawValue })
         }
 
         streamingCall = ttsServiceClient.utteranceSynthesis(request) { [weak self] response in
@@ -127,40 +133,40 @@ class YandexSynthesisAPI {
 
 }
 
-public
-struct YandexSynthesisConfig {
-
-    let emotion: String
-
-    let format: String
-
-    let sampleRateHertz: Int
-
-    let speed: Double
-
-    let voice: String
-
-    let volume: Double
-
-    let rawResults: Bool
-
-    public
-    init(
-        voice: String? = nil,
-        emotion: String? = nil,
-        speed: Double? = nil,
-        format: String? = nil,
-        sampleRateHertz: Int? = nil,
-        volume: Double? = nil,
-        rawResults: Bool = false
-    ) {
-        self.voice = voice ?? "alena"
-        self.emotion = emotion ?? "neutral"
-        self.speed = speed ?? 1.0
-        self.format = format ?? "lpcm"
-        self.sampleRateHertz = sampleRateHertz ?? 48_000
-        self.volume = volume ?? 1.0
-        self.rawResults = rawResults
-    }
-
-}
+//public
+//struct YandexSynthesisConfig {
+//
+//    let emotion: String
+//
+//    let format: String
+//
+//    let sampleRateHertz: Int
+//
+//    let speed: Double
+//
+//    let voice: String
+//
+//    let volume: Double
+//
+//    let rawResults: Bool
+//
+//    public
+//    init(
+//        voice: String? = nil,
+//        emotion: String? = nil,
+//        speed: Double? = nil,
+//        format: String? = nil,
+//        sampleRateHertz: Int? = nil,
+//        volume: Double? = nil,
+//        rawResults: Bool = false
+//    ) {
+//        self.voice = voice ?? "alena"
+//        self.emotion = emotion ?? "neutral"
+//        self.speed = speed ?? 1.0
+//        self.format = format ?? "lpcm"
+//        self.sampleRateHertz = sampleRateHertz ?? 48_000
+//        self.volume = volume ?? 1.0
+//        self.rawResults = rawResults
+//    }
+//
+//}

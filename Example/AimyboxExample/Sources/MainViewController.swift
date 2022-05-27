@@ -195,13 +195,21 @@ class MainViewController: UIViewController {
     private
     func initializeAimybox() {
         showLoading()
+        let yandexPin = "WNqaGKomhIKI5e5jeAmWPdVIj9qBfKcANP+yrOd8Yh8="
+        let wrongPin = "v/tsKD4VGX/5dZyqrB9wTt0viTfFnwtXw5NWLts87As="
         let tokenGenerator = IAMTokenGenerator(passport: "AgAAAAAjWu2CAATuwWlt16g0F0IYrunICaVEoUs")
-        let pc = PinningConfig(host: "stt.api.cloud.yandex.net", port: 443, pin: "WNqaGKomhIKI5e5jeAmWPdVIj9qBfKcANP+yrOd8Yh8=")
+       
+        let pc = PinningConfig(host: "stt.api.cloud.yandex.net", port: 443, pin: yandexPin)
         var sttConfig = YandexSpeechToText.Config()
         sttConfig.pinningConfig = pc
+        
+        var ttsConfig = YandexTextToSpeech.Config()
+        let ttsPinConf = PinningConfig(host: ttsConfig.apiUrl, port: 443, pin: yandexPin)
+        ttsConfig.pinningConfig = ttsPinConf
+        
         guard
             let speechToText = YandexSpeechToText(tokenProvider: tokenGenerator, folderID: "b1gvt2nubho67sa74uqh", config: sttConfig),
-            let textToSpeech = YandexTextToSpeech(tokenProvider: tokenGenerator, folderID: "b1gvt2nubho67sa74uqh"),
+            let textToSpeech = YandexTextToSpeech(tokenProvider: tokenGenerator, folderID: "b1gvt2nubho67sa74uqh", config: ttsConfig),
             let aiUnitKey = UIDevice.current.identifierForVendor?.uuidString
         else {
             showError { [weak self] in

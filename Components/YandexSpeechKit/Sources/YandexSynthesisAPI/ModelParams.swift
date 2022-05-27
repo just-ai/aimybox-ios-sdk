@@ -7,18 +7,21 @@
 
 import Foundation
 
-enum VoiceModel : String {
+public
+enum VoiceModel: String {
     
     case general = "general"
     
 }
 
-enum Voice : String {
+public
+enum Voice: String {
     
     case kuznetsov = "kuznetsov_male"
 }
 
-enum Speed : Double {
+public
+enum Speed: Double {
     
     case min = 0.1
     case max = 3.0
@@ -26,7 +29,8 @@ enum Speed : Double {
     
 }
 
-enum Volume : Double {
+public
+enum Volume: Double {
     
     case min = -145.0
     case max = 0.0

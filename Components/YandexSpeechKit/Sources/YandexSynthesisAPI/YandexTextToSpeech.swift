@@ -15,21 +15,41 @@ public
 class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
 
     public
-    struct Config{
+    struct Config {
 
-        let apiUrl  = "tts.api.cloud.yandex.net"
-        let apiPort = 443
-        let voice = Voice.kuznetsov
-        let sampleRate = SampleRate.sampleRate48KHz
-        let speed = Speed.defaultVal
-        let volume = Volume.defaultVal
-        let rawResults = false
-        let enableDataLogging = false
-        let normalizePartialData = false
-        let pinningConfig : PinningConfig? = nil
-        
         public
-        init(){}
+        var apiUrl = "tts.api.cloud.yandex.net"
+
+        public
+        var apiPort = 443
+
+        public
+        var voice = Voice.kuznetsov
+
+        public
+        var sampleRate = SampleRate.sampleRate48KHz
+
+        public
+        var speed = Speed.defaultVal
+
+        public
+        var volume = Volume.defaultVal
+
+        public
+        var rawResults = false
+
+        public
+        var enableDataLogging = false
+
+        public
+        var normalizePartialData = false
+
+        public
+        var pinningConfig: PinningConfig?
+
+        public
+        init() {}
+
     }
 
     /**
@@ -47,11 +67,8 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     lazy var synthesisAPI = YandexSynthesisAPI(
         iAMToken: token,
         folderId: folderID,
-        host: host,
-        port: port,
-        operation: operationQueue,
-        dataLoggingEnabled: dataLoggingEnabled,
-        normalizePartialData: normalizePartialData
+        config: synthesisConfig,
+        operation: operationQueue
     )
     /**
     */
@@ -64,7 +81,7 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     var isCancelled = false
     /**
     */
-    var synthesisConfig: YandexSynthesisConfig
+    var synthesisConfig: YandexTextToSpeech.Config //YandexSynthesisConfig
 
     private
     let token: String
@@ -91,11 +108,8 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         language code: String = "ru-RU",
         config: YandexTextToSpeech.Config = YandexTextToSpeech.Config()
     ) {
-        self.synthesisConfig = YandexSynthesisConfig(speed: config.speed.rawValue,
-                                                     sampleRateHertz: Int(config.sampleRate.rawValue),
-                                                     volume: config.volume.rawValue,
-                                                     rawResults: config.rawResults
-        )
+
+        self.synthesisConfig = config
         self.languageCode = code
         self.notificationQueue = OperationQueue()
         guard let token = tokenProvider.token()?.iamToken else {
