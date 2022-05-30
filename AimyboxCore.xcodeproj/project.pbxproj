@@ -33,6 +33,7 @@
 		785D4C322841308D00A9F03D /* stt_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785D4C2F2841308D00A9F03D /* stt_service.grpc.swift */; };
 		785D4C332841308D00A9F03D /* stt_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785D4C302841308D00A9F03D /* stt_service.pb.swift */; };
 		785D4C342841308D00A9F03D /* stt.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785D4C312841308D00A9F03D /* stt.pb.swift */; };
+		785D4C3728455D2100A9F03D /* ModelParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785D4C3628455D2100A9F03D /* ModelParams.swift */; };
 		78DC90632837D5A3007700C4 /* tts.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90602837D5A2007700C4 /* tts.pb.swift */; };
 		78DC90642837D5A3007700C4 /* tts_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90612837D5A2007700C4 /* tts_service.grpc.swift */; };
 		78DC90652837D5A3007700C4 /* tts_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC90622837D5A2007700C4 /* tts_service.pb.swift */; };
@@ -232,6 +233,7 @@
 		785D4C2F2841308D00A9F03D /* stt_service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stt_service.grpc.swift; sourceTree = "<group>"; };
 		785D4C302841308D00A9F03D /* stt_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stt_service.pb.swift; sourceTree = "<group>"; };
 		785D4C312841308D00A9F03D /* stt.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stt.pb.swift; sourceTree = "<group>"; };
+		785D4C3628455D2100A9F03D /* ModelParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelParams.swift; sourceTree = "<group>"; };
 		78DC905E2837CEC5007700C4 /* YandexRecognitionAPIV3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YandexRecognitionAPIV3.swift; sourceTree = "<group>"; };
 		78DC90602837D5A2007700C4 /* tts.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = tts.pb.swift; path = tts/tts.pb.swift; sourceTree = "<group>"; };
 		78DC90612837D5A2007700C4 /* tts_service.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = tts_service.grpc.swift; path = tts/tts_service.grpc.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 		554D7ADD23D9B89700E90C7E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				785D4C3528455CB000A9F03D /* Common */,
 				780598E2282C160900703691 /* YandexSpeechKitApi */,
 				780598E3282C166500703691 /* Security */,
 				55E9F1F823E2E9700053DEE1 /* YandexSynthesisAPI */,
@@ -501,6 +504,14 @@
 				780598E6282C1C6000703691 /* PinningChannelBuilder.swift */,
 			);
 			path = Security;
+			sourceTree = "<group>";
+		};
+		785D4C3528455CB000A9F03D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				785D4C3628455D2100A9F03D /* ModelParams.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		78DC90662837D5B8007700C4 /* yandex_tts */ = {
@@ -1249,6 +1260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				785D4C3728455D2100A9F03D /* ModelParams.swift in Sources */,
 				78DC90632837D5A3007700C4 /* tts.pb.swift in Sources */,
 				78DC90642837D5A3007700C4 /* tts_service.grpc.swift in Sources */,
 				78DC90652837D5A3007700C4 /* tts_service.pb.swift in Sources */,

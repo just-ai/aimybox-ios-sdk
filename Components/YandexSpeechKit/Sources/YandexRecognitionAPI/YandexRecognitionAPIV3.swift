@@ -20,19 +20,26 @@ class YandexRecognitionAPIV3 {
 
     typealias SttServiceClient = Speechkit_Stt_V3_RecognizerClient
 
-    typealias Request = Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest
+    typealias Request = Speechkit_Stt_V3_StreamingRequest
 
-    typealias Response = Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse
+    typealias Response = Speechkit_Stt_V3_StreamingResponse
+    
+    typealias TextNormalization = Speechkit_Stt_V3_TextNormalizationOptions.TextNormalization
 
     private
     let operationQueue: OperationQueue
-
 
     private
     let sttServiceClient: SttServiceClient
 
     private
     var streamingCall: YandexRecognitionAPIV3.StreamingCall?
+    
+    private
+    var config: YandexSpeechToText.Config
+    
+    private
+    var language: [String]
 
     init(
         iAM iAMToken: String,
@@ -43,6 +50,9 @@ class YandexRecognitionAPIV3 {
     ) {
         var logger = Logger(label: "gRPC STT", factory: StreamLogHandler.standardOutput(label:))
         logger.logLevel = .debug
+        
+        self.config = config
+        self.language = [code]
 
         let group = PlatformSupport.makeEventLoopGroup(loopCount: 1, networkPreference: .best, logger: logger)
 
@@ -70,7 +80,6 @@ class YandexRecognitionAPIV3 {
         self.sttServiceClient = SttServiceClient(channel: channel, defaultCallOptions: callOptions)
 
         self.operationQueue = queue
-        self.config = .defaultConfig(folderID: folderID, language: code)
     }
 
     public
@@ -81,15 +90,29 @@ class YandexRecognitionAPIV3 {
         guard streamingCall == nil else {
             return
         }
-        streamingCall = sttServiceClient. streamingRecognize { [weak self] response in
-            self?.operationQueue.addOperation {
+//        streamingCall = sttServiceClient. streamingRecognize { [weak self] response in
+//            self?.operationQueue.addOperation {
+//                onResponse(response)
+//            }
+//        }
+        
+        streamingCall = sttServiceClient.recognizeStreaming(){ [weak self] response in
+            self?.operationQueue.addOperation{
                 onResponse(response)
             }
         }
 
         let request = Request.with {
-            $0.config = config
+            $0.sessionOptions.recognitionModel.audioFormat.rawAudio.sampleRateHertz = config.sampleRate.rawValue
+            $0.sessionOptions.recognitionModel.audioFormat.rawAudio.audioEncoding = .linear16Pcm
+            $0.sessionOptions.recognitionModel.languageRestriction.restrictionType = .whitelist
+            $0.sessionOptions.recognitionModel.languageRestriction.languageCode = language
+            $0.sessionOptions.recognitionModel.textNormalization.textNormalization = (config.rawResults ? .enabled : .disabled)
+            $0.sessionOptions.recognitionModel.textNormalization.literatureText = config.literatureText
+            $0.sessionOptions.recognitionModel.textNormalization.profanityFilter = config.enableProfanityFilter
+            
         }
+        
         streamingCall?.sendMessage(request, promise: nil)
         onOpen(streamingCall)
     }
@@ -103,25 +126,25 @@ class YandexRecognitionAPIV3 {
 
 }
 
-extension Yandex_Cloud_Ai_Stt_V2_RecognitionConfig {
-
-    static func defaultConfig(folderID: String, language code: String) -> YandexRecognitionAPIV3.Config {
-        YandexRecognitionAPIV3.Config.with {
-            $0.folderID = folderID
-            $0.specification = Yandex_Cloud_Ai_Stt_V2_RecognitionSpec.with {
-                $0.audioChannelCount = 1
-                $0.audioEncoding = .linear16Pcm
-                $0.languageCode = code
-                $0.model = "general"
-                $0.partialResults = true
-                $0.profanityFilter = true
-                $0.sampleRateHertz = 48_000
-                $0.singleUtterance = true
-                $0.rawResults = false
-            }
-        }
-    }
-}
+//extension RecognitionConfig {
+//
+//    static func defaultConfig(folderID: String, language code: String) -> YandexRecognitionAPIV3.Config {
+//        YandexRecognitionAPIV3.Config.with {
+//            $0.folderID = folderID
+//            $0.specification = Yandex_Cloud_Ai_Stt_V2_RecognitionSpec.with {
+//                $0.audioChannelCount = 1
+//                $0.audioEncoding = .linear16Pcm
+//                $0.languageCode = code
+//                $0.model = "general"
+//                $0.partialResults = true
+//                $0.profanityFilter = true
+//                $0.sampleRateHertz = 48_000
+//                $0.singleUtterance = true
+//                $0.rawResults = false
+//            }
+//        }
+//    }
+//}
 
 let xDataLoggingEnabledKey = "x-data-logging-enabled"
 let normalizePartialDataKey = "x-normalize-partials"

@@ -85,7 +85,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     private
     lazy var recognitionAPI = YandexRecognitionAPIV3(
         iAM: iamToken,
-        folderID: folderID,
+        folderId: folderID,
         language: languageCode,
         config: config,
         operation: operationQueue
@@ -255,7 +255,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
                     let channels = UnsafeBufferPointer(start: bytes, count: Int(audioFormat.channelCount))
 
-                    request.audioContent = Data(
+                    request.chunk.data = Data(
                         bytesNoCopy: channels[0],
                         count: Int(buffer.frameCapacity * audioFormat.streamDescription.pointee.mBytesPerFrame),
                         deallocator: .none
@@ -273,29 +273,63 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     private
-    func proccessResults(_ response: Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) {
-        guard
-            !wasSpeechStopped,
-            let phrase = response.chunks.first,
-            let bestAlternative = phrase.alternatives.first
-        else {
-            return
-        }
-
-        guard phrase.final == true else {
-            notify?(.success(.recognitionPartialResult(bestAlternative.text)))
-            return
-        }
-
-        let finalResult = bestAlternative.text.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        guard finalResult.isEmpty == false else {
+    func proccessResults(_ response: YandexRecognitionAPIV3.Response) {
+        
+    
+        switch response.event{
+        case .partial:
+            let alternativeList = response.partial.alternatives
+            if (!alternativeList.isEmpty) {
+                let bestAlternative = alternativeList.first
+                let partialResult = bestAlternative?.text.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard let resultText = partialResult else {
+                    notify?(.success(.emptyRecognitionResult))
+                    return
+                }
+                    notify?(.success(.recognitionPartialResult(resultText)))
+            }
+            
+        case .final:
+            let alternativeList = response.final.alternatives
+            if (!alternativeList.isEmpty) {
+                let bestAlternative = alternativeList.first
+                let partialResult = bestAlternative?.text.trimmingCharacters(in: .whitespacesAndNewlines)
+                
+                guard let resultText = partialResult else {
+                    notify?(.success(.emptyRecognitionResult))
+                    return
+                }
+                notify?(.success(.recognitionPartialResult(resultText)))
+                notify?(.success(.recognitionResult(resultText)))
+            }
+          
+        default:
             notify?(.success(.emptyRecognitionResult))
-            return
         }
-
-        notify?(.success(.recognitionPartialResult(finalResult)))
-        notify?(.success(.recognitionResult(finalResult)))
+        
+        
+//        guard
+//            !wasSpeechStopped,
+//            let phrase = response.chunks.first,
+//            let bestAlternative = phrase.alternatives.first
+//        else {
+//            return
+//        }
+//
+//        guard phrase.final == true else {
+//            notify?(.success(.recognitionPartialResult(bestAlternative.text)))
+//            return
+//        }
+//
+//        let finalResult = bestAlternative.text.trimmingCharacters(in: .whitespacesAndNewlines)
+//
+//        guard finalResult.isEmpty == false else {
+//            notify?(.success(.emptyRecognitionResult))
+//            return
+//        }
+//
+//        notify?(.success(.recognitionPartialResult(finalResult)))
+//        notify?(.success(.recognitionResult(finalResult)))
     }
 
     // MARK: - User Permissions
