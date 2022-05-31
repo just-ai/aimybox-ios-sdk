@@ -16,10 +16,10 @@ struct PinningConfig {
 
     public
     var port: Int = 443
-    
+
     public
     var pin: String
-    
+
     public
     var useTLSifPinBroken = true
 

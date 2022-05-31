@@ -30,10 +30,10 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         var sampleRate = SampleRate.sampleRate48KHz
 
         public
-        var speed = Speed.defaultVal
+        var speed = Speed.defaultValue
 
         public
-        var volume = Volume.defaultVal
+        var volume = Volume.defaultValue
 
         public
         var rawResults = false

@@ -13,7 +13,6 @@ class TextToSpeechFake: AimyboxComponent, TextToSpeech {
     func cancelSynthesis() {
         <#code#>
     }
-    
 
     var currentSpeech: [AimyboxSpeech]?
 

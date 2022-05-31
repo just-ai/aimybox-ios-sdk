@@ -23,29 +23,28 @@ class PinningChannelBuilder {
         guard let encodedPin = Data(base64Encoded: config.pin, options: .ignoreUnknownCharacters) else {
             return nil
         }
-        
-      //  let group = NIOTSEventLoopGroup(loopCount: 1)
+
         let tlsConfiguration =
-            GRPCTLSConfiguration.makeClientConfigurationBackedByNIOSSL(configuration: TLSConfiguration.clientDefault) {
-                certs, eventLoopVerification in
-            
+            GRPCTLSConfiguration
+            .makeClientConfigurationBackedByNIOSSL(configuration: TLSConfiguration.clientDefault) { certs, eventLoopVerification in
+
             if let leaf = certs.first, let publicKey = try? leaf.extractPublicKey() {
+
                 if let certSPKI = try? sha256(data: Data(publicKey.toSPKIBytes())), encodedPin == certSPKI {
                     eventLoopVerification.succeed(.certificateVerified)
                 } else {
                     eventLoopVerification.fail(NIOSSLError.unableToValidateCertificate)
                 }
+
             } else {
                 eventLoopVerification.fail(NIOSSLError.noCertificateToValidate)
             }
-        }
-        
+            }
+
         let builder = ClientConnection.usingTLS(with: tlsConfiguration, on: group)
         return builder.connect(host: config.host, port: config.port)
-        
     }
-    
-    
+
     static
     func sha256(data: Data) -> Data {
         var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH) )

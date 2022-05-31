@@ -8,10 +8,10 @@
 
 import GRPC
 import Logging
-import SwiftProtobuf
 import NIO
 import NIOCore
 import NIOSSL
+import SwiftProtobuf
 
 final
 class YandexRecognitionAPIV3 {
@@ -23,7 +23,7 @@ class YandexRecognitionAPIV3 {
     typealias Request = Speechkit_Stt_V3_StreamingRequest
 
     typealias Response = Speechkit_Stt_V3_StreamingResponse
-    
+
     typealias TextNormalization = Speechkit_Stt_V3_TextNormalizationOptions.TextNormalization
 
     private
@@ -34,10 +34,10 @@ class YandexRecognitionAPIV3 {
 
     private
     var streamingCall: YandexRecognitionAPIV3.StreamingCall?
-    
+
     private
     var config: YandexSpeechToText.Config
-    
+
     private
     var language: [String]
 
@@ -50,7 +50,7 @@ class YandexRecognitionAPIV3 {
     ) {
         var logger = Logger(label: "gRPC STT", factory: StreamLogHandler.standardOutput(label:))
         logger.logLevel = .debug
-        
+
         self.config = config
         self.language = [code]
 
@@ -90,14 +90,9 @@ class YandexRecognitionAPIV3 {
         guard streamingCall == nil else {
             return
         }
-//        streamingCall = sttServiceClient. streamingRecognize { [weak self] response in
-//            self?.operationQueue.addOperation {
-//                onResponse(response)
-//            }
-//        }
-        
-        streamingCall = sttServiceClient.recognizeStreaming(){ [weak self] response in
-            self?.operationQueue.addOperation{
+
+        streamingCall = sttServiceClient.recognizeStreaming { [weak self] response in
+            self?.operationQueue.addOperation {
                 onResponse(response)
             }
         }
@@ -105,14 +100,16 @@ class YandexRecognitionAPIV3 {
         let request = Request.with {
             $0.sessionOptions.recognitionModel.audioFormat.rawAudio.sampleRateHertz = config.sampleRate.rawValue
             $0.sessionOptions.recognitionModel.audioFormat.rawAudio.audioEncoding = .linear16Pcm
+            $0.sessionOptions.recognitionModel.audioFormat.rawAudio.audioChannelCount = 1
             $0.sessionOptions.recognitionModel.languageRestriction.restrictionType = .whitelist
             $0.sessionOptions.recognitionModel.languageRestriction.languageCode = language
-            $0.sessionOptions.recognitionModel.textNormalization.textNormalization = (config.rawResults ? .enabled : .disabled)
+            $0.sessionOptions.recognitionModel
+                .textNormalization.textNormalization = (config.rawResults ? .enabled : .disabled)
             $0.sessionOptions.recognitionModel.textNormalization.literatureText = config.literatureText
             $0.sessionOptions.recognitionModel.textNormalization.profanityFilter = config.enableProfanityFilter
-            
+
         }
-        
+
         streamingCall?.sendMessage(request, promise: nil)
         onOpen(streamingCall)
     }
@@ -125,26 +122,6 @@ class YandexRecognitionAPIV3 {
     }
 
 }
-
-//extension RecognitionConfig {
-//
-//    static func defaultConfig(folderID: String, language code: String) -> YandexRecognitionAPIV3.Config {
-//        YandexRecognitionAPIV3.Config.with {
-//            $0.folderID = folderID
-//            $0.specification = Yandex_Cloud_Ai_Stt_V2_RecognitionSpec.with {
-//                $0.audioChannelCount = 1
-//                $0.audioEncoding = .linear16Pcm
-//                $0.languageCode = code
-//                $0.model = "general"
-//                $0.partialResults = true
-//                $0.profanityFilter = true
-//                $0.sampleRateHertz = 48_000
-//                $0.singleUtterance = true
-//                $0.rawResults = false
-//            }
-//        }
-//    }
-//}
 
 let xDataLoggingEnabledKey = "x-data-logging-enabled"
 let normalizePartialDataKey = "x-normalize-partials"

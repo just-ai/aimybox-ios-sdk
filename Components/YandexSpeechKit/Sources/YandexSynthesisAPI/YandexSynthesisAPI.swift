@@ -68,7 +68,6 @@ class YandexSynthesisAPI {
             logger: logger
         )
 
-
         var channel: GRPCChannel!
 
         if let pinningConfig = config.pinningConfig {
@@ -79,7 +78,7 @@ class YandexSynthesisAPI {
                 .withBackgroundActivityLogger(logger)
                 .connect(host: config.apiUrl, port: config.apiPort)
         }
-        
+
         self.ttsServiceClient = TtsServiceClient(channel: channel, defaultCallOptions: callOptions)
     }
 
@@ -97,8 +96,9 @@ class YandexSynthesisAPI {
                 }
             }
             $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.voice = config.voice.rawValue })
-            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.speed = config.speed.rawValue })
-            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.volume = config.volume.rawValue })
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.speed = config.speed.value })
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.volume = config.volume.value })
+
         }
 
         streamingCall = ttsServiceClient.utteranceSynthesis(request) { [weak self] response in

@@ -9,31 +9,53 @@ import Foundation
 
 public
 enum VoiceModel: String {
-    
-    case general = "general"
-    
+    case general
 }
 
 public
 enum Voice: String {
-    
+
     case kuznetsov = "kuznetsov_male"
 }
 
 public
-enum Speed: Double {
-    
-    case min = 0.1
-    case max = 3.0
-    case defaultVal = 1.0
-    
+enum Speed {
+
+    case min, max, defaultValue
+    case currentValue(Double)
+
+    var value: Double {
+        switch self {
+        case .min:
+            return 0.1
+        case .max:
+            return 3.0
+        case .defaultValue:
+            return 1.0
+        case .currentValue(let speed):
+            return speed
+        }
+    }
+
 }
 
 public
-enum Volume: Double {
-    
-    case min = -145.0
-    case max = 0.0
-    case defaultVal = -19.0
-    
+enum Volume {
+
+    case min, max, defaultValue
+    case currentValue(Double)
+
+    var value: Double {
+        switch self {
+        case .min:
+            return -145.1
+        case .max:
+            return 0.0
+        case .defaultValue:
+            return -19.0
+        case .currentValue(let volume):
+            return volume
+        }
+    }
+
 }
