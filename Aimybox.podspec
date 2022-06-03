@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'SFSpeechToText' do |sp|
-    sp.source_files  = 'Components/SFSpeechToText/Sources/*.{swift}'
+    sp.source_files = 'Components/SFSpeechToText/Sources/*.{swift}'
     sp.dependency 'Aimybox/Core'
     sp.dependency 'Aimybox/Utils'
   end

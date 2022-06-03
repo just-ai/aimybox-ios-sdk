@@ -33,7 +33,13 @@ enum Speed {
         case .defaultValue:
             return 1.0
         case .currentValue(let speed):
-            return speed
+            if speed < 0.1 {
+                return 0.1
+            } else if speed > 3.0 {
+                return 3.0
+            } else {
+                return speed
+            }
         }
     }
 
@@ -54,7 +60,13 @@ enum Volume {
         case .defaultValue:
             return -19.0
         case .currentValue(let volume):
-            return volume
+            if volume < -145.0 {
+                return -145.0
+            } else if volume > 0.0 {
+                return 0.0
+            } else {
+                return volume
+            }
         }
     }
 

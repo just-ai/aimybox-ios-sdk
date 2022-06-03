@@ -10,11 +10,11 @@ target 'AimyboxExample' do
   pod 'Aimybox/Core', :path => '../'
   pod 'Aimybox/Utils', :path => '../'
   pod 'Aimybox/AimyboxDialogAPI', :path => '../'
-  pod 'Aimybox/YandexSpeechKit', :path => '../'
- 
- 
+  pod 'Aimybox/AVTextToSpeech', :path => '../'
+  pod 'Aimybox/SFSpeechToText', :path => '../'
+
+  
   pod 'SDWebImage'
   pod 'SwiftLint'
 
 end
-
