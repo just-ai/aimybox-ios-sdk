@@ -4,7 +4,7 @@
 // Licensed under Apache License v2.0 with Runtime Library Exception
 //
 // See LICENSE.txt for license information:
-// https://github.com/apple/swift-protobuf/blob/master/LICENSE.txt
+// https://github.com/apple/swift-protobuf/blob/main/LICENSE.txt
 //
 // -----------------------------------------------------------------------------
 ///
@@ -14,6 +14,8 @@
 /// methods to support binary and JSON coding.
 ///
 // -----------------------------------------------------------------------------
+
+// TODO: `Enum` should require `Sendable` but we cannot do so yet without possibly breaking compatibility.
 
 /// Generated enum types conform to this protocol.
 public protocol Enum: RawRepresentable, Hashable {
@@ -83,7 +85,7 @@ extension Enum {
   /// to distinguish them.
   ///
   /// - Parameter name: Buffer holding the UTF-8 bytes of the desired name.
-  internal init?(rawUTF8: UnsafeBufferPointer<UInt8>) {
+  internal init?(rawUTF8: UnsafeRawBufferPointer) {
     guard let nameProviding = Self.self as? _ProtoNameProviding.Type,
       let number = nameProviding._protobuf_nameMap.number(forJSONName: rawUTF8) else {
       return nil
