@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Aimybox'
-  s.version = '0.0.24'
+  s.version = '0.0.25'
   s.summary = 'The only solution if you need to embed your own intelligent voice assistant into your existing application or device.'
   s.description = 'Aimybox is a world-first open source independent voice assistant SDK and voice skills marketplace platform that enables you to create your own voice assistant or embed it into any application or device like robots or Raspberry Pi.'
   s.homepage = 'https://github.com/just-ai/aimybox-ios-sdk.git'
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author = { 'vasolutions' => 'vasolutions@just-ai.com' }
   s.source = { :git => 'https://github.com/just-ai/aimybox-ios-sdk.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/aimybox'
-  s.ios.deployment_target = '11.4'
+  s.ios.deployment_target = '12.0'
   s.swift_versions = '5.2'
   s.default_subspecs = 'Core'
 
@@ -35,25 +35,22 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'SFSpeechToText' do |sp|
-    sp.source_files  = 'Components/SFSpeechToText/Sources/*.{swift}'
+    sp.source_files = 'Components/SFSpeechToText/Sources/*.{swift}'
     sp.dependency 'Aimybox/Core'
     sp.dependency 'Aimybox/Utils'
   end
 
   s.subspec 'YandexSpeechKit' do |sp|
-    sp.source_files  = 'Components/YandexSpeechKit/Sources/**/*.{swift}'
+    sp.source_files  = 'Components/YandexSpeechKit/Sources/**/*.{swift}', 'Components/YandexSpeechKit/Sources/**/**/*.{swift}', 'Components/YandexSpeechKit/Sources/**/**/**/*.{swift}'
+    sp.exclude_files = 'Components/YandexSpeechKit/Sources/*.{plist}'
     sp.dependency 'Aimybox/Core'
     sp.dependency 'Aimybox/Utils'
-    sp.dependency 'SwiftGRPC'
     sp.dependency 'SwiftProtobuf'
-  end
-
-  s.subspec 'YandexSpeechKitV3' do |sp|
-    sp.source_files  = 'Components/YandexSpeechKitV3/Sources/**/*.{swift}'
-    sp.dependency 'Aimybox/Core'
-    sp.dependency 'Aimybox/Utils'
-    sp.dependency 'SwiftProtobuf', '1.17.0'
-    sp.dependency 'gRPC-Swift', '1.2.0'
-  end
+    sp.dependency 'gRPC-Swift'
+    sp.dependency 'SwiftNIO'
+    sp.dependency 'SwiftNIOCore'
+    sp.dependency 'SwiftNIOTLS'
+    sp.dependency 'SwiftNIOSSL'
+  end	
 
 end

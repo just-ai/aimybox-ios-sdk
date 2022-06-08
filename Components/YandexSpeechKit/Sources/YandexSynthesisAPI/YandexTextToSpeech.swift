@@ -7,9 +7,51 @@
 //
 
 import AVFoundation
+#if SDK_BUILD
+import AimyboxCore
+#endif
 
 public
 class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
+
+    public
+    struct Config {
+
+        public
+        var apiUrl = "tts.api.cloud.yandex.net"
+
+        public
+        var apiPort = 443
+
+        public
+        var voice = Voice.kuznetsov
+
+        public
+        var sampleRate = SampleRate.sampleRate48KHz
+
+        public
+        var speed = Speed.defaultValue
+
+        public
+        var volume = Volume.defaultValue
+
+        public
+        var rawResults = false
+
+        public
+        var enableDataLogging = false
+
+        public
+        var normalizePartialData = false
+
+        public
+        var pinningConfig: PinningConfig?
+
+        public
+        init() {}
+
+    }
+
     /**
     Used to notify *Aimybox* state machine about events.
     */
@@ -25,9 +67,8 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     lazy var synthesisAPI = YandexSynthesisAPI(
         iAMToken: token,
         folderId: folderID,
-        api: address,
-        operation: operationQueue,
-        dataLoggingEnabled: dataLoggingEnabled
+        config: synthesisConfig,
+        operation: operationQueue
     )
     /**
     */
@@ -40,7 +81,7 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     var isCancelled = false
     /**
     */
-    var synthesisConfig: YandexSynthesisConfig
+    var synthesisConfig: YandexTextToSpeech.Config //YandexSynthesisConfig
 
     private
     let token: String
@@ -49,20 +90,25 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     let folderID: String
 
     private
-    let address: URL
+    let host: String
+
+    private
+    let port: Int
 
     private
     let dataLoggingEnabled: Bool
+
+    private
+    let normalizePartialData: Bool
 
     public
     init?(
         tokenProvider: IAMTokenProvider,
         folderID: String,
         language code: String = "ru-RU",
-        config: YandexSynthesisConfig = YandexSynthesisConfig(),
-        dataLoggingEnabled: Bool = false,
-        api address: URL = URL(static: "https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize")
+        config: YandexTextToSpeech.Config = YandexTextToSpeech.Config()
     ) {
+
         self.synthesisConfig = config
         self.languageCode = code
         self.notificationQueue = OperationQueue()
@@ -71,8 +117,10 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         }
         self.token = token
         self.folderID = folderID
-        self.dataLoggingEnabled = dataLoggingEnabled
-        self.address = address
+        self.dataLoggingEnabled = config.enableDataLogging
+        self.normalizePartialData = config.normalizePartialData
+        self.host = config.apiUrl
+        self.port = config.apiPort
         super.init()
     }
 
@@ -151,6 +199,10 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             if let url = $0, self?.isCancelled == false {
                 self?.notify?(.success(.speechDataReceived(textSpeech)))
                 self?.synthesize(textSpeech, using: url)
+            } else if self?.isCancelled == true {
+                self?.notify?(.failure(.speechSequenceCancelled([textSpeech])))
+            } else {
+                self?.notify?(.failure(.speakersUnavailable))
             }
             synthesisGroup.leave()
         }

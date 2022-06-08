@@ -10,9 +10,56 @@
 
 import AVFoundation
 import Foundation
+import GRPC
+import NIO
+import NIOCore
+
+#if SDK_BUILD
+import AimyboxCore
+import Utils
+#endif
 
 public
 class YandexSpeechToText: AimyboxComponent, SpeechToText {
+
+    public
+    struct Config {
+
+        public
+        var apiUrl = "stt.api.cloud.yandex.net"
+
+        public
+        var apiPort = 443
+
+        public
+        var enableProfanityFilter = true
+
+        public
+        var enablePartialResults = true
+
+        public
+        var sampleRate = SampleRate.sampleRate48KHz
+
+        public
+        var rawResults = false
+
+        public
+        var literatureText = false
+
+        public
+        var enableDataLogging = false
+
+        public
+        var normalizePartialData = false
+
+        public
+        var pinningConfig: PinningConfig?
+
+        public
+        init() {}
+
+    }
+
     /**
     Customize `config` parameter if you change recognition audioFormat in recognition config.
     */
@@ -36,13 +83,11 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     /**
     */
     private
-    lazy var recognitionAPI = YandexRecognitionAPI(
+    lazy var recognitionAPI = YandexRecognitionAPIV3(
         iAM: iamToken,
-        folderID: folderID,
+        folderId: folderID,
         language: languageCode,
-        api: sttAPIAdress,
         config: config,
-        dataLoggingEnabled: dataLoggingEnabled,
         operation: operationQueue
     )
     /**
@@ -60,10 +105,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     let languageCode: String
 
     private
-    let sttAPIAdress: String
-
-    private
-    let config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig?
+    let config: YandexSpeechToText.Config
 
     private
     let dataLoggingEnabled: Bool
@@ -76,9 +118,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         tokenProvider: IAMTokenProvider,
         folderID: String,
         language code: String = "ru-RU",
-        sttAPIAdress: String = "stt.api.cloud.yandex.net:443",
-        config: Yandex_Cloud_Ai_Stt_V2_RecognitionConfig? = nil,
-        dataLoggingEnabled: Bool = false
+        config: YandexSpeechToText.Config = YandexSpeechToText.Config()
     ) {
         let token = tokenProvider.token()
 
@@ -89,10 +129,9 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         self.iamToken = iamToken
         self.folderID = folderID
         self.languageCode = code
-        self.sttAPIAdress = sttAPIAdress
         self.config = config
         self.audioEngine = AVAudioEngine()
-        self.dataLoggingEnabled = dataLoggingEnabled
+        self.dataLoggingEnabled = config.enableDataLogging
         super.init()
     }
 
@@ -152,8 +191,8 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     }
 
     private
-    // swiftlint:disable:next function_body_length
     func prepareRecognition() {
+
         guard let notify = notify else {
             return
         }
@@ -164,6 +203,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
             }
         }
 
+        // swiftlint:disable:next closure_body_length
         recognitionAPI.openStream { [audioEngine, weak self, audioFormat] stream in
             let inputNode = audioEngine.inputNode
             let inputFormat = inputNode.inputFormat(forBus: 0)
@@ -177,50 +217,51 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
             )
 
             inputNode.removeTap(onBus: 0)
-            inputNode.installTap(onBus: 0, bufferSize: 1024, format: inputFormat) { [weak stream] buffer, _ in
-                try? stream?.send(
-                    Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionRequest.with { request in
-                        let capacity = UInt32(Float(buffer.frameCapacity) / Float(ratio > 0 ? ratio : 1))
-                        guard let outputBuffer = AVAudioPCMBuffer(
-                            pcmFormat: recordingFormat,
-                            frameCapacity: capacity
-                        ) else {
-                            return
-                        }
-
-                        outputBuffer.frameLength = outputBuffer.frameCapacity
-
-                        let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
-                            outStatus.pointee = AVAudioConverterInputStatus.haveData
-                            return buffer
-                        }
-
-                        let status = converter?.convert(
-                            to: outputBuffer,
-                            error: nil,
-                            withInputFrom: inputBlock
-                        )
-
-                        switch status {
-                        case .error:
-                            return
-                        default:
-                            break
-                        }
-
-                        guard let bytes = outputBuffer.int16ChannelData else {
-                            return
-                        }
-
-                        let channels = UnsafeBufferPointer(start: bytes, count: Int(audioFormat.channelCount))
-
-                        request.audioContent = Data(
-                            bytesNoCopy: channels[0],
-                            count: Int(buffer.frameCapacity * audioFormat.streamDescription.pointee.mBytesPerFrame),
-                            deallocator: .none
-                        )
+            // swiftlint:disable:next closure_body_length
+            inputNode.installTap(onBus: 0, bufferSize: 1024, format: inputFormat) { buffer, _ in
+                // swiftlint:disable:next closure_body_length
+                let request = YandexRecognitionAPIV3.Request.with { request in
+                    let capacity = UInt32(Float(buffer.frameCapacity) / Float(ratio > 0 ? ratio : 1))
+                    guard let outputBuffer = AVAudioPCMBuffer(
+                        pcmFormat: recordingFormat,
+                        frameCapacity: capacity
+                    ) else {
+                        return
                     }
-                )
+
+                    outputBuffer.frameLength = outputBuffer.frameCapacity
+
+                    let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
+                        outStatus.pointee = AVAudioConverterInputStatus.haveData
+                        return buffer
+                    }
+
+                    let status = converter?.convert(
+                        to: outputBuffer,
+                        error: nil,
+                        withInputFrom: inputBlock
+                    )
+
+                    switch status {
+                    case .error:
+                        return
+                    default:
+                        break
+                    }
+
+                    guard let bytes = outputBuffer.int16ChannelData else {
+                        return
+                    }
+
+                    let channels = UnsafeBufferPointer(start: bytes, count: Int(audioFormat.channelCount))
+
+                    request.chunk.data = Data(
+                        bytesNoCopy: channels[0],
+                        count: Int(buffer.frameCapacity * audioFormat.streamDescription.pointee.mBytesPerFrame),
+                        deallocator: .none
+                    )
+                }
+                stream?.sendMessage(request, promise: nil)
             }
 
             self?.audioInputNode = inputNode
@@ -228,37 +269,39 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
 
         } onResponse: { [weak self] response in
             self?.proccessResults(response)
-        } error: { _ in
-            notify(.failure(.speechRecognitionUnavailable))
-        } completion: { [weak self] in
-            self?.stopRecognition()
         }
     }
 
     private
-    func proccessResults(_ response: Yandex_Cloud_Ai_Stt_V2_StreamingRecognitionResponse) {
-        guard
-            !wasSpeechStopped,
-            let phrase = response.chunks.first,
-            let bestAlternative = phrase.alternatives.first
-        else {
-            return
+    func proccessResults(_ response: YandexRecognitionAPIV3.Response) {
+
+        switch response.event {
+        case .partial:
+            let alternativeList = response.partial.alternatives
+            if !alternativeList.isEmpty {
+                let bestAlternative = alternativeList.first
+                let partialResult = bestAlternative?.text.trimmingCharacters(in: .whitespacesAndNewlines)
+                if let resultText = partialResult {
+                    notify?(.success(.recognitionPartialResult(resultText)))
+                }
+            }
+
+        case .final:
+            let alternativeList = response.final.alternatives
+            if !alternativeList.isEmpty {
+                let bestAlternative = alternativeList.first
+                let partialResult = bestAlternative?.text.trimmingCharacters(in: .whitespacesAndNewlines)
+                if let resultText = partialResult {
+                    notify?(.success(.recognitionPartialResult(resultText)))
+                    notify?(.success(.recognitionResult(resultText)))
+                }
+            }
+
+        default:
+            _ = response.event
+            
         }
 
-        guard phrase.final == true else {
-            notify?(.success(.recognitionPartialResult(bestAlternative.text)))
-            return
-        }
-
-        let finalResult = bestAlternative.text.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        guard finalResult.isEmpty == false else {
-            notify?(.success(.emptyRecognitionResult))
-            return
-        }
-
-        notify?(.success(.recognitionPartialResult(finalResult)))
-        notify?(.success(.recognitionResult(finalResult)))
     }
 
     // MARK: - User Permissions

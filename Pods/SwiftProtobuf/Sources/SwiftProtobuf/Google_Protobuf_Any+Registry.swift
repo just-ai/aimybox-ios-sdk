@@ -4,7 +4,7 @@
 // Licensed under Apache License v2.0 with Runtime Library Exception
 //
 // See LICENSE.txt for license information:
-// https://github.com/apple/swift-protobuf/blob/master/LICENSE.txt
+// https://github.com/apple/swift-protobuf/blob/main/LICENSE.txt
 //
 // -----------------------------------------------------------------------------
 ///
@@ -14,7 +14,12 @@
 // -----------------------------------------------------------------------------
 
 import Foundation
+#if canImport(Dispatch)
 import Dispatch
+fileprivate var knownTypesQueue =
+    DispatchQueue(label: "org.swift.protobuf.typeRegistry",
+                  attributes: .concurrent)
+#endif
 
 // TODO: Should these first four be exposed as methods to go with
 // the general registry support?
@@ -47,9 +52,7 @@ internal func typeName(fromURL s: String) -> String {
   return String(s[typeStart..<s.endIndex])
 }
 
-fileprivate var serialQueue = DispatchQueue(label: "org.swift.protobuf.typeRegistry")
-
-// All access to this should be done on `serialQueue`.
+// All access to this should be done on `knownTypesQueue`.
 fileprivate var knownTypes: [String:Message.Type] = [
   // Seeded with the Well Known Types.
   "google.protobuf.Any": Google_Protobuf_Any.self,
@@ -103,7 +106,7 @@ extension Google_Protobuf_Any {
     @discardableResult public static func register(messageType: Message.Type) -> Bool {
         let messageTypeName = messageType.protoMessageName
         var result: Bool = false
-        serialQueue.sync {
+        execute(flags: .barrier) {
             if let alreadyRegistered = knownTypes[messageTypeName] {
                 // Success/failure when something was already registered is
                 // based on if they are registering the same class or trying
@@ -114,6 +117,7 @@ extension Google_Protobuf_Any {
                 result = true
             }
         }
+
         return result
     }
 
@@ -126,10 +130,32 @@ extension Google_Protobuf_Any {
     /// Returns the Message.Type expected for the given proto message name.
     public static func messageType(forMessageName name: String) -> Message.Type? {
         var result: Message.Type?
-        serialQueue.sync {
+        execute(flags: .none) {
             result = knownTypes[name]
         }
         return result
     }
 
+}
+
+fileprivate enum DispatchFlags {
+    case barrier
+    case none
+}
+
+fileprivate func execute(flags: DispatchFlags, _ closure: () -> Void) {
+    #if !os(WASI)
+    switch flags {
+    case .barrier:
+        knownTypesQueue.sync(flags: .barrier) {
+            closure()
+        }
+    case .none:
+        knownTypesQueue.sync {
+            closure()
+        }
+    }
+    #else
+    closure()
+    #endif
 }

@@ -38,8 +38,24 @@
 		03172B2F260E72DB004608F2 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03172B15260E72DB004608F2 /* SuggestionView.swift */; };
 		03FF16ED263850CF0008BA69 /* sound_out.wav in Resources */ = {isa = PBXBuildFile; fileRef = 03FF16EB263850CF0008BA69 /* sound_out.wav */; };
 		03FF16EE263850CF0008BA69 /* sound_in.wav in Resources */ = {isa = PBXBuildFile; fileRef = 03FF16EC263850CF0008BA69 /* sound_in.wav */; };
-		9D88A4B57DA462868DCED73F /* Pods_AimyboxExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */; };
+		267CFCF5A452433ABBB9104B /* Pods_AimyboxExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE8CBF4F4A057929F8639C3 /* Pods_AimyboxExample.framework */; };
+		78100923281825AD0092B259 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78168EB1283E9AC70070DD83 /* Aimybox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78168EB0283E9AC70070DD83 /* Aimybox.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		78100924281825AD0092B259 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				78100923281825AD0092B259 /* (null) in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		031729D2260E1CF1004608F2 /* AimyboxExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimyboxExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,9 +91,11 @@
 		03172B15260E72DB004608F2 /* SuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
 		03FF16EB263850CF0008BA69 /* sound_out.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_out.wav; sourceTree = "<group>"; };
 		03FF16EC263850CF0008BA69 /* sound_in.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound_in.wav; sourceTree = "<group>"; };
-		5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AimyboxExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.debug.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.debug.xcconfig"; sourceTree = "<group>"; };
-		7948DA7CE5715E5323C3DDF7 /* Pods-AimyboxExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.release.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.release.xcconfig"; sourceTree = "<group>"; };
+		5BEE26FC7BED7411922D4D79 /* Pods-AimyboxExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.debug.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.debug.xcconfig"; sourceTree = "<group>"; };
+		78168EB0283E9AC70070DD83 /* Aimybox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Aimybox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		787B8A2F283D368A003EBF9A /* Aimybox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Aimybox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FE8CBF4F4A057929F8639C3 /* Pods_AimyboxExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AimyboxExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC2F9C84609D9299FF5B8589 /* Pods-AimyboxExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AimyboxExample.release.xcconfig"; path = "Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D88A4B57DA462868DCED73F /* Pods_AimyboxExample.framework in Frameworks */,
+				78168EB1283E9AC70070DD83 /* Aimybox.framework in Frameworks */,
+				267CFCF5A452433ABBB9104B /* Pods_AimyboxExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +117,7 @@
 				031729D4260E1CF1004608F2 /* AimyboxExample */,
 				031729D3260E1CF1004608F2 /* Products */,
 				3D1AF8FF42D43FF106B3932C /* Pods */,
-				30CF1502F1CDF2E14F63A310 /* Frameworks */,
+				E8C5318F7B093162DCAD7E50 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,21 +224,23 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		30CF1502F1CDF2E14F63A310 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5C4249FB82E9600C247A0CC7 /* Pods_AimyboxExample.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3D1AF8FF42D43FF106B3932C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */,
-				7948DA7CE5715E5323C3DDF7 /* Pods-AimyboxExample.release.xcconfig */,
+				5BEE26FC7BED7411922D4D79 /* Pods-AimyboxExample.debug.xcconfig */,
+				FC2F9C84609D9299FF5B8589 /* Pods-AimyboxExample.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E8C5318F7B093162DCAD7E50 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78168EB0283E9AC70070DD83 /* Aimybox.framework */,
+				787B8A2F283D368A003EBF9A /* Aimybox.framework */,
+				9FE8CBF4F4A057929F8639C3 /* Pods_AimyboxExample.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,12 +250,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 031729E6260E1CF3004608F2 /* Build configuration list for PBXNativeTarget "AimyboxExample" */;
 			buildPhases = (
-				87FF4B556D4BBB2576E890F5 /* [CP] Check Pods Manifest.lock */,
+				5583B5DA5506272CC83DC20C /* [CP] Check Pods Manifest.lock */,
 				031729CE260E1CF1004608F2 /* Sources */,
 				03172AE3260E6B9F004608F2 /* Run SwiftLint */,
 				031729CF260E1CF1004608F2 /* Frameworks */,
 				031729D0260E1CF1004608F2 /* Resources */,
-				72B40B4A297AFD59251E442D /* [CP] Embed Pods Frameworks */,
+				78100924281825AD0092B259 /* Embed Frameworks */,
+				6043CEF0EF130E901EEA452E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -252,7 +274,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					031729D1260E1CF1004608F2 = {
 						CreatedOnToolsVersion = 12.2;
@@ -295,7 +317,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		03172AE3260E6B9F004608F2 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -311,24 +333,7 @@
 			shellPath = /bin/sh;
 			shellScript = "LINT_PATH=${1:-\"${SRCROOT}/${TARGETNAME}\"}\n${PODS_ROOT}/SwiftLint/swiftlint --config \"./AimyboxExample/Supporting Files/swiftlint.yml\" --path \"${LINT_PATH}\"\n";
 		};
-		72B40B4A297AFD59251E442D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		87FF4B556D4BBB2576E890F5 /* [CP] Check Pods Manifest.lock */ = {
+		5583B5DA5506272CC83DC20C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -348,6 +353,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6043CEF0EF130E901EEA452E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AimyboxExample/Pods-AimyboxExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -451,7 +473,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -506,7 +528,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -518,13 +540,13 @@
 		};
 		031729E7260E1CF3004608F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 696005E3439587001AF17652 /* Pods-AimyboxExample.debug.xcconfig */;
+			baseConfigurationReference = 5BEE26FC7BED7411922D4D79 /* Pods-AimyboxExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8298429F2B;
+				DEVELOPMENT_TEAM = 99PHV8HCMK;
 				INFOPLIST_FILE = "AimyboxExample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -540,13 +562,13 @@
 		};
 		031729E8260E1CF3004608F2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7948DA7CE5715E5323C3DDF7 /* Pods-AimyboxExample.release.xcconfig */;
+			baseConfigurationReference = FC2F9C84609D9299FF5B8589 /* Pods-AimyboxExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8298429F2B;
+				DEVELOPMENT_TEAM = GSGWB68KPF;
 				INFOPLIST_FILE = "AimyboxExample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
