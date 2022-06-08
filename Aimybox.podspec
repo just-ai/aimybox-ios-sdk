@@ -45,12 +45,12 @@ Pod::Spec.new do |s|
     sp.exclude_files = 'Components/YandexSpeechKit/Sources/*.{plist}'
     sp.dependency 'Aimybox/Core'
     sp.dependency 'Aimybox/Utils'
-    sp.dependency 'SwiftProtobuf'
     sp.dependency 'gRPC-Swift'
     sp.dependency 'SwiftNIO'
     sp.dependency 'SwiftNIOCore'
     sp.dependency 'SwiftNIOTLS'
     sp.dependency 'SwiftNIOSSL'
+    sp.dependency 'SwiftProtobuf'
   end	
 
 end
