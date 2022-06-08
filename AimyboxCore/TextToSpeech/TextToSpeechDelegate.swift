@@ -8,7 +8,7 @@
 import Foundation
 
 public
-protocol TextToSpeechDelegate: class {
+protocol TextToSpeechDelegate: AnyObject {
 
     // MARK: - Lifecycle
     func tts(_ tts: TextToSpeech, dataReceived speech: AimyboxSpeech)

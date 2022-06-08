@@ -8,15 +8,24 @@
 
 import AVFoundation
 import Foundation
+import GRPC
+import Logging
+import SwiftProtobuf
 
 final
 class YandexSynthesisAPI {
 
-    private
-    let address: URL
+    typealias TtsServiceClient = Speechkit_Tts_V3_SynthesizerClient
 
-    private
-    let dataLoggingEnabled: Bool
+    typealias Request = Speechkit_Tts_V3_UtteranceSynthesisRequest
+
+    typealias Response = Speechkit_Tts_V3_UtteranceSynthesisResponse
+
+    typealias StreamingCall = ServerStreamingCall<Request, Response>
+
+    typealias AudioFormatOptions = Speechkit_Tts_V3_AudioFormatOptions
+
+    typealias ContainerAudio = Speechkit_Tts_V3_ContainerAudio
 
     private
     let folderId: String
@@ -27,134 +36,99 @@ class YandexSynthesisAPI {
     private
     let token: String
 
+    private
+    let ttsServiceClient: TtsServiceClient
+
+    private
+    var streamingCall: YandexSynthesisAPI.StreamingCall?
+
     init(
         iAMToken: String,
         folderId: String,
-        api address: URL,
-        operation queue: OperationQueue,
-        dataLoggingEnabled: Bool
+        config: YandexTextToSpeech.Config,
+        operation queue: OperationQueue
+
     ) {
-        self.address = address
-        self.dataLoggingEnabled = dataLoggingEnabled
         self.folderId = folderId
         self.operationQueue = queue
         self.token = iAMToken
+
+        var logger = Logger(label: "gRPC TTS", factory: StreamLogHandler.standardOutput(label:))
+        logger.logLevel = .debug
+
+        let group = PlatformSupport.makeEventLoopGroup(loopCount: 1, networkPreference: .best, logger: logger)
+
+        let callOptions = CallOptions(
+            customMetadata: [
+                "authorization": "Bearer \(token)",
+                "x-folder-id": folderId,
+                xDataLoggingEnabledKey: config.enableDataLogging ? "true" : "false",
+                normalizePartialDataKey: config.normalizePartialData ? "true" : "false",
+            ],
+            logger: logger
+        )
+
+        var channel: GRPCChannel!
+
+        if let pinningConfig = config.pinningConfig {
+            channel = PinningChannelBuilder.createPinningChannel(with: pinningConfig, group: group)
+        } else {
+            channel = ClientConnection
+                .usingTLSBackedByNIOSSL(on: group)
+                .withBackgroundActivityLogger(logger)
+                .connect(host: config.apiUrl, port: config.apiPort)
+        }
+
+        self.ttsServiceClient = TtsServiceClient(channel: channel, defaultCallOptions: callOptions)
     }
 
     func request(
         text: String,
         language code: String,
-        config: YandexSynthesisConfig,
+        config: YandexTextToSpeech.Config,
         onResponse completion: @escaping (URL?) -> Void
     ) {
-        guard var components = URLComponents(url: address, resolvingAgainstBaseURL: true) else {
-            return
+        let request = Speechkit_Tts_V3_UtteranceSynthesisRequest.with {
+            $0.text = text
+            $0.outputAudioSpec = AudioFormatOptions.with {
+                $0.containerAudio = ContainerAudio.with {
+                    $0.containerAudioType = .wav
+                }
+            }
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.voice = config.voice.rawValue })
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.speed = config.speed.value })
+            $0.hints.append(Speechkit_Tts_V3_Hints.with { $0.volume = config.volume.value })
+
         }
 
-        var queries = [
-            URLQueryItem(name: "folderId", value: folderId),
-            URLQueryItem(name: "text", value: text),
-            URLQueryItem(name: "lang", value: code),
-        ]
-
-        queries.append(contentsOf: config.asParams.map { URLQueryItem(name: $0.0, value: $0.1) })
-
-        components.queryItems = queries
-
-        guard
-            let str = components.url?.absoluteString.replacingOccurrences(of: "+", with: "%2B"),
-            let url = URL(string: str)
-        else {
-            return
+        streamingCall = ttsServiceClient.utteranceSynthesis(request) { [weak self] response in
+            if response.hasAudioChunk {
+                self?.perform(response.audioChunk.data, onResponse: completion)
+            } else {
+                completion(nil)
+            }
         }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-
-        if dataLoggingEnabled {
-            request.addValue("true", forHTTPHeaderField: xDataLoggingEnabledKey)
-        }
-        perform(request, onResponse: completion)
     }
 
     private
-    func perform(_ request: URLRequest, onResponse: @escaping (URL?) -> Void) {
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard error == nil else {
-                return onResponse(nil)
-            }
-
-            guard let code = (response as? HTTPURLResponse)?.statusCode, 200..<300 ~= code else {
-                return onResponse(nil)
-            }
-
-            guard let localData = data else {
-                return onResponse(nil)
-            }
-
+    func perform(_ data: Data, onResponse: @escaping (URL?) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
             guard let localUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
                 .first?
-                .appendingPathComponent("\(UUID().uuidString).wav") else {
+                .appendingPathComponent("\(UUID().uuidString).wav")
+            else {
                 return onResponse(nil)
             }
 
-            try? WAVFileGenerator().createWAVFile(using: localData).write(to: localUrl)
-
-            onResponse(localUrl)
-
-            try? FileManager.default.removeItem(at: localUrl)
-        }
-
-        DispatchQueue.global(qos: .userInitiated).async {
-            task.resume()
+            do {
+                try data.write(to: localUrl)
+                onResponse(localUrl)
+                try? FileManager.default.removeItem(at: localUrl)
+            } catch {
+                onResponse(nil)
+            }
         }
     }
 
 }
 
-public
-struct YandexSynthesisConfig {
-
-    let emotion: String
-
-    let format: String
-
-    let sampleRateHertz: Int
-
-    let speed: Float
-
-    let voice: String
-
-    public
-    init(
-        voice: String? = nil,
-        emotion: String? = nil,
-        speed: Float? = nil,
-        format: String? = nil,
-        sampleRateHertz: Int? = nil
-    ) {
-        self.voice = voice ?? "alena"
-        self.emotion = emotion ?? "neutral"
-        self.speed = speed ?? 1.0
-        self.format = format ?? "lpcm"
-        self.sampleRateHertz = sampleRateHertz ?? 48_000
-    }
-
-}
-
-public
-extension YandexSynthesisConfig {
-
-    var asParams: [String: String] {
-        var params = [String: String]()
-
-        params["emotion"] = emotion
-        params["format"] = format
-        params["sampleRateHertz"] = String(sampleRateHertz)
-        params["speed"] = String(speed)
-        params["voice"] = voice
-
-        return params
-    }
-}

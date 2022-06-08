@@ -11,7 +11,7 @@ import Foundation
 Speech to text delegate is notified to all events that relate to speech recognition process.
 */
 public
-protocol SpeechToTextDelegate: class {
+protocol SpeechToTextDelegate: AnyObject {
 
     // MARK: - Lifecycle
     /**
