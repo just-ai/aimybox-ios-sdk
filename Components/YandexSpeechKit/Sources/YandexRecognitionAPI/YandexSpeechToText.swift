@@ -298,7 +298,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
             }
 
         default:
-            let event = response.event
+            _ = response.event
             
         }
 
