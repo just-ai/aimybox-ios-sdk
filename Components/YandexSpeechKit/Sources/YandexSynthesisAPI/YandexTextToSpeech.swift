@@ -125,12 +125,12 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     }
 
     public
-    func synthesize(contentsOf speeches: [AimyboxSpeech]) {
+    func synthesize(contentsOf speeches: [AimyboxSpeech], onlyText: Bool = true) {
         isCancelled = false
         operationQueue.addOperation { [weak self] in
             self?.prepareAudioEngineForMultiRoute { engineIsReady in
                 if engineIsReady {
-                    self?.synthesize(speeches)
+                    self?.synthesize(speeches, onlyText)
                 } else {
                     self?.notify?(.failure(.speakersUnavailable))
                 }
@@ -154,21 +154,40 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     // MARK: - Internals
 
     private
-    func synthesize(_ speeches: [AimyboxSpeech]) {
+    func synthesize(_ speeches: [AimyboxSpeech], _ onlyText: Bool) {
         guard let notify = notify else {
             return
         }
 
         notify(.success(.speechSequenceStarted(speeches)))
 
-        speeches.unwrapSSML.forEach { speech in
-
-            guard speech.isValid() && !isCancelled else {
-                return notify(.failure(.emptySpeech(speech)))
+        let speechProc : (AimyboxSpeech) ->() = { [weak self] speechIn in
+            guard speechIn.isValid() && self?.isCancelled == false else {
+                return notify(.failure(.emptySpeech(speechIn)))
             }
-
-            synthesize(speech)
+            
+            self?.synthesize(speechIn)
         }
+        
+        if (onlyText) {
+            speeches.forEach { speech in
+                speechProc(speech)
+            }
+        } else {
+            speeches.unwrapSSML().forEach { speech in
+                speechProc(speech)
+            }
+        }
+        
+        
+//        speeches.unwrapSSML.forEach { speech in
+//
+//            guard speech.isValid() && !isCancelled else {
+//                return notify(.failure(.emptySpeech(speech)))
+//            }
+//
+//            synthesize(speech)
+//        }
 
         notify(
             isCancelled

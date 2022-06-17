@@ -78,7 +78,7 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
                 try throwIfCanceled()
 
                 do {
-                    try aimybox.speak(speech: speech, next: nextAction)
+                    try aimybox.speak(speech: speech, next: nextAction, onlyText: true)
                 } catch {
 
                 }

@@ -43,13 +43,13 @@ protocol Aimybox: AnyObject {
     func standby()
     /**
     */
-    func speak(speech: AimyboxSpeech) throws
+    func speak(speech: AimyboxSpeech, onlyText: Bool) throws
     /**
     */
-    func speak(speech: AimyboxSpeech, next action: AimyboxNextAction) throws
+    func speak(speech: AimyboxSpeech, next action: AimyboxNextAction, onlyText: Bool) throws
     /**
     */
-    func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction) throws
+    func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction, onlyText: Bool) throws
     /**
     */
     func cancelSynthesis()
