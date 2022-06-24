@@ -15,7 +15,7 @@ protocol TextToSpeech: AimyboxComponent {
     /**
     Synthesizes in FIFO order.
     */
-    func synthesize(contentsOf speeches: [AimyboxSpeech])
+    func synthesize(contentsOf speeches: [AimyboxSpeech], onlyText: Bool)
     /**
     Stops speech synthesis.
     */

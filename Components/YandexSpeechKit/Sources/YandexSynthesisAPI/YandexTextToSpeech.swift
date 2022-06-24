@@ -57,6 +57,10 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     */
     public
     var notify: (TextToSpeechCallback)?
+    
+    public
+    let synthesisGroup: DispatchGroup
+
     /**
     */
     private
@@ -121,16 +125,17 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         self.normalizePartialData = config.normalizePartialData
         self.host = config.apiUrl
         self.port = config.apiPort
+        synthesisGroup = DispatchGroup()
         super.init()
     }
 
     public
-    func synthesize(contentsOf speeches: [AimyboxSpeech]) {
+    func synthesize(contentsOf speeches: [AimyboxSpeech], onlyText: Bool = true) {
         isCancelled = false
         operationQueue.addOperation { [weak self] in
             self?.prepareAudioEngineForMultiRoute { engineIsReady in
                 if engineIsReady {
-                    self?.synthesize(speeches)
+                    self?.synthesize(speeches, onlyText)
                 } else {
                     self?.notify?(.failure(.speakersUnavailable))
                 }
@@ -154,20 +159,29 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     // MARK: - Internals
 
     private
-    func synthesize(_ speeches: [AimyboxSpeech]) {
+    func synthesize(_ speeches: [AimyboxSpeech], _ onlyText: Bool) {
         guard let notify = notify else {
             return
         }
 
         notify(.success(.speechSequenceStarted(speeches)))
 
-        speeches.unwrapSSML.forEach { speech in
-
-            guard speech.isValid() && !isCancelled else {
-                return notify(.failure(.emptySpeech(speech)))
+        let speechProc : (AimyboxSpeech) ->() = { [weak self] speechIn in
+            guard speechIn.isValid() && self?.isCancelled == false else {
+                return notify(.failure(.emptySpeech(speechIn)))
             }
-
-            synthesize(speech)
+            
+            self?.synthesize(speechIn)
+        }
+        
+        if (onlyText) {
+            speeches.forEach { speech in
+                speechProc(speech)
+            }
+        } else {
+            speeches.unwrapSSML.forEach { speech in
+                speechProc(speech)
+            }
         }
 
         notify(
@@ -220,34 +234,32 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             return
         }
 
-        let synthesisGroup = DispatchGroup()
-
         let player = AVPlayer(url: url)
 
-        let statusObservation = player.currentItem?.observe(\.status) { item, _ in
+        let statusObservation = player.currentItem?.observe(\.status) { [weak self] item, _ in
             switch item.status {
             case .failed:
                 notify(.failure(.emptySpeech(speech)))
-                synthesisGroup.leave()
+                self?.synthesisGroup.leave()
             default:
                 break
             }
         }
 
-        let stopObservation = player.observe(\.rate) { _, _ in
+        let stopObservation = player.observe(\.rate) { [weak self] _, _ in
             guard player.rate == 0 else {
                 return
             }
             notify(.success(.speechEnded(speech)))
-            synthesisGroup.leave()
+            self?.synthesisGroup.leave()
         }
         let failedToPlayToEndObservation = NotificationCenter.default.addObserver(
             forName: .AVPlayerItemFailedToPlayToEndTime,
             object: player.currentItem,
             queue: notificationQueue
-        ) { _ in
+        ) { [weak self] _ in
             notify(.failure(.emptySpeech(speech)))
-            synthesisGroup.leave()
+            self?.synthesisGroup.leave()
         }
 
         synthesisGroup.enter()
@@ -260,7 +272,7 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         }
         synthesisGroup.wait()
 
-        self.player = nil
+        
         stopObservation.invalidate()
         statusObservation?.invalidate()
         NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
