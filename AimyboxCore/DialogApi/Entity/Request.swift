@@ -12,7 +12,7 @@ Request model, which is used across the library.
 You can extend it by adding some fields to `data` JSON in `CustomSkill` or custom `DialogApi`.
 */
 public
-protocol Request: AnyObject {
+protocol Request {
     /**
     User input, recognized by STT or manually entered.
     */

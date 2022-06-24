@@ -1,15 +1,15 @@
 PODS:
-  - Aimybox/AimyboxDialogAPI (0.0.26):
+  - Aimybox/AimyboxDialogAPI (0.0.25):
     - Aimybox/Core
     - Aimybox/Utils
-  - Aimybox/AVTextToSpeech (0.0.26):
+  - Aimybox/AVTextToSpeech (0.0.25):
     - Aimybox/Core
     - Aimybox/Utils
-  - Aimybox/Core (0.0.26)
-  - Aimybox/SFSpeechToText (0.0.26):
+  - Aimybox/Core (0.0.25)
+  - Aimybox/SFSpeechToText (0.0.25):
     - Aimybox/Core
     - Aimybox/Utils
-  - Aimybox/Utils (0.0.26)
+  - Aimybox/Utils (0.0.25)
   - SDWebImage (5.12.5):
     - SDWebImage/Core (= 5.12.5)
   - SDWebImage/Core (5.12.5)
@@ -34,7 +34,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Aimybox: fd9d64d15a2f89676b9ddc8c8b94debb6f4d68fb
+  Aimybox: d41813de2e33f25f2137a180c073173d769af7bf
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
 

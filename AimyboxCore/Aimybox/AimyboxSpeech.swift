@@ -11,7 +11,7 @@ import Foundation
 Base protocol for any speeches.
 */
 public
-protocol AimyboxSpeech: AnyObject {
+protocol AimyboxSpeech {
 
     func isValid() -> Bool
 

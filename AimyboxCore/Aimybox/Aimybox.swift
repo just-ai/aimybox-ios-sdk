@@ -16,7 +16,7 @@ Top level object that manages voice assistant behavior.
 - Attention: Use `AimyboxBuilder` to instanciate object conforming to a `Aimybox` protocol.
 */
 public
-protocol Aimybox: AnyObject {
+protocol Aimybox{
     /**
     Transitions listening state.
     - Note: For more detailed overview of side effects involved, refer to `AimyboxState.listening`.
@@ -43,13 +43,13 @@ protocol Aimybox: AnyObject {
     func standby()
     /**
     */
-    func speak(speech: AimyboxSpeech) throws
+    func speak(speech: AimyboxSpeech, onlyText: Bool) throws
     /**
     */
-    func speak(speech: AimyboxSpeech, next action: AimyboxNextAction) throws
+    func speak(speech: AimyboxSpeech, next action: AimyboxNextAction, onlyText: Bool) throws
     /**
     */
-    func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction) throws
+    func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction, onlyText: Bool) throws
     /**
     */
     func cancelSynthesis()

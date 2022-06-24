@@ -24,8 +24,11 @@ class MainViewController: UIViewController {
     var aimybox: Aimybox?
 
     private
-    var player: AVAudioPlayer?
-
+    var playerBlockGroup: DispatchGroup?
+    
+    private
+    let playerCallbacksQueue = OperationQueue()
+    
     private
     var rows: [Reply] = [] {
         didSet {
@@ -165,10 +168,10 @@ class MainViewController: UIViewController {
 
     private
     func sendUserReplay(text: String) {
-        aimybox?.sendRequest(query: text)
         rows.append(UserReply(text: text))
         scrollToBottomIfNeeded()
         bottomMenu.suggestions = []
+        aimybox?.sendRequest(query: text)
     }
 
     private
@@ -216,6 +219,8 @@ class MainViewController: UIViewController {
         aimybox = AimyboxBuilder.aimybox(with: config)
         aimybox?.delegate = self
 
+        playerBlockGroup = textToSpeech.blockGroup
+        
         startLoadDefaultCards()
     }
 
@@ -239,8 +244,38 @@ class MainViewController: UIViewController {
 
     private
     func playSound(type: SoundType) {
-        player = try? AVAudioPlayer(contentsOf: type.url)
-        player?.play()
+                   
+        playerBlockGroup?.enter()
+        let player = AVPlayer(url: type.url)
+    
+        let didPlayToEndObservation = NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemDidPlayToEndTime,
+            object: player.currentItem,
+            queue: playerCallbacksQueue
+        ) { [weak self] _ in
+            self?.playerBlockGroup?.leave()
+        }
+
+        let failedToPlayToEndObservation = NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemFailedToPlayToEndTime,
+            object: player.currentItem,
+            queue: playerCallbacksQueue
+        ) { [weak self] _ in
+            self?.playerBlockGroup?.leave()
+        }
+
+                    
+        if player.status == .failed {
+            playerBlockGroup?.leave()
+        } else {
+            player.play()
+            playerBlockGroup?.wait(timeout: .now()+1.0)
+        }
+                 
+        playerBlockGroup?.notify(queue: .main){
+            NotificationCenter.default.removeObserver(didPlayToEndObservation)
+            NotificationCenter.default.removeObserver(failedToPlayToEndObservation)
+        }
     }
 
 }
@@ -248,15 +283,19 @@ class MainViewController: UIViewController {
 extension MainViewController: AimyboxDelegate {
 
     func aimybox(_ aimybox: Aimybox, willMoveFrom oldState: AimyboxState, to newState: AimyboxState) {
+        
+        
+        if newState == .listening && oldState == .speaking {
+            playSound(type: .in)
+        } else if newState == .processing && oldState == .listening{
+            playSound(type: .out)
+        }
+        
         DispatchQueue.main.async { [weak self] in
             guard let this = self else {
                 return
             }
-            if newState == .listening {
-                this.playSound(type: .in)
-            } else if oldState == .listening {
-                this.playSound(type: .out)
-            }
+           
             switch newState {
             case .listening:
                 this.bottomMenu.query = "👂🏻"
@@ -419,7 +458,7 @@ extension MainViewController: UITableViewDataSource {
 }
 
 let aiRoute = URL(
-    static: "https://bot.aimylogic.com/chatapi/webhook/zenbox/cVcGlsvz:800911b5cd537cba8c734e772f8c4a1ebd68fb1a"
+    static: "https://bot.jaicp.com/chatapi/webhook/zenbox/LNFjTAlh:67895092ac522776b15a126b7fcc1e775fd20b08"
 )
 
 private

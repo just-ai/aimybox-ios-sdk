@@ -97,19 +97,19 @@ class AimyboxConcrete<TDialogAPI, TConfig>: Aimybox where TConfig: AimyboxConfig
 
     // MARK: - TextToSpeech
     public
-    func speak(speech: AimyboxSpeech) {
-        speak(speech: speech, next: .standby)
+    func speak(speech: AimyboxSpeech, onlyText: Bool = true) {
+        speak(speech: speech, next: .standby, onlyText: onlyText)
     }
 
     public
-    func speak(speech: AimyboxSpeech, next action: AimyboxNextAction) {
-        speak(speech: [speech], next: action)
+    func speak(speech: AimyboxSpeech, next action: AimyboxNextAction, onlyText: Bool = true) {
+        speak(speech: [speech], next: action, onlyText: onlyText)
     }
 
     public
-    func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction) {
+    func speak(speech: [AimyboxSpeech], next action: AimyboxNextAction, onlyText: Bool = true) {
         nextAction = action
-        config.textToSpeech.synthesize(contentsOf: speech)
+        config.textToSpeech.synthesize(contentsOf: speech, onlyText: onlyText)
     }
 
     public
