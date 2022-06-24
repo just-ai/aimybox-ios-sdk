@@ -94,11 +94,11 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     // MARK: - TextToSpeech
 
     public
-    func synthesize(contentsOf speeches: [AimyboxSpeech]) {
+    func synthesize(contentsOf speeches: [AimyboxSpeech], onlyText: Bool) {
         operationQueue.addOperation { [weak self] in
             self?.prepareAudioEngineForMultiRoute { engineIsReady in
                 if engineIsReady {
-                    self?.synthesize(speeches)
+                    self?.synthesize(speeches, onlyText)
                 } else {
                     self?.notify?(.failure(.speakersUnavailable))
                 }
@@ -122,23 +122,32 @@ class AVTextToSpeech: AimyboxComponent, TextToSpeech {
     // MARK: - Internals
 
     private
-    func synthesize(_ speeches: [AimyboxSpeech]) {
+    func synthesize(_ speeches: [AimyboxSpeech], _ onlyText: Bool) {
         guard let notify = notify else {
             return
         }
 
         notify(.success(.speechSequenceStarted(speeches)))
-
-        speeches.unwrapSSML.forEach { speech in
-
-            guard speech.isValid() && !isCancelled else {
-                notify(.failure(.emptySpeech(speech)))
+        
+        let elementProc = {[weak self] (speechIn: AimyboxSpeech) in
+            guard speechIn.isValid() && self?.isCancelled == false else {
+                notify(.failure(.emptySpeech(speechIn)))
                 return
             }
 
-            synthesize(speech)
+            self?.synthesize(speechIn)
         }
 
+        if onlyText {
+            speeches.forEach { speech in
+                elementProc(speech)
+            }
+        } else {
+            speeches.unwrapSSML.forEach { speech in
+                elementProc(speech)
+            }
+        }
+        
         notify(.success(.speechSequenceCompleted(speeches)))
     }
 

@@ -43,6 +43,18 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
             defaultHandler(response: response, aimybox: aimybox)
         }
     }
+    
+    private
+    func replyIsEquals(_ lhs: Reply, _ rhs: Reply) -> Bool {
+        guard type(of: lhs) == type(of: rhs) else { return false }
+        if lhs is AudioReply {
+            return (lhs as? AudioReply)?.url == (rhs as? AudioReply)?.url
+        } else if lhs is TextReply {
+            return (lhs as? TextReply)?.text == (rhs as? TextReply)?.text
+        } else {
+            return false
+        }
+    }
 
     private
     func defaultHandler(response: Response, aimybox: Aimybox) {
@@ -68,7 +80,7 @@ class DialogAPIHandleOperation<TDialogAPI: DialogAPI>: Operation {
                 }()
 
                 let nextAction: AimyboxNextAction = {
-                    if let lastReply = response.replies.last(where: supportedReplies), lastReply === reply {
+                    if let lastReply = response.replies.last(where: supportedReplies), replyIsEquals(lastReply, reply) {
                         return .byQuestion(is: response.question)
                     } else {
                         return .standby

@@ -68,11 +68,11 @@ class AimyboxComponent {
 public
 extension Array where Element == AimyboxSpeech {
 
-    func unwrapSSML() -> [Element] {
+    var unwrapSSML: [Element] {
         var unwrapped = [Element]()
         forEach { elem in
             if let textSpeech = elem as? TextSpeech {
-                
+
                 SSMLDecoder().decode(textSpeech.text).forEach {
                     unwrapped.append($0)
                 }

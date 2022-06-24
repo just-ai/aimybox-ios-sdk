@@ -57,6 +57,10 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
     */
     public
     var notify: (TextToSpeechCallback)?
+    
+    public
+    let synthesisGroup: DispatchGroup
+
     /**
     */
     private
@@ -121,6 +125,7 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         self.normalizePartialData = config.normalizePartialData
         self.host = config.apiUrl
         self.port = config.apiPort
+        synthesisGroup = DispatchGroup()
         super.init()
     }
 
@@ -174,20 +179,10 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
                 speechProc(speech)
             }
         } else {
-            speeches.unwrapSSML().forEach { speech in
+            speeches.unwrapSSML.forEach { speech in
                 speechProc(speech)
             }
         }
-        
-        
-//        speeches.unwrapSSML.forEach { speech in
-//
-//            guard speech.isValid() && !isCancelled else {
-//                return notify(.failure(.emptySpeech(speech)))
-//            }
-//
-//            synthesize(speech)
-//        }
 
         notify(
             isCancelled
@@ -239,34 +234,32 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
             return
         }
 
-        let synthesisGroup = DispatchGroup()
-
         let player = AVPlayer(url: url)
 
-        let statusObservation = player.currentItem?.observe(\.status) { item, _ in
+        let statusObservation = player.currentItem?.observe(\.status) { [weak self] item, _ in
             switch item.status {
             case .failed:
                 notify(.failure(.emptySpeech(speech)))
-                synthesisGroup.leave()
+                self?.synthesisGroup.leave()
             default:
                 break
             }
         }
 
-        let stopObservation = player.observe(\.rate) { _, _ in
+        let stopObservation = player.observe(\.rate) { [weak self] _, _ in
             guard player.rate == 0 else {
                 return
             }
             notify(.success(.speechEnded(speech)))
-            synthesisGroup.leave()
+            self?.synthesisGroup.leave()
         }
         let failedToPlayToEndObservation = NotificationCenter.default.addObserver(
             forName: .AVPlayerItemFailedToPlayToEndTime,
             object: player.currentItem,
             queue: notificationQueue
-        ) { _ in
+        ) { [weak self] _ in
             notify(.failure(.emptySpeech(speech)))
-            synthesisGroup.leave()
+            self?.synthesisGroup.leave()
         }
 
         synthesisGroup.enter()
@@ -279,7 +272,7 @@ class YandexTextToSpeech: AimyboxComponent, TextToSpeech {
         }
         synthesisGroup.wait()
 
-        self.player = nil
+        
         stopObservation.invalidate()
         statusObservation?.invalidate()
         NotificationCenter.default.removeObserver(failedToPlayToEndObservation)

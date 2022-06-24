@@ -11,12 +11,12 @@ import Foundation
 Represents a reply with audio content, which should be played.
 */
 public
-protocol AudioReply: Reply {
+protocol AudioReply: Reply{
     /**
     URL to the audio source.
     */
     var url: URL { get }
-
+    
 }
 
 public
@@ -27,3 +27,5 @@ extension AudioReply {
     }
 
 }
+
+
