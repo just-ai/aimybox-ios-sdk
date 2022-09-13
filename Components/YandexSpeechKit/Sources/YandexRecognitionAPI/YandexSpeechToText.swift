@@ -64,7 +64,7 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
     Customize `config` parameter if you change recognition audioFormat in recognition config.
     */
     public
-    var audioFormat: AVAudioFormat = .defaultFormat
+    var sttAudioFormat: AVAudioFormat = .defaultFormat
     /**
     Used to notify *Aimybox* state machine about events.
     */
@@ -204,26 +204,38 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
         }
 
         // swiftlint:disable:next closure_body_length
-        recognitionAPI.openStream { [audioEngine, weak self, audioFormat] stream in
+        recognitionAPI.openStream { [audioEngine, weak self, sttAudioFormat] stream in
             let inputNode = audioEngine.inputNode
             let inputFormat = inputNode.inputFormat(forBus: 0)
-            let recordingFormat = audioFormat
+            let audioSession = AVAudioSession.sharedInstance()
+            guard let result = try? audioSession.setPreferredSampleRate(inputFormat.sampleRate) else{
+                return
+            }
+            
+            do {
+                try audioSession.setPreferredSampleRate(inputFormat.sampleRate)
+                try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            } catch {
+                notify(.failure(.speechRecognitionUnavailable))
+                return
+            }
 
-            try? AVAudioSession.sharedInstance().setPreferredSampleRate(inputFormat.sampleRate)
-
-            let converter = AVAudioConverter(from: inputFormat, to: recordingFormat)
+            let converter = AVAudioConverter(from: inputFormat, to: sttAudioFormat)
             let ratio = Float(inputFormat.sampleRate) / Float(
-                recordingFormat.sampleRate > 0 ? recordingFormat.sampleRate : AVAudioFormat.defaultFormat.sampleRate
+                inputFormat.sampleRate > 0 ? inputFormat.sampleRate : AVAudioFormat.defaultFormat.sampleRate
             )
 
             inputNode.removeTap(onBus: 0)
+            let buffersize = 1024
             // swiftlint:disable:next closure_body_length
-            inputNode.installTap(onBus: 0, bufferSize: 1024, format: inputFormat) { buffer, _ in
+            inputNode.installTap(onBus: 0, bufferSize: AVAudioFrameCount(buffersize), format: inputFormat) { buffer, _ in
                 // swiftlint:disable:next closure_body_length
                 let request = YandexRecognitionAPIV3.Request.with { request in
+                    
                     let capacity = UInt32(Float(buffer.frameCapacity) / Float(ratio > 0 ? ratio : 1))
+                    
                     guard let outputBuffer = AVAudioPCMBuffer(
-                        pcmFormat: recordingFormat,
+                        pcmFormat: sttAudioFormat,
                         frameCapacity: capacity
                     ) else {
                         return
@@ -253,11 +265,11 @@ class YandexSpeechToText: AimyboxComponent, SpeechToText {
                         return
                     }
 
-                    let channels = UnsafeBufferPointer(start: bytes, count: Int(audioFormat.channelCount))
+                    let channels = UnsafeBufferPointer(start: bytes, count: Int(sttAudioFormat.channelCount))
 
                     request.chunk.data = Data(
                         bytesNoCopy: channels[0],
-                        count: Int(buffer.frameCapacity * audioFormat.streamDescription.pointee.mBytesPerFrame),
+                        count: Int(buffer.frameCapacity * sttAudioFormat.streamDescription.pointee.mBytesPerFrame),
                         deallocator: .none
                     )
                 }
@@ -335,7 +347,7 @@ extension AVAudioFormat {
     static var defaultFormat: AVAudioFormat {
         guard let audioFormat = AVAudioFormat(
             commonFormat: .pcmFormatInt16,
-            sampleRate: 48_000,
+            sampleRate: 48000,
             channels: 1,
             interleaved: false
         ) else {
