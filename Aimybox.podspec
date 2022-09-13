@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.screenshots = 'https://bit.ly/2pOomUs'
   s.license = { :type => 'APACHE 2.0', :file => 'LICENSE' }
   s.author = { 'vasolutions' => 'vasolutions@just-ai.com' }
-  s.source = { :git => 'https://github.com/just-ai/aimybox-ios-sdk.git', :tag => s.version.to_s }
+  s.source = { :git => 'https://github.com/just-ai/aimybox-ios-sdk.git', :branch => 'dev' }
   s.social_media_url = 'https://twitter.com/aimybox'
   s.ios.deployment_target = '12.0'
   s.swift_versions = '5.2'
