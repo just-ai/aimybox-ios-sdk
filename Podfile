@@ -9,7 +9,7 @@ target 'YandexSpeechKit' do
  pod 'SwiftNIO', '2.40.0'
  pod 'SwiftNIOCore', '2.40.0'
  pod 'SwiftNIOTLS', '2.40.0'
- pod 'SwiftNIOSSL', '2.40.0'
+ pod 'SwiftNIOSSL', '2.19.0'
  	 
 
 end

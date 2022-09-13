@@ -49,7 +49,7 @@ Pod::Spec.new do |s|
     sp.dependency 'SwiftNIO', '2.40.0'
     sp.dependency 'SwiftNIOCore', '2.40.0' 
     sp.dependency 'SwiftNIOTLS', '2.40.0'
-    sp.dependency 'SwiftNIOSSL', '2.40.0'
+    sp.dependency 'SwiftNIOSSL', '2.19.0'
     sp.dependency 'SwiftProtobuf', '1.19.0'
   end	
 
