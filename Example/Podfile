@@ -7,11 +7,17 @@ install! 'cocoapods',
 target 'AimyboxExample' do
   use_frameworks!
 
-  pod 'Aimybox/Core', :path => '../'
-  pod 'Aimybox/Utils', :path => '../'
-  pod 'Aimybox/AimyboxDialogAPI', :path => '../'
-  pod 'Aimybox/AVTextToSpeech', :path => '../'
-  pod 'Aimybox/SFSpeechToText', :path => '../'
+#  pod 'Aimybox/Core', :path => '../'
+#  pod 'Aimybox/Utils', :path => '../'
+#  pod 'Aimybox/AimyboxDialogAPI', :path => '../'
+#  pod 'Aimybox/AVTextToSpeech', :path => '../'
+#  pod 'Aimybox/SFSpeechToText', :path => '../'
+
+pod 'Aimybox/Core', '0.0.27'
+pod 'Aimybox/Utils', '0.0.27'
+pod 'Aimybox/AimyboxDialogAPI', '0.0.27'
+pod 'Aimybox/AVTextToSpeech', '0.0.27'
+pod 'Aimybox/SFSpeechToText', '0.0.27'
 
   
   pod 'SDWebImage'
